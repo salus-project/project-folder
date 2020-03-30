@@ -1,0 +1,21 @@
+.detail{
+    width: 550px;
+    height: 120px;
+    border:1px solid black;
+    padding:5px;
+    margin:auto;
+
+}
+.photo{
+    height:200px;
+}
+.profile_pic{
+    height: 150px;
+}
+.pic_cover{
+    height:150px;
+    width:150px;
+    margin:auto;
+    border:3px solid black;
+    margin-top: 20px;
+}

@@ -1,0 +1,31 @@
+#title{
+    height:30px;
+    border:1px solid black;
+    padding:4px;
+    font-size: 25px;
+    font-weight: 600;
+}
+#content{
+    border:1px solid black;
+}
+#posts{
+    width:75%;
+    height: 100px;
+    margin:auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border:1px solid black;
+}
+#post_title{
+    border:1px solid black;
+    height:40px;
+    padding:2px;
+    margin:3px;
+
+}
+#post_content{
+    margin:3px;
+    border:1px solid black;
+    padding:2px;
+
+}

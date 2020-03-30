@@ -1,0 +1,47 @@
+.titlebar{
+    display: flex;
+    height:40px;
+    background-color: lightskyblue;
+    border: 1px solid mediumblue;
+}
+label{
+    margin-top:3px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.logout{
+    align-content: flex-end;
+    border-radius: 5px;
+    margin: auto;
+    text-align: end;
+    padding-right: 5px;
+}
+.logo_box{
+    width: 45px;
+}
+.logo{
+    width: 35px;
+    margin:auto;
+    margin-top: 1px;
+}
+
+.username{
+    width: 75%;
+}
+.logout{
+    width:25%;
+    margin-right: 0px;
+}
+.menubar{
+    min-height:30px;
+    border:1px solid black;
+}
+.menubar_buttons{
+    height:30px;
+    max-width:15%;
+    min-width:130px;
+    font-weight: 600;
+    background-color: rgb(173, 219, 247);
+    cursor: pointer;
+    margin-right: 0px;
+}
