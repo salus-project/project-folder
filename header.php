@@ -16,6 +16,7 @@
                 <label>
                     <?php 
                     echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
+                    
                     ?>
                 </label>
             </div>
@@ -28,14 +29,23 @@
             
         </div>
         <div class="menubar">
-            <a href="home_page.php"> <button type="button" class="menubar_buttons">Home</button> </a>
-            <a href="govermentpost.php"> <button type="button" class="menubar_buttons">Goverment posts</button> </a>
-            <a href="publicpost.php"><button type="button" class="menubar_buttons">Public posts</button></a>
-            <button type="button" class="menubar_buttons">Events</button>
-            <a href=""> <button type="button" class="menubar_buttons">Notifications</button> </a>
-            <a href="organizations.php"><button type="button" class="menubar_buttons">Organizations</button></a>
-            <a href=""> <button type="button" class="menubar_buttons">About</button> </a>
+            <a href="home_page.php"> <button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_1' value=1>Home</button> </a>
+            <a href="govermentpost.php"> <button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_2' value=2>Goverment posts</button> </a>
+            <a href="publicpost.php"><button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_3' value=3>Public posts</button></a>
+            <a href='events.php'><button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_4' value=4>Events</button></a>
+            <a href=""> <button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_5' value=5>Notifications</button> </a>
+            <a href="organizations.php"><button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_6' value=6>Organizations</button></a>
+            <a href=""> <button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_7' value=7>About</button> </a>
         </div>
+
+        <script>
+            function btnPress(btn){
+                var button = document.getElementById('menu_bar_btn_'.concat(btn));
+                button.style.backgroundColor = 'white';
+                button.style.color = 'rgb(15, 73, 160)';
+                button.style.border = '2px solid rgb(16, 134, 163)';
+            }
+        </script>
         
         <?php
             if(isset($_POST['logout'])){

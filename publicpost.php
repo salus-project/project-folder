@@ -13,6 +13,10 @@
     <body>
     <?php require "header.php" ?>
 
+    <script>
+        btnPress(3);
+    </script>
+
     <div id="title">
         Public posts
     </div>

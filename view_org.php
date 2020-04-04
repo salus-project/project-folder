@@ -12,9 +12,10 @@
         <link rel="stylesheet" href='css_codes/view_org.css'>
     </head>
     <body>
-        <?php
-            require 'header.php'
-        ?>
+        <?php require 'header.php' ?>
+        <script>
+            document.getElementById('menu_bar_btn_6').style.backgroundColor = 'white';
+        </script>
         <div id=org_title>
             <div id=title_margin>
                 <div id=org_logo>

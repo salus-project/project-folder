@@ -1,0 +1,25 @@
+
+#event_table{
+    border:1px solid black;
+    border-collapse: collapse;
+    margin:auto;
+    margin-top:50px;
+}
+td{
+    border:1px solid black;
+    width:75px;
+    padding:5px;
+    text-align: center;
+}
+td.name{
+    width:200px;
+    text-align: left;
+    padding:0px;
+}
+#event_name{
+    height:30px;
+    width:200px;
+    border:0px;
+    background-color: white;
+    cursor: pointer;
+}

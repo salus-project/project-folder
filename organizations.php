@@ -11,7 +11,11 @@
     </head>
     <body>
         <?php require 'header.php'; ?>
-        
+
+        <script>
+            btnPress(6);
+        </script>
+
         <div id="header">
             Organization list
         </div>

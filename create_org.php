@@ -1,119 +1,28 @@
 <?php  
     session_start();
     require 'dbconfi/confi.php';
-
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>create new organization </title>
         <link rel='stylesheet' href='css_codes/create_org.css'>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <?php
-            $nameErr=$leaderErr=$disErr=$emailErr=$phoneErr='';           //Defining error message values
-            $org_name=$leader=$district=$email=$phone_num=$discription='';    //Definig variables and initiate them to empty values
-            $members=array();                               //initiate $members variable as arrary
-
-            if($_SERVER['REQUEST_METHOD']=='POST'){
-                $org_name=$_POST['org_name'];
-                if(isset($_POST['leader'])){
-                    $leader=$_POST['leader'];
-                }
-                $district=$_POST['district'];
-                $email=$_POST['email'];
-                $phone_num=$_POST['phone_num'];
-                $discription=$_POST['discription'];
-                $str_value=$_POST['str_value'];
-                $members=unserialize(base64_decode($str_value));
-            }
-
-            if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
-                //echo '<script type="text/javascript">alert("submit button clicked")</script>';
-                $isOk=1;
-                if(empty($_POST['org_name'])){
-                    $nameErr="Organization name is required";
-                    $isOk=0;
-                }else{
-                    $org_name=filter($_POST['org_name']);
-                    $validate_name_query="select * from organizations where org_name='$org_name'";
-                    $query_run=mysqli_query($con,$validate_name_query);
-                    if(mysqli_num_rows($query_run)>0){
-                        echo '<script type="text/javascript">alert("Organization name already exits...")</script>';
-                        $isOk=0;
-                    }
-                    if(!preg_match("/^[a-zA-Z ]*$/",$org_name)){
-                        $nameErr='Only letters and white space allowed';
-                    }
-                }
-                
-                if(empty($_POST['leader'])){
-                    $leaderErr="Organization name is required";
-                    $isOk=0;
-                }else{
-                    if($_POST['leader']=='you'){
-                        $leader=$_SESSION['user_nic'];
-                    }
-                    elseif (isset($_POST['leader_nic'])) {
-                        $leader=$_POST['leader_nic'];
-                    }
-                }
-
-                if(empty($_POST['district'])){
-                    $disErr="Service district is required";
-                    $isOk=0;
-                }else{
-                    $district=filter($_POST['district']);
-                }
-
-                if(empty($_POST['email'])){
-                    $emailErr="Email is required";
-                    $isOk=0;
-                }else{
-                    $email=filter($_POST['email']);
-                }
-
-                if(empty($_POST['phone_num'])){
-                    $phoneErr="Phone number is required";
-                    $isOk=0;
-                }else{
-                    $phone_num=filter($_POST['phone_num']);
-                }
-
-                $discription=$_POST['discription'];
-
-                if($isOk==1){
-                    $str_members=base64_encode(serialize($members));
-                    #$members=unserialize(base64_decode($str_value));
-                    $query="INSERT INTO organizations (org_name, head, district, email, phone_num, members, discription) VALUES ('$org_name','$leader','$district','$email','$phone_num','$str_members','$discription')";
-                    $query_run=mysqli_query($con,$query);
-                    if($query_run){
-                        header('location:organizations.php');
-                        echo '<script type="text/javascript">alert("Successfully created")</script>';
-                        
-                    }else{
-                        echo '<script type="text/javascript">alert("Error")</script>';
-                    }
-                    #header('location:home_page.php');
-                }
-            }
-            function filter($input){
-                return(htmlspecialchars(stripslashes(trim($input))));
-            }
-
-            if(isset($_POST['add_member'])){
-                //$members=$_POST['']
-                array_push($members,$_POST['new_member']);
-            }
-
-        require 'header.php';
-
+            require 'create_org_php.php';
+            require 'header.php';
         ?>
+        <script>
+            btnPress(6);
+        </script>
+
         <div id='main_body'>
             <center><h2>Create a new organization</h2></center>
             <small style="margin:10px;">Enter the details</small>
             <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
-                <input type='hidden' name='str_value' value=<?php print base64_encode(serialize($members)); ?>>
                 <table id='sub_body'>
                     <tr>
                         <td colspan='2'>
@@ -212,20 +121,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <td><label> Members</label> </td>
                         <td>
-                            <label>Members</label>
-                        </td>
-                        <td>
-                            <?php
-                                $id=0;
-                                foreach((array) $members as $value){
-                                    echo '<input type="text" name="members' . $id . '" value=' . $value .'>
-                                    <input type="submit" name="remove_member" value="remove"></br>';
-                                    $id++;
-                                }
-                                echo '<input type="text" name="new_member">
-                                <input type="submit" name="add_member" value="add"></br>';
-                            ?>
+                                <div id=add_members>
+                                    <input type=text name=jsinput id=new_member>
+                                    <button type=button onclick=add()>add</button>
+                                </div>  
                         </td>
                     </tr>
                     <tr>
@@ -234,28 +135,63 @@
                             <label for='validate'>I have read the terms and conditions</label>
                             
                             <script>
-                            function myfunction(){
-                                //var x = ;
-                                if(document.getElementById('checkbox').checked){
-                                    document.getElementById("submitBtn").disabled=false;
-                                }
-                                else{
-                                    document.getElementById("submitBtn").disabled=true;
-                                }
-                                
-                                
-                            }
+                            
                             </script>
                         </td>
                     </tr>
                     <tr>
                         <td colspan='2'>
-                            <input type='submit' name='submit_button' id='submitBtn' disabled>
+                            <input type='submit' name='submit_button' id='submitBtn' disabled onclick=setCookie()>
                         </td>
                     </tr>
                 </table>
+                <input type=hidden id=hidden name=hidden>
             </form>
         </div>
-    </body>
+        <script>
+            var members = [];
+            
+            function myfunction(){
+                //var x = ;
+                if(document.getElementById('checkbox').checked){
+                    document.getElementById("submitBtn").disabled=false;
+                }
+                else{
+                    document.getElementById("submitBtn").disabled=true;
+                }
+            }
+            
+            function add(){
+                var str='';
+                var newMember = document.getElementById('new_member').value;
+                
+                members.push(newMember);
 
+                members.forEach(function(item,index){
+                    
+                    str+="<input type=text name=added_member id=added"+index+" value="+item+"> <button type=button onclick=remove("+index+")>remove</button></br>";
+                });
+                str+="<input type=text name=jsinput id=new_member> <button type=button onclick=add()>add</button>";
+                document.getElementById('add_members').innerHTML = str;
+                document.getElementById('hidden').value=members.join(" ");
+
+            }
+            function remove(rem_index){
+                delete members[rem_index];
+                
+                members = members.filter(function(element){
+                    return element !== undefined;
+                });
+                str='';
+                members.forEach(function(item,index){
+                    
+                    str+="<input type=text name=added_member id=added"+index+" value="+item+"> <button type=button onclick=remove("+index+")>remove</button></br>";
+                });
+                str+="<input type=text name=jsinput id=new_member> <button type=button onclick=add()>add2</button>";
+                document.getElementById('add_members').innerHTML = str;
+                document.getElementById('hidden').value=members.join(" ");
+            }
+            
+        </script>
+    </body>
 </html>

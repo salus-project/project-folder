@@ -13,6 +13,10 @@
     <body>
     <?php require "header.php" ?>
 
+    <script>
+        btnPress(2);
+    </script>
+
     <div id="title">
         Goverment posts
     </div>

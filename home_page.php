@@ -14,6 +14,10 @@ session_start();
         
         <?php require "header.php" ?>
 
+        <script>
+            btnPress(1);
+        </script>
+
         <div class="photo">
             <div class="pic_cover">
                 <img src="Profiles/<?php echo $_SESSION['user_nic'] . ".jpg";?>" alt=<?php echo $_SESSION['user_nic'] . ".jpg";?> class="profile_pic">
