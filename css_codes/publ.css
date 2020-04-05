@@ -4,9 +4,16 @@
     padding:4px;
     font-size: 25px;
     font-weight: 600;
+    margin-left: 400px;
+    margin-top: 30px;
+    width: 600px;
 }
 #content{
+    margin-left: 400px;
+    text-align: center;
     border:1px solid black;
+    
+    width: 600px;
 }
 #posts{
     width:75%;

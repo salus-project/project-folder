@@ -1,6 +1,7 @@
 <?php
     session_start();
     require 'dbconfi/confi.php'
+    
 ?>
 
 <!DOCTYPE html>
@@ -11,14 +12,12 @@
         <link rel="stylesheet" href="css_codes/publ.css">
     </head>
     <body>
-    <?php require "header.php" ?>
-
-    <script>
-        btnPress(3);
-    </script>
+    <?php require "header.php";
+    require "public_nav.php";
+    ?>
 
     <div id="title">
-        Public posts
+       <center> Public posts</center>
     </div>
     <div id="content">
         <?php

@@ -1,0 +1,45 @@
+input, select {
+    background-color: rgb(223, 215, 243);
+    border: 5px;
+    border-color: rgb(180, 112, 243);
+    padding: 10px;
+    text-align: left;
+    text-decoration: none;
+
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    outline: red;
+  }
+label{
+    margin: 4px 5px;
+    font-size: 12px;
+    text-align: justify;
+}
+.div1{
+    border-radius: 12px;
+    margin-left: 300px;
+    padding: 20px;
+    background-color: rgb(205, 205, 245);
+    text-align: justify;
+}
+.head4{
+    margin-left: 300px;
+    color: red;
+}
+.error{
+    color: red;
+}
+#submit{
+    background-color: rgb(44, 97, 196);
+    color: rgb(211, 199, 240);
+    text-align: center;
+
+}
+.head1{
+    margin-left: 300px;
+    text-align: center;
+}
+.head3{
+    margin-left: 300px;
+}
