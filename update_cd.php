@@ -11,6 +11,9 @@
     </head>
 
     <body style="background-color: #dedede">
+    <?php require 'header.php' ?>
+
+    <script> btnPress(1) </script>
 
         <center>
             <h1> Update my Info </h1>
@@ -27,29 +30,17 @@
                 <label class="label">NIC number </label><br>
                 <input name = "NIC_num" type="text" class="input_box" value="<?php echo $_SESSION['user_nic']; ?>" required/><br>
 
-                <label class="label">Gender </label><br>
-                <select  name="gender" type="text" class="input_box" value="<?php echo $_SESSION['gender']; ?>" required/><br>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
+                <label class="label"> Gender </label><br>
+                <input name = "gender" type="text" class="input_box" value="<?php echo $_SESSION['gender']; ?>"required/><br>
 
-                
                 <label class="label">District </label><br>
                 <input name = "district" type="text" class="input_box" value="<?php echo $_SESSION['district']; ?>" required/><br>
-
 
                 <label class="label">Occupation </label><br>
                 <input name = "occupation" type="text" class="input_box" value="<?php echo $_SESSION['Occupation']; ?>"required/><br>
 
                 <label class="label">Address </label><br>
                 <input name = "address" type="text" class="input_box" value="<?php echo $_SESSION['address']; ?>"required/><br>
-                
-                <label class="label">Email </label><br>
-                <input name = "email" type="text" class="input_box" value="<?php echo $_SESSION['email']; ?>"required/><br>
-                
-                <label class="label">Phone Number </label><br>
-                <input name = "phone_num" type="text" class="input_box" value="<?php echo $_SESSION['phone_num']; ?>"required/><br>
                 
                 <label class="label">Password </label><br>
                 <input name="password" type="password" class="input_box" required/><br>
@@ -79,13 +70,9 @@
         $district = $_POST["district"];
         $occupation = $_POST["occupation"];
         $address = $_POST["address"]; 
-
-        $email = $_POST["email"]; 
-        $phone_num = $_POST["phone_num"]; 
-
         $password = $_POST["password"];
 
-        $query="UPDATE civilian_detail SET email='$email',phone_num='$phone_num',first_name='$first_name',last_name='$last_name',gender='$gender',district='$district',Occupation='$occupation',address='$address',password='$password' where NIC_num='$user_nic'";
+        $query="UPDATE civilian_detail SET first_name='$first_name',last_name='$last_name',gender='$gender',district='$district',Occupation='$occupation',address='$address',password='$password' where NIC_num='$user_nic'";
         $query_run= mysqli_query($con,$query);
 
         if($query_run){

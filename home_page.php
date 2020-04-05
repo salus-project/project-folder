@@ -18,24 +18,14 @@ session_start();
             btnPress(1);
         </script>
 
-        
-        <div class="edit_btn">  
-            <form action="home_page.php" method="post">
-                <input name="edit" type="submit" class="edit_btn" value="edit"/>
-            </form>
-                
-            <?php
-                if(isset($_POST['edit'])){
-                    header('location:update_cd.php');
-                }
-                    ?>
-        </div>
-        
-
         <div class="photo">
             <div class="pic_cover">
                 <img src="Profiles/<?php echo $_SESSION['user_nic'] . ".jpg";?>" alt=<?php echo $_SESSION['user_nic'] . ".jpg";?> class="profile_pic">
             </div>
+        </div>
+
+        <div class="edit_btn">  
+            <a href='update_cd.php'><button>Edit info</button></a>
         </div>
 
         <div class="detail">
@@ -60,13 +50,8 @@ session_start();
                     <td><?php echo "Address" ?></td>
                     <td><?php echo $_SESSION['address']; ?></td>
                 </tr>
-
-                
             </table>
-              
         </div>
-
-        
         
 
     </body>

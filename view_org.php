@@ -14,7 +14,7 @@
     <body>
         <?php require 'header.php' ?>
         <script>
-            document.getElementById('menu_bar_btn_6').style.backgroundColor = 'white';
+            btnPress(6);
         </script>
         <div id=org_title>
             <div id=title_margin>
