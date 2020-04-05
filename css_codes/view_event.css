@@ -90,7 +90,7 @@ input:checked + .slider:before{
     background-color: rgb(55, 230, 84);
     border-left: 2px solid white;
 }
-#mark{
+#mark,#request_help,#volunteer{
     height:34px;
     width:200px;
     font-size: 18px;

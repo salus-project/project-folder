@@ -20,7 +20,7 @@
         </script>
 
         <?php
-            $query="select * from disaster_events";
+            $query="select event_id,name,status from disaster_events";
             $result=$con->query($query);
         ?>
 

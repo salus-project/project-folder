@@ -1,22 +1,24 @@
-
 <?php
-    $nameErr=$leaderErr=$disErr=$emailErr=$phoneErr='';           //Defining error message values
-    $org_name=$leader=$district=$email=$phone_num=$discription='';    //Definig variables and initiate them to empty values
+    if($_SERVER['REQUEST_METHOD']=='GET'){
+        $query='select * from organizations where org_id='.$_GET['edit_detail'];
+        $result=($con->query($query))->fetch_assoc();
+        
+        $org_id=$_GET['edit_detail'];
+        $org_name=$result['org_name'];
+        $leader=$result['head'];
+        $district=$result['district'];
+        $email=$result['email'];
+        $phone_num=$result['phone_num'];
+        $members=$result['phone_num'];
+        $discription=$result['discription'];    //Definig variables and initiate them to empty values
+    }
+    
 
-    /*if($_SERVER['REQUEST_METHOD']=='POST'){
-        $org_name=$_POST['org_name'];
-        if(isset($_POST['leader'])){
-            $leader=$_POST['leader'];
-        }
-        $district=$_POST['district'];
-        $email=$_POST['email'];
-        $phone_num=$_POST['phone_num'];
-        $discription=$_POST['discription'];
-    }*/
 
     if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
         //echo '<script type="text/javascript">alert("submit button clicked")</script>';
         $isOk=1;
+        $org_id=$_POST['hidden_2'];
         if(empty($_POST['org_name'])){
             $nameErr="Organization name is required";
             $isOk=0;
@@ -32,7 +34,7 @@
                 $nameErr='Only letters and white space allowed';
             }
         }
-        
+
         if(empty($_POST['leader'])){
             $leaderErr="Organization name is required";
             $isOk=0;
@@ -71,12 +73,16 @@
         if($isOk==1){
             $str_members=$_POST['hidden'];
             
-            $query="UPDATE organizations SET org_name='$org_name', head='$leader', district='$district', email='$email', phone_num='$phone_num', members='$str_members', discription='$discription' WHERE org_id=".$_GET['edit_detail'] ;
-            $query_run=mysqli_query($con,$query);
+            //echo '<script type="text/javascript">alert("submit button sucess")</script>';
+
+            $query2="UPDATE organizations SET org_name='$org_name', head='$leader', district='$district', email='$email', phone_num='$phone_num', members='$str_members', discription='$discription' WHERE org_id=".$org_id;
+            //echo '<script type="text/javascript">alert("'.$query2.'")</script>';
+
+            $query_run=$con->query($query2);
             if($query_run){
                 header('location:organizations.php');
                 echo '<script type="text/javascript">alert("Successfully created")</script>';
-                
+
             }else{
                 echo '<script type="text/javascript">alert("Errorr")</script>';
             }
@@ -88,4 +94,4 @@
     function filter($input){
         return(htmlspecialchars(stripslashes(trim($input))));
     }
-?>
+?> 

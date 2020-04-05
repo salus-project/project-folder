@@ -21,8 +21,8 @@
         <?php
             $query="select * from disaster_events where event_id =" . $_GET['event_id'];
             $result=($con->query($query))->fetch_assoc();
-            $status_query = "select event_".$result['event_id']." from civilian_status where nic_num = '".$_SESSION['user_nic']."'";
-            $status=(($con->query($status_query))->fetch_assoc())["event_".$result['event_id']];
+            
+            $status=explode(" ",$result[$_SESSION['user_nic']]);
         ?>
         <div id=event_header>
             <div id=title_box>
@@ -68,14 +68,28 @@
         </div>
     <script>
         var status_btn = document.getElementById('status');
-        var status = '<?php echo $status?>';
+        var safe_status = '<?php echo $status[0]?>';
+        var help_status = '<?php echo $status[1]?>';
+        var volunteer_status = '<?php echo $status[2]?>';
+
         var event_id='<?php echo $result['event_id'] ?>';
         var nic_num = '<?php echo $_SESSION['user_nic']?>';
-        switch(status){
+
+        var html = "";
+        switch(safe_status){
             case 'not_set':
-                var html = "<button id='mark' onclick='markFun()'>Mark</button>";
-                status_btn.innerHTML = html;
+                html += "<button id='mark' onclick='markFun()'>Mark</button>";
         }
+        switch(help_status){
+            case 'not_requested':
+                html += "</br><button id='request_help' onclick='markFun()'>Request help</button>";
+        }
+        switch(volunteer_status){
+            case 'not_applied':
+                html += "</br><button id='volunteer' onclick='markFun()'>Help others</button>";
+        }
+        status_btn.innerHTML = html;
+
         function markFun(){
             var html="<div class=switch_container><form method=post action=view_event.php><label class='switch'><input type=checkbox id=checkbox onclick=markingFun()><span class=slider></span></label><span class=indicator id=indicator>Safe</span><input  type=submit id=submit_btn value=submit></form></div>";
             status_btn.innerHTML=html;
