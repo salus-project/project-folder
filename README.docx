@@ -1,0 +1,132 @@
+OOSD – Group Salus
+Users side
+Log-in page
+•	If a person has a account, he can log through it. If not, he or she have to contact the government staff. (Government staff or admin can only create a account.)
+•	forgot password option
+Home page: User’s page
+•	Background cover photo
+•	Profile photo
+•	User’s basic detail like bio
+•	Edit button (Near detail box to edit bio and to change profile and cover photo.)
+•	User’s organizations. Also, his post on that organizations. (leader, co-leader, member, etc.)
+•	User’s post on the public post field. On the top, posting facility to post on the public post section. Same box as in public post page.
+
+Government Post
+•	Showing the government posts and news from government post table.
+•	Ascending order with respect to time (last post on the top.)
+	Future updates
+•	To save posts.
+•	Comment to the post
+•	Priority to show posts to people, which can be set by the post creator. (government staff)
+Public post
+•	Two type of posts.
+o	Private people’s post
+o	Organization’s post
+	Announcements and other post.
+	Fund rising program.
+•	Ascending order with respect to time (last post on the top.)
+•	In the public post table, there will be another additional column will indicate wheatear the post is by individuals or by a organization.
+•	Posting facility on the top of the page. There a person can write and upload a image.
+•	Facility to repost another person’s post. (like share or retweet)
+•	In a fund rising program, viewer can donate immediately by providing his card details.
+•	He or she can donate as individuals or as an organization.
+	Future updates
+•	Saving post
+•	Commenting on post
+•	Like button
+•	If the user is a leader a co-leader of any organization, option to post as one of those organization. (as like in organization post)
+•	Maintaining the priority order to show others post. (Nearest people’s post higher priority.
+Events
+•	Events can be created by government staff.
+•	When a event created, detail of that event will be added to event detail table and new table will be created for storing civilian status and other information.
+•	There will be two type of events.
+o	Closed events
+o	Active events
+•	Closed events
+o	Can look up the report
+o	It includes two type closed events. One type may earlier details before system has started and other repots while system is on service.
+o	If the system didn’t start on that time, show the report, by Department of Disaster management
+o	If the system was on service, detail of total affected peoples, act of organization, and all the full detail
+•	Active event
+o	If a government staff created and event, first that should be noticed to the user by notification. Therefore, brief detail should be saved on notification table
+o	First a user has to mark him or her as safe or not.
+o	Marked as unsafe can request for help. This should be notified by government staff, people who will work as volunteers and active organizations
+o	All people except requested for help can work as a volunteer. For that he or she have to fill some forms and those details will be stored in different table.
+•	Requesting for help.
+o	Two kind of requests immediate request and detailed request.
+o	For detailed request, he or she have to go through a form.
+	Name and other basic detail are default. Can change the current district.
+	Can require help as money, goods or both of them.
+	Expecting amount or things and time can be applied.
+	Can also apply bank detail to be deposited money, if he or she require help as money.
+o	If a person marked him as safe and if he or she going to request for help, his or her status will automatically change to unsafe.
+o	In that scenario, we he or she has working as a volunteer, that will also be removed.
+•	Page elements
+o	Title bar
+	Name of the event
+	Main photo of that event.
+o	Event detail
+	Brief detail of that event or disaster 
+o	Government post filed
+	Post of government regarding this events will be showed here.
+o	Detail section – affected people detail
+	Total count of affected people. (By the mark of safe or not)
+o	Detail section – help requested people
+	Short list of people who requested for help.
+	Short detail of the detail if he is going to be helped. (For example, name – a organization is going to help him.)
+	If the user is a volunteer, Option to help for each person (also option to serve as individual or as an organization.)
+o	Detail section – Organization detail
+	List of organizations, which are serving on that time.
+	Detail of their services. (total helped people and total donations)
+	Future updates
+o	If a person got help from individuals or organization, they can rate them. (Not necessary)
+o	If a government staff close a event all the table details and event detail will store on a text file and that table on mysql will drop to save space.
+Notifications
+•	Show the notifications stored on the notification table
+Organization
+•	Anyone can create an organization.
+•	while one creating an organization, he can declare another one as leader.
+•	Creator can add members when creating organizations. But he can’t add members after creating if he didn’t be in required position (leader or co-leader)
+•	Organization’s post can be post by leader or co-leader.
+•	They can create a fund rising program. That will also be posted as an organization post.
+•	Organization can donate to people who requested for help or can donate to other organization who are also in same progress.
+•	All the members (including leader and co-leader) can chat in common discussion box.
+•	Leader or co-leader can change the detail of organization.
+•	They can provide bank details, so the donators can easily donate to that bank.
+•	Page elements
+o	Title section
+	Logo of the organization
+	Name flowed by the description
+	Edit option if the viewer is leader or co-leader
+	Discussion section to chat among members.
+	Leave option to leave the organization.
+o	Detail section
+	Brief detail of organization.
+o	Post section
+	On the top, if the viewer is leader or co-leader, facility to create a new post as that organization.
+	Posts by that organization sorted by posted time
+
+	Future updates
+o	Only members can look who posted the post as organization. (leader or co-leader)
+o	While creating the organization, if the creator is going to declare another one as leader, he has to wait until the leader approve that.
+o	Same approval method for co-leader declaration.
+o	No need to get approval to join anyone as member.
+o	Leader or co-leader can kick out from the organization. Leader can kickout co-leader or he can demote him to member. But co-leader can’t.
+o	Leader can promote a member or co-leader to leader. At the same time he or she will be demoted to that place.
+o	Co-leader can also do like this.
+About us
+•	Brief detail about department and services.
+•	Contact us options. Via telephone or msg.
+
+Government Staff side
+Create a person account
+•	Form to enter detail of a person
+Event
+•	Create event
+o	From to create an disaster event
+•	Can look up at any event and can change the detail or report.
+•	Can mark anyone as safe or not or and can apply them for help request.
+•	Can close any event at any time.
+Notification
+•	To show the notification
+•	This will common to all government staffs.
