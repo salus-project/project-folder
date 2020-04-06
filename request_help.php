@@ -15,14 +15,13 @@
     <script> btnPress(1) </script>
 
         <center>
-            <h1> Rrquest for help </h1>
+            <h1> Request for help </h1>
             
             <div class="div1">
-            <form  class="form_box" action="help_request.php" method="POST">
+            <form  class="form_box" action="request_help.php" method="POST">
 
-                <label class="label">NIC number </label><br>
+               <label class="label">NIC number </label><br>
                 <input name = "NIC_num" type="text" class="input_box" value="<?php echo $_SESSION['user_nic']; ?>" required/><br>
-
                 <label class="label"> District (current) </label><br>
                     <select name="district" class="input_box">
                         <option value='all island'>All island</option>
@@ -53,8 +52,8 @@
                         <option value='Vavuniya'>Vavuniya</option>
                     </select></br>
                 <label class="label">Help Type </label><br>
-                <input type="radio" name="type1" value="money"> Money<br>
-                <input type="radio" name="type2" value="good"> Good<br>
+                <input type="checkbox" name="type[]" value="money"> Money<br>
+                <input type="checkbox" name="type[]" value="good"> Good<br>
                 
                 <label class="label">Money description</label><br>
                 <textarea cols="30" rows="4"  class="input_box" name="money_description" ></textarea><br>
@@ -82,16 +81,19 @@
         $district=$_POST['district'];
         $money_description=$_POST['money_description'];
         $good_description=$_POST['good_description'];
-    
+        $type_arr=$_POST["type"];
         $help_type="";
-        if (!empty($_POST["type1"]) and !empty($_POST["type2"])){
-            $help_type="money and good";
-        } elseif (empty($_POST["type1"]) and !empty($_POST["type2"])){
-            $help_type="good";
+        
+        if(count($type_arr)==2){
+            $help_type="money and good"; 
+        }elseif(count($type_arr)==1){
+            if($type_arr[0]=="money"){
+                $help_type="money";
+            }elseif($type_arr[0]=="good"){
+                $help_type="good";
+            }
         }
-        elseif(!empty($_POST["type1"]) and empty($_POST["type2"])){
-            $help_type="money";
-        }
+        
 
         $query="INSERT INTO event_"+$event_id+"_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ($user_nic, $district, $help_type, $money_description, $good_description)";
         $query_run= mysqli_query($con,$query);
