@@ -20,8 +20,6 @@
             <div class="div1">
             <form  class="form_box" action="request_help.php" method="POST">
 
-               <label class="label">NIC number </label><br>
-                <input name = "NIC_num" type="text" class="input_box" value="<?php echo $_SESSION['user_nic']; ?>" required/><br>
                 <label class="label"> District (current) </label><br>
                     <select name="district" class="input_box">
                         <option value='all island'>All island</option>
@@ -77,7 +75,8 @@
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $event_id="2";
-        $user_nic=$_POST['NIC_num'];
+        $event_id1=(int)$event_id;
+        $user_nic=$_SESSION['user_nic'];
         $district=$_POST['district'];
         $money_description=$_POST['money_description'];
         $good_description=$_POST['good_description'];
@@ -95,15 +94,26 @@
         }
         
 
-        $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
-        $query_run= mysqli_query($con,$query);
+       /* $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
+        $query_run= mysqli_query($con,$query);*/
 
-        if($query_run){
+        $data="SELECT * from disaster_events where event_id='$event_id'";
+        $result=($con->query($data))->fetch_assoc();
+        $status=explode(" ",$result[$_SESSION['user_nic']]);
+        
+        $data1=$status[0]." requested ".$status[2];
+        
+        $query1="UPDATE disaster_events SET ".$_SESSION['user_nic']."='".$data1."' WHERE event_id='$event_id'";
+        echo $query1;
+        $query_run1= mysqli_query($con,$query1);
+   
+        
+        if($query_run1){
             header('location:events.php');
-            echo '<script type="text/javascript"> alert ("Submited!") </script>';
+            echo '<script type="text/javascript"> alert ("Request updated!") </script>';
         }
         else{
-            echo '<script type="text/javascript"> alert ("Not Submited") </script>';
+            echo '<script type="text/javascript"> alert ("Not updated") </script>';
 
         }
     }
