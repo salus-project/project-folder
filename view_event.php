@@ -75,24 +75,23 @@
         var event_id='<?php echo $result['event_id'] ?>';
         var nic_num = '<?php echo $_SESSION['user_nic']?>';
 
-        var html = "";
         switch(safe_status){
             case 'not_set':
-                html += "<button id='mark' onclick='markFun()'>Mark</button>";
+                var html1 = "<button id='mark' onclick='markFun()'>Mark</button>";
         }
         switch(help_status){
             case 'not_requested':
-                html += "</br><button id='request_help' onclick='markFun()'>Request help</button>";
+                var html2 = "</br><form method=get action=request_help.php><button type=submit id='request_help' name=event_id value="+event_id+">Request help</button></form>";
         }
         switch(volunteer_status){
             case 'not_applied':
-                html += "</br><button id='volunteer' onclick='markFun()'>Help others</button>";
+                var html3 = "</br><form method=get action=volunteer_application.php><button id='volunteer' name=event_id value="+event_id+">Help others</button></form>";
         }
-        status_btn.innerHTML = html;
+        status_btn.innerHTML = ( html1 + html2 + html3 );
 
         function markFun(){
-            var html="<div class=switch_container><form method=post action=view_event.php><label class='switch'><input type=checkbox id=checkbox onclick=markingFun()><span class=slider></span></label><span class=indicator id=indicator>Safe</span><input  type=submit id=submit_btn value=submit></form></div>";
-            status_btn.innerHTML=html;
+            html1="<div class=switch_container><form method=post action=view_event.php><label class='switch'><input type=checkbox id=checkbox onclick=markingFun()><span class=slider></span></label><span class=indicator id=indicator>Safe</span><input  type=submit id=submit_btn value=submit></form></div>";
+            status_btn.innerHTML = ( html1 + html2 + html3 );
             status='safe';
             update();
         }

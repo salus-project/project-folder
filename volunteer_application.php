@@ -1,0 +1,1 @@
+<?php echo "event id is ".$_GET['event_id'] ?>
