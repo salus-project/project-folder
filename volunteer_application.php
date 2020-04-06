@@ -136,7 +136,20 @@
         
         $query= "INSERT INTO `event_2_volunteers` (`NIC_num`,`service_district`, `type`, `money_or_goods`, `amount`, `things`) VALUES ('$nic','$districts', '$value1', '$value2', '$t1', '$t2')";
         $query_run= mysqli_query($con,$query);
+        
+        
+        // code to update status---------------------------
+        $sql="select * from disaster_events where event_id=2" ;
+        $result=($con->query($sql))->fetch_assoc();  
+        $status=explode(" ",$result[$_SESSION['user_nic']]);
+        $status[2]="applied";
+        $my=join(" ",$status);
+        $nic_num=$_SESSION['user_nic'];
+        $sql1="UPDATE civilian_status SET nic_num='$my'";
+        $query_run1= mysqli_query($con,$sql1);
+        //---------------------------------------------
 
+        
         if($query_run){
             echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
         }
