@@ -61,6 +61,30 @@
             </div>
             <div id=help_requested>
                 <h2>Help requested people<h2>
+				<table border="1">
+				<?php
+					$query1='select NIC_num,first_name,last_name from civilian_detail ';
+					$result1=$con->query($query1);
+					while($row1=$result1->fetch_assoc()){
+						
+						$sql="select * from disaster_events where event_id=".$_GET['event_id'];
+						$result2 = $con->query($sql);
+							while($row2=$result2->fetch_assoc()){
+								$nic_num=$row1["NIC_num"];
+								$text= $row2[$nic_num];
+								
+								if (strpos( $text,'not_requested') == false) {
+									$full_name=$row1["first_name"].' '.$row1["last_name"];
+									echo "<tr>";
+									echo "<td>{$full_name}</td>";
+									echo "</tr>";
+								}
+								
+							}
+						
+					}
+				?>
+				</table>
             </div>
             <div id=organizations>
                 <h2>Organizations on action</h2>
