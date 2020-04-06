@@ -77,7 +77,7 @@
     mysqli_select_db($con,"kfm2yvoF5R");
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $event_id=2;
+        $event_id="2";
         $user_nic=$_POST['NIC_num'];
         $district=$_POST['district'];
         $money_description=$_POST['money_description'];
@@ -93,7 +93,7 @@
             $help_type="money";
         }
 
-        $query="INSERT INTO event_2_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ($user_nic, $district, $help_type, $money_description, $good_description)";
+        $query="INSERT INTO event_"+$event_id+"_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ($user_nic, $district, $help_type, $money_description, $good_description)";
         $query_run= mysqli_query($con,$query);
 
         if($query_run){
