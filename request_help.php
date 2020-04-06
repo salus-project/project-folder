@@ -95,7 +95,7 @@
         }
         
 
-        $query="INSERT INTO event_"+$event_id+"_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ($user_nic, $district, $help_type, $money_description, $good_description)";
+        $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
         $query_run= mysqli_query($con,$query);
 
         if($query_run){
