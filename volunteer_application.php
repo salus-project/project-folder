@@ -138,24 +138,29 @@
         $query_run= mysqli_query($con,$query);
         
         
-        // code to update status---------------------------
-        $sql="select * from disaster_events where event_id=2" ;
-        $result=($con->query($sql))->fetch_assoc();  
+        $event_id="".$_GET['event_id'];
+        $event_id1=(int)$event_id; 
+        $user_nic=$_SESSION['user_nic'];  
+
+        $sql="SELECT * from disaster_events where event_id='$event_id'";
+        $result=($con->query($sql))->fetch_assoc();
         $status=explode(" ",$result[$_SESSION['user_nic']]);
-        $status[2]="applied";
+        
+        $status[2]='not_applied';
         $my=join(" ",$status);
-        $nic_num=$_SESSION['user_nic'];
-        $sql1="UPDATE civilian_status SET nic_num='$my'";
-        $query_run1= mysqli_query($con,$sql1);
-        //---------------------------------------------
+        $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id1";
+       
+        
+        $query_run1= mysqli_query($con,$query1);
 
         
-        if($query_run){
-            echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
+        if($query_run1){
+            echo '<script type="text/javascript"> alert ("Request applied!") </script>';
         }
         else{
-            echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
-    }
+            echo '<script type="text/javascript"> alert ("Not applied") </script>';
+
+        }
 }
 
 ?>
