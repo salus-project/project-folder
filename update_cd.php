@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    require 'dbconfi/confi.php';
+session_start();
+require 'dbconfi/confi.php';
+require 'edit_profile.php';
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,16 +27,13 @@
                 <label class="label">Last Name </label><br>
                 <input name = "last_name" type="text" class="input_box" value="<?php echo $_SESSION['last_name']; ?>" required/><br>
 
-                <label class="label">NIC number </label><br>
-                <input name = "NIC_num" type="text" class="input_box" value="<?php echo $_SESSION['user_nic']; ?>" required/><br>
-
-                <label class="label">Gender </label><br>
+                <label class="label"> Gender </label><br>
                 <select  name="gender" type="text" class="input_box" value="<?php echo $_SESSION['gender']; ?>" required/><br>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select>
-                
+
                 <label class="label">District </label><br>
                 <input name = "district" type="text" class="input_box" value="<?php echo $_SESSION['district']; ?>" required/><br>
 
@@ -45,10 +42,10 @@
 
                 <label class="label">Address </label><br>
                 <input name = "address" type="text" class="input_box" value="<?php echo $_SESSION['address']; ?>"required/><br>
-                
+
                 <label class="label">Email </label><br>
                 <input name = "email" type="text" class="input_box" value="<?php echo $_SESSION['email']; ?>"required/><br>
-                
+
                 <label class="label">Phone Number </label><br>
                 <input name = "phone_num" type="text" class="input_box" value="<?php echo $_SESSION['phone_num']; ?>"required/><br>
                 
@@ -63,37 +60,6 @@
             
             </div>
         <center>
+        
     </body>
 </html>
-
-<?php
-    $con = mysqli_connect("remotemysql.com","kfm2yvoF5R","4vkzHfeBh6") or die("Unable to connect");
-    mysqli_select_db($con,"kfm2yvoF5R");
-
-    if (isset($_POST['update_button'])){
-
-        $user_nic=$_POST['NIC_num'];
-        $password=$_POST['password'];
-        $first_name = $_POST["first_name"];
-        $last_name = $_POST["last_name"];
-        $gender = $_POST["gender"];
-        $district = $_POST["district"];
-        $occupation = $_POST["occupation"];
-        $address = $_POST["address"];
-        $email = $_POST["email"]; 
-        $phone_num = $_POST["phone_num"];  
-        $password = $_POST["password"];
-
-        $query="UPDATE civilian_detail SET email='$email',phone_num='$phone_num',first_name='$first_name',last_name='$last_name',gender='$gender',district='$district',Occupation='$occupation',address='$address',password='$password' where NIC_num='$user_nic'";
-        $query_run= mysqli_query($con,$query);
-
-        if($query_run){
-            header('location:home_page.php');
-            echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-        }
-        else{
-            echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
-
-        }
-    }
-?>

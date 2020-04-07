@@ -2,6 +2,8 @@
     session_start();
     require 'dbconfi/confi.php';
     require 'header.php';
+    echo $_GET['event_id']."<br>";
+    echo $_GET['method'];
 
     $nic=$_SESSION['user_nic'];
     $value1="not_selected";

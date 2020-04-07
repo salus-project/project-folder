@@ -50,7 +50,6 @@ require 'dbconfi/confi.php'
                             $_SESSION['address']=$row['address'];
                             $_SESSION['email']=$row['email'];
                             $_SESSION['phone_num']=$row['phone_num'];
-
                         }
                         
                         

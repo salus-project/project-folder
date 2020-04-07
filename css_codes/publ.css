@@ -10,7 +10,7 @@
 }
 #posts{
     width:75%;
-    height: 100px;
+    min-height: 100px;
     margin:auto;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -31,7 +31,7 @@
 }
 #new_post{
     width: 70%;
-    height: 100px;
+    min-height: 100px;
     border: 1px solid black;
     margin:auto;
     padding-right:6px;
@@ -56,7 +56,6 @@
     padding: 6px 8px 7px;
     margin-bottom: 0;
     font-size: 14px;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
     line-height: 1;
     color: #333;
@@ -67,4 +66,16 @@
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+#preview{
+    width:70%;
+}
+#image_container{
+    text-align: center;
+}
+#post_image{
+    width:70%;
+}
+#post_image_container{
+    text-align: center;
 }

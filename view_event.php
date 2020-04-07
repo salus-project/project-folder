@@ -28,12 +28,20 @@
             <div id=title_box>
                 <?php echo $result['name'] ?>
                 <div id=status>
-                    <div id=safe_btn>
-                    </div>
-                    <div id=help_btn>
-                    </div>
-                    <div id=volunteer_btn>
-                    </div>
+                    <form>
+                        <div id=safe_btn>
+                        </div>
+                    </form>
+                    <form method=get action=request_help.php>
+                        <input type=hidden name=event_id value=<?php echo $_GET['event_id']?>>
+                        <div id=help_btn>
+                        </div>
+                    </form>
+                    <form method=get action=volunteer_application.php>
+                    <input type=hidden name=event_id value=<?php echo $_GET['event_id']?>>
+                        <div id=volunteer_btn>
+                        </div>
+                    </form>
                     
                 </div>
             </div>
@@ -82,23 +90,7 @@
 				</table>
             </div>
             <div id=affected>
-                <h2>Affected people detail<h2>
-				<table>
-				<?php
-					$query2='select NIC_num,first_name,last_name from civilian_detail';
-					$result2=$con->query($query2);
-					while($civilian1=$result2->fetch_assoc()){
-                        $nic_num=$civilian1["NIC_num"];
-                        $help_request_status= explode(" ",$result[$nic_num])[0];
-                        if ($help_request_status=='not_safe') {
-                            $full_name1=$civilian1["first_name"].' '.$civilian1["last_name"];
-                            echo "<tr>";
-                            echo "<td>{$full_name1}</td>";
-                            echo "</tr>";
-                        }
-					}
-				?>
-				</table>
+                <h2>Affected people detail
             </div>
             <div id=organizations>
                 <h2>Organizations on action</h2>
@@ -121,17 +113,31 @@
 
         switch(help_status){
             case 'not_requested':
-                var html2 = "</br><form method=get action=request_help.php><button type=submit id='request_help' name=event_id value="+event_id+">Request help</button></form>";
+                var html2 = "<button type=submit id='request_help' name=method value=request>Request help</button>";
+                break;
 
             case 'requested':
-                var html2 = "</br><form method=get action=request_help.php><button type=submit id='request_help' name=event_id value="+event_id+">Request help</button></form>"
+                var html2 =     "<button id='help_request_option' disabled>Help Requested</button>" +
+                                "<div id=changeRequest>"+
+                                    "<button id=drop_dwn name=method value=cancel>Cancel Request</button><br>"+
+                                    "<button id=drop_dwn name=method value=option>Request Option</button>"+
+                                "</div>";
+                break;
         }
         var help_btn = document.getElementById('help_btn');
         help_btn.innerHTML = html2;
 
         switch(volunteer_status){
             case 'not_applied':
-                var html3 = "</br><form method=get action=volunteer_application.php><button id='volunteer' name=event_id value="+event_id+">Help others</button></form>";
+                var html3 = "<button id='volunteer' name=method value=apply>Help others</button>";
+                break;
+            case 'applied':
+                var html3 =     "<button id='volunteer_option' name=event_id disabled>Volunteer Option</button>"+
+                                "<div id=changeVolunteer>"+
+                                    "<button id='drop_dwn' name=method value=cancel>leave volunteer</button><br>"+
+                                    "<button id='drop_dwn'name=method value=option>Volunteer Option</button>"+
+                                "</div>";
+                break;
         }
         var volunteer_btn = document.getElementById('volunteer_btn');
         volunteer_btn.innerHTML = html3;
@@ -152,13 +158,13 @@
                 update();
             }
         }
-        var mysql = require('mysql');
+        /*var mysql = require('mysql');
         var con = mysql.createConnection({
             host: "localhost",
             user: "root",
             password:"",
             database:"project_db"
-        });
+        });*/
         function update(){
             con.connect(function(err){
                 if(err) throw err;
@@ -170,6 +176,21 @@
                 });
             });
         }
+
+        /*function changeRequest(isIn){
+            if(isIn==true){
+                help_btn.innerHTML = html2 + "<div id=changeRequest><form method=get action=request_help.php><button>Cancel Request</button><br><button>Request Option</button></form></div>";
+            }
+            if(isIn==false){
+                help_btn.innerHTML = "";
+            }
+        }*/
+        /*function changeVolunteer(isIn){
+            if(isIn==true){
+                volunteer_btn.innerHTML = html3 + "<div id=changeVolunteer><button>leave volunteer</button><br><button>Volunteer Option</button></div>";
+            }
+            
+        }*/
         
     </script>
     </body>

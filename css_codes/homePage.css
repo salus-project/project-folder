@@ -39,3 +39,21 @@
     margin:auto;
     align-content: stretch;
 }
+#content{
+    margin:auto;
+    border:1px solid black;
+ }
+ #posts{
+     width:75%;
+     height: 100px;
+     margin:auto;
+     margin-top: 10px;
+     margin-bottom: 5px;
+     border:1px solid black;
+ }
+ #post_content{
+     margin:3px;
+     border:1px solid black;
+     padding:2px;
+ 
+ }
