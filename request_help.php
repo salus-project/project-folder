@@ -12,7 +12,7 @@
 
     <body style="background-color: #dedede">
 
-    <script> btnPress(1) </script>
+    <script> btnPress(2) </script>
 
         <center>
             <h1> Request for help </h1>
@@ -50,17 +50,26 @@
                         <option value='Vavuniya'>Vavuniya</option>
                     </select></br>
                 <label class="label">Help Type </label><br>
-                <input type="checkbox" name="type[]" value="money"> Money<br>
-                <input type="checkbox" name="type[]" value="good"> Good<br>
+                <input type="checkbox" name="type[]" value="money" onclick="OnChangeCheckbox (this,'money_des')" id ="money"> Money<br>
+                <input type="checkbox" name="type[]" value="good" onclick="OnChangeCheckbox (this,'good_des')" id ="good"> Good<br>
                 
                 <label class="label">Money description</label><br>
-                <textarea cols="30" rows="4"  class="input_box" name="money_description" ></textarea><br>
+                <textarea cols="30" rows="4"  class="input_box" name="money_description" id="money_des" ></textarea><br>
                 <label class="label">Good description</label><br>
-                <textarea cols="30" rows="4"  class="input_box" name="good_description"></textarea><br>
+                <textarea cols="30" rows="4"  class="input_box" name="good_description" id="good_des"></textarea><br>
 
                 <input name="submit_button" type="submit"  value="Submit"  class="submit_button"><br>
                 
-                
+                <script>
+                    function OnChangeCheckbox (checkbox,textbox) {
+                        if (checkbox.checked) {
+                            document.getElementById(textbox).style.display="block"; 
+                        }
+                        else {
+                            document.getElementById(textbox).style.display="none"; 
+                        }
+                    }
+                </script>
             </form>
 
             
@@ -94,16 +103,17 @@
         }
         
 
-       /* $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
-        $query_run= mysqli_query($con,$query);*/
+        $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
+        $query_run= mysqli_query($con,$query);
 
         $data="SELECT * from disaster_events where event_id='$event_id'";
         $result=($con->query($data))->fetch_assoc();
         $status=explode(" ",$result[$_SESSION['user_nic']]);
         
-        $data1=$status[0]." requested ".$status[2];
-        
-        $query1="UPDATE disaster_events SET ".$_SESSION['user_nic']."='".$data1."' WHERE event_id='$event_id'";
+        $status[1]='yes_requested';
+        $data1=join(" ",$status);
+        $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id1";
+       
         echo $query1;
         $query_run1= mysqli_query($con,$query1);
    
