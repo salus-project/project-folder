@@ -146,7 +146,7 @@
         $result=($con->query($sql))->fetch_assoc();
         $status=explode(" ",$result[$_SESSION['user_nic']]);
         
-        $status[2]='not_applied';
+        $status[2]='applied';
         $my=join(" ",$status);
         $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id1";
        
