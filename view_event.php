@@ -82,7 +82,23 @@
 				</table>
             </div>
             <div id=affected>
-                <h2>Affected people detail
+                <h2>Affected people detail<h2>
+				<table>
+				<?php
+					$query2='select NIC_num,first_name,last_name from civilian_detail';
+					$result2=$con->query($query2);
+					while($civilian1=$result2->fetch_assoc()){
+                        $nic_num=$civilian1["NIC_num"];
+                        $help_request_status= explode(" ",$result[$nic_num])[0];
+                        if ($help_request_status=='not_safe') {
+                            $full_name1=$civilian1["first_name"].' '.$civilian1["last_name"];
+                            echo "<tr>";
+                            echo "<td>{$full_name1}</td>";
+                            echo "</tr>";
+                        }
+					}
+				?>
+				</table>
             </div>
             <div id=organizations>
                 <h2>Organizations on action</h2>
