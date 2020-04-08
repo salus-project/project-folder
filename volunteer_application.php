@@ -2,13 +2,14 @@
     session_start();
     require 'dbconfi/confi.php';
     require 'header.php';
-    echo $_GET['event_id']."<br>";
-    echo $_GET['method'];
-    
-    //$submit_type="apply";
-    //$submit_type="option";
-    $submit_type="cancel";
 
+    if($_SERVER['REQUEST_METHOD']=='GET'){
+        $event_id = $_GET['event_id'];
+        $submit_type = $_GET['method'];
+    }elseif($_SERVER['REQUEST_METHOD']=='POST'){
+        $event_id = $_POST['event_id'];
+        $submit_type = $_POST['method'];
+    }
      
     //submit type = apply................................
     if ($submit_type==="apply"){
@@ -211,6 +212,7 @@
             <div class="div1">
             <form  class="form_box" action="volunteer_application.php" method="POST">
                 <input type=hidden name=event_id value="<?php echo $_GET['event_id'] ?>">
+                <input type=hidden name=method value='<?php echo $submit_type ?>'>
 
                 <?php
                 if ($submit_type==="option"){
@@ -291,4 +293,3 @@
         <center>
     </body>
 </html>
-
