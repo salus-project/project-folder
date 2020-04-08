@@ -1,8 +1,8 @@
 <?php
     session_start();
     require 'dbconfi/confi.php';
-    echo $_GET['event_id']."<br>";
-    echo $_GET['method'];
+   // echo $_GET['event_id']."<br>";
+   // echo $_GET['method'];
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +97,7 @@
 <?php
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $event_id=$_POST['event_id'];
+        $event_id1=(int)$event_id;
         $user_nic=$_SESSION['user_nic'];
         $district=$_POST['district'];
         $money_description=$_POST['money_description'];
@@ -126,14 +127,15 @@
 
             $status[1]='requested';
             $data1=join(" ",$status);
-            $query1="UPDATE disaster_events SET ".$_SESSION['user_nic']." = '".$data1."' WHERE event_id = $event_id";
-
+            $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id1";
+  
             $query_run1= mysqli_query($con,$query1);
 
-            if($query_run1){
-                header('location:events.php');
-            }else{
+            if(!$query_run1){
                 echo '<script type="text/javascript"> alert ("Not updated") </script>';
+            }else{
+                header('location:events.php');
+                
             }
         }
         else{
