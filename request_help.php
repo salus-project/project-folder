@@ -8,15 +8,13 @@
         request_help();
     }
     elseif( $_GET['method']=='option'){
-        edit_request();
+        request_help();
     }elseif( $_GET['method']=='cancel'){
         cancel_request();
     }
  
     if(isset($_POST['submit_button'])){
-       // $con = mysqli_connect("remotemysql.com","kfm2yvoF5R","4vkzHfeBh6") or die("Unable to connect");
-       // mysqli_select_db($con,"kfm2yvoF5R");
-       $event_id=$_POST['event_id'];
+        $event_id=$_POST['event_id'];
        $user_nic=$_SESSION['user_nic'];
        $district=$_POST['district'];
        $money_description=$_POST['money_description'];
@@ -141,7 +139,7 @@ function request_help(){
         <?php require 'header.php' ?>
         <script> btnPress(4) </script>
             <center>
-                <h1> Request for help </h1>
+                <h1> My request</h1>
                 
                 <div class="div1">
                 <form  class="form_box" action="request_help.php" method="POST">
@@ -212,104 +210,8 @@ function request_help(){
                     document.getElementById(textbox).style.display="none"; 
                 }
             }
-
-        </script>
-        
+        </script>    
         </body>
     </html>
-
 <?php }
-
-function edit_request(){
-
 ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Edit the request</title>
-        <link rel="stylesheet" href="css_codes/style.css">
-    </head>
-
-    <body style="background-color: #dedede">
-    <?php require 'header.php' ?>
-
-    <script> btnPress(2) </script>
-
-        <center>
-            <h1> Edit my Request </h1>
-            
-            <div class="div1">
-            <form  class="form_box" action="" method="POST">
-                <input type=hidden name=event_id value=<?php echo $_GET['event_id'] ?>>
-                <label class="label"> District (current) </label><br>
-                    <select name="district" class="input_box"  value="<?php echo $_GET['district']; ?>">
-                        <option value='all island'>All island</option>
-                        <option value='Ampara'>Ampara</option>
-                        <option value='Anurashapura'>Anurashapura</option>
-                        <option value='Badulla'>Badulla</option>
-                        <option value='Batticaloa'>Batticaloa</option>
-                        <option value='Colombo'>Colombo</option>
-                        <option value='Galle'>Galle</option>
-                        <option value='Gampha'>Gampha</option>
-                        <option value='Hambatota'>Hambantota</option>
-                        <option value='Jaffna'>Jaffna</option>
-                        <option value='Kaltura'>Kaltura</option>
-                        <option value='Kandy'>Kandy</option>
-                        <option value='Kegalle'>Kegalle</option>
-                        <option value='Kilinochchi'>Kilinochchi</option>
-                        <option value='Kurunegala'>Kurunegala</option>
-                        <option value='Mannar'>Mannar</option>
-                        <option value='Matale'>Matale</option>
-                        <option value='Mathara'>Mathara</option>
-                        <option value='Moneragala'>Moneragala</option>
-                        <option value='Mullaitivu'></option>
-                        <option value='Nuwara-Eliya'>Nuwara-Eliya</option>
-                        <option value='Polonnaruwa'>Polonnaruwa</option>
-                        <option value='Puttalam'>Puttalam</option>
-                        <option value='Ratnapura'>Ratnapura</option>
-                        <option value='Tricomalee'>Tricomalee</option>
-                        <option value='Vavuniya'>Vavuniya</option>
-                    </select></br>
-                <label class="label" value="<?php echo $_GET['help_type']; ?>">Help Type </label><br>
-
-                <input type="checkbox" name="type[]" value="money" onclick="OnChangeCheckbox (this,'money_des_con')" id ="money"> Money<br>
-                <input type="checkbox" name="type[]" value="good" onclick="OnChangeCheckbox (this,'goods_des_con')" id ="good"> Good<br>
-                
-                <div id=money_des_con style="display:none">
-                    <label class="label">Money description</label><br>
-                    <textarea cols="30" rows="4"  class="input_box" name="money_description" id="money_des"></textarea><br>
-                </div>
-                <div id=goods_des_con style="display:none">
-                    <label class="label">Good description</label><br>
-                    <textarea cols="30" rows="4"  class="input_box" name="good_description" id="good_des"></textarea><br>
-                </div>
-
-
-                <input name="update_button" type="submit"  value="UPDATE"  class="update_button"><br>
-                
-                <script>
-                    var district_in_nic = '<?php echo $_SESSION['district'] ?>';
-                    var allOptions = document.getElementsByTagName('option');
-                    var results = [];
-                    for(var x=0; x<allOptions.length; x++){
-                        if(allOptions[x].value == district_in_nic){
-                            allOptions[x].defaultSelected = true;
-                        }
-                    }
-                    function OnChangeCheckbox (checkbox,textbox) {
-                        if (checkbox.checked) {
-                            document.getElementById(textbox).style.display="block"; 
-                        }
-                        else {
-                            document.getElementById(textbox).style.display="none"; 
-                        }
-                    }
-
-                </script>
-            </form>
-
-            </div>
-        <center>
-    </body>
-    </html>
-                <?php } ?>
