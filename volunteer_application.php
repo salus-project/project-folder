@@ -11,6 +11,8 @@
         $submit_type = $_POST['method'];
     }
      
+
+
     //submit type = apply................................
     if ($submit_type==="apply"){
 
@@ -63,9 +65,19 @@
             }
             $t2=$_POST['t2'];
 
-            $query= "INSERT INTO `event_2_volunteers` (`NIC_num`,`service_district`, `type`, `money_or_goods`, `amount`, `things`) VALUES ('$nic','$districts', '$value1', '$value2', '$t1', '$t2')";
-            $query_run= mysqli_query($con,$query);
-
+            $now="yes";
+            $value="";
+            $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'"; 
+            $result=($con->query($query))->fetch_assoc();
+            $value=$result['NIC_num'];
+            echo $value;
+            if ($value==="$nic"){
+                $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',money_or_goods='$value2',amount='$t1',things='$t2', now='$now' where NIC_num='$nic'";
+                $query_run= mysqli_query($con,$query);
+            }else{
+                $query= "INSERT INTO `event_".$event_id."_volunteers` (`NIC_num`,`service_district`, `type`, `money_or_goods`, `amount`, `things`) VALUES ('$nic','$districts', '$value1', '$value2', '$t1', '$t2')";
+                $query_run= mysqli_query($con,$query);
+            }
             // code to update status---------------------------
             $event_id=$_POST['event_id'];
             $user_nic=$_SESSION['user_nic'];
@@ -146,7 +158,7 @@
         }
         $t2=$_POST['t2'];
 
-        $query="UPDATE `event_2_volunteers` SET service_district='$districts',type='$value1',money_or_goods='$value2',amount='$t1',things='$t2' where NIC_num='$nic'";
+        $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',money_or_goods='$value2',amount='$t1',things='$t2' where NIC_num='$nic'";
         
         
         $query_run= mysqli_query($con,$query);
@@ -179,7 +191,7 @@
         $now="no";
         
         $query="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
-        $query1="UPDATE `event_2_volunteers` SET now='$now' where NIC_num='$nic'";
+        $query1="UPDATE `event_".$event_id."_volunteers` SET now='$now' where NIC_num='$nic'";
 
         $query_run= mysqli_query($con,$query);
         $query_run1= mysqli_query($con,$query1);
@@ -218,7 +230,7 @@
                 if ($submit_type==="option"){
                     $nic=$_SESSION['user_nic'];
 
-                    $query="SELECT * FROM `event_2_volunteers` where NIC_num='$nic'"; 
+                    $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'"; 
                     $result=($con->query($query))->fetch_assoc();
                     $service_district=explode(",",$result['service_district']);                    
                     $type=$result['type'];
