@@ -33,12 +33,18 @@
                $help_type="good";
            }
        }
-       
-
-       $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
-       $query_run= mysqli_query($con,$query);
-
-       if($query_run){
+        $data="SELECT * from event_".$event_id."_help_requested where NIC_num='".$_SESSION['user_nic']."'";
+        $result=$con->query($data);
+        if($result->num_rows>0){
+            $query_now="UPDATE `event_".$event_id."_help_requested` SET `district` = '$district', `now` = 'yes', `help_type` = '$help_type', `money_discription` = '$money_description', `good_discription` = '$good_description' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '$user_nic'";
+            $query_now_run= mysqli_query($con,$query_now);
+            echo $query_now;
+        }
+        else{
+            $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
+            $query_run= mysqli_query($con,$query);
+        }
+        if($query_run || $query_now_run){
 
            $data="SELECT * from disaster_events where event_id='$event_id'";
            $result=($con->query($data))->fetch_assoc();
