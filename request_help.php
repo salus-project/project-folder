@@ -1,8 +1,55 @@
 <?php
     session_start();
     require 'dbconfi/confi.php';
-   // echo $_GET['event_id']."<br>";
-   // echo $_GET['method'];
+    //echo $_GET['event_id']."<br>";
+    //echo $_GET['method'];
+
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $event_id=$_POST['event_id'];
+        $user_nic=$_SESSION['user_nic'];
+        $district=$_POST['district'];
+        $money_description=$_POST['money_description'];
+        $good_description=$_POST['good_description'];
+        $type_arr=$_POST["type"];
+        $help_type="";
+        
+        if(count($type_arr)==2){
+            $help_type="money and good"; 
+        }elseif(count($type_arr)==1){
+            if($type_arr[0]=="money"){
+                $help_type="money";
+            }elseif($type_arr[0]=="good"){
+                $help_type="good";
+            }
+        }
+        
+
+        $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
+        $query_run= mysqli_query($con,$query);
+
+        if($query_run){
+
+            $data="SELECT * from disaster_events where event_id='$event_id'";
+            $result=($con->query($data))->fetch_assoc();
+            $status=explode(" ",$result[$_SESSION['user_nic']]);
+
+            $status[1]='requested';
+            $data1=join(" ",$status);
+            $query1="UPDATE disaster_events SET ".$_SESSION['user_nic']." = '".$data1."' WHERE event_id = $event_id";
+
+            $query_run1= mysqli_query($con,$query1);
+
+            if($query_run1){
+                header('location:view_event.php?event_id='.$event_id);
+            }else{
+                echo '<script type="text/javascript"> alert ("Not updated") </script>';
+            }
+        }
+        else{
+            echo '<script type="text/javascript"> alert ("Not Submited") </script>';
+
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -94,53 +141,3 @@
         </script>
     </body>
 </html>
-<?php
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $event_id=$_POST['event_id'];
-        $event_id1=(int)$event_id;
-        $user_nic=$_SESSION['user_nic'];
-        $district=$_POST['district'];
-        $money_description=$_POST['money_description'];
-        $good_description=$_POST['good_description'];
-        $type_arr=$_POST["type"];
-        $help_type="";
-        
-        if(count($type_arr)==2){
-            $help_type="money and good"; 
-        }elseif(count($type_arr)==1){
-            if($type_arr[0]=="money"){
-                $help_type="money";
-            }elseif($type_arr[0]=="good"){
-                $help_type="good";
-            }
-        }
-        
-
-        $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
-        $query_run= mysqli_query($con,$query);
-
-        if($query_run){
-
-            $data="SELECT * from disaster_events where event_id='$event_id'";
-            $result=($con->query($data))->fetch_assoc();
-            $status=explode(" ",$result[$_SESSION['user_nic']]);
-
-            $status[1]='requested';
-            $data1=join(" ",$status);
-            $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id1";
-  
-            $query_run1= mysqli_query($con,$query1);
-
-            if(!$query_run1){
-                echo '<script type="text/javascript"> alert ("Not updated") </script>';
-            }else{
-                header('location:events.php');
-                
-            }
-        }
-        else{
-            echo '<script type="text/javascript"> alert ("Not Submited") </script>';
-
-        }
-    }
-?>
