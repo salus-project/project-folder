@@ -82,18 +82,18 @@
             $event_id=$_POST['event_id'];
             $user_nic=$_SESSION['user_nic'];
 
-            $sql="SELECT $user_nic from disaster_events where event_id='$event_id'";
+            $sql="SELECT user_".$user_nic." from disaster_events where event_id='$event_id'";
             $result=($con->query($sql))->fetch_assoc();
         
 
             echo "<br><br>" .$user_nic;
-            $status=explode(" ",$result[$user_nic]);
+            $status=explode(" ",$result['user_'.$user_nic]);
             print_r($status);
 
             $status[2]="applied";
             $my=join(" ",$status);
         
-            $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
+            $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
             $query_run1= mysqli_query($con,$query1);
 
             if($query_run AND $query_run1){
@@ -182,15 +182,15 @@
         $event_id="2";
         $user_nic=$_SESSION['user_nic'];
 
-        $sql="SELECT $user_nic from disaster_events where event_id='$event_id'";
+        $sql="SELECT user_".$user_nic." from disaster_events where event_id='$event_id'";
         $result=($con->query($sql))->fetch_assoc();
-        $status=explode(" ",$result[$user_nic]);
+        $status=explode(" ",$result["user_".$user_nic]);
         $status[2]="not_applied";
         $my=join(" ",$status);
 
         $now="no";
         
-        $query="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
+        $query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
         $query1="UPDATE `event_".$event_id."_volunteers` SET now='$now' where NIC_num='$nic'";
 
         $query_run= mysqli_query($con,$query);

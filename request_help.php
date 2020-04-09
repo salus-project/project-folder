@@ -46,11 +46,11 @@
 
            $data="SELECT * from disaster_events where event_id='$event_id'";
            $result=($con->query($data))->fetch_assoc();
-           $status=explode(" ",$result[$_SESSION['user_nic']]);
+           $status=explode(" ",$result['user_'.$_SESSION['user_nic']]);
 
            $status[1]='requested';
            $data1=join(" ",$status);
-           $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id";
+           $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id";
             echo $query1;
            $query_run1= mysqli_query($con,$query1);
 
@@ -102,12 +102,12 @@
         $event_id=$_GET['event_id'];
             $data1="SELECT * from disaster_events where event_id='$event_id'";
             $result1=($con->query($data1))->fetch_assoc();
-            $status=explode(" ",$result1[$_SESSION['user_nic']]);
+            $status=explode(" ",$result1['user_'.$_SESSION['user_nic']]);
             
             $status[1]='not_requested';
             echo $status[1];
             $data2=join(" ",$status);
-            $query1="UPDATE `disaster_events` SET `".$_SESSION['user_nic']."` = '".$data2."' WHERE `disaster_events`.`event_id` = $event_id";
+            $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data2."' WHERE `disaster_events`.`event_id` = $event_id";
             echo $query1;
             $query_run1= mysqli_query($con,$query1);
 

@@ -8,9 +8,7 @@
     <head>
         <title>view event</title>
         <link rel="stylesheet" href="css_codes/view_event.css">
-
     </head>
-
     <body>
         
         <?php require "header.php" ?>
@@ -22,7 +20,18 @@
             $query="select * from disaster_events where event_id =" . $_GET['event_id'];
             $result=($con->query($query))->fetch_assoc();
             
-            $status=explode(" ",$result[$_SESSION['user_nic']]);
+            $status=explode(" ",$result['user_'.$_SESSION['user_nic']]);
+
+            $org_query = "select * from organizations where leader = '" . $_SESSION['user_nic'] . "' OR co_leader = '" . $_SESSION['user_nic'] . "'";
+            $all_organizations = $con->query($org_query);
+            $organization=array();
+            if($all_organizations){
+                while($org=$all_organizations->fetch_assoc()){
+                    array_push($organization,$org);
+                }
+            }
+            $js_organization = json_encode($organization);
+
         ?>
         <div id=event_header>
             <div id=title_box>
@@ -82,7 +91,13 @@
                         if ($help_request_status=='requested') {
                             $full_name=$civilian["first_name"].' '.$civilian["last_name"];
                             echo "<tr>";
-                            echo "<td>{$full_name}</td>";
+                            echo    "<td id=data>";
+                            echo        "<form method=get action=sample.php>";
+                            echo            "<div class='requested' onclick='help_option(this)'>";
+                            echo                $full_name;
+                            echo            "</div>";
+                            echo        "</form>";
+                            echo    "</td>";
                             echo "</tr>";
                         }
 					}
@@ -90,7 +105,7 @@
 				</table>
             </div>
             <div id=affected>
-                <h2>Affected people detail
+                <h2>Affected people detail</h2>
             </div>
             <div id=organizations>
                 <h2>Organizations on action</h2>
@@ -177,20 +192,27 @@
             });
         }
 
-        /*function changeRequest(isIn){
-            if(isIn==true){
-                help_btn.innerHTML = html2 + "<div id=changeRequest><form method=get action=request_help.php><button>Cancel Request</button><br><button>Request Option</button></form></div>";
+        var organization = <?php echo $js_organization ?>;
+        var help_people_html='<div id=requested_container>';
+        if(volunteer_status=='applied'){
+            help_people_html +=  "<button >Help Yourself </button></br>"
+        }
+        for(org in organization){
+            help_people_html += "<button >Help with </button></br>";
+        }
+        help_people_html +='</div>';
+        var requested = document.getElementsByClassName('requested');
+        for(div in requested){
+            requested[div].innerHTML += help_people_html;
+        }
+        function help_option(element){
+            var inner = element.querySelector('#requested_container');
+            if(inner.style.display=='' || inner.style.display=='none'){
+                inner.style.display = 'block';
+            }else if(inner.style.display == 'block'){
+                inner.style.display = 'none';
             }
-            if(isIn==false){
-                help_btn.innerHTML = "";
-            }
-        }*/
-        /*function changeVolunteer(isIn){
-            if(isIn==true){
-                volunteer_btn.innerHTML = html3 + "<div id=changeVolunteer><button>leave volunteer</button><br><button>Volunteer Option</button></div>";
-            }
-            
-        }*/
+        }
         
     </script>
     </body>
