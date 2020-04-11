@@ -1,0 +1,80 @@
+.div1{
+    position:fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    width : 500px;
+    margin:0 auto;
+    background:white;
+    padding:5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    z-index: 2;
+}
+.div1.active{
+    transform: translate(-50%, -50%) scale(1);
+}
+.form_box{
+    width:480px;
+    margin:0 auto;
+}
+.dis_container{
+    margin-top: 10px;
+}
+.dis_selection{
+    height: 25px;
+    width: 200px;
+    margin-top: 5px;
+}
+.h2_tag{
+    align-self: center;
+    color: black;
+    
+}
+.submit_button{
+    margin-top: 1px;
+    border-radius: 15px;
+    font-size:20px;
+    width: 150px;
+    margin:0 auto;
+    margin-bottom:15px;
+}
+.input_box{
+    width:90%;
+    height:20px;
+    font-size:15px;
+    resize: none;
+}
+.label{
+    font-size:10px;
+}
+.head_label{
+    font-size: 18px;
+}
+.head_label_container{
+    margin:13px;
+}
+.check_menu{
+    border: 0;
+    width:100px;
+    height: 50px;
+}
+.des_area{
+    border: 0;
+}
+#overlay{
+    position:fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+#overlay.active{
+    opacity: 1;
+    pointer-events: all;
+}

@@ -5,7 +5,7 @@
         
         $org_id=$_GET['edit_detail'];
         $org_name=$result['org_name'];
-        $leader=$result['head'];
+        $leader=$result['leader'];
         $district=$result['district'];
         $email=$result['email'];
         $phone_num=$result['phone_num'];
@@ -75,7 +75,7 @@
             
             //echo '<script type="text/javascript">alert("submit button sucess")</script>';
 
-            $query2="UPDATE organizations SET org_name='$org_name', head='$leader', district='$district', email='$email', phone_num='$phone_num', members='$str_members', discription='$discription' WHERE org_id=".$org_id;
+            $query2="UPDATE organizations SET org_name='$org_name', leader='$leader', district='$district', email='$email', phone_num='$phone_num', members='$str_members', discription='$discription' WHERE org_id=".$org_id;
             //echo '<script type="text/javascript">alert("'.$query2.'")</script>';
 
             $query_run=$con->query($query2);

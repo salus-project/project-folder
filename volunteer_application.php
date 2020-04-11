@@ -179,8 +179,7 @@
 
         $nic=$_SESSION['user_nic'];
     
-        
-
+        $event_id="2";
         $user_nic=$_SESSION['user_nic'];
 
         $sql="SELECT user_".$user_nic." from disaster_events where event_id='$event_id'";

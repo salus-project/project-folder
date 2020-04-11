@@ -29,7 +29,7 @@
                 <div id=org_name>
                     <h2 id=org_name_h2><?php echo $result['org_name'] ?></h2>
                     <?php
-                        if($result['head']==$_SESSION['user_nic']){
+                        if($result['leader']==$_SESSION['user_nic']){
                             echo "<div id=edit_btn_container >";
                                 echo "<form action=edit_org.php method=get>";
                                     echo "<button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org'].">Edit</button>";
@@ -48,7 +48,7 @@
             <table>
                 <tr>
                     <td>leader</td>
-                    <td><?php echo $result['head'] ?></td>
+                    <td><?php echo $result['leader'] ?></td>
                 </tr>
                 <tr>
                     <td>District</td>

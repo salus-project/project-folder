@@ -70,7 +70,7 @@
         if($isOk==1){
             $str_members=$_POST['hidden'];
             
-            $query="INSERT INTO organizations (org_name, head, district, email, phone_num, members, discription) VALUES ('$org_name','$leader','$district','$email','$phone_num','$str_members','$discription')";
+            $query="INSERT INTO organizations (org_name, leader, district, email, phone_num, members, discription) VALUES ('$org_name','$leader','$district','$email','$phone_num','$str_members','$discription')";
             $query_run=mysqli_query($con,$query);
             if($query_run){
                 header('location:organizations.php');
