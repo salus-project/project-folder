@@ -22,7 +22,7 @@
 		</div>
 		
 		<form name=chat_form autocomplete="off">
-		<input type="text" name="msg" id="msg" placeholder="type massage here">   
+		<input type="text" name="msg_b" id="msg_b" placeholder="type massage here">   
 		<input type="hidden" name="name" id="name" value="<?php echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>">
         <input type="hidden" name="id" id="id" value="<?php echo  $_SESSION['user_nic']; ?>">            
         
@@ -34,7 +34,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script>
 			$(document).ready(function(){
-				$("#msg").keypress(function()
+				$("#msg_b").keypress(function()
 				{
 					$("#status").html("Typing Message...");
 				});
@@ -42,11 +42,11 @@
 			$("#post_btn").click(function(){
 				var name=$("#name").val();
 				var id=$("#id").val();
-				var message=$("#msg").val();
+				var message=$("#msg_b").val();
 				$.post("post.php",{name:name,message:message,id:id},function(data)
 				{
 					$("#status").html(data);
-					$("#msg").val("");
+					$("#msg_b").val("");
 				});
 			});
 						
