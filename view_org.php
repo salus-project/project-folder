@@ -37,7 +37,8 @@
                             echo"</div>";
                         }
                     ?>
-                    
+					
+					
                 </div>
                 <div id=discription>
                     <h4 id=org_detail><?php echo $result['discription'] ?></h4>
@@ -45,6 +46,11 @@
             </div>
         </div>
         <div id='org_body'>
+					<div id=chat_btn_container>
+                    <form action=chat.php method=get>
+						<button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+					</form>
+					</div>
             <table>
                 <tr>
                     <td>leader</td>

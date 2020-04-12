@@ -65,3 +65,6 @@ table{
     border:1px solid black;
     width:400px;
 }
+#chat_btn_container{
+    margin:auto;
+    margin-top: 20px;

@@ -1,0 +1,27 @@
+#msg{
+	width: 80%;
+	font-size:20px;
+}  
+#feedback{
+	background:#F08080;
+	width: 80%;
+	font-size:15px;
+	padding:15px;
+	height:300px;
+	overflow:auto;
+}   
+#time{
+	float:right;
+}
+#date{
+	float:right;
+}
+#msg_box{ 
+	width:100%;
+	background:#5F9EA0;
+	margin-top=30px;
+
+}
+#mymsg{
+	text-align:right;
+}
