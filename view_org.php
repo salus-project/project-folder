@@ -28,7 +28,7 @@
             <div id=title_sub>
                 <div id=org_name>
                     <h2 id=org_name_h2><?php echo $result['org_name'] ?></h2>
-                    <?php 
+                    <?php
                         if($result['leader']==$_SESSION['user_nic']){
                             echo "<div id=edit_btn_container >";
                                 echo "<form action=edit_org.php method=get>";
@@ -37,8 +37,32 @@
                             echo"</div>";
                         }
                     ?>
-					
-					
+
+                    <?php
+                        $sql1="SELECT `members` from `organizations` where org_id=".$_GET['selected_org'];
+                        $result1=($con->query($sql1))->fetch_assoc();
+                        $status=explode(" ",$result1['members']);
+                        $nic=$_SESSION['user_nic'];
+                        $leader=$result['leader'];
+                        $co_leader=$result['co_leader'];
+
+
+                        if(in_array($nic, $status) or $leader===$nic or $co_leader===$nic){
+                            echo "<div id=edit_btn_container >";
+                                echo "<form action=org_join_leave.php method=get>";
+                                    echo "<button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org'].">Leave</button>";
+                                echo "</form>";
+                            echo"</div>";
+                        }else{
+                            echo "<div id=edit_btn_container >";
+                                echo "<form action=org_join_leave.php method=get>";
+                                    echo "<button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org'].">JoinAsMember</button>";
+                                echo "</form>";
+                            echo"</div>";
+
+                        }
+                    ?>
+						
                 </div>
                 <div id=discription>
                     <h4 id=org_detail><?php echo $result['discription'] ?></h4>
@@ -46,13 +70,13 @@
             </div>
         </div>
         <div id='org_body'>
-				<?php
-					echo "<div id=chat_btn_container>";
-                    echo "<form action=chat.php method=get>";
-					echo	 "<button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>";
-					echo "</form>";
-					echo "</div>";
-				?>
+					<div id=chat_btn_container>
+                    <form action=chat.php method=get>
+						<button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                    </form>
+                    </div>
+                    <div >
+
             <table>
                 <tr>
                     <td>leader</td>
@@ -76,3 +100,4 @@
     </body>
 
 </html>
+
