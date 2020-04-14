@@ -23,7 +23,7 @@
 		</div>
 		
 		<form name=chat_form autocomplete="off">
-		<input type="text" name="msg_b" id="msg_b" placeholder="type massage here">   
+		<textarea rows="1" name="msg_b" id="msg_b" placeholder="type massage here"></textarea>   
 		<input type="hidden" name="name" id="name" value="<?php echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>">
         <input type="hidden" name="id" id="id" value="<?php echo  $_SESSION['user_nic']; ?>"> 
 		<input type="hidden" name="org_id" id="org_id" value="<?php echo  $org_id; ?>"> 

@@ -1,20 +1,23 @@
-#msg{
+#msg_b{
 	width: 80%;
 	font-size:20px;
+	resize: horizontal;
 }  
 #feedback{
 	background:#F08080;
 	width: 80%;
 	font-size:15px;
 	padding:15px;
-	height:300px;
+	height:400px;
 	overflow:auto;
+	max-width:100%;
+	
 }   
 #time{
 	float:right;
 }
-#date{
-	float:right;
+#pdate{
+	text-align:center;
 }
 #msg_box{ 
 	width:100%;
@@ -24,4 +27,5 @@
 }
 #mymsg{
 	text-align:right;
+	padding=10px;
 }
