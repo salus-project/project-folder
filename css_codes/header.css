@@ -1,0 +1,143 @@
+.sticky{
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0;
+    padding: 0px 8px 0 8px;
+    z-index: 3;
+    background-color: white;
+}
+#titlebar{
+    display: flex;
+    height:40px;
+    background-color: rgb(173, 219, 247);
+    border: 1px solid mediumblue;
+    border-bottom: 0px;
+}
+.username label{
+    margin-top:3px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.logout{
+    align-content: flex-end;
+    border-radius: 5px;
+    margin: auto;
+    text-align: end;
+    padding-right: 5px;
+}
+.logo_box{
+    width: 45px;
+}
+.logo{
+    width: 35px;
+    margin:auto;
+    margin-top: 1px;
+}
+
+.username{
+    width: 75%;
+}
+.logout{
+    width:25%;
+    margin-right: 0px;
+}
+#menubar{
+    min-height:30px;
+    border:1px solid black;
+    border-top: 0px;
+    font-size: 0px;
+    background-color: rgb(173, 219, 247);
+}
+a{
+    text-decoration: none;
+}
+.menubar_buttons {
+    height:30px !important;
+    max-width:15%;
+    min-width:130px !important;
+    width:12.5% !important;
+    text-rendering: auto;
+    color: black;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: pointer;
+    background-color: rgb(173, 219, 247);
+    box-sizing: border-box;
+    margin: 0px;
+    font: 550 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 1px;
+    border-top:0px;
+    border-style: double;
+    border-color: rgb(208, 232, 248);
+    border-image: initial;
+}
+.active{
+    background-color: white;
+    color:rgb(15, 73, 160);
+    border:2px solid rgb(16, 134, 163);
+}
+x{
+    color:rgb(16, 134, 163);
+}
+.loader{
+    border:2px solid rgb(202, 202, 202);
+    border-radius: 50%;
+    border-top: 2px solid rgb(65, 65, 65);
+    width:10px;
+    height:10px;
+    margin:5px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#event_container,#menubar_org_container{
+    display:inline-block;
+    position: absolute;
+}
+.menubar_button_container{
+    display:inline;
+}
+
+/*-----------------nav setting-----------------------*/
+#main_body{
+    display: flex;
+}
+#sub_body{
+    width:100%;
+}
+
+/*---------------side nav -------------------- */
+
+#side_nav_container{
+    width:300px;
+    border:1px solid black;
+    padding: 5px;
+    display: inline-table;
+}
+#other_mem_header{
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+}
+#side_nav_table td{
+    font-size: 18px;
+    height: 25px;
+}

@@ -1,0 +1,54 @@
+#title{
+    height:30px;
+    border:1px solid black;
+    padding:4px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#view_fund{
+	display: inline-block; 
+}
+#donate_fund{
+	display: inline-block; 
+	padding-left:100px;
+}
+#boxA{
+	height:100px;
+	width:265px;
+	display: inline-block;
+	margin:10px;
+	border:1px solid black;
+}
+#boxB{
+	height:100px;
+	width:265px;
+	display: inline-block;
+	margin:10px;
+	border:1px solid black;
+}
+#boxes{
+	border:1px solid black;
+	margin:10px;
+}
+#create_box{
+	border:1px solid black;
+}
+.btn_img_only {
+	text-align: center;
+	padding:5px 15px;
+	margin:5px 10px;
+}
+.btn_img {
+	text-align: center;
+	padding:5px 15px;
+	margin:3px;
+}
+
+.create_btn{
+	border:1px solid black;
+	width:265px;
+	height:100px;
+	margin:10px;
+	
+}

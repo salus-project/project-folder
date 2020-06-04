@@ -1,0 +1,19 @@
+#title{
+    height:30px;
+    border:1px solid black;
+    padding:4px;
+    font-size: 25px;
+    font-weight: 600;
+}
+#fund_body{
+    border:1px solid black;
+    margin:auto;
+    padding:15px;
+    font-size: medium;
+
+}
+#fund_table{
+    border:1px solid black;
+    width:580px;
+    margin:auto;
+}

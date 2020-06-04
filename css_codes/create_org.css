@@ -1,0 +1,17 @@
+#form_main_body{
+    width:600px;
+    border:1px solid black;
+    margin:auto;
+    margin-top: 100px;
+    padding:5px;
+    font-size: medium;
+
+}
+#form_sub_body{
+    border:1px solid black;
+    width:580px;
+    margin:auto;
+}
+.error{
+    color:red;
+}

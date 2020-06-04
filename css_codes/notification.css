@@ -1,0 +1,13 @@
+#notif{
+    border: 3px solid black;
+    padding: 10px;
+    margin: 5px;
+    margin-left: 300px;
+    margin-right: 300px;
+
+}
+#notif_box{
+    border: 2px solid black;
+    padding: 10px;
+    margin: 5px,3px;
+}

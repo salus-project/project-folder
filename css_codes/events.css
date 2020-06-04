@@ -1,0 +1,41 @@
+#event_table{
+    border:1px solid black;
+    border-collapse: collapse;
+    margin:auto;
+    margin-top: 30px;
+}
+#event_table td{
+    border:1px solid black;
+    width:75px;
+    text-align: center;
+    font-size: initial;
+}
+td.name{
+    width:200px;
+    text-align: left;
+    padding:0px;
+}
+.event_name{
+    height:30px;
+    width:200px;
+    border:0px;
+    background-color: white;
+    cursor: pointer;
+}
+.active_event{
+    background-color: lightblue;
+}
+.events_php_container{
+    transform:translate(-130px,0);
+    position:absolute;
+    z-index:4;
+}
+#event_overlay{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top:0;
+    z-index:2;
+    display: block;
+}
