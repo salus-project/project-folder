@@ -156,13 +156,13 @@
             }
 
             function promise(){
-                window.location.href="promise.php";
-                /*var inputs = document.querySelectorAll("input[class~='requester']:checked");
+                var inputs = document.querySelectorAll("input[class~='requester']:checked");
                 var selected = [];
                 for (input of inputs){
                     selected.push(input.value);
                 }
-                var help_popup = document.getElementById("help_popup");
+                window.location.href="promise.php?selected="+selected.toString();
+                /*var help_popup = document.getElementById("help_popup");
                 help_popup.classList.toggle("active_popup");
                 document.getElementById("overlay").classList.toggle("active_overlay");
                 help_popup.innerText=selected;*/
