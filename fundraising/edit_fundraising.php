@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require 'dbconfi/confi.php';
+    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    
 	$f_id=intval($_GET['edit_btn']);
 	$query="select * from fundraisings where id=".$f_id;
     $result=($con->query($query))->fetch_assoc();
@@ -83,6 +83,10 @@
 		elseif( $mon=="1"){
 			$type="money only";
 			$money=$_POST['expecting_money'];
+			if(!is_int($money)){
+				echo '<script type="text/javascript">alert("Enter ammount only")</script>';
+				$isOk=0;
+			}
 			$things="NULL";
 			if(empty($money)){
 				echo '<script type="text/javascript">alert("ammount is required")</script>';
@@ -94,10 +98,6 @@
 			$type="things only";
 			$money="NULL";
 			$things=$_POST['expecting_things'];
-			if(empty($things)){
-				echo '<script type="text/javascript">alert("things required")</script>';
-				$isOk=0;
-			}
 			$type_message="Things :".$things;
 		}
 		
@@ -138,22 +138,22 @@
 <html>
     <head>
         <title>Edit fundraising event</title>
-        <link rel="stylesheet" href="css_codes/create_fundraising.css">
+        <link rel="stylesheet" href="/css_codes/create_fundraising.css">
     </head>
     <body>
     <?php 
-	require "header.php" ;
+	//require "header.php" ;
 	?>
 
     <script>
-        btnPress(8);
+        btnPress(7);
     </script>
 
-    <div id="main_body">
+    <div id="main_fund_form_body">
 		<center><h2>Edit fundraising event</h2></center>
 		<small style="margin:10px;">Edit the details</small>
 			<form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
-                <table id='sub_body'>
+                <table id='sub_fund_form_body'>
                     <tr>
                         <td colspan='2'>
                             <span id='error'>* required field</span>

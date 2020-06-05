@@ -125,7 +125,7 @@
 <html>
     <head>
         <title>Create new fundraising event</title>
-        <link rel="stylesheet" href="css_codes/create_fundraising.css">
+        <link rel="stylesheet" href="/css_codes/create_fundraising.css">
     </head>
     <body>
 
@@ -133,11 +133,11 @@
         btnPress(8);
     </script>
 
-    <div id="main_body">
+    <div id="main_fund_form_body">
 		<center><h2>Create a new fundraising event</h2></center>
 		<small style="margin:10px;">Enter the details</small>
 			<form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
-                <table id='sub_body'>
+                <table id='sub_fund_form_body'>
                     <tr>
                         <td colspan='2'>
                             <span id='error'>* required field</span>
