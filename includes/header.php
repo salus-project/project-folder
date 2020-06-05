@@ -1,13 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-    if(isset($_POST['logout'])){
-        echo 'logout';
-        session_unset();
-        session_destroy();
-        
-        header('location:'.$_SERVER['DOCUMENT_ROOT'].'/login.php');
-    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +26,7 @@
                 </div>
                 <div class="logout">
                     
-                    <form action="header.php" method="post">
+                    <form action="/logs/logout.php" method="post">
                         <input name="logout" type="submit" class="logout_btn" value="logout"/>
                     </form>
                 </div>
@@ -40,8 +34,8 @@
             </div>
             <div>
                 <div id="menubar">
-                    <a href="home_page.php"> <button type="submit" class="menubar_buttons" id='menu_bar_btn_1'>Home</button> </a>
-                    <a href="govermentpost.php"> <button type="submit" class="menubar_buttons" id='menu_bar_btn_2'>Goverment posts</button> </a>
+                    <a href="/home_page.php"> <button type="submit" class="menubar_buttons" id='menu_bar_btn_1'>Home</button> </a>
+                    <a href="/govermentpost.php"> <button type="submit" class="menubar_buttons" id='menu_bar_btn_2'>Goverment posts</button> </a>
                     <a href="/publicpost"><button class="menubar_buttons" id='menu_bar_btn_3'>Public posts</button></a>
                     <div class='menubar_button_container'><button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_4' value=4 onclick='showevent(this)'>Events</button><div id=event_container></div></div>
                     <a href=""> <button type="submit" class="menubar_buttons" name='menubar_buttons' id='menu_bar_btn_5' value=5>Notifications</button> </a>

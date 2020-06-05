@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require '../dbconfi/confi.php';
+    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
  
     if(isset($_POST['submit_button'])){
         $event_id=$_POST['event_id'];
@@ -78,7 +78,7 @@
         $query_run= mysqli_query($con,$query_edit);
  
         if($query_run){
-            header('location:view_event.php?event_id='.$event_id);
+            header('location:'.$_SERVER['DOCUMENT_ROOT'].'/event?event_id='.$event_id);
         }else{
             echo '<script type="text/javascript"> alert ("Not edited") </script>';
         }

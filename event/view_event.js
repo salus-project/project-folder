@@ -104,7 +104,7 @@ function update(){
 
     const requestData = `event_id=`+ event_id + `&safe_status=`+status;
 
-    request.open('post', 'view_event/mark_safe.php');
+    request.open('post', '/event/mark_safe.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(requestData);
 }
@@ -143,7 +143,7 @@ const close_help_popup = document.querySelectorAll('#close_request_popup');
 const overlay = document.getElementById('overlay');
 
 function request_help(){
-    open_popup("view_event/request_help_popup.php");
+    open_popup("/event/request_help_popup.php");
 }
 
 close_help_popup.forEach(button => {
@@ -208,7 +208,7 @@ function cancel_request(){
 
     const requestData = `event_id=`+ event_id + `&cancel_button=button`;
 
-    request.open('post', 'view_event/request_help.php');
+    request.open('post', '/event/request_help.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(requestData);
 

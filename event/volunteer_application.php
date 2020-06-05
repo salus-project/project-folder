@@ -97,7 +97,7 @@
 
             if($query_run AND $query_run1){
                 echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-                header('location:view_event.php?event_id='.$event_id);
+                header('location:'.$_SERVER['DOCUMENT_ROOT'].'/event?event_id='.$event_id);
             }
             else{
                 echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
@@ -164,7 +164,7 @@
 
         if($query_run){
             echo '<script type="text/javascript"> alert ("Data changed") </script>';
-            header('location:view_event.php?event_id='.$event_id);
+            header('location:'.$_SERVER['DOCUMENT_ROOT'].'/event?event_id='.$event_id);
 
 
         }
@@ -197,7 +197,7 @@
 
         if($query_run AND $query_run1){
             echo '<script type="text/javascript"> alert ("Successfully leaved") </script>';
-            header('location:view_event.php?event_id='.$event_id);
+            header('location:'.$_SERVER['DOCUMENT_ROOT'].'/event?event_id='.$event_id);
         }
         else{
             echo '<script type="text/javascript"> alert ("Not leaved") </script>';
