@@ -29,13 +29,13 @@
             $counts1 = count($_POST['type']);
             }
             if ($counts1==1){
-                if ($_POST['type'][0]=="from_home"){
-                    $value1="from_home";
-                }elseif($_POST['type'][0]=="on_the_spot"){
-                    $value1="on_the_spot";
+                if ($_POST['type'][0]=="Donor"){
+                    $value1="Donor";
+                }elseif($_POST['type'][0]=="Volunteer"){
+                    $value1="Volunteer";
                 }
             }elseif ($counts1==2){
-                $value1="both";
+                $value1="Donor & Volunteer";
             }
 
             if( ! empty( $_POST['moneygoods'] )){
@@ -122,14 +122,16 @@
         $counts1 = count($_POST['type']);
         }
         if ($counts1==1){
-            if ($_POST['type'][0]=="from_home"){
-                $value1="from_home";
-            }elseif($_POST['type'][0]=="on_the_spot"){
-                $value1="on_the_spot";
+            if ($_POST['type'][0]=="Donor"){
+                $value1="Donor";
+            }elseif($_POST['type'][0]=="Volunteer"){
+                $value1="Volunteer";
             }
         }elseif ($counts1==2){
-            $value1="both";
+            $value1="Donor & Volunteer";
         }
+
+        
 
         if( ! empty( $_POST['moneygoods'] )){
             $counts2 = count($_POST['moneygoods']);
@@ -224,51 +226,71 @@
     }
 
     ?>
+<div><label class="head_label">Like to be </label><br>
 
-    <label class="label"  style="font-weight:bolder;">Type </label><br>
+    <input type="checkbox" name="type[]"  value="Donor" <?php if ($submit_type==="option"){if($type === 'Donor' OR $type === 'Donor & Volunteer' ) echo "checked='checked'"; }?>>Donor
+    <input type="checkbox" name="type[]" value="Volunteer" <?php if ($submit_type==="option"){if($type === 'Volunteer' OR $type === 'Donor & Volunteer' ) echo "checked='checked'"; }?>>Volunteer<br/><br/>
+</div>
 
-    from home<input type="checkbox" name="type[]"  value="from_home" <?php if ($submit_type==="option"){if($type === 'from_home' OR $type === 'both' ) echo "checked='checked'"; }?>><br/>
-    on the spot<input type="checkbox" name="type[]" value="on_the_spot" <?php if ($submit_type==="option"){if($type === 'on_the_spot' OR $type === 'both' ) echo "checked='checked'"; }?>><br/><br/>
 
-    <label class="label"  style="font-weight:bolder;">District/Districts </label><br>
-    AllDistricts  <input type="checkbox" name="district[]" value='AllDistricts' <?php if ($submit_type==="option"){if (in_array("AllDistricts", $service_district))  echo "checked='checked'";} ?>>
-    Ampara  <input type="checkbox" name="district[]" value='Ampara' <?php if ($submit_type==="option"){if(in_array("Ampara", $service_district)) echo "checked='checked'"; }?>>
-    Anurashapura  <input type="checkbox" name="district[]" value='Anurashapura'<?php if ($submit_type==="option"){if(in_array("Anurashapura", $service_district))  echo "checked='checked'"; }?>><br/>
-    Badulla   <input type="checkbox" name="district[]" value='Badulla'<?php if ($submit_type==="option"){if(in_array("Ampara", $service_district)) echo "checked='checked'";} ?>>
-    Batticaloa  <input type="checkbox" name="district[]" value='Batticaloa'<?php if ($submit_type==="option"){if(in_array("Batticaloa", $service_district)) echo "checked='checked'"; }?>>
-    Colombo <input type="checkbox" name="district[]" value='Colombo'<?php if ($submit_type==="option"){ if(in_array("Colombo", $service_district))echo "checked='checked'";} ?>><br/>
-    Galle  <input type="checkbox" name="district[]" value='Galle'<?php if ($submit_type==="option"){if(in_array("Galle", $service_district)) echo "checked='checked'"; }?>>
-    Gampha <input type="checkbox" name="district[]" value='Gampha'<?php if ($submit_type==="option"){if(in_array("Gampha", $service_district)) echo "checked='checked'"; }?>>
-    Hambantota  <input type="checkbox" name="district[]" value='Hambatota'<?php if ($submit_type==="option"){ if(in_array("Hambatota", $service_district)) echo "checked='checked'"; }?>><br/>
-    Jaffna   <input type="checkbox" name="district[]" value='Jaffna'<?php if ($submit_type==="option"){ if(in_array("Jaffna", $service_district)) echo "checked='checked'";} ?>>
-    Kaltura  <input type="checkbox" name="district[]" value='Kaltura'<?php if ($submit_type==="option"){if(in_array("Kaltura", $service_district)) echo "checked='checked'";} ?>>
-    Kandy  <input type="checkbox" name="district[]" value='Kandy'<?php if ($submit_type==="option"){if(in_array("Kandy", $service_district)) echo "checked='checked'"; }?>><br/>
-    Kegalle <input type="checkbox" name="district[]" value='Kegalle'<?php if ($submit_type==="option"){ if(in_array("Kegalle", $service_district)) echo "checked='checked'"; }?>>
-    Kilinochchi  <input type="checkbox" name="district[]" value='Kilinochchi'<?php if ($submit_type==="option"){if(in_array("Kilinochchi", $service_district)) echo "checked='checked'";} ?>>
-    Kurunegala <input type="checkbox" name="district[]"  value='Kurunegala'<?php if ($submit_type==="option"){ if(in_array("Kurunegala", $service_district)) echo "checked='checked'"; }?>><br/>
-    Mannar  <input type="checkbox" name="district[]"  value='Mannar'<?php if ($submit_type==="option"){if(in_array("Mannar", $service_district)) echo "checked='checked'";} ?>>
-    Matale <input type="checkbox" name="district[]"  value='Matale'<?php if ($submit_type==="option"){if(in_array("Matale", $service_district)) echo "checked='checked'";} ?>>
-    Mathara  <input type="checkbox" name="district[]"  value='Mathara'<?php if ($submit_type==="option"){if(in_array("Mathara", $service_district)) echo "checked='checked'"; }?>><br/>
-    Moneragala <input type="checkbox" name="district[]"  value='Moneragala'<?php if ($submit_type==="option"){if(in_array("Moneragala", $service_district)) echo "checked='checked'";} ?>>
-    Mullaitivu  <input type="checkbox" name="district[]"  value='Mullaitivu'<?php if ($submit_type==="option"){if(in_array("Mullaitivu", $service_district)) echo "checked='checked'"; }?>>
-    Nuwara-Eliya <input type="checkbox" name="district[]"  value='Nuwara-Eliya'<?php if ($submit_type==="option"){if(in_array("Nuwara-Eliya", $service_district)) echo "checked='checked'"; }?>><br/>
-    Polonnaruwa    <input type="checkbox" name="district[]"  value='Polonnaruwa'<?php if ($submit_type==="option"){if(in_array("Polonnaruwa", $service_district)) echo "checked='checked'";} ?>>
-    Puttalam  <input type="checkbox" name="district[]"  value='Puttalam'<?php if ($submit_type==="option"){if(in_array("Puttalam", $service_district)) echo "checked='checked'"; }?>>
-    Ratnapura   <input type="checkbox" name="district[]"  value='Ratnapura'<?php if ($submit_type==="option"){if(in_array("Ratnapura", $service_district)) echo "checked='checked'"; }?>><br/>
-    Tricomalee  <input type="checkbox" name="district[]"  value='Tricomalee'<?php if ($submit_type==="option"){if(in_array("Tricomalee", $service_district)) echo "checked='checked'";} ?>>
-    Vavuniya   <input type="checkbox" name="district[]"  value='Vavuniya'<?php if ($submit_type==="option"){if(in_array("Vavuniya", $service_district)) echo "checked='checked'"; }?>><br/><br/>
+<div >
+    <label class="head_label"> District/Districts where you want to serve</label><br>
+    <select name="district[]"multiple="multiple" >
+            <option value='Ampara'>Ampara</option>
+            <option value='Anurashapura'>Anurashapura</option>
+            <option value='Badulla'>Badulla</option>
+            <option value='Batticaloa'>Batticaloa</option>
+            <option value='Colombo'>Colombo</option>
+            <option value='Galle'>Galle</option>
+            <option value='Gampha'>Gampha</option>
+            <option value='Hambatota'>Hambantota</option>
+            <option value='Jaffna'>Jaffna</option>
+            <option value='Kaltura'>Kaltura</option>
+            <option value='Kandy'>Kandy</option>
+            <option value='Kegalle'>Kegalle</option>
+            <option value='Kilinochchi'>Kilinochchi</option>
+            <option value='Kurunegala'>Kurunegala</option>
+            <option value='Mannar'>Mannar</option>
+            <option value='Matale'>Matale</option>
+            <option value='Mathara'>Mathara</option>
+            <option value='Moneragala'>Moneragala</option>
+            <option value='Mullaitivu'>Mullaitivu</option>
+            <option value='Nuwara-Eliya'>Nuwara-Eliya</option>
+            <option value='Polonnaruwa'>Polonnaruwa</option>
+            <option value='Puttalam'>Puttalam</option>
+            <option value='Ratnapura'>Ratnapura</option>
+            <option value='Tricomalee'>Tricomalee</option>
+            <option value='Vavuniya'>Vavuniya</option>
+        </select><br><br>
+</div>
 
-    <label class="label"  style="font-weight:bolder;">Money or Goods </label><br>
+<div><label class="head_label">Abilities </label><br>
+<table>
+        <tr>
+            <td class=des_area>
+                <div id=money_des_con style="display:block">
+                    <textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des">Money</textarea>
 
-    Money<input type="checkbox" name="moneygoods[]" value="money" <?php if ($submit_type==="option"){if($money_or_goods === 'money' OR $money_or_goods === 'both') echo "checked='checked'";} ?>  onclick="OnChangeCheckbox (this,'amount')"id ="money"/>
-    
-    <input type="textbox" id="amount" value="<?php if ($submit_type==="option"){echo $amount;}?>" style="display:block" name="t1"/><br/>
+                </div>
+            </td>
+            <td class=des_area>
+                <div id=money_des_con style="display:block">
+                    <textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>
+                </div>
+            </td>
+            <td class=des_area>
+                Rs
+            </td>
+        </tr>
+        <input name="update_button" type="submit"  value="Add other" onclick="OnCreateCheckbox()">
+        
+    </table>
+</div>
 
-    Goods<input type="checkbox" name="moneygoods[]" value="goods" <?php if ($submit_type==="option"){if($money_or_goods === 'goods' OR$money_or_goods === 'both') echo "checked='checked'"; }?> onclick="OnChangeCheckbox (this,'things')" id="goods"/>
-    <input type="textbox" id="things"  value="<?php if ($submit_type==="option"){ echo $things;}?>"  style="display:block" name="t2"/ >
-    <br/>
-    <br/>
+<div>
+    <input name="update_button" type="submit"  value="Submit"  class="login_button">
+    <button id=close_request_popup class=submit_button>Cancel</button>
 
-    <input name="update_button" type="submit"  value="Submit"  class="login_button"><br>   
+</div>
 
 </form>
