@@ -8,6 +8,7 @@
     <head>
         <link rel="stylesheet" href="/css_codes/header.css">
         <link rel='stylesheet' type='text/css' href='/css_codes/events.css'>
+        <link rel='stylesheet' type='text/css' href='/css_codes/side_nav.css'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 

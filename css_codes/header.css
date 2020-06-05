@@ -120,24 +120,3 @@ x{
 #sub_body{
     width:100%;
 }
-
-/*---------------side nav -------------------- */
-
-#side_nav_container{
-    width:300px;
-    border:1px solid black;
-    padding: 5px;
-    display: inline-table;
-}
-#other_mem_header{
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 10px 0 10px 0;
-}
-#side_nav_table td{
-    font-size: 18px;
-    height: 25px;
-}

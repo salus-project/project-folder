@@ -14,6 +14,9 @@
     transform:translate(-130px,0);
     position:absolute;
     z-index:4;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
     
 }
 #table{
@@ -23,27 +26,21 @@
     table-layout: fixed;
     border-spacing: 5px;
     margin:auto;
-    margin-bottom: 10px;
-}
-th,td{
-    border:1px solid black;
-    padding:5px;
-
-}
-td{
-    padding-left: 10px;
-}
-th{
-    background-color: cadetblue;
 }
 #no{
     width:15px;
+    border:1px solid black;
+    /*padding:5px;*/
+    background-color: cadetblue;
 }
 #name{
     width:200px;
 }
 .name_td{
     padding:0px;
+    border:1px solid black;
+    /*padding:5px;*/
+    padding-left: 10px;
 }
 
 .org_name,.create_org_btn{
@@ -53,4 +50,7 @@ th{
     cursor: pointer;
     border: white;
     text-align: left;
+}
+.create_org_btn{
+    background-color: cadetblue;
 }
