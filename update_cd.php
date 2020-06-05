@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'dbconfi/confi.php';
+require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 require 'edit_profile.php';
 ?>
 <!DOCTYPE html>
@@ -10,8 +9,7 @@ require 'edit_profile.php';
         <link rel="stylesheet" href="css_codes/style.css">
     </head>
 
-    <body style="background-color: #dedede">
-    <?php require 'header.php' ?>
+    <body>
 
     <script> btnPress(1) </script>
 

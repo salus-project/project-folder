@@ -58,6 +58,6 @@ function submit_request(){
                     "</div>";
     help_btn.innerHTML = html2;
 
-    document.getElementById('help_request_popup').classList.remove('active');
-    overlay.classList.remove('active');
+    document.getElementById('popup_div').classList.remove('active_pop');
+    overlay.classList.remove('active_pop');
 };

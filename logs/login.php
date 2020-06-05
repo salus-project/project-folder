@@ -19,7 +19,7 @@ require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
             </center>
 
-            <form class="form_box" action="login.php" method="post">
+            <form class="form_box" action="/logs/login.php" method="post">
                 <label class="label">NIC number </label><br>
                 <input name = "nic_num" type="text" class="input_box" placeholder="Enter your NIC number" required/><br>
                 <label class="label">Password </label><br>
