@@ -53,3 +53,18 @@ function submit_volunt(){
     document.getElementById('help_request_popup').classList.remove('active');
     overlay.classList.remove('active');
 };
+
+function add_option(){
+    var table = document.getElementById("volunteer_table");
+    table.innerHTML+=   "<tr>"+
+                            "<td class=des_area>"+
+                                "<div id=money_des_con style='display:block'>"+
+                                    '<textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>'+
+                                "</div>"+
+                            "</td>"+
+                            "<td class=des_area>"+
+                                '<div id=money_des_con style="display:block">'+
+                                    '<textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>'+
+                                "</div>"+
+                            "</td>";
+}
