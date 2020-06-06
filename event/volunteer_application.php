@@ -40,14 +40,14 @@ if ($submit_type==="apply"){
 
         $money="Money";
         if( ! empty( $_POST['money'] )){
-        $money = $_POST['money'];}
+            $money = $_POST['money'];}
         $amount="0";
         if( ! empty( $_POST['amount'] )){
             $amount = $_POST['amount'];}
         $data1 = $money.":".$amount;
-        
+
         $data2="";
-    
+
         if( ! empty( $_POST['things'] )){
 
             $things = $_POST['things'];
@@ -67,7 +67,7 @@ if ($submit_type==="apply"){
             $districts = implode(",", $values);
         }
         $data="Money:0";
-        
+
         $now="yes";
         $value="";
         $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'";
@@ -137,7 +137,7 @@ elseif ($submit_type==="option"){
 
         $money="Money";
         if( ! empty( $_POST['money'] )){
-        $money = $_POST['money'];}
+            $money = $_POST['money'];}
         $amount="0";
         if( ! empty( $_POST['amount'] )){
             $amount = $_POST['amount'];}
@@ -208,7 +208,7 @@ elseif ($submit_type==="option"){
 
 }
 ?>
-
+<link rel="stylesheet" href="/css_codes/volunteer_application.css">
 <form  class="form_box" action="volunteer_application.php" method="POST">
     <input type=hidden name=event_id value="<?php echo $_GET['event_id'] ?>">
     <input type=hidden name=method value='<?php echo $submit_type ?>'>
@@ -226,11 +226,12 @@ elseif ($submit_type==="option"){
         $money_descrip=explode(":",$ability[0]);
         $money_name=$money_descrip[0];
         $money_amount=$money_descrip[1];
-        $count_other= count($ability);                       
-    
+        $count_other= count($ability);
+
     }
 
     ?>
+
     <div><label class="head_label">Like to be </label><br>
 
         <input type="checkbox" name="type[]"  value="Donor" <?php if ($submit_type==="option"){if($type === 'Donor' OR $type === 'Donor & Volunteer' ) echo "checked='checked'"; }?>>Donor
@@ -240,43 +241,24 @@ elseif ($submit_type==="option"){
 
     <div >
         <label class="head_label"> District/Districts where you want to serve</label>
-        <select name="district[]"multiple="multiple" >
-            <?php
+        <div class="dropdown">
+            <button type="button" onclick="show_menu()" class="dropbtn">District</button>
+            <div id="myDropdown" class="dropdown-content drp">
+                <?php
                 $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
                     'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
                     'Ratnapura','Tricomalee','Vavuniya');
                 foreach($district_arr as $dis){
-                    echo "<option value='".$dis."'>".$dis."</option>";
+                    echo "<a class='drp' data-value='$dis' onclick=select_option(this)>";
+                    echo "<label class=\"container drp\">$dis";
+                    echo "<input type=\"checkbox\" class=\"drp\">
+                                <span class=\"checkmark drp\"></span>
+                        </label>
+                        </a>";
                 }
-            ?>
-            <!--
-            <option value='Ampara'>Ampara</option>
-            <option value='Anurashapura'>Anurashapura</option>
-            <option value='Badulla'>Badulla</option>
-            <option value='Batticaloa'>Batticaloa</option>
-            <option value='Colombo'>Colombo</option>
-            <option value='Galle'>Galle</option>
-            <option value='Gampha'>Gampha</option>
-            <option value='Hambatota'>Hambantota</option>
-            <option value='Jaffna'>Jaffna</option>
-            <option value='Kaltura'>Kaltura</option>
-            <option value='Kandy'>Kandy</option>
-            <option value='Kegalle'>Kegalle</option>
-            <option value='Kilinochchi'>Kilinochchi</option>
-            <option value='Kurunegala'>Kurunegala</option>
-            <option value='Mannar'>Mannar</option>
-            <option value='Matale'>Matale</option>
-            <option value='Mathara'>Mathara</option>
-            <option value='Moneragala'>Moneragala</option>
-            <option value='Mullaitivu'>Mullaitivu</option>
-            <option value='Nuwara-Eliya'>Nuwara-Eliya</option>
-            <option value='Polonnaruwa'>Polonnaruwa</option>
-            <option value='Puttalam'>Puttalam</option>
-            <option value='Ratnapura'>Ratnapura</option>
-            <option value='Tricomalee'>Tricomalee</option>
-            <option value='Vavuniya'>Vavuniya</option>
-            -->
-        </select><br><br>
+                ?>
+            </div>
+        </div>
     </div>
 
     <div><label class="head_label">Abilities </label><br>
@@ -299,24 +281,24 @@ elseif ($submit_type==="option"){
             </tr>
             <?php
             if ($submit_type==="option"){
-            for ($x = 1; $x <$count_other; $x++) {
-                $other_descrip=explode(":",$ability[$x]);
-                $other_name=$other_descrip[0];
-                $other_quantity=$other_descrip[1];
-                echo "<table>";
-                echo "<tr>";
-                echo "<td class=des_area>";
-                echo "<div >";
-                echo '<input class="input_box" name="things[]" value='.$other_name.'></input>';
-                echo "</div>";
-                echo "</td>";
-                echo "<td class=des_area>";
-                echo '<div>';
-                echo '<input  class="input_box" name="quantity[]" value='.$other_quantity.'></input>';
-                echo "</div>";
-                echo "</td>";
+                for ($x = 1; $x <$count_other; $x++) {
+                    $other_descrip=explode(":",$ability[$x]);
+                    $other_name=$other_descrip[0];
+                    $other_quantity=$other_descrip[1];
+                    echo "<table>";
+                    echo "<tr>";
+                    echo "<td class=des_area>";
+                    echo "<div >";
+                    echo '<input class="input_box" name="things[]" value='.$other_name.'></input>';
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td class=des_area>";
+                    echo '<div>';
+                    echo '<input  class="input_box" name="quantity[]" value='.$other_quantity.'></input>';
+                    echo "</div>";
+                    echo "</td>";
+                }
             }
-        }
             ?>
         </table>
         <input name="update_button" type="button"  value="Add other" onclick="add_option()">
