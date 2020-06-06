@@ -14,7 +14,7 @@
 	<div id="full_body">
 		<h2>Promise your help</h2>
 		<table id='main_table'>
-		<tr><td>Name</td><td>Address</td><td>Requirements</td><td>Other promises</td><td>Your promise</td></tr>
+		<tr><td>Name</td><td>Address</td><td>Requirements</td><td>Other promises</td><td>Your promise</td><td>Note</td></tr>
 		<?php
 			$string = $_GET['selected'];
 			$str_arr = explode (",", $string);  
@@ -33,70 +33,69 @@
 					echo"<td>".$result1['first_name']." ".$result1['last_name']."</td>";
 					echo"<td>".$row['street']." ".$row['village']." ".$row['district']."</td>";
 					
-					if ($row['help_type']=="money and good"){
-						echo"<td>"."Money ".$row['money_discription']."<br>".$row['good_discription']."</td>";
+					$request = explode(",", $row['requests']);
+					echo"<td>";
+					foreach($request as $res){
+					  echo "$res <br>";
 					}
-					else if ($row['help_type']=="money"){
-						echo"<td>"."Money ".$row['money_discription']."</td>";
-					}
-					else if ($row['help_type']=="good"){
-						echo"<td>".$row['good_discription']."</td>";
-					}
+					echo"</td>";
+					
 					echo "<td>";
-					$i_promises = $row['individual_promises'];
-					if ($i_promises!=""){
-						$i_promise = explode (";", $i_promises ); 
-							foreach($i_promise as $promise){
-								$string1 = explode ("-", $promise); 
-								$iddd=$string1[0];
+					
+					$query4="select * from event_2_pro_don where to_person='$idd' ORDER BY by_org";
+					$result4=$con->query($query4);
+					if($result4->num_rows>0){
+						while($rows=$result4->fetch_assoc()){
+							if ($rows['by_org']==""){
+								$iddd=$rows['by_person'];
 								$query2="select * from civilian_detail where NIC_num='$iddd'";
 								$result2=($con->query($query2))->fetch_assoc();
 								echo "<b>".$result2['first_name']." ".$result2['last_name']."</b>";
 								echo "<br>";
-								$string2 = explode (",", $string1[1]); 
-									foreach($string2 as $str) {
-										$string3 = explode (":", $str); 
-										echo "\t".$string3[0]." ".$string3[1];
+								$string1 = explode (",", $rows['content']); 
+									foreach($string1 as $str) {
+										$string2 = explode (":", $str); 
+										echo "\t".$string2[0]." ".$string2[1];
 										echo "<br>";
 									}
 							}
-						echo "<br>";
-					}
-					
-					$o_promises = $row['org_promises'];
-					if ($o_promises!=""){
-						$o_promise = explode (";", $o_promises ); 
-							foreach($o_promise as $promise_o){
-								$string5 = explode ("-", $promise_o); 
-								$o_id=$string5[0];
+							else{
+								$o_id=$rows['by_org'];
 								$query3="select * from organizations where org_id=".$o_id;
 								$result3=($con->query($query3))->fetch_assoc();
 								echo "<b>".$result3['org_name']."</b>";
 								echo "<br>";
-								$string6 = explode (",", $string5[1]); 
-									foreach($string6 as $str_o) {
-										$string7= explode (":", $str_o); 
-										echo "\t".$string7[0]." ".$string7[1];
+								$string1 = explode (",", $rows['content']); 
+									foreach($string1 as $str) {
+										$string2 = explode (":", $str); 
+										echo "\t".$string2[0]." ".$string2[1];
 										echo "<br>";
 									}
-								
-								
 							}
-					}
-					if (($o_promises=="")and ($i_promises=="")){
+						echo "<br>";
+						}
+					}else{
 						echo "<b>No Promises<b>";
 					}
+							
 						
 					echo "</td>";
 					
 					echo "<td>";
-					echo "<div id=add_".$idd.">";
-						echo "<input type=text name=1 id=new_member>";
-						echo "<input type=text name=2 id=new_member>";
-						echo "<button type=button onclick=add(".$idd.")>Add item</button>";
-					echo "</div> ";
+					?>
 					
+					<div class="input_container">
+						<div class="input_sub_container">
+							<input type="text" class="text_input">
+							<input type="text" class="text_input">
+							<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+						</div>
+					</div>
 					
+					<?php
+					echo "</td>";
+					echo "<td>";
+						echo "<input type=text name=note id=note>";
 					echo "</td>";
 					echo"</tr>"	;
 					}
@@ -113,14 +112,24 @@
 	<input type='hidden' id='hidden' name='hidden'>
 	
 <script>                                                                                                                                                             
-	                                                                              
-	function add(iid){
-		var str='';
-		
-		str+="<br><input type=text name=jsinput1 id=new_member><input type=text name=jsinput2 id=new_member>";
-		document.getElementById('add_'+iid).innerHTML += str;
-
-	}
+function add_input(element){
+        var parent = element.parentElement.parentElement;
+        if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {
+            for (var ele of parent.children) {
+                ele.children[0].setAttribute("value", ele.children[0].value);
+                ele.children[1].setAttribute("value", ele.children[1].value);
+                ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
+            }
+            parent.innerHTML += '<div class="input_sub_container">\n' +
+                '        <input type="text" class="text_input">\n' +
+                '        <input type="text" class="text_input">\n' +
+                '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
+                '    </div>';
+        }
+    }
+    function remove_input(element){
+        element.parentElement.outerHTML='';
+    }
 </script>
 </body>
 </html>
