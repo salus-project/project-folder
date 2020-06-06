@@ -86,12 +86,22 @@
                             echo '<tr><td id=column1> Request</td><td id=column2>' . $result['type'] . '</td></tr>';
                             
                             if($result['type']=="money only"){
-                                echo '<tr><td id=column1> Ammount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
+                                echo '<tr class="money_thing"><td id=column> Amount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
                             }elseif($result['type']=="things only"){
-                                echo '<tr><td id=column1> Requested things </td><td id=column2>' . $result['expecting_things'] . '</td></tr>';
+                                $things=explode(",",$result['expecting_things']);
+                                $content="";
+                                for($x=0 ; $x < count($things) ; $x++){
+                                    $content.=$things[$x].'\n';
+                                }
+                                echo '<tr class="money_thing"><td id=column> Requested things </td><td id=column2>' . $content . '</td></tr>';
                             }else{
-                                echo '<tr><td id=column1> Ammount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
-                                echo '<tr><td id=column1> Requested things </td><td id=column2>' . $result['expecting_things'] . '</td></tr>';
+                                $content="";
+                                $content.="money:".$result['expecting_money']."<br>";
+                                $things=explode(",",$result['expecting_things']);
+                                for($x=0 ; $x < count($things) ; $x++){
+                                    $content.=$things[$x]."<br>";
+                                }
+                                echo '<tr class="money_thing"><td id=column> Money and Requested things </td><td id=column2>' . $content . '</td></tr>';
                             }
                             function filter($input){
                                 return(htmlspecialchars(stripslashes(trim($input))));
@@ -109,21 +119,21 @@
                     <table id="promise_tab">
                         <?php
                             if($result['type']=="money only"){
-                                echo '<tr><td id="promise_td"> Amount in rs</td><td id="promise_td"><input type="text" id="money" placeholder="0" name="donation[]"></td></tr>';
+                                echo '<tr><td id="promise_td"> Amount in rs</td><td id="promise_td"><input type="text" id="money" name="donation[]"></td></tr>';
                             }elseif($result['type']=="things only"){
                                 $query="select * from fundraisings where id=".$id;
                                 $result=($con->query($query))->fetch_assoc();
                                 $things=explode(",",$result['expecting_things']);
                                 foreach($things as $value){
-                                    echo '<tr><td id=column1>'.(explode(":",$value))[0].' </td><td id=column2> <input type="text" id="things" placeholder="0" name="donation[]"></td></tr>';
+                                    echo '<tr><td id=column1>'.(explode(":",$value))[0].' </td><td id=column2> <input type="text" id="things" name="donation[]"></td></tr>';
                                 }
                             }else{
-                                echo '<tr><td id="promise_td"> Amount in rs</td><td id="promise_td"><input type="text" id="money" placeholder="0" name="donation[]"></td></tr>';
+                                echo '<tr><td id="promise_td"> Amount in rs</td><td id="promise_td"><input type="text" id="money" name="donation[]"></td></tr>';
                                 $query="select * from fundraisings where id=".$id;
                                 $result=($con->query($query))->fetch_assoc();
                                 $things=explode(",",$result['expecting_things']);
                                 foreach($things as $value){
-                                    echo '<tr><td id=column1>'. (explode(":",$value))[0].' </td><td id=column2> <input type="text" id="things" placeholder="0" name="donation[]"></td></tr>';
+                                    echo '<tr><td id=column1>'. (explode(":",$value))[0].' </td><td id=column2> <input type="text" id="things"  name="donation[]"></td></tr>';
                                 }
                             }
                         ?>
