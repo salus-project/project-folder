@@ -143,7 +143,7 @@ const close_help_popup = document.querySelectorAll('#close_request_popup');
 const overlay = document.getElementById('overlay');
 
 function request_help(){
-    open_popup("/event/request_help_popup.php");
+    open_popup("/event/request_help_popup.php?event_id="+event_id);
 }
 
 close_help_popup.forEach(button => {
@@ -218,7 +218,7 @@ function cancel_request(){
 }
 
 function request_option(){
-    open_popup("/event/request_help_popup.php");
+    open_popup("/event/request_help_popup.php?event_id="+event_id);
     var req_submit_btn = document.getElementById('req_submit_btn');
 }
 

@@ -7,7 +7,7 @@
     margin:auto;
     margin-top:20px;
 }
-td,th{
+td.view_event_td{
     border:1px solid black;
     height: 20px;
     padding:2px;

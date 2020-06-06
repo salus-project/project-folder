@@ -1,0 +1,13 @@
+.input_container{
+    font-size: 0;
+}
+.input_sub_container{
+    font-size: 0;
+}
+.text_input{
+    width: auto;
+    height: auto;
+}
+.add_rem_btn{
+    width:100px;
+}

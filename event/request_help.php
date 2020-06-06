@@ -6,29 +6,19 @@
         $event_id=$_POST['event_id'];
        $user_nic=$_SESSION['user_nic'];
        $district=$_POST['district'];
-       $money_description=$_POST['money_description']??'';
-       $good_description=$_POST['good_description']??'';
-       $type_arr=explode(',',$_POST["type"]);
-       $help_type="";
-       
-       if(count($type_arr)==2){
-           $help_type="money and good"; 
-       }elseif(count($type_arr)==1){
-           if($type_arr[0]=="money"){
-               $help_type="money";
-           }elseif($type_arr[0]=="good"){
-               $help_type="good";
-           }
-       }
+        $village= join(" ", explode("+", $_POST['village']));
+        $street= join(" ", explode("+", $_POST['street']));
+        $requests= join(" ", explode("+", $_POST['requests']));
+
         $data="SELECT * from event_".$event_id."_help_requested where NIC_num='".$_SESSION['user_nic']."'";
         $result=$con->query($data);
         $query_run = $query_now_run = false;
         if($result->num_rows>0){
-            $query_now="UPDATE `event_".$event_id."_help_requested` SET `district` = '$district', `now` = 'yes', `help_type` = '$help_type', `money_discription` = '$money_description', `good_discription` = '$good_description' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '$user_nic'";
+            $query_now="UPDATE `event_".$event_id."_help_requested` SET `district` = '$district', `now` = 'yes', `village` = '$village', `street` = '$street', `requests` = '$requests' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '$user_nic'";
             $query_now_run= mysqli_query($con,$query_now);
         }
         else{
-            $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, help_type, money_discription, good_discription) VALUES ('$user_nic', '$district', '$help_type', '$money_description', '$good_description')";
+            $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, village, street, requests) VALUES ('$user_nic', '$district', '$village', '$street', '$requests')";
             //echo $query;
             $query_run= mysqli_query($con,$query);
         }

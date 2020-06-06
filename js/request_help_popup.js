@@ -14,38 +14,29 @@ function OnChangeCheckbox (checkbox,textbox) {
     }
 }
 
-function submit_request(){
+function submit_request(parent){
 
-    var district = document.getElementsByTagName('select')[0].value;
-    var help_type = [];
-    if(document.getElementById('money').checked){
-        help_type.push(document.getElementById('money').value);
+    var all_inputs= parent.getElementsByClassName("request_input");
+    var requests = [];
+    for(var i=0;i<all_inputs.length;i+=2){
+        if(all_inputs[i].value!==''){
+            requests.push(all_inputs[i].value.toLowerCase() + ":" + all_inputs[i + 1].value);
+        }
     }
-    if(document.getElementById('good').checked){
-        help_type.push(document.getElementById('good').value);
-    }
-
-    var money_description = document.getElementById('money_des').value || " ";
-    var good_description = document.getElementById('good_des').value || " ";
+    var requests = requests.toString();
+    var district = document.getElementById("district").value;
+    var village = document.getElementById("village").value;
+    var street = document.getElementById("street").value;
 
     const request = new XMLHttpRequest();
 
     request.onload = () => {
         console.log(request.responseText);
-        /*let responseObject = null;
-        try{
-            responseObject = JSON.parse(request.responseText);
-        }catch(e){
-            console.error('Could not parse JSON');
-        }
-        if(responseObject){
-            console.log(responseObject);
-        }*/
     };
-    const requestData = `event_id=`+ event_id + `&district=`+district + `&type=` + help_type + `&money_description=` + money_description + `&good_description=` + good_description + `&submit_button=` + 'submit';
-    //console.log(requestData);
+    var requestData = `event_id=`+ event_id + `&district=`+ district + `&village=` + village + `&street=` + street + `&requests=`+ requests + `&submit_button=` + 'submit';
+    requestData = (requestData.split(" ")).join("+");
 
-    request.open('post', 'request_help.php');
+    request.open('post', '/event/request_help.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(requestData);
 
@@ -61,3 +52,21 @@ function submit_request(){
     document.getElementById('popup_div').classList.remove('active_pop');
     overlay.classList.remove('active_pop');
 };
+function add_input(element){
+    var parent = element.parentElement.parentElement;
+    if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {
+        for (var ele of parent.children) {
+            ele.children[0].setAttribute("value", ele.children[0].value);
+            ele.children[1].setAttribute("value", ele.children[1].value);
+            ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
+        }
+        parent.innerHTML += '<div class="input_sub_container">\n' +
+            '        <input type="text" class="text_input request_input">\n' +
+            '        <input type="text" class="text_input request_input">\n' +
+            '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
+            '    </div>';
+    }
+}
+function remove_input(element){
+    element.parentElement.outerHTML='';
+}

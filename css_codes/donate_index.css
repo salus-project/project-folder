@@ -13,18 +13,20 @@ table{
     width:580px;
     margin:auto;
     border-radius: 12px;
-    padding: 10px;  
+    padding: 10px;
 }
 td{
     font-size: medium;
-    text-align: start;
 }
 #form{
     border-color: black;
     border-radius: 12px;
-    margin: auto;
+    margin-top: 100px;
+    margin-left: 450px;
+    margin-right: 450px;
+    margin-bottom: 100px;
     padding: 40px;
-   
+    background-color: rgb(176, 204, 255);
 }
 #promise_body{
     margin:auto;
@@ -42,7 +44,4 @@ td{
     margin-right: 10px;
     margin-top: 10px;
 
-}
-.money_thing{
-    border-color:1px black;
 }
