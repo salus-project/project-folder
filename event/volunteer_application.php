@@ -38,32 +38,36 @@ if ($submit_type==="apply"){
             $value1="Donor & Volunteer";
         }
 
-        if( ! empty( $_POST['moneygoods'] )){
-            $counts2 = count($_POST['moneygoods']);
-        }
-        if ($counts2==1){
-            if ($_POST['moneygoods'][0]=="money"){
-                $value2="money";
-            }elseif($_POST['moneygoods'][0]=="goods"){
-                $value2="goods";
+        $money="Money";
+        if( ! empty( $_POST['money'] )){
+        $money = $_POST['money'];}
+        $amount="0";
+        if( ! empty( $_POST['amount'] )){
+            $amount = $_POST['amount'];}
+        $data1 = $money.":".$amount;
+        
+        $data2="";
+    
+        if( ! empty( $_POST['things'] )){
+
+            $things = $_POST['things'];
+            $quantity = $_POST['quantity'];
+
+            $count_arr = count($_POST['things']);
+            for ($x = 0; $x <$count_arr; $x++) {
+                $data2=$data2.",".$things[$x].":".$quantity[$x];
             }
-        }elseif ($counts2==2){
-            $value2="both";
         }
+        $data=$data1.$data2;
+
 
         $districts="not_selected";
         if( ! empty( $_POST['district'] )){
             $values = $_POST['district'];
             $districts = implode(",", $values);
         }
-
-        $t1=0;
-        $t2="null";
-        if( ! empty( $_POST['t1'] )){
-            $t1=$_POST['t1'];
-        }
-        $t2=$_POST['t2'];
-
+        $data="Money:0";
+        
         $now="yes";
         $value="";
         $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'";
@@ -71,10 +75,10 @@ if ($submit_type==="apply"){
         $value=$result['NIC_num'];
         echo $value;
         if ($value==="$nic"){
-            $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',money_or_goods='$value2',amount='$t1',things='$t2', now='$now' where NIC_num='$nic'";
+            $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1', now='$now', abilities='$data' where NIC_num='$nic'";
             $query_run= mysqli_query($con,$query);
         }else{
-            $query= "INSERT INTO `event_".$event_id."_volunteers` (`NIC_num`,`service_district`, `type`, `money_or_goods`, `amount`, `things`) VALUES ('$nic','$districts', '$value1', '$value2', '$t1', '$t2')";
+            $query= "INSERT INTO `event_".$event_id."_volunteers` (`NIC_num`,`service_district`, `type`,`abilities`) VALUES ('$nic','$districts', '$value1','$data')";
             $query_run= mysqli_query($con,$query);
         }
         // code to update status---------------------------
@@ -131,20 +135,24 @@ elseif ($submit_type==="option"){
             $value1="Donor & Volunteer";
         }
 
+        $money="Money";
+        if( ! empty( $_POST['money'] )){
+        $money = $_POST['money'];}
+        $amount="0";
+        if( ! empty( $_POST['amount'] )){
+            $amount = $_POST['amount'];}
+        $data1 = $money.":".$amount;
+        $data2="";
+        if( ! empty( $_POST['things'] )){
+            $things = $_POST['things'];
+            $quantity = $_POST['quantity'];
 
-
-        if( ! empty( $_POST['moneygoods'] )){
-            $counts2 = count($_POST['moneygoods']);
-        }
-        if ($counts2==1){
-            if ($_POST['moneygoods'][0]=="money"){
-                $value2="money";
-            }elseif($_POST['moneygoods'][0]=="goods"){
-                $value2="goods";
+            $count_arr = count($_POST['things']);
+            for ($x = 0; $x <$count_arr; $x++) {
+                $data2=$data2.",".$things[$x].":".$quantity[$x];
             }
-        }elseif ($counts2==2){
-            $value2="both";
         }
+        $data=$data1.$data2;
 
         $districts="not_selected";
         if( ! empty( $_POST['district'] )){
@@ -152,14 +160,7 @@ elseif ($submit_type==="option"){
             $districts = implode(",", $values);
         }
 
-        $t1=0;
-        $t2="null";
-        if( ! empty( $_POST['t1'] )){
-            $t1=$_POST['t1'];
-        }
-        $t2=$_POST['t2'];
-
-        $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',money_or_goods='$value2',amount='$t1',things='$t2' where NIC_num='$nic'";
+        $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',abilities='$data' where NIC_num='$nic'";
 
 
         $query_run= mysqli_query($con,$query);
@@ -213,6 +214,7 @@ elseif ($submit_type==="option"){
     <input type=hidden name=method value='<?php echo $submit_type ?>'>
 
     <?php
+    $money_amount=0;
     if ($submit_type==="option"){
         $nic=$_SESSION['user_nic'];
 
@@ -220,9 +222,12 @@ elseif ($submit_type==="option"){
         $result=($con->query($query))->fetch_assoc();
         $service_district=explode(",",$result['service_district']);
         $type=$result['type'];
-        $money_or_goods=$result['money_or_goods'];
-        $amount=$result['amount'];
-        $things=$result['things'];
+        $ability=explode(",",$result['abilities']);
+        $money_descrip=explode(":",$ability[0]);
+        $money_name=$money_descrip[0];
+        $money_amount=$money_descrip[1];
+        $count_other= count($ability);                       
+    
     }
 
     ?>
@@ -278,24 +283,46 @@ elseif ($submit_type==="option"){
         <table id="volunteer_table">
             <tr>
                 <td class=des_area>
-                    <div id=money_des_con style="display:block">
-                        <textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des">Money</textarea>
+                    <div >
+                        <input class="input_box" name="money" id="money" value="<?php if ($submit_type==="option"){ echo $money_name;}else {echo "Money";}?>"></input>
 
                     </div>
                 </td>
                 <td class=des_area>
-                    <div id=money_des_con style="display:block">
-                        <textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>
+                    <div >
+                        <input  class="input_box" name="amount" id="amount" value="<?php  echo $money_amount?>"></input>
                     </div>
                 </td>
                 <td class=des_area>
                     Rs
                 </td>
             </tr>
+            <?php
+            if ($submit_type==="option"){
+            for ($x = 1; $x <$count_other; $x++) {
+                $other_descrip=explode(":",$ability[$x]);
+                $other_name=$other_descrip[0];
+                $other_quantity=$other_descrip[1];
+                echo "<table>";
+                echo "<tr>";
+                echo "<td class=des_area>";
+                echo "<div >";
+                echo '<input class="input_box" name="things[]" value='.$other_name.'></input>';
+                echo "</div>";
+                echo "</td>";
+                echo "<td class=des_area>";
+                echo '<div>';
+                echo '<input  class="input_box" name="quantity[]" value='.$other_quantity.'></input>';
+                echo "</div>";
+                echo "</td>";
+            }
+        }
+            ?>
         </table>
         <input name="update_button" type="button"  value="Add other" onclick="add_option()">
     </div>
-
+    <br>
+    <br>
     <div>
         <input name="update_button" type="submit"  value="Submit"  class="login_button">
         <button id=close_request_popup class=submit_button>Cancel</button>
