@@ -64,10 +64,7 @@
         
         <div id='home_sub_body'>
             <div class="detail">
-                <div id='intro_heading'>Intro</div>
-                <div class="edit_btn">  
-                    <a href='update_cd.php'><button id='edit_info_button'>Edit info</button></a>
-                </div>
+                <div id='intro_heading'><b>Intro</b></div>
                 <table style="width:100%">
                     <tr>
                         <td><?php echo "Name" ?></td>
