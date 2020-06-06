@@ -50,6 +50,8 @@
 		$mon=$_POST['mon'];
 		$thin=$_POST['thin'];
 		
+		$last=",".$_POST['jsinput1'].":".$_POST['jsinput2'];
+		
 		if(($mon=="0") and ($thin=="0")){
 			echo '<script type="text/javascript">alert("select your requests")</script>';
 			$isOk=0;
@@ -57,7 +59,10 @@
 		elseif(($mon=="1") and ($thin=="1")){
 			$type="money and things";
 			$money=$_POST['expecting_money'];
-			$things=$_POST['expecting_things'];
+			$things=$_POST['hidden'];
+			if ($_POST['jsinput1']!="") {
+				$things=$things.$last;
+			}
 			if((empty($money)) or (empty($things))){
 				echo '<script type="text/javascript">alert("fill your request")</script>';
 				$isOk=0;
@@ -78,7 +83,10 @@
 		elseif($thin=="1"){
 			$type="things only";
 			$money="NULL";
-			$things=$_POST['expecting_things'];
+			$things=$_POST['hidden'];
+			if ($_POST['jsinput1']!="") {
+				$things=$things.$last;
+			}
 			if(empty($things)){
 				echo '<script type="text/javascript">alert("things required")</script>';
 				$isOk=0;
@@ -130,7 +138,7 @@
     <body>
 
     <script>
-        btnPress(8);
+        btnPress(7);
     </script>
 
     <div id="main_fund_form_body">
@@ -230,8 +238,12 @@
 							<input type="checkbox" id="money" onclick="checkmoneyfn()">Money
 							<input type='text' name="expecting_money" id="expecting_money" placeholder='expected money in Rs' style='display:none' value=<?php echo $money; ?>>
 							<input type="checkbox" id="things" onclick="checkthingsfn()">Things
-							<input type='text' name="expecting_things" id="expecting_things" placeholder='enter your expected things' style='display:none' value=<?php echo $things; ?>>
-							
+							<div id=add_i style='display:none'>
+								<input type=text name=jsinput1 id=new_itemm>
+								<input type=text name=jsinput2 id=new_amountt>
+								<button type=button onclick=add()>Add item</button>
+							</div>
+							<input type='hidden' id='hidden' name='hidden'>
 							<script>
                                 function checkmoneyfn(){
                                     if(document.getElementById("money").checked==true){
@@ -246,14 +258,78 @@
 								
 								function checkthingsfn(){
                                     if(document.getElementById("things").checked==true){
-                                        document.getElementById('expecting_things').style.display='block';
+                                        document.getElementById('add_i').style.display='block';
                                         document.getElementById("thin").value = "1";
 										
                                     }else{
-                                        document.getElementById('expecting_things').style.display='none';
+                                        document.getElementById('add_i').style.display='none';
 										document.getElementById("thin").value = "0";
                                     }
                                 }
+								
+								var arr= new Array() ;                                                                             
+								function add(){
+									var str='';
+									var new_item = document.getElementById('new_itemm').value;
+									var new_amount = document.getElementById('new_amountt').value;
+									var new_input=new_item+":"+new_amount;
+									arr.push(new_input);
+									var n=0;
+									while (n < arr.length-1) {
+									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
+									  n +=1;
+									}
+									
+									arr.forEach(function(item,index){
+										var res = item.split(":");
+										str+="<input type=text name=added_item id=added"+index+" value="+res[0]+"><input type=text name=added_item id=addedd"+index+" value="+res[1]+"> <button type=button onclick=remove("+index+")>remove</button></br>";
+									});
+									str+="<input type=text name=jsinput1 id=new_itemm><input type=text name=jsinput2 id=new_amountt><button type=button onclick=add()>Add item</button>";
+									document.getElementById('add_i').innerHTML = str;
+									document.getElementById('hidden').value=arr.join(",");
+
+								}
+								function remove(rem_index){
+									var n=0;
+									while (n < arr.length) {
+									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
+									  n +=1;
+									}
+									var new_item=document.getElementById('new_itemm').value;
+									var new_amount=document.getElementById('new_amountt').value;
+									delete arr[rem_index];
+									
+									arr = arr.filter(function(element){
+										return element !== undefined;
+									});
+									
+									str='';
+									arr.forEach(function(item,index){
+										var res = item.split(":");
+										str+="<input type=text name=added_item id=added"+index+" value="+res[0]+"><input type=text name=added_item id=addedd"+index+" value="+res[1]+"> <button type=button onclick=remove("+index+")>remove</button></br>";
+									});
+									str+="<input type=text name=jsinput1 id=new_itemm value="+new_item+"><input type=text name=jsinput2 id=new_amountt value="+new_amount+"><button type=button onclick=add()>Add item</button>";
+									document.getElementById('add_i').innerHTML = str;
+									document.getElementById('hidden').value=arr.join(",");
+								}
+								function submit_data(){
+									var n=0;
+									while (n < arr.length-1) {
+									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
+									  n +=1;
+									}
+									var new_item = document.getElementById('new_itemm').value;
+									var new_amount = document.getElementById('new_amountt').value;
+									var new_input=new_item+":"+new_amount;
+									arr.push(new_input);
+									while (arr.includes(":")){
+										const index = arr.indexOf(":");
+										if (index > -1) {
+										  arr.splice(index, 1);
+										}
+									document.getElementById('hidden').value=arr.join(",");
+									}
+								}
                             </script>
                             <span id='error' class="error">* </span>
 						</td>
@@ -276,7 +352,7 @@
                     </tr>
 					<tr>
                         <td colspan='2'>
-                            <input type='submit' name='submit_button' id='submitBtn' >
+                            <input type='submit' onclick=submit_data() name='submit_button' id='submitBtn' >
                         </td>
                     </tr>
 				</table>
