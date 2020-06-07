@@ -4,11 +4,16 @@
     $event_id = $_GET['event_id'];
     $query = "select * from event_".$event_id."_help_requested where NIC_num = '".$_SESSION['user_nic']."'";
     $result=$con->query($query)->fetch_assoc();
-    $old_district = $result['district'] ?: '';
-    $old_village = $result['village'] ?: '';
-    $old_street = $result['street'] ?: '';
-    $old_requests = $result['requests'] ?: '';
-    $old_requests = explode(",",$old_requests)
+    
+    if($result!=null){
+        $old_district = $result['district'] ?: '';
+        $old_village = $result['village'] ?: '';
+        $old_street = $result['street'] ?: '';
+        $old_requests = $result['requests'] ?: '';
+    }else{
+        $old_district=$old_street=$old_village=$old_requests='';
+    }
+    $old_requests = array_filter(explode(",",$old_requests));
 
 ?>
 <link rel='stylesheet' type='text/css' href='/css_codes/request.css'>
