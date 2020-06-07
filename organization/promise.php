@@ -101,9 +101,9 @@ $event_name2="event_".$event_id."_pro_don";
 
                     echo "</td>";
 					
-					echo "<input type='hidden' id='hidden' name='hidden' value=$idd >";
+					//echo "<input type='hidden' id='hidden' name='hidden' value=$idd >";
 
-                    echo "<td class='your_promise'>";
+                    echo "<td class='your_promise' data-id='".$idd."'>";
                     ?>
 
                     <div class="input_container">
@@ -155,7 +155,7 @@ $event_name2="event_".$event_id."_pro_don";
     function add_to_all(ele){
         var all_td = document.getElementsByClassName("your_promise");
         for(var td of all_td){
-            td.innerHTML=ele.innerHTML
+            td.innerHTML=ele.outerHTML;
         }
     }
     function note_to_all(ele){
@@ -169,9 +169,9 @@ $event_name2="event_".$event_id."_pro_don";
 		
 		var arr= new Array() ;  		
 		for(var td of all_td){
-            var idd=td.previousElementSibling.value;
+            var idd=td.getAttribute("data-id");
 			var promise='';
-			for(var tdd of td.children){
+			for(var tdd of td.firstElementChild.children){
 				var val1= tdd.children[0].value;
 				var val2= tdd.children[1].value;
 				if(val1 != "" ){
@@ -187,7 +187,8 @@ $event_name2="event_".$event_id."_pro_don";
 			
         }
         document.getElementById('datas').value=arr.join("++");
-		document.getElementById("myForm").submit();
+        console.log(arr.join("++"))
+		//document.getElementById("myForm").submit();
     }
 </script>
 	<form id="myForm" action="submit.php" method=post>
