@@ -5,51 +5,6 @@
     $query="select * from fundraisings where id=".$id;
     $result=($con->query($query))->fetch_assoc();
     
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $id=$_GET['id'];
-        $donation_quan=$_POST["donation"];
-        $note=$_POST['note'];
-        $by_person=$_SESSION['user_nic'];
-        $content="";
-        if($result['type']=="money only"){
-            if(empty($donation_quan[0])){
-                $donation_quan[0]=0;
-            }
-            $content.="money:".$donation_quan[0].",";
-            
-        }elseif($result['type']=="things only"){
-            $things=explode(",",$result['expecting_things']);
-            for($x=0 ; $x < count($things) ; $x++){
-                if(empty($donation_quan[$x])){
-                    $donation_quan[$x]=0;
-                }
-                $content.=(explode(":",$things[$x]))[0].":".$donation_quan[$x].",";
-            }
-        }else{
-            if(empty($donation_quan[0])){
-                $donation_quan[0]=0;
-            }
-            $content.="money:".$donation_quan[0].",";
-            $things=explode(",",$result['expecting_things']);
-            for($x=0 ; $x < count($things) ; $x++){
-                if(empty($donation_quan[$x+1])){
-                    $donation_quan[$x+1]=0;
-                }
-                $content.=(explode(":",$things[$x]))[0].":".$donation_quan[$x+1].",";
-            }
-            
-        }
-
-        $content1=substr($content,0,-1);
-
-       $query="INSERT INTO fundraising_pro_don (pro_don, by_person, for_fund, content, note) VALUES ('promise', '$by_person', '$id', '$content1', '$note')";
-        $query_run= mysqli_query($con,$query);
-       if($query_run){
-            echo '<script type="text/javascript"> alert ("Donation updated!") </script>';
-        }else{
-            echo '<script type="text/javascript"> alert ("Not donated") </script>';
-        }
-    }	
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +14,14 @@
         <link rel="stylesheet" href='/css_codes/donate_index.css'>
     </head>
     <body>
-		<form id="form" method="POST" action=<?php echo "index.php?id=".$_GET['id'];?>>            
+        <div class="form_div">
+            <form method="POST" action=<?php echo "index_php.php";?>>  
+                <input type="hidden" name="id" value= <?php echo $id;?>>        
                 <div id="title">
                     <center><b><?php echo $result['name'] ?></b></center>
                 </div> 
-                    <table id='fund_table'>
+                <div class="table_div">
+                    <table class="donate_tab">
                         <?php                       
                             $idd= filter($result['by_civilian']);
                             $query3="select * from civilian_detail where NIC_num='$idd' ";
@@ -91,7 +49,7 @@
                                 $things=explode(",",$result['expecting_things']);
                                 $content="";
                                 for($x=0 ; $x < count($things) ; $x++){
-                                    $content.=$things[$x].'\n';
+                                    $content.=$things[$x]."<br>";
                                 }
                                 echo '<tr class="money_thing"><td id=column> Requested things </td><td id=column2>' . $content . '</td></tr>';
                             }else{
@@ -115,8 +73,10 @@
                             <td>description </td>
                             <td><?php echo $result['description'] ?></td>
                         </tr>                      
-                    </table>           
-                    <table id="promise_tab">
+                    </table>     
+                </div>     
+                <div class="table_div"> 
+                    <table class="donate_tab">
                         <?php
                             if($result['type']=="money only"){
                                 echo '<tr><td id="promise_td"> Amount in rs</td><td id="promise_td"><input type="text" id="money" name="donation[]"></td></tr>';
@@ -139,7 +99,9 @@
                         ?>
                          <tr><td id="promise_td">Note</td><td><textarea col=30 rows=4 id="promise_td" name="note"></textarea></td></tr>
                         <tr><td ><input id=promise_but type='submit' name=promise_but value="PROMISE" ></td></tr>
-                    </table>     
-            </form>         
+                    </table>    
+                </div> 
+            </form>   
+        </div>      
     </body>
 </html>
