@@ -21,12 +21,9 @@ td{
 #form{
     border-color: black;
     border-radius: 12px;
-    margin-top: 100px;
-    margin-left: 450px;
-    margin-right: 450px;
-    margin-bottom: 100px;
+    margin: auto;
     padding: 40px;
-    background-color: rgb(176, 204, 255);
+
 }
 #promise_body{
     margin:auto;
@@ -44,4 +41,7 @@ td{
     margin-right: 10px;
     margin-top: 10px;
 
+}
+#column{
+    border: 1px black;
 }
