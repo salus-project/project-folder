@@ -38,35 +38,30 @@ if ($submit_type==="apply"){
             $value1="Donor & Volunteer";
         }
 
-        $money="Money";
-        if( ! empty( $_POST['money'] )){
-            $money = $_POST['money'];}
-        $amount="0";
-        if( ! empty( $_POST['amount'] )){
-            $amount = $_POST['amount'];}
-        $data1 = $money.":".$amount;
-
-        $data2="";
-
-        if( ! empty( $_POST['things'] )){
-
-            $things = $_POST['things'];
+        $data="Money:0";
+        if( ! empty( $_POST['thing_type'] )){
+            $data="";
+            $things = $_POST['thing_type'];
             $quantity = $_POST['quantity'];
+            $count_arr = count($_POST['thing_type']);
+            if($things[$count_arr-1]==""){
+                for ($x = 0; $x <$count_arr-2; $x++) {
+                    $data=$data.$things[$x].":".$quantity[$x].",";
+                }
+                $data=$data.$things[$count_arr-2].":".$quantity[$count_arr-2];}
+                else{
+                    for ($x = 0; $x <$count_arr-1; $x++) {
+                        $data=$data.$things[$x].":".$quantity[$x].",";
+                    }
+                    $data=$data.$things[$count_arr-1].":".$quantity[$count_arr-1];}
 
-            $count_arr = count($_POST['things']);
-            for ($x = 0; $x <$count_arr; $x++) {
-                $data2=$data2.",".$things[$x].":".$quantity[$x];
-            }
-        }
-        $data=$data1.$data2;
-
-
+                }
         $districts="not_selected";
         if( ! empty( $_POST['district'] )){
             $values = $_POST['district'];
             $districts = implode(",", $values);
         }
-        $data="Money:0";
+
 
         $now="yes";
         $value="";
@@ -134,25 +129,26 @@ elseif ($submit_type==="option"){
         }elseif ($counts1==2){
             $value1="Donor & Volunteer";
         }
-
-        $money="Money";
-        if( ! empty( $_POST['money'] )){
-            $money = $_POST['money'];}
-        $amount="0";
-        if( ! empty( $_POST['amount'] )){
-            $amount = $_POST['amount'];}
-        $data1 = $money.":".$amount;
-        $data2="";
-        if( ! empty( $_POST['things'] )){
-            $things = $_POST['things'];
+        $data="Money:0";
+        if( ! empty( $_POST['thing_type'] )){
+            $data="";
+            $things = $_POST['thing_type'];
             $quantity = $_POST['quantity'];
+            $count_arr = count($_POST['thing_type']);
+            if($things[$count_arr-1]==""){
+                for ($x = 0; $x <$count_arr-2; $x++) {
+                    $data=$data.$things[$x].":".$quantity[$x].",";
+                }
+                $data=$data.$things[$count_arr-2].":".$quantity[$count_arr-2];}
+                else{
+                    for ($x = 0; $x <$count_arr-1; $x++) {
+                        $data=$data.$things[$x].":".$quantity[$x].",";
+                    }
+                    $data=$data.$things[$count_arr-1].":".$quantity[$count_arr-1];}
 
-            $count_arr = count($_POST['things']);
-            for ($x = 0; $x <$count_arr; $x++) {
-                $data2=$data2.",".$things[$x].":".$quantity[$x];
-            }
-        }
-        $data=$data1.$data2;
+                }
+        
+        
 
         $districts="not_selected";
         if( ! empty( $_POST['district'] )){
@@ -214,7 +210,7 @@ elseif ($submit_type==="option"){
     <input type=hidden name=method value='<?php echo $submit_type ?>'>
 
     <?php
-    $money_amount=0;
+    $ability[0]=":";
     if ($submit_type==="option"){
         $nic=$_SESSION['user_nic'];
 
@@ -222,12 +218,7 @@ elseif ($submit_type==="option"){
         $result=($con->query($query))->fetch_assoc();
         $service_district=explode(",",$result['service_district']);
         $type=$result['type'];
-        $ability=explode(",",$result['abilities']);
-        $money_descrip=explode(":",$ability[0]);
-        $money_name=$money_descrip[0];
-        $money_amount=$money_descrip[1];
-        $count_other= count($ability);
-
+        $ability=explode(",",$result['abilities']);    
     }
 
     ?>
@@ -251,58 +242,57 @@ elseif ($submit_type==="option"){
                 foreach($district_arr as $dis){
                     echo "<a class='drp' data-value='$dis' onclick=select_option(this)>";
                     echo "<label class=\"container drp\">$dis";
-                    echo "<input type=\"checkbox\" class=\"drp\">
+                    if ($submit_type==="option"){
+                        if(in_array($dis, $service_district)){
+                        echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" checked=\"checked\">
                                 <span class=\"checkmark drp\"></span>
                         </label>
-                        </a>";
+                        </a>";}
+                        
+                        else{echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
+                            <span class=\"checkmark drp\"></span>
+                    </label>
+                    </a>";
+    
+                        }}
+                    else{echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
+                        <span class=\"checkmark drp\"></span>
+                </label>
+                </a>";
+
+                    }
                 }
+            
                 ?>
             </div>
         </div>
     </div>
+    
+    
+    <div class=head_label_container><label class="head_label"> Abilities </label></div>
 
-    <div><label class="head_label">Abilities </label><br>
-        <table id="volunteer_table">
-            <tr>
-                <td class=des_area>
-                    <div >
-                        <input class="input_box" name="money" id="money" value="<?php if ($submit_type==="option"){ echo $money_name;}else {echo "Money";}?>"></input>
 
-                    </div>
-                </td>
-                <td class=des_area>
-                    <div >
-                        <input  class="input_box" name="amount" id="amount" value="<?php  echo $money_amount?>"></input>
-                    </div>
-                </td>
-                <td class=des_area>
-                    Rs
-                </td>
-            </tr>
-            <?php
-            if ($submit_type==="option"){
-                for ($x = 1; $x <$count_other; $x++) {
-                    $other_descrip=explode(":",$ability[$x]);
-                    $other_name=$other_descrip[0];
-                    $other_quantity=$other_descrip[1];
-                    echo "<table>";
-                    echo "<tr>";
-                    echo "<td class=des_area>";
-                    echo "<div >";
-                    echo '<input class="input_box" name="things[]" value='.$other_name.'></input>';
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td class=des_area>";
-                    echo '<div>';
-                    echo '<input  class="input_box" name="quantity[]" value='.$other_quantity.'></input>';
-                    echo "</div>";
-                    echo "</td>";
-                }
-            }
-            ?>
-        </table>
-        <input name="update_button" type="button"  value="Add other" onclick="add_option()">
+
+    <div class="input_container">
+
+    <?php
+        foreach($ability as $row_req){
+            $arr = explode(":",$row_req);
+            echo "<div class=\"input_sub_container\">";
+            echo    "<input type='text' class='text_input request_input' value='".$arr[0]."' name='thing_type[]'>
+                    <input type='text' class='text_input request_input' name='quantity[]' value='".$arr[1]."'>";
+            echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+            echo "</div>";
+        }
+    ?>
+    <div class="input_sub_container">
+        <input type="text" class='text_input request_input' name='thing_type[]'>
+        <input type="text" class='text_input request_input'  name='quantity[]'>
+        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
     </div>
+</div>
+
+    
     <br>
     <br>
     <div>
