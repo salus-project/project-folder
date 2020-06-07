@@ -9,7 +9,7 @@ require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 	$string2 = explode ("++", $string1);
 	foreach($string2 as $str_data) {
 		$str = explode ("--", $str_data);
-		if(str[1]!="" and str[2]!=""){
+		if($str[1]!="" or $str[2]!=""){
 			$query="INSERT INTO `$event_name` (`pro_don`, `by_org`, `to_person`,`content`,`note` ) VALUES ( 'promise', '$org_id', '$str[0]', '$str[1]', '$str[2]')";
 			$query_run=mysqli_query($con,$query);
 		}
