@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.donate_tab{
+.table_div{
     border:1px solid black;
     width:580px;
     margin:auto;
@@ -18,11 +18,12 @@
 td{
     font-size: medium;
 }
-#form{
+.form_div {
     border-color: black;
     border-radius: 12px;
     margin: auto;
     padding: 40px;
+
 
 }
 #promise_body{
