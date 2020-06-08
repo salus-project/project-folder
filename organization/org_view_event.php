@@ -112,6 +112,13 @@
                     
                 ?>
                 <button id="promise_buttton" onclick="promise()">Promise to help</button>
+				
+				<form action="view_our_promises.php" method="get">
+						<input type="hidden" name="org_id" value=<?php echo $id_org; ?> >
+						<input type="hidden" name="event_id" value=<?php echo $id_event; ?> ><br>
+						<button class="btn_prom" type="submit">Our promises</button>
+				</form>
+				
             </div>
             
         </div>
