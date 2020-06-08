@@ -16,7 +16,14 @@
     </script>
 
     <div id="title">
-        Fundraising events
+		<div>
+			Fundraising events
+		</div>
+		<div>
+			<form action=view_my_promises.php method=get>
+                <button class='btn_prom'  type='submit'>My promises</button>
+        	</form>
+		</div>
     </div>
 		<?php
 		echo"<div id='boxes'>";
