@@ -45,10 +45,10 @@ function edit_promise(element){
     'echo \'</div>\';\n'+
     'echo \'<div id="promise_td">\';\n'+
     '    echo\'<table>\';\n'+
-    '        echo \'<tr><td><label id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note"></textarea></td></tr>\';\n'+
+    '        echo \'<tr><td><label name="note" id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note"></textarea></td></tr>\';\n'+
     '    echo \'</table>\';\n'+
     'echo \'</div>\';\n'+                      
     'echo \'<div class="pro_button">\';\n'+
-    '    echo \'<input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >\';\n'+
+    '    echo \'<input name="edit_button" type="submit"  value="UPDATE PROMISE"  class="edit_button" id=req_submit_btn >\';\n'+
     'echo \'</div>\';';
 }
