@@ -12,6 +12,8 @@
             
         </div>
         <?php
+		$id_org=$_GET['selected_org'];
+		$id_event=$_GET['event_id'];
             $query="select * from disaster_events where event_id =" . $_GET['event_id'];
             $result=($con->query($query))->fetch_assoc();
         ?>
@@ -161,7 +163,9 @@
                 for (input of inputs){
                     selected.push(input.value);
                 }
-                window.location.href="promise.php?selected="+selected.toString();
+				var id_org = "<?php echo $id_org ?>";
+				var id_event = "<?php echo $id_event ?>";
+                window.location.href="promise.php?selected="+selected.toString()+"&org_id="+id_org+"&event_id="+id_event;
                 /*var help_popup = document.getElementById("help_popup");
                 help_popup.classList.toggle("active_popup");
                 document.getElementById("overlay").classList.toggle("active_overlay");
