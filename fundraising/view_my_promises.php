@@ -13,34 +13,23 @@
         <link rel="stylesheet" href='/css_codes/view_my_promise.css'>
     </head>
     <body>
-		
 		<script>
         btnPress(7);
 		</script>
 		
 		<div id="title">
-        <?php echo "My Promises" ?>
-		</div>
-		<div id='promise_body'>
+            <?php echo "My Promises" ?>
+        </div>
         
+		<div id='promise_body'>
             <table id='promise_table'>
             <thead>
-                        <th colspan=1>
-                        Promise or Donation
-                        </th>
-                        <th colspan=1>
-                        For fund id
-                        </th>
-                        <th colspan=1>
-                        For fund name
-                        </th>
-                        <th colspan=1>
-                        Content ( Money/Things)
-                        </th>
-                        <th colspan=1>
-                        Note
-                        </th>
-                    </thead>
+                <th colspan=1> Promise or Donation</th>
+                <th colspan=1>For fund id</th>
+                <th colspan=1>For fund name</th>
+                <th colspan=1>Content ( Money/Things)</th>
+                <th colspan=1>Note</th>
+            </thead>
 
             <?php
 			while($row=$result->fetch_assoc()){
@@ -60,9 +49,7 @@
                 <td>".$row['pro_don']."</td><td>".$row['for_fund']."</td><td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
                 </tr>";
             }
-             ?>   
-				
-                
+            ?>    
             </table>
         </div>
     </body>
