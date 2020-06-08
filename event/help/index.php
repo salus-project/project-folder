@@ -105,12 +105,12 @@
                         echo '</div>';
                         echo '<div id="promise_td">';
                             echo'<table>';
-                                echo '<tr><td><label id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note"></textarea></td></tr>';
+                                echo '<tr><td><label name="note" id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note"></textarea></td></tr>';
                             echo '</table>';
 
                         echo '</div>';                      
                         echo '<div class="pro_button">';
-                            echo '<input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >';
+                            echo '<input name="edit_button" type="submit"  value="UPDATE PROMISE"  class="edit_button" id=req_submit_btn >';
                         echo '</div>';*/
                     echo '</div>';
                     }
