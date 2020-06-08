@@ -24,10 +24,8 @@
 		<div id='promise_body'>
             <table id='promise_table'>
             <thead>
-                <th colspan=1> Promise or Donation</th>
-                <th colspan=1>For fund id</th>
-                <th colspan=1>For fund name</th>
-                <th colspan=1>Content ( Money/Things)</th>
+                <th colspan=1>Fundraising name</th>
+                <th colspan=1>Promises</th>
                 <th colspan=1>Note</th>
             </thead>
 
@@ -46,7 +44,7 @@
                 }
 
                 echo "<tr>
-                <td>".$row['pro_don']."</td><td>".$row['for_fund']."</td><td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
+                <td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
                 </tr>";
             }
             ?>    
