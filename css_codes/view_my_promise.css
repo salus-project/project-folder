@@ -1,0 +1,32 @@
+#title{
+    height: 30px;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 600;
+}
+#promise_table{
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border:1px solid black;
+    padding: 5px;
+    margin:auto;
+}
+#promise_body{
+    border:1px solid black;
+    padding: 15px;
+
+}
+ table, th, td {
+    border: 1px solid black;
+    height: 20px;
+    padding: 5px;
+  }
+  th{
+    background-color:rgb(234, 234, 243);
+  }
+
+
+ 

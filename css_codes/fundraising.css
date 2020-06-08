@@ -1,9 +1,9 @@
 #title{
-    height:30px;
+    height:60px;
     border:1px solid black;
     padding:4px;
     font-size: 25px;
-    font-weight: 600;
+	font-weight: 600;
 }
 
 #view_fund{
@@ -51,4 +51,9 @@
 	height:100px;
 	margin:10px;
 	
+}
+.btn_prom {
+    margin: auto;
+    margin-right: 0px;
+    padding: 5px 15px;
 }
