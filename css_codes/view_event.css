@@ -216,7 +216,14 @@ input:checked + .slider:before{
     cursor: pointer;
     background-color: white;
 }
-
+#indi_prom_btn{
+    outline: none;
+    height: 33px;
+    font-size: 18px;
+    position: absolute;
+    right: 220px;
+    top: 93px;
+}
 /*---------------popup loader ------------------------ */
 
 .popup_loader{
