@@ -85,3 +85,9 @@ input, textarea{
     border-radius: 12px;
     padding: 5px;
 }
+.promise_div{
+    display: none;
+}
+.show_edit_div{
+    display: block;
+}
