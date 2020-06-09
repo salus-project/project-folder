@@ -1,10 +1,9 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
-    $id=$_SESSION['user_nic'];
-    $query="select * from fundraising_pro_don where by_person='$id'";
+    $id=$_SESSION['user_nic'];    
+    $query="SELECT * FROM fundraising_pro_don INNER JOIN fundraisings ON fundraising_pro_don.for_fund = fundraisings.id where by_person='$id'"; 
     $result=$con->query($query);
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -31,11 +30,7 @@
 
             <?php
 			while($row=$result->fetch_assoc()){
-                $for_fund=$row['for_fund'];
-                $sql="select * from fundraisings where id='$for_fund'";
-                $result1=($con->query($sql))->fetch_assoc();
-                $name=$result1['name'];
-
+                $name=$row['name'];
                 $ability=explode(",",$row['content']);
                 $count_arr = count($ability);
                 $data="";
