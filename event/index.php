@@ -46,6 +46,11 @@
                     
                     <div id=volunteer_btn>
                     </div>
+                    <div >
+                        <form action="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" method=get>
+                            <button id="indi_prom_btn" type='submit'>My Promises</button>
+        	            </form>
+                    </div>
                     
                 </div>
             </div>
