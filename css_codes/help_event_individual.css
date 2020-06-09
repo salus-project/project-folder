@@ -1,0 +1,87 @@
+
+#form_box{
+    border: 1px solid black;
+    background-color: rgb(225, 225, 250);
+    width:480px;
+    margin: auto;
+    padding: 15px;
+    border-radius: 12px;
+}
+.dis_container, #old_promise {
+    margin-top: auto;
+    border: 1px solid black;
+    border-radius: 12px;
+ 
+}
+.dis_selection{
+    height: 25px;
+    width: 200px;
+    margin-top: 5px;
+}
+.h2_tag{
+    align-self: center;
+    color: black;
+    
+}
+.submit_button{
+    margin-top: 1px;
+    border-radius: 15px;
+    font-size:20px;
+    width: 150px;
+    margin:0 auto;
+    margin-bottom:15px;
+}
+.input_box{
+    width:90%;
+    height:20px;
+    font-size:15px;
+    resize: none;
+}
+.label{
+    font-size:10px;
+}
+.head_label{
+    font-size: 18px;
+    text-align: center;
+}
+.head_label_container{
+    margin:13px;
+    text-align: center;
+}
+.check_menu{
+    border: 0;
+    width:100px;
+    height: 50px;
+}
+.des_area{
+    border: 0;
+}
+#request_tr{
+    border-color: solid black;
+}
+#request_detail{
+    font-size: 18px;
+    text-align: center;
+
+}
+td{
+    padding: 7px;
+}
+.table1{
+    padding-left: 20px;
+}
+.input_sub_container{
+    padding: 5px;
+}
+.text_input request_input{
+    padding: 4px;
+    border-radius: 12px;
+    box-sizing: 10;
+}
+.pro_button, .edit_button{
+    text-align: center;
+}
+input, textarea{
+    border-radius: 12px;
+    padding: 5px;
+}
