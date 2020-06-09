@@ -24,31 +24,11 @@ function remove_input(element){
     element.parentElement.outerHTML='';
 }
 function edit_promise(element){
-    var parent = element.parentElement.parentElement;
-    remove_input(element);
-
-    parent.innerHTML +=  'echo \'<div class=head_label_container id="old_donation"></div>\';\n'+
-    'echo \'<div class="input_container">\';\n'+
-    '    foreach($old_promises as $row_req){\n'+
-    '        $arr = explode(":",$row_req);\n'+
-    '        echo "<div class=\"input_sub_container\">";\n'+
-    '        echo    "<input type=\'text\' class=\'text_input request_input\' name=\'things[]\' value=\'".$arr[0]."\'>";\n'+
-    '        echo    "<input type=\'text\' class=\'text_input request_input\' name=\'things_val[]\' value=\'".$arr[1]."\'>";\n'+
-    '        echo    "<button type=\'button\' onclick=\'remove_input(this)\' class=\'add_rem_btn\'>Remove</button>";\n'+
-    '        echo "</div>";\n'+
-    '    }\n'+
-    '    echo \'<div class="input_sub_container">\';\n'+
-    '        echo \'<input type="text" name="things[]" class="text_input request_input">\';\n'+
-    '        echo \'<input type="text" name="things_val[]" class="text_input request_input">\';\n'+
-    '        echo \'<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\';\n'+
-    '    echo \'</div>\';\n'+
-    'echo \'</div>\';\n'+
-    'echo \'<div id="promise_td">\';\n'+
-    '    echo\'<table>\';\n'+
-    '        echo \'<tr><td><label name="note" id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note"></textarea></td></tr>\';\n'+
-    '    echo \'</table>\';\n'+
-    'echo \'</div>\';\n'+                      
-    'echo \'<div class="pro_button">\';\n'+
-    '    echo \'<input name="edit_button" type="submit"  value="UPDATE PROMISE"  class="edit_button" id=req_submit_btn >\';\n'+
-    'echo \'</div>\';';
+    if(element.innerHTML==="EDIT"){
+        element.innerHTML="Hide Edit";
+    }else{
+        element.innerHTML="EDIT";
+    }
+    var edit_pro = document.getElementById("promise_div");
+    edit_pro.classList.toggle("show_edit_div");
 }
