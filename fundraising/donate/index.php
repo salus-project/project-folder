@@ -154,7 +154,7 @@
 
                     }else{    
                 ?>
-                        <div class="table_div"> 
+                        <div class="table_div1"> 
                             <table class="donate_tab">
                                 <?php
                                     if($result['type']=="money only"){
