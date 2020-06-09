@@ -13,7 +13,7 @@
     </head>
     <body>
 		<script>
-        btnPress(7);
+            btnPress(7);
 		</script>
 		
 		<div id="title">
@@ -22,27 +22,27 @@
         
 		<div id='promise_body'>
             <table id='promise_table'>
-            <thead>
-                <th colspan=1>Fundraising name</th>
-                <th colspan=1>Promises</th>
-                <th colspan=1>Note</th>
-            </thead>
+                <thead>
+                    <th colspan=1>Fundraising name</th>
+                    <th colspan=1>Promises</th>
+                    <th colspan=1>Note</th>
+                </thead>
 
-            <?php
-			while($row=$result->fetch_assoc()){
-                $name=$row['name'];
-                $ability=explode(",",$row['content']);
-                $count_arr = count($ability);
-                $data="";
-                for ($x = 0; $x <$count_arr; $x++) {
-                    $data=$data.$ability[$x]."<br>";
-                }
+                <?php
+			        while($row=$result->fetch_assoc()){
+                        $name=$row['name'];
+                        $ability=explode(",",$row['content']);
+                        $count_arr = count($ability);
+                        $data="";
+                        for ($x = 0; $x <$count_arr; $x++) {
+                            $data=$data.$ability[$x]."<br>";
+                        }
 
-                echo "<tr>
-                <td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
-                </tr>";
-            }
-            ?>    
+                        echo "<tr>
+                            <td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
+                            </tr>";
+                    }
+                ?>    
             </table>
         </div>
     </body>
