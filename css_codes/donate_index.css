@@ -8,16 +8,14 @@
     text-align: center;
 }
 
-.table_div{
+.table_div, .old_promise_div, .old_promise_edit{
     border:1px solid black;
     width:580px;
     margin:auto;
     border-radius: 12px;
     padding: 10px;
 }
-td{
-    font-size: medium;
-}
+
 .form_div {
     border-color: black;
     border-radius: 12px;
@@ -31,7 +29,7 @@ td{
     padding:15px;
     font-size: 18px;
 }
-#promise_but{
+#pro_submit_but{
     border-color:1px black;
     border-radius: 12px;
     padding: 6px;
@@ -43,6 +41,18 @@ td{
     margin-top: 10px;
 
 }
+.my_promise_div{
+    text-align: center;
+}
 #column{
     border: 1px black;
+}
+#fudraising_detail, .my_promise_div{
+    text-align: center;
+}
+.old_promise_edit{
+    display: none;
+}
+.show_edit_divi{
+    display: block;
 }
