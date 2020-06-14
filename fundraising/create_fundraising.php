@@ -2,129 +2,8 @@
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 	
 	$fundraising_name=$org_name=$type=$for_event=$for_any=$money=$things=$service_area=$description="";
-
-	if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
-	$isOk=1;	
-		if(empty($_POST['fundraising_name'])){
-			echo '<script type="text/javascript">alert("Fundraising event name is required")</script>';
-            $isOk=0;
-        }else{
-            $fundraising_name=filter($_POST['fundraising_name']);
-			$validate_name_query="select * from fundraisings where name='$fundraising_name'";
-            $query_run=mysqli_query($con,$validate_name_query);
-            if(mysqli_num_rows($query_run)>0){
-                echo '<script type="text/javascript">alert("fundraising name already exits...")</script>';
-                $isOk=0;
-            }
-        }
-		if($_POST['organization']==""){
-			$org_name= "NULL";
-		}
-		else{
-			$org_name=$_POST['organization'];
-		}
-		
-		$for_event=$_POST['for_event'];
-		$for_any=$_POST['other_purpose'];
-		
-		$for_opt=$_POST['purp'];   
-		$purpose='';
-		if($for_opt=="00"){
-			echo '<script type="text/javascript">alert("fill purpose field")</script>';
-			$isOk=0;
-		}
-		elseif($for_opt=="1"){
-			$for_any=NULL;
-			$query2="select * from disaster_events where event_id=". $for_event;
-			$result2=($con->query($query2))->fetch_assoc();
-			$purpose=$result2['name'];
-		}
-		else{
-			$for_event="NULL";
-			$purpose=$for_any;
-			if(empty($for_any)){
-				echo '<script type="text/javascript">alert("purpose is required")</script>';
-				$isOk=0;
-			}
-		}
-		$mon=$_POST['mon'];
-		$thin=$_POST['thin'];
-		
-		$last=",".$_POST['jsinput1'].":".$_POST['jsinput2'];
-		
-		if(($mon=="0") and ($thin=="0")){
-			echo '<script type="text/javascript">alert("select your requests")</script>';
-			$isOk=0;
-		}
-		elseif(($mon=="1") and ($thin=="1")){
-			$type="money and things";
-			$money=$_POST['expecting_money'];
-			$things=$_POST['hidden'];
-			if ($_POST['jsinput1']!="") {
-				$things=$things.$last;
-			}
-			if((empty($money)) or (empty($things))){
-				echo '<script type="text/javascript">alert("fill your request")</script>';
-				$isOk=0;
-			}
-			$type_message="Ammount : ".$money."<br> Things :".$things;
-			
-		}
-		elseif( $mon=="1"){
-			$type="money only";
-			$money=$_POST['expecting_money'];
-			$things=NULL;
-			if(empty($money)){
-				echo '<script type="text/javascript">alert("ammount is required")</script>';
-				$isOk=0;
-			}
-			$type_message="Ammount : ".$money;
-		}
-		elseif($thin=="1"){
-			$type="things only";
-			$money="NULL";
-			$things=$_POST['hidden'];
-			if ($_POST['jsinput1']!="") {
-				$things=$things.$last;
-			}
-			if(empty($things)){
-				echo '<script type="text/javascript">alert("things required")</script>';
-				$isOk=0;
-			}
-			$type_message="Things :".$things;
-		}
-		
-		$service_area=$_POST['service_area'];
-		$description=$_POST['description'];
-		$by=filter($_SESSION['user_nic']);
-		
-		$content="Fundraising event name: ".$fundraising_name. "<br> Purpose:".$purpose."<br> Requesting :".$type."<br>".$type_message."<br> Service area :".$service_area."<br> Description :".$description;
-		
-		if($isOk==1){
-			$query1="INSERT INTO public_posts (`author`, `org`, `date`, `content`) VALUES ('$by',$org_name,NOW(),'$content')";
-			$con->query($query1);
-			$last_id=$con->insert_id;
-			
-			$query="INSERT INTO `fundraisings` (`id`, `name`, `by_civilian`, `by_org`, `type`, `for_event`, `for_any`, `expecting_money`, `expecting_things`, `service_area`, `description`,`post_id`) VALUES (NULL, '$fundraising_name', '$by',$org_name, '$type', $for_event, '$for_any', $money, '$things','$service_area','$description',$last_id)";
-			$query_run=mysqli_query($con,$query);
-			
-            if($query_run){
-				header("Location:fundraising.php");
-                echo '<script type="text/javascript">alert("Successfully created")</script>';
-                
-            }else{
-                echo '<script type="text/javascript">alert("Error")</script>';
-            }
-		}
-		else{
-            echo "try again";
-        }
-		
-	}
 	
-	function filter($input){
-        return(htmlspecialchars(stripslashes(trim($input))));
-    }
+	
 
 ?>
 
@@ -144,7 +23,6 @@
     <div id="main_fund_form_body">
 		<center><h2>Create a new fundraising event</h2></center>
 		<small style="margin:10px;">Enter the details</small>
-			<form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
                 <table id='sub_fund_form_body'>
                     <tr>
                         <td colspan='2'>
@@ -156,7 +34,7 @@
                             <label for='fundraising_name'>Fundraising event name</label>
                         </td>
                         <td>
-                            <input type='text' name="fundraising_name" value=<?php echo $fundraising_name; ?>>
+                            <input type='text' id="fun_name" name="fundraising_name" value=<?php echo $fundraising_name; ?>>
                             <span id='error' class="error">* </span>
                         </td>
                     </tr>
@@ -165,7 +43,7 @@
                             <label for='organization'>Select organization</label>
                         </td>
                         <td>
-                            <select name="organization">
+                            <select name="organization" id="org_num">
 								<option value=''>Not organization based</option>
 								<?php
 								$query='select * from organizations';
@@ -238,10 +116,13 @@
 							<input type="checkbox" id="money" onclick="checkmoneyfn()">Money
 							<input type='text' name="expecting_money" id="expecting_money" placeholder='expected money in Rs' style='display:none' value=<?php echo $money; ?>>
 							<input type="checkbox" id="things" onclick="checkthingsfn()">Things
-							<div id=add_i style='display:none'>
-								<input type=text name=jsinput1 id=new_itemm>
-								<input type=text name=jsinput2 id=new_amountt>
-								<button type=button onclick=add()>Add item</button>
+							
+							<div class="input_container" id=add_i style='display:none'>
+								<div class="input_sub_container">
+									<input type="text" class="text_input">
+									<input type="text" class="text_input">
+									<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+								</div>
 							</div>
 							<input type='hidden' id='hidden' name='hidden'>
 							<script>
@@ -267,69 +148,6 @@
                                     }
                                 }
 								
-								var arr= new Array() ;                                                                             
-								function add(){
-									var str='';
-									var new_item = document.getElementById('new_itemm').value;
-									var new_amount = document.getElementById('new_amountt').value;
-									var new_input=new_item+":"+new_amount;
-									arr.push(new_input);
-									var n=0;
-									while (n < arr.length-1) {
-									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
-									  n +=1;
-									}
-									
-									arr.forEach(function(item,index){
-										var res = item.split(":");
-										str+="<input type=text name=added_item id=added"+index+" value="+res[0]+"><input type=text name=added_item id=addedd"+index+" value="+res[1]+"> <button type=button onclick=remove("+index+")>remove</button></br>";
-									});
-									str+="<input type=text name=jsinput1 id=new_itemm><input type=text name=jsinput2 id=new_amountt><button type=button onclick=add()>Add item</button>";
-									document.getElementById('add_i').innerHTML = str;
-									document.getElementById('hidden').value=arr.join(",");
-
-								}
-								function remove(rem_index){
-									var n=0;
-									while (n < arr.length) {
-									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
-									  n +=1;
-									}
-									var new_item=document.getElementById('new_itemm').value;
-									var new_amount=document.getElementById('new_amountt').value;
-									delete arr[rem_index];
-									
-									arr = arr.filter(function(element){
-										return element !== undefined;
-									});
-									
-									str='';
-									arr.forEach(function(item,index){
-										var res = item.split(":");
-										str+="<input type=text name=added_item id=added"+index+" value="+res[0]+"><input type=text name=added_item id=addedd"+index+" value="+res[1]+"> <button type=button onclick=remove("+index+")>remove</button></br>";
-									});
-									str+="<input type=text name=jsinput1 id=new_itemm value="+new_item+"><input type=text name=jsinput2 id=new_amountt value="+new_amount+"><button type=button onclick=add()>Add item</button>";
-									document.getElementById('add_i').innerHTML = str;
-									document.getElementById('hidden').value=arr.join(",");
-								}
-								function submit_data(){
-									var n=0;
-									while (n < arr.length-1) {
-									  arr[n]=document.getElementById('added'+n+'').value+":"+document.getElementById('addedd'+n+'').value;
-									  n +=1;
-									}
-									var new_item = document.getElementById('new_itemm').value;
-									var new_amount = document.getElementById('new_amountt').value;
-									var new_input=new_item+":"+new_amount;
-									arr.push(new_input);
-									while (arr.includes(":")){
-										const index = arr.indexOf(":");
-										if (index > -1) {
-										  arr.splice(index, 1);
-										}
-									document.getElementById('hidden').value=arr.join(",");
-									}
-								}
                             </script>
                             <span id='error' class="error">* </span>
 						</td>
@@ -339,7 +157,7 @@
                             <label>Service area</label>
                         </td>
                         <td>
-                            <input type='text' name="service_area" value=<?php echo $service_area; ?>>
+                            <input type='text' name="service_area" id="service_area" value=<?php echo $service_area; ?>>
                         </td>
                     </tr>
 					<tr>
@@ -347,17 +165,81 @@
                             <label>Description</label>
                         </td>
                         <td>
-                            <textarea name='description'><?php echo $description; ?></textarea>
+                            <textarea name='description' id="description" ><?php echo $description; ?></textarea>
                         </td>
                     </tr>
 					<tr>
                         <td colspan='2'>
-                            <input type='submit' onclick=submit_data() name='submit_button' id='submitBtn' >
+                            <button  onclick=submit_data() id='submitBtn' >>Submit</button>
                         </td>
                     </tr>
 				</table>
-            </form>
     
 	</div>
     </body>
+	
+<script>
+
+//alert("hi");	
+	function add_input(element){
+        var parent = element.parentElement.parentElement;
+        if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {
+            for (var ele of parent.children) {
+                ele.children[0].setAttribute("value", ele.children[0].value);
+                ele.children[1].setAttribute("value", ele.children[1].value);
+                ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
+            }
+            parent.innerHTML += '<div class="input_sub_container">\n' +
+                '        <input type="text" class="text_input">\n' +
+                '        <input type="text" class="text_input">\n' +
+                '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
+                '    </div>';
+        }
+    }
+    function remove_input(element){
+        element.parentElement.outerHTML='';
+    }                                                                         
+								
+	
+	function submit_data(){
+        var all_td = document.getElementsByClassName("input_sub_container");
+		
+		var arr= new Array() ; 
+		var promise="" 	;	
+		for(var td of all_td){
+			var val1= td.children[0].value;
+			var val2= td.children[1].value;
+				if(val1 != "" ){
+					if(val1 != null){
+						promise += val1+":"+val2+",";
+					}
+				}
+			}
+			var promise = promise.slice(0,promise.length-1);
+        arr.push(document.getElementById("fun_name").value);
+		arr.push(document.getElementById("org_num").value);
+		arr.push(document.getElementById("for_event").value);
+		arr.push(document.getElementById("other_purpose").value);
+		arr.push(document.getElementById("purp").value);
+		arr.push(document.getElementById("mon").value);
+		arr.push(document.getElementById("thin").value);
+		arr.push(document.getElementById("expecting_money").value);
+		arr.push(promise);
+		arr.push(document.getElementById("service_area").value);
+		arr.push(document.getElementById("description").value);
+		
+		
+        //console.log(arr)
+		
+		document.getElementById('list').value=arr.join("++");
+		document.getElementById("myForm").submit();
+    }
+	
+	
+</script>
+
+	<form id="myForm" action="create_fundraising_php.php" method=post>
+	    <input type="hidden" name="list" id="list"  ><br>
+	</form>
+	
 </html>
