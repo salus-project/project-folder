@@ -170,7 +170,7 @@
                     </tr>
 					<tr>
                         <td colspan='2'>
-                            <button  onclick=submit_data() id='submitBtn' >>Submit</button>
+                            <button  onclick=submit_data() id='submitBtn' >Submit</button>
                         </td>
                     </tr>
 				</table>

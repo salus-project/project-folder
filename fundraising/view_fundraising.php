@@ -63,10 +63,22 @@
 				if($result['type']=="money only"){
 				echo '<tr><td id=column1> Ammount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
 				}elseif($result['type']=="things only"){
-				echo '<tr><td id=column1> Requested things </td><td id=column2>' . $result['expecting_things'] . '</td></tr>';
+					$things=explode(",",$result['expecting_things']);
+					$count_arr = count($things);
+					$data="";
+					for ($x = 0; $x <$count_arr; $x++) {
+						$data=$data.$things[$x]."<br>";
+					}
+				echo '<tr><td id=column1> Requested things </td><td id=column2>' . $data . '</td></tr>';
 				}else{
+					$things=explode(",",$result['expecting_things']);
+					$count_arr = count($things);
+					$data="";
+					for ($x = 0; $x <$count_arr; $x++) {
+						$data=$data.$things[$x]."<br>";
+					}
 				echo '<tr><td id=column1> Ammount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
-				echo '<tr><td id=column1> Requested things </td><td id=column2>' . $result['expecting_things'] . '</td></tr>';
+				echo '<tr><td id=column1> Requested things </td><td id=column2>' . $data . '</td></tr>';
 				}
 				function filter($input){
 					return(htmlspecialchars(stripslashes(trim($input))));

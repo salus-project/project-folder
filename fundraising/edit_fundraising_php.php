@@ -11,11 +11,13 @@ $isOk=1;
             $isOk=0;
         }else{
             $fundraising_name=filter($string2[0]);
-			$validate_name_query="select * from fundraisings where name='$fundraising_name'";
-            $query_run=mysqli_query($con,$validate_name_query);
-            if(mysqli_num_rows($query_run)>0){
-                echo '<script type="text/javascript">alert("fundraising name already exits...")</script>';
-                $isOk=0;
+			if($fundraising_name != $string2[0]){
+				$validate_name_query="select * from fundraisings where name='$fundraising_name'";
+				$query_run=mysqli_query($con,$validate_name_query);
+				if(mysqli_num_rows($query_run)>0){
+					echo '<script type="text/javascript">alert("fundraising name already exits...")</script>';
+					$isOk=0;
+				}
             }
         }
 		if($string2[1]==""){
@@ -91,23 +93,16 @@ $isOk=1;
 		$description=$string2[10];
 		$by=filter($_SESSION['user_nic']);
 		
+		$location = "view_fundraising.php?view_fun=".$string2[11];
 		// echo $fundraising_name.' '.$by.''.$org_name.' '.$type.' '. $for_event.' '.$for_any.' '. $money.' '.$things.' '.$service_area.' '.$description.' '.$last_id;
 		if($isOk==1){
-			$query1="INSERT INTO public_posts (`author`, `org`, `date`) VALUES ('$by',$org_name,NOW())";
-			$con->query($query1);
-			$last_id=$con->insert_id;
-			
-			$query="INSERT INTO `fundraisings` (`id`, `name`, `by_civilian`, `by_org`, `type`, `for_event`, `for_any`, `expecting_money`, `expecting_things`, `service_area`, `description`,`post_id`) VALUES (NULL, '$fundraising_name', '$by',$org_name, '$type', $for_event, '$for_any', $money, '$things','$service_area','$description',$last_id)";
-			$query_run=mysqli_query($con,$query);
-			$last_id2=$con->insert_id;
-			
-			
-			$query2="UPDATE public_posts set fund='$last_id2'   WHERE post_index=".$last_id;
-			$query_run2=mysqli_query($con,$query2);
+			$query="UPDATE fundraisings set name='$fundraising_name' ,by_org=$org_name, type='$type',for_event=$for_event, for_any='$for_any', expecting_money=$money, expecting_things='$things', service_area='$service_area', description='$description' WHERE id=".$string2[11];
+
+            $query_run=mysqli_query($con,$query);
 			
             if($query_run){
 				
-                echo '<script type="text/javascript">alert("Successfully created")</script>';
+                echo '<script type="text/javascript">alert("Successfully updated")</script>';
                 
             }else{
                 echo '<script type="text/javascript">alert("Error")</script>';
@@ -117,7 +112,7 @@ $isOk=1;
             echo "try again";
         }
 		
-	header("Location:fundraising.php");
+	header("Location:".$location);
 	
 	function filter($input){
         return(htmlspecialchars(stripslashes(trim($input))));
