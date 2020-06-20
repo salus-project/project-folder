@@ -9,7 +9,7 @@
     <form method='get' action='/organization'>
         <table id="table">
             <thead>
-                <th id="no"><a href="create_org.php"><button type="button" class='create_org_btn'>Create new organization</button></a></th>
+                <th id="no"><a href="/organization/create_organization"><button type="button" class='create_org_btn'>Create new organization</button></a></th>
             </thead>
             <?php
                 $org_detail=$con->query('select org_name,org_id from organizations');

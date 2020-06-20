@@ -3,12 +3,19 @@
         Other Members
     </div>
     <table id="side_nav_table">
-        <?php
-            $civilian_query = "select first_name, last_name, NIC_num from civilian_detail";
-            $civilian = $con->query($civilian_query);
-            while($row=$civilian->fetch_assoc()){
-                echo "<tr><td><a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$row['first_name']." ".$row['last_name']."</a></td></tr>";
-            }
-        ?>
     </table>
 </div>
+<script>
+    setInterval(get_last_seen,5000);
+    const side_nav_table = document.getElementById('side_nav_table');
+    function get_last_seen(){
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                side_nav_table.innerHTML=request.responseText;
+            }
+        }
+        request.open('GET','/includes/get_side_nav.php',true);
+        request.send();
+    }
+</script>

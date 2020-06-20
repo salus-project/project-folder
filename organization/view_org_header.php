@@ -1,5 +1,8 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    if(!isset($_GET['selected_org'])){
+        $_GET['selected_org']=$_GET['org_id'];
+    }
     $query="select * from organizations where org_id=".$_GET['selected_org'];
     $result=($con->query($query))->fetch_assoc();
 ?>
@@ -7,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href='/organization/view_org_header.css'>
+        <link rel="stylesheet" href='/css_codes/view_org_header.css'>
     </head>
     <body>
         <script>
@@ -18,7 +21,7 @@
                 <div id=org_logo>
                     <div style="height:1px;width:1px">
                     <img id=logo src=/organization/org_logos/default.png style="z-index:2;">
-                    <img id='logo' src ="org_logos/<?php echo $result['org_id'] ?>.jpg" alt="<?php echo $result['org_id'] . '.jpg'?>" style="z-index:3;">
+                    <img id='logo' src ="/organization/org_logos/<?php echo $result['org_id'] ?>.jpg" alt="<?php echo $result['org_id'] . '.jpg'?>" style="z-index:3;">
                     </div>
                 </div>
             </div>
@@ -33,10 +36,8 @@
                                 echo "</form>";
                             echo"</div>";
                         }
-                    
-                        $sql1="SELECT `members` from `organizations` where org_id=".$_GET['selected_org'];
-                        $result1=($con->query($sql1))->fetch_assoc();
-                        $status=explode(" ",$result1['members']);
+                        
+                        $status=explode(" ",$result['members']);
                         $nic=$_SESSION['user_nic'];
                         $leader=$result['leader'];
                         $co_leader=$result['co_leader'];
@@ -77,7 +78,7 @@
         <script>
             const selected_org = "<?php echo $_GET['selected_org'] ?>";
         </script>
-        <script src='/organization/view_org.js'></script>
+        <script src='/js/view_org.js'></script>
         
     </body>
 

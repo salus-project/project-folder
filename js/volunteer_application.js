@@ -58,16 +58,15 @@ function add_option(){
     var table = document.getElementById("volunteer_table");
     table.innerHTML+=   "<tr>"+
                             "<td class=des_area>"+
-                                "<div>"+
-                                    '<input class="input_box" name="things" ></input>'+
+                                "<div id=money_des_con style='display:block'>"+
+                                    '<textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>'+
                                 "</div>"+
                             "</td>"+
                             "<td class=des_area>"+
-                                '<div>'+
-                                    '<input class="input_box" name="quantity"></input>'+
+                                '<div id=money_des_con style="display:block">'+
+                                    '<textarea cols="15" rows="1"  class="input_box" name="money_description" id="money_des"></textarea>'+
                                 "</div>"+
-                            "</td>"+
-                            "<tr>";
+                            "</td>";
 }
 function show_menu() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -86,7 +85,6 @@ window.onclick = function(event) {
         }
     }
 }
-
 function add_input(element){
     var parent = element.parentElement.parentElement;
     if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {

@@ -2,8 +2,7 @@
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     $id=$_GET['id'];
-    //$by=$_GET['by'];
-    $by="3";
+    $by=$_GET['by'];
     $by_person=$_SESSION['user_nic'];
     $query="select * from fundraisings where id=".$id;
     $result=($con->query($query))->fetch_assoc();
@@ -182,8 +181,6 @@
                         </div> 
                     <?php } ?>
                 </form>   
-            </div>      
-
-
+            </div>
     </body>
 </html>

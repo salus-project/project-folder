@@ -1,4 +1,4 @@
-button{
+button,input{
     outline: none;
 }
 .sticky{
@@ -108,7 +108,7 @@ x{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-#event_container,#menubar_org_container{
+#event_container,#menubar_org_container,#notification_container{
     display:inline-block;
     position: absolute;
 }
@@ -121,5 +121,12 @@ x{
     display: flex;
 }
 #sub_body{
-    width:100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+}
+.all_a, a.all_a:visited, a.all_a:active{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }

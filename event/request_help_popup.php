@@ -73,9 +73,7 @@
                 $arr = explode(":",$row_req);
                 echo "<div class=\"input_sub_container\">";
                 echo    "<input type='text' class='text_input request_input' value='".$arr[0]."' ";
-                if($arr[0]=='money'){
-                    echo "disabled";
-                }
+
                 echo        " >
                         <input type='text' class='text_input request_input' value='".$arr[1]."'>";
                 echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";

@@ -224,6 +224,7 @@ input:checked + .slider:before{
     right: 220px;
     top: 93px;
 }
+
 /*---------------popup loader ------------------------ */
 
 .popup_loader{
@@ -236,4 +237,12 @@ input:checked + .slider:before{
     animation: spin 2s linear infinite;
     margin: auto;
     
+}
+#indi_prom_btn{
+    outline: none;
+    height: 33px;
+    font-size: 18px;
+    position: absolute;
+    right: 220px;
+    top: 93px;
 }

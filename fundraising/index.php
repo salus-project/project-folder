@@ -14,17 +14,16 @@
     <script>
         btnPress(7);
     </script>
-
-    <div id="title">
+	<div id="title">
 		<div>
 			Fundraising events
 		</div>
 		<div>
 			<form action=view_my_promises.php method=get>
-                <button class='btn_prom'  type='submit'>My promises</button>
-        	</form>
+				<button class='btn_prom'  type='submit'>My promises</button>
+			</form>
 		</div>
-    </div>
+	</div>
 		<?php
 		echo"<div id='boxes'>";
 		echo"<h2 style='margin-left: 20px;'>Your fundraising programs</h2>";
@@ -35,8 +34,8 @@
 				echo "<div id='boxA'>";
 				echo"<h3 style='margin-left: 5px;'>".$row['name']."</h3>";
 					echo "<form id=view_fund action=view_fundraising.php method=get>";
-                        echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
-                    echo "</form>";
+						echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
+					echo "</form>";
 					echo "</div>";
 
 			}
@@ -53,15 +52,16 @@
 				echo "<div id='boxB'>";
 				echo"<h3 style='margin-left: 5px;'>".$row['name']."</h3>";
 					echo "<form id=view_fund action=view_fundraising.php method=get>";
-                        echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
-                    echo "</form>";
+						echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
+					echo "</form>";
 					echo "<a id='donate_fund' href='/fundraising/donate?id=".$row['id']."'>";
-                        echo "<button class='btn_img' id=donate_fun type='submit' name=donate_fun value=".$row['id'].">donate</button>";
-                    echo "</a>";
+						echo "<button class='btn_img' id=donate_fun type='submit' name=donate_fun value=".$row['id'].">donate</button>";
+					echo "</a>";
 					echo "</div>";
 
 			}
 		echo"</div>";
 		?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
     </body>
 </html>

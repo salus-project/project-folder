@@ -1,8 +1,9 @@
 #side_nav_container{
-    width:300px;
+    width:320px;
     border:1px solid black;
     padding: 5px;
     display: inline-table;
+    min-height: 100vh;
 }
 #other_mem_header{
     height: 25px;
@@ -23,4 +24,10 @@
 }
 a.side_nav_a:hover{
     color: rgb(55, 113, 146);
+}
+.last_seen{
+    font-size: 10px;
+    min-width: 39px;
+    display: inline-block;
+    color: green;
 }

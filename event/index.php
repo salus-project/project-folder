@@ -47,9 +47,9 @@
                     <div id=volunteer_btn>
                     </div>
                     <div >
-                        <form action="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" method=get>
-                            <button id="indi_prom_btn" type='submit'>My Promises</button>
-        	            </form>
+                        <a href="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>">
+                            <button id="indi_prom_btn">My Promises</button>
+                        </a>
                     </div>
                     
                 </div>
@@ -86,28 +86,26 @@
             <div id=help_requested>
                 <h2>Help requested people<h2>
                 <table>
-				<?php
-					$query1='select NIC_num,first_name,last_name from civilian_detail';
-					$result1=$con->query($query1);
-					while($civilian=$result1->fetch_assoc()){
+                <?php
+                    $query1='select NIC_num,first_name,last_name from civilian_detail';
+                    $result1=$con->query($query1);
+                    while($civilian=$result1->fetch_assoc()){
                         $nic_num=$civilian["NIC_num"];
                         $help_request_status= explode(" ",$result['user_'.$nic_num])[1];
                         if ($help_request_status=='requested') {
                             $full_name=$civilian["first_name"].' '.$civilian["last_name"];
                             echo "<tr>";
                             echo    "<td id=data>";
-                            echo        "<form method=get action=sample.php>";
                             echo            "<input type=hidden name='to' value=".$civilian['NIC_num'].">";
                             echo            "<div class='requested' onclick='help_option(this)'>";
                             echo                $full_name;
                             echo            "</div>";
-                            echo        "</form>";
                             echo    "</td>";
                             echo "</tr>";
                         }
-					}
-				?>
-				</table>
+                    }
+                ?>
+                </table>
             </div>
             <div id=affected>
                 <h2>Affected people detail</h2>
@@ -120,6 +118,7 @@
         </div>
         <div id='overlay'>
         </div>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
         <script>
             var safe_status = '<?php echo $status[0]?>';
             var help_status = '<?php echo $status[1]?>';

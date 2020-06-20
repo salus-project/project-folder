@@ -49,12 +49,11 @@
                 $query_run1= mysqli_query($con,$query1);
                 }
             }
-
         if($query_run || $query_run1){
         echo '<script type="text/javascript"> alert (" donated") </script>';
         //    header('location:/event/index.php');
         }else{
             echo '<script type="text/javascript"> alert ("Not donated") </script>';
         }
-    }	
+    }
 ?>
