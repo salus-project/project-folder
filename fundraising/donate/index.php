@@ -2,7 +2,6 @@
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     $id=$_GET['id'];
-    $by=$_GET['by'];
     $by_person=$_SESSION['user_nic'];
     $query="select * from fundraisings where id=".$id;
     $result=($con->query($query))->fetch_assoc();
@@ -29,8 +28,7 @@
         </script>
         <div class="form_div">
             <form method="POST" action=<?php echo "index_php.php";?>>  
-                <input type="hidden" name="id" value= <?php echo $id;?>>
-                <input type="hidden" name="by" value= <?php echo $by;?>>        
+                <input type="hidden" name="id" value= <?php echo $id;?>>      
                 <div id="title">
                     <center><b><?php echo $result['name'] ?></b></center>
                 </div> 
@@ -59,14 +57,14 @@
                             echo '<tr><td class=column1> Request</td><td class=column2>' . $result['type'] . '</td></tr>';
                             
                             if($result['type']=="money only"){
-                                echo '<tr class="money_thing"><td id=column> Amount in rs</td><td id=column2>' . $result['expecting_money'] . '</td></tr>';
+                                echo '<tr class="money_thing"><td class=column1> Amount in rs</td><td class=column2>' . $result['expecting_money'] . '</td></tr>';
                             }elseif($result['type']=="things only"){
                                 $things=explode(",",$result['expecting_things']);
                                 $content="";
                                 for($x=0 ; $x < count($things) ; $x++){
                                     $content.=$things[$x]."<br>";
                                 }
-                                echo '<tr class="money_thing"><td id=column> Requested things </td><td id=column2>' . $content . '</td></tr>';
+                                echo '<tr class="money_thing"><td class=column1> Requested things </td><td class=column2>' . $content . '</td></tr>';
                             }else{
                                 $content="";
                                 $content.="money:".$result['expecting_money']."<br>";
@@ -74,31 +72,28 @@
                                 for($x=0 ; $x < count($things) ; $x++){
                                     $content.=$things[$x]."<br>";
                                 }
-                                echo '<tr class="money_thing"><td id=column> Money and Requested things </td><td id=column2>' . $content . '</td></tr>';
+                                echo '<tr class="money_thing"><td class=column1> Money and Requested things </td><td class=column2>' . $content . '</td></tr>';
                             }
                             function filter($input){
                                 return(htmlspecialchars(stripslashes(trim($input))));
                                 }
                         ?>                        
                         <tr>
-                            <td>Service area </td>
-                            <td><?php echo $result['service_area'] ?></td>
+                            <td class="column1">Service area </td>
+                            <td class="column2"><?php echo $result['service_area'] ?></td>
                         </tr>
                         <tr>
-                            <td>description </td>
-                            <td><?php echo $result['description'] ?></td>
+                            <td class="column1">description </td>
+                            <td class="column2"><?php echo $result['description'] ?></td>
                         </tr>                      
                     </table>     
                 </div>  
 
                 <?php
                 echo '<div class="old_promise_div">';
-                    if($by=="your_self"){
-                        $query4="select * from fundraising_pro_don where for_fund='".$id."' and by_person='".$by_person."'";
-                    }else{
-                        $by_org=$by;
-                        $query4="select * from fundraising_pro_don where for_fund='".$id."' and by_org='".$by_org."'";
-                    }  
+                    
+                    $query4="select * from fundraising_pro_don where for_fund='".$id."' and by_person='".$by_person."'";
+                      
                     $result4=$con->query($query4);
                     if($result4->num_rows>0){
                         $result5=$result4->fetch_assoc();
