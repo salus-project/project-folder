@@ -56,3 +56,6 @@
 .show_edit_divi{
     display: block;
 }
+.column1, .column2{
+    padding: 5px;
+}
