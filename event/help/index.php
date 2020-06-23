@@ -74,7 +74,6 @@
                 }
                 $result1=$con->query($data);
                 if($result1->num_rows>0){
-                    $result2=$result1->fetch_assoc();
 
                     echo '<div id="old_promise">';
                         echo '<div class=head_label_container><label class="head_label">';
@@ -89,13 +88,12 @@
                                 echo "Promise on behalf of ".$org_name;
                             }
                         echo '</label></div>';
-                        $old_promise = $result2['content'];
-                        $old_promises = array_filter(explode(",",$old_promise));
-                        
-                        foreach($old_promises as $row_req){
-                            echo $row_req."<br>";
+                        $result1=$result1->fetch_all(MYSQLI_ASSOC);
+                        foreach ($result1 as $row_req){
+                            echo $row_req['item']." : ".$row_req['amount'].'<br/>';
+                            $note = $row_req['note'];
                         }
-                        echo "your note : ".($result2['note'] ?: "No notes");
+                        echo "your note : ".($note?: "No notes");
                         echo '<div class="edit_button">';
                             echo '<button type="button"  class="submit_button" onclick="edit_promise(this)" id=req_submit_btn >EDIT</button>';
                         echo '</div>';
@@ -104,25 +102,26 @@
                     echo "<div id='promise_div' class='dis_container promise_div'>";
                       echo '<div class=head_label_container id="old_donation">Edit your old promise</div>';
                         echo '<div class="input_container">';
-                            foreach($old_promises as $row_req){
-                                $arr = explode(":",$row_req);
+                            foreach($result1 as $row_req){
                                 echo "<div class='input_sub_container'>";
-                                echo    "<input type='text' class='text_input request_input' name='things[]' value='".$arr[0]."'>";
-                                echo    "<input type='text' class='text_input request_input' name='things_val[]' value='".$arr[1]."'>";
+                                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>";
+                                echo    "<input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
                                 echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                                echo    "<input type='hidden' name='update_id[]' value='{$row_req['id']}'>";
                                 echo "</div>";
                             }
                     
                             echo '<div class="input_sub_container">';
-                                echo '<input type="text" name="things[]" class="text_input request_input">';
-                                echo '<input type="text" name="things_val[]" class="text_input request_input">';
+                                echo '<input type="text" name="item[]" class="text_input request_input">';
+                                echo '<input type="text" name="amount[]" class="text_input request_input">';
                                 echo '<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>';
+                                echo    "<input type='hidden' name='update_id[]' value='0'>";
                             echo '</div>';
                         echo '</div>';
                         echo '<div id="promise_td">';
                             echo'<table>';
                                 echo '<tr><td><label name="note" id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note">';
-                                    echo $result2['note'];
+                                    echo $result1[0]['note'];
                                 echo '</textarea></td></tr>';
                             echo '</table>';
                         echo '</div>';                      
@@ -133,7 +132,7 @@
                     }
                     else{                
 
-                        echo "<div id='promise_div' class='dis_container promise_div'>";
+                        echo "<div id='promise_div' class='dis_container promise_div' style='display:block'>";
                             echo '<div class=head_label_container><label class="head_label">';
                                 if($by=="your_self"){
                                     echo "Promise on your behalf";
@@ -152,33 +151,38 @@
                                 foreach($old_requests as $row_req){
                                     $arr = explode(":",$row_req);
                                     echo "<div class=\"input_sub_container\">";
-                                    echo    "<input type='text' class='text_input request_input' name='things[]' value='".$arr[0]."'>
-                                            <input type='text' class='text_input request_input' name='things_val[]' value='".$arr[1]."'>";
-                                    echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                                    echo    "<input type='text' class='text_input request_input' name='item[]' value='".$arr[0]."'>
+                                            <input type='text' class='text_input request_input' name='amount[]' value='".$arr[1]."'>";
+                                    echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>
+                                            <input type='hidden' name='update_id[]' value='0'>";
                                     echo "</div>";
                                 }
-                        
-                                echo '<div class="input_sub_container">';
-                                    echo '<input type="text" name="things[]" class="text_input request_input">';
-                                    echo '<input type="text" name="things_val[]" class="text_input request_input">';
-                                    echo '<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>';
-                                echo '</div>';
-                            echo '</div>';
-                            echo '<div id="promise_td">';
-                                echo '<table>';
-                                    echo '<tr>';
-                                        echo '<td><label id="note_label">Note</label></td>';
-                                        echo '<td><textarea col=30 rows=4 id="note" name="note"></textarea></td>';
-                                        echo '</tr>';
-                                echo '</table>';
+                ?>        
+                                <div class="input_sub_container">
+                                    <input type="text" name="item[]" class="text_input request_input">
+                                    <input type="text" name="amount[]" class="text_input request_input">
+                                    <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+                                    <input type='hidden' name='update_id[]' value='0'>
+                                </div>
+                            </div>
+                            <div id="promise_td">
+                                <table>
+                                    <tr>
+                                        <td><label id="note_label">Note</label></td>
+                                        <td><textarea col=30 rows=4 id="note" name="note"></textarea></td>
+                                        </tr>
+                                </table>
 
-                            echo '</div>';                    
-                            echo '<div class="pro_button">';
-                                echo '<input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >';
-                            echo '</div>';
-                        echo '</div>';
+                            </div>
+
+                            <div class="pro_button">
+                                <input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >
+                            </div>
+                        </div>
+                <?php
                     }
                 ?>
+                <input id='del_detail' type='hidden' name='del' value=''>
             </form>
         </div>
     </body>
