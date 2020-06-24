@@ -81,6 +81,7 @@ require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 	}
 		
 	$location="?event_id=".$event_id."&selected_org=".$org_id."";
+	header('Location: ".$location."', true, 302);
 	//header("Location:".$location."");
 	
 ?>
