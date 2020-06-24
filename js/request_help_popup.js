@@ -52,7 +52,7 @@ function submit_request(parent){
     document.getElementById('popup_div').classList.remove('active_pop');
     overlay.classList.remove('active_pop');
 };
-function add_input(element){
+function add_request_input(element){
     var parent = element.parentElement.parentElement;
     if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {
         for (var ele of parent.children) {
@@ -61,12 +61,17 @@ function add_input(element){
             ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
         }
         parent.innerHTML += '<div class="input_sub_container">\n' +
-            '        <input type="text" class="text_input request_input">\n' +
-            '        <input type="text" class="text_input request_input">\n' +
-            '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
-            '    </div>';
+        '        <input type="text" class="text_input request_input" name="item[]">\n' +
+        '        <input type="text" class="text_input request_input" name="amount[]">\n' +
+        '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
+        '        <input type="hidden" name="update_id[]" value="0">\n' +
+        '    </div>';
     }
 }
-function remove_input(element){
+function remove_request_input(element){
+    var parent = element.nextElementSibling.nextElementSibling;
+    if(parent.value!=='0'){
+        document.getElementById('del_details').value+=(parent.value + ',');
+    }
     element.parentElement.outerHTML='';
 }
