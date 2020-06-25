@@ -54,11 +54,11 @@
                         if(empty($amount[$x])){
                             $amount[$x]=0;
                         }
-                        if($update_id[$x]=='0'){
+                        if(test_input($update_id[$x])=='0'){
                             $pri_query .= "INSERT INTO event_".$event_id."_requests (requester, item, amount) VALUES ('$user_nic', '$item[$x]', '$amount[$x]')";
                         
                         }else{
-                            $pri_query .= "UPDATE `event_".$event_id."_requests` SET `item` = '$item[$x]', `amount` = '$amount[$x]' WHERE `event_2_requests`.`id` = '".$update_id[$x]."';";
+                            $pri_query .= "UPDATE `event_".$event_id."_requests` SET `item` = '$item[$x]', `amount` = '$amount[$x]' WHERE `event_2_requests`.`id` = 'test_input(".$update_id[$x].")';";
                         }
                     }
                 }
