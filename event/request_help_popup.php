@@ -2,19 +2,41 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     $event_id = $_GET['event_id'];
-    $query = "select * from event_".$event_id."_help_requested where NIC_num = '".$_SESSION['user_nic']."'";
-    $result=$con->query($query)->fetch_assoc();
+    $query = "select * from event_".$event_id."_help_requested where NIC_num = '".$_SESSION['user_nic']."';
+    SELECT * from disaster_events where event_id='".$event_id."';
+    select * from event_".$event_id."_requests where requester = '".$_SESSION['user_nic']."';";
     
-    if($result!=null){
-        $old_district = $result['district'] ?: '';
-        $old_village = $result['village'] ?: '';
-        $old_street = $result['street'] ?: '';
-        $old_requests = $result['requests'] ?: '';
-    }else{
-        $old_district=$old_street=$old_village='';
-        $old_requests='money:0';
+    if(mysqli_multi_query($con,$query)){
+        
+        echo "<form method='post' action='request_help.php'>";
+            echo "<input type='hidden' name='event_id' value='".$event_id."'>";
+        $result=mysqli_store_result($con); 
+ 
+        if(mysqli_num_rows($result)>0){
+            
+            $old_request=mysqli_fetch_assoc($result);
+            $old_district = $old_request['district'] ?: '';
+            $old_village = $old_request['village'] ?: '';
+            $old_street = $old_request['street'] ?: '';
+        
+            mysqli_free_result($result);
+            echo "<input type='hidden' name='entry_update_id' value='{$old_request['NIC_num']}'>";
+        }else{
+            $old_district=$old_street=$old_village='';
+            mysqli_fetch_all($result,MYSQLI_ASSOC);
+            echo "<input type='hidden' name='entry_update_id' value='0'>";
+        }
+        mysqli_next_result($con);
+        $result = mysqli_store_result($con);
+        $old_status=mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        echo "<input type='hidden' name='status' value='{$old_status['user_'.$_SESSION['user_nic']]}'>";
+
+        mysqli_next_result($con);
+        $result = mysqli_store_result($con);
+        $old_content = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        mysqli_free_result($result);
     }
-    $old_requests = array_filter(explode(",",$old_requests));
 
 ?>
 <link rel='stylesheet' type='text/css' href='/css_codes/request.css'>
@@ -47,7 +69,7 @@
                     <label class="head_label"> Village </label>
                 </td>
                 <td>
-                    <input type="text" value="<?php echo $old_village ?>" id="village">
+                    <input type="text" name='village' value="<?php echo $old_village ?>" id="village">
                 </td>
             </tr>
             <tr>
@@ -55,42 +77,35 @@
                     <label class="head_label"> Street </label>
                 </td>
                 <td>
-                    <input type="text" value="<?php echo $old_street ?>" id="street">
+                    <input type="text" name="street" value="<?php echo $old_street ?>" id="street">
                 </td>
             </tr>
         </table>
     </div>
 
-
     <div class=head_label_container><label class="head_label"> Requests </label></div>
-
-
-
     <div class="input_container">
-
         <?php
-            foreach($old_requests as $row_req){
-                $arr = explode(":",$row_req);
+            foreach($old_content as $row_req){
                 echo "<div class=\"input_sub_container\">";
-                echo    "<input type='text' class='text_input request_input' value='".$arr[0]."' ";
-                if($arr[0]=='money'){
-                    echo "disabled";
-                }
-                echo        " >
-                        <input type='text' class='text_input request_input' value='".$arr[1]."'>";
-                echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>
+                        <input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                echo    "<button type='button' onclick='remove_request_input(this)' class='add_rem_btn'>Remove</button>";      
+                echo    "<input type='hidden' name='update_id[]' value='".$row_req['id']."'>";
                 echo "</div>";
             }
         ?>
         <div class="input_sub_container">
-            <input type="text" class='text_input request_input'>
-            <input type="text" class='text_input request_input'>
-            <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+            <input type="text" name='item[]' class='text_input request_input'>
+            <input type="text" name='amount[]' class='text_input request_input'>
+            <button type="button" onclick="add_request_input(this)" class="add_rem_btn">Add</button>
+            <input type='hidden' name='update_id[]' value='0'>
         </div>
     </div>
     <div class=buttons>
         <input name="submit_button" type="submit"  value="Request"  class="submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">
-        <button id=close_request_popup class=submit_button>Cancel</button>
+        <button type='button' id=close_request_popup name='cancel_button' class=submit_button >Cancel</button>
     </div>
 </div>
-
+<?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>
+</form>

@@ -3,101 +3,88 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
  
     if(isset($_POST['submit_button'])){
-        $event_id=$_POST['event_id'];
-       $user_nic=$_SESSION['user_nic'];
-       $district=$_POST['district'];
-        $village= join(" ", explode("+", $_POST['village']));
-        $street= join(" ", explode("+", $_POST['street']));
-        $requests= join(" ", explode("+", $_POST['requests']));
-
-        $data="SELECT * from event_".$event_id."_help_requested where NIC_num='".$_SESSION['user_nic']."'";
-        $result=$con->query($data);
-        $query_run = $query_now_run = false;
-        if($result->num_rows>0){
-            $query_now="UPDATE `event_".$event_id."_help_requested` SET `district` = '$district', `now` = 'yes', `village` = '$village', `street` = '$street', `requests` = '$requests' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '$user_nic'";
-            $query_now_run= mysqli_query($con,$query_now);
+        function test_input($data){
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
         }
-        else{
-            $query="INSERT INTO event_".$event_id."_help_requested (NIC_num, district, village, street, requests) VALUES ('$user_nic', '$district', '$village', '$street', '$requests')";
-            //echo $query;
-            $query_run= mysqli_query($con,$query);
-        }
-        if($query_run || $query_now_run){
-
-           $data="SELECT * from disaster_events where event_id='$event_id'";
-           $result=($con->query($data))->fetch_assoc();
-           $status=explode(" ",$result['user_'.$_SESSION['user_nic']]);
-
-           $status[1]='requested';
-           $data1=join(" ",$status);
-           $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id";
-           $query_run1= mysqli_query($con,$query1);
-
-           if($query_run1){
-                echo 'success';
-           }else{
-               echo 'unsucessful';
-           }
-        }
-        else{
-           echo 'unsucessful in starting';
-
-       }
-    }
-      
-    if(isset($_POST['update_button'])){
+        
+        $district = test_input($_POST['district']);
+        $village = test_input($_POST['village']);
+        $street = test_input($_POST['street']);
+        
         $event_id=$_POST['event_id'];
         $user_nic=$_SESSION['user_nic'];
-        $district=$_POST['district'];
-        $money_description=$_POST['money_description'];
-        $good_description=$_POST['good_description'];
-        $type_arr=$_POST["type"];
-        $help_type="";
-        
-        if(count($type_arr)==2){
-            $help_type="money and good"; 
-        }elseif(count($type_arr)==1){
-            if($type_arr[0]=="money"){
-                $help_type="money";
-            }elseif($type_arr[0]=="good"){
-                $help_type="good";
+        $item = array_filter($_POST['item']);
+        $amount = $_POST['amount'];
+        $update_id=$_POST['update_id'];
+
+        $pri_query = '';
+
+        if($_POST['entry_update_id']!=0){
+            $del_detail = array_filter(explode(',', $_POST['del_details']));
+            foreach( $del_detail as $row_del){
+                $pri_query.= "delete from event_".$event_id."_requests where id=$row_del;";
             }
+            for($x=0 ; $x < count($item) ; $x++){
+                if(!empty($item[$x])){
+                    if(empty($amount[$x])){
+                        $amount[$x]=0;
+                    }
+                    if($update_id[$x]==0){
+                        $pri_query .= "INSERT INTO event_".$event_id."_requests (requester, item, amount) VALUES ('$user_nic', '".test_input($item[$x])."', '".test_input($amount[$x])."');";
+                    
+                    }else{
+                        $pri_query .= "UPDATE `event_".$event_id."_requests` SET `item` = '".test_input($item[$x])."', `amount` = '".test_input($amount[$x])."' WHERE `event_2_requests`.`id` = ".$update_id[$x].";";
+                    }
+                }
+            }
+            $pri_query.= "UPDATE `event_".$event_id."_help_requested` SET `now` = 'yes' WHERE `NIC_num` = '".$user_nic."';";
+                
+        }else{
+        $pri_query= "INSERT INTO event_".$event_id."_help_requested (NIC_num, district, village, street) VALUES ('$user_nic', '$district', '$village', '$street');";
+        if(count($item)>0){
+                $querry_arr = array();
+                for($x=0; $x < count($item); $x++ ){
+                    $row_item = $item[$x]?test_input($item[$x]):'NULL';
+                    $row_amount = $amount[$x]?test_input($amount[$x]):'0';
+                    array_push($querry_arr, "('$user_nic','$row_item','$row_amount')");
+                }
+                $pri_query.= "INSERT INTO `event_".$event_id."_requests`(`requester`, `item`, `amount`) VALUES ". implode(", ", $querry_arr).";";
+            }      
+        }
+
+        $status1=$_POST['status'];
+        $status=explode(" ",$status1);
+        $status[1]='requested';
+        $data1=join(" ",$status);
+        $pri_query.="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id;";
+
+        
+        if(mysqli_multi_query($con,$pri_query)){
+            header("location:".$_SERVER['HTTP_REFERER']);
+        }
+        else{
+            echo 'unsucessful in starting';
         }
         
-        $query_edit="UPDATE `event_".$event_id."_help_requested` SET `district` = '$district', `help_type` = '$help_type', `money_discription` = '$money_description', `good_discription` = '$good_description' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '$user_nic'";
-        $query_run= mysqli_query($con,$query_edit);
- 
-        if($query_run){
-            header('location:'.$_SERVER['DOCUMENT_ROOT'].'/event?event_id='.$event_id);
-        }else{
-            echo '<script type="text/javascript"> alert ("Not edited") </script>';
-        }
     }
-    if(isset($_POST['cancel_button'])){
-    
+
+        
+    if(isset($_POST['cancel_button'])){  
         $event_id=$_POST['event_id'];
-        $data1="SELECT * from disaster_events where event_id='$event_id'";
-        $result1=($con->query($data1))->fetch_assoc();
-        $status=explode(" ",$result1['user_'.$_SESSION['user_nic']]);
-        
+        $status1=$_POST['status'];
+        $status=explode(" ",$status1);
         $status[1]='not_requested';
-        $data2=join(" ",$status);
-        $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data2."' WHERE `disaster_events`.`event_id` = $event_id";
-        $query_run1= mysqli_query($con,$query1);
+        $data1=join(" ",$status);
+        $pri_query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = ".$event_id.";
+            UPDATE `event_".$event_id."_help_requested` SET `now` = 'no' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '".$_SESSION['user_nic']."';";
 
-        if($query_run1){
-            $query_now="UPDATE `event_".$event_id."_help_requested` SET `now` = 'no' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '".$_SESSION['user_nic']."'";
-            $query_now_run= mysqli_query($con,$query_now);
-
-            if($query_now_run){
-                echo 'cancelled';
-            }else{
-                echo '<script type="text/javascript"> alert ("No updated") </script>';
-            }
+        if(mysqli_multi_query($con,$pri_query)){
+            header("location:".$_SERVER['HTTP_REFERER']);
         }else{
-        echo '<script type="text/javascript"> alert ("Not requested updated") </script>';
-        }
-        
+            echo '<script type="text/javascript"> alert ("Not cancelled") </script>';
+        }   
     }
-
 ?>
