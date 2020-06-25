@@ -5,6 +5,7 @@ for(var x=0; x<allOptions.length; x++){
         allOptions[x].defaultSelected = true;
     }
 }
+
 function OnChangeCheckbox (checkbox,textbox) {
     if (checkbox.checked) {
         document.getElementById(textbox).style.display="block"; 
@@ -69,7 +70,7 @@ function add_request_input(element){
     }
 }
 function remove_request_input(element){
-    var parent = element.nextElementSibling.nextElementSibling;
+    var parent = element.nextElementSibling;
     if(parent.value!=='0'){
         document.getElementById('del_details').value+=(parent.value + ',');
     }
