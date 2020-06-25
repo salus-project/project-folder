@@ -1,232 +1,52 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
+    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    $event_id = $_GET['event_id'];
+    $nic=$_SESSION['user_nic'];
+    $query = "select * from event_".$event_id."_volunteers where NIC_num = '".$_SESSION['user_nic']."';
+    SELECT * from disaster_events where event_id='".$event_id."';
+    select * from event_".$event_id."_abilities where donor = '".$_SESSION['user_nic']."';";
 
-    if($_SERVER['REQUEST_METHOD']=='GET'){
-        $event_id = $_GET['event_id'];
-        $submit_type = $_GET['method'];
-    }elseif($_SERVER['REQUEST_METHOD']=='POST'){
-        $event_id = $_POST['event_id'];
-        $submit_type = $_POST['method'];
+    if(mysqli_multi_query($con,$query)){
+        echo "<form method='post' action='volunteer_application_php.php'>";
+            echo "<input type='hidden' name='event_id' value='".$event_id."'>";
+        $result=mysqli_store_result($con); 
+ 
+        if(mysqli_num_rows($result)>0){
+            $old_ability=mysqli_fetch_assoc($result);
+            $old_district = $old_ability['service_district'] ?: '';
+            $old_district = explode(",", $old_district);
+            $old_type=$old_ability['type'] ?: '';
+            mysqli_free_result($result);
+            echo "<input type='hidden' name='entry_update_id' value='{$old_ability['NIC_num']}'>";
+        }else{
+            $old_district='';
+            $old_type='';
+            mysqli_fetch_all($result,MYSQLI_ASSOC);
+            echo "<input type='hidden' name='entry_update_id' value='0'>";
+        }
+        mysqli_next_result($con);
+        $result = mysqli_store_result($con);
+        $old_status=mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        echo "<input type='hidden' name='status' value='{$old_status['user_'.$_SESSION['user_nic']]}'>";
+
+        mysqli_next_result($con);
+        $result = mysqli_store_result($con);
+        $old_content = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        mysqli_free_result($result);
     }
 
-
-
-    //submit type = apply................................
-    if ($submit_type==="apply"){
-
-        $nic=$_SESSION['user_nic'];
-        $value1="not_selected";
-        $value2="not_selected";
-
-        $counts1=0;
-        $counts2=0;
-
-        if (isset($_POST['update_button'])){
-            $event_id = $_POST['event_id'];
-
-            if( ! empty( $_POST['type'] )){
-                $counts1 = count($_POST['type']);
-            }
-            if ($counts1==1){
-                if ($_POST['type'][0]=="Donor"){
-                    $value1="Donor";
-                }elseif($_POST['type'][0]=="Volunteer"){
-                    $value1="Volunteer";
-                }
-            }elseif ($counts1==2){
-                $value1="Donor & Volunteer";
-            }
-
-            $data="Money:0";
-            if( ! empty( $_POST['thing_type'] )){
-                $data="";
-                $things = $_POST['thing_type'];
-                $quantity = $_POST['quantity'];
-                $count_arr = count($_POST['thing_type']);
-                if($things[$count_arr-1]==""){
-                    for ($x = 0; $x <$count_arr-2; $x++) {
-                        $data=$data.$things[$x].":".$quantity[$x].",";
-                    }
-                    $data=$data.$things[$count_arr-2].":".$quantity[$count_arr-2];}
-                else{
-                    for ($x = 0; $x <$count_arr-1; $x++) {
-                        $data=$data.$things[$x].":".$quantity[$x].",";
-                    }
-                    $data=$data.$things[$count_arr-1].":".$quantity[$count_arr-1];}
-
-            }
-            $districts="not_selected";
-            if( ! empty( $_POST['district'] )){
-                $values = $_POST['district'];
-                $districts = implode(",", $values);
-            }
-
-
-            $now="yes";
-            $value="";
-            $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'";
-            $result=($con->query($query))->fetch_assoc();
-            $value=$result['NIC_num'];
-            echo $value;
-            if ($value==="$nic"){
-                $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1', now='$now', abilities='$data' where NIC_num='$nic'";
-                $query_run= mysqli_query($con,$query);
-            }else{
-                $query= "INSERT INTO `event_".$event_id."_volunteers` (`NIC_num`,`service_district`, `type`,`abilities`) VALUES ('$nic','$districts', '$value1','$data')";
-                $query_run= mysqli_query($con,$query);
-            }
-            // code to update status---------------------------
-            $event_id=$_POST['event_id'];
-            $user_nic=$_SESSION['user_nic'];
-
-            $sql="SELECT user_".$user_nic." from disaster_events where event_id='$event_id'";
-            $result=($con->query($sql))->fetch_assoc();
-
-
-            echo "<br><br>" .$user_nic;
-            $status=explode(" ",$result['user_'.$user_nic]);
-            print_r($status);
-
-            $status[2]="applied";
-            $my=join(" ",$status);
-
-            $query1="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
-            $query_run1= mysqli_query($con,$query1);
-
-            if($query_run AND $query_run1){
-                echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-                header('location:/event?event_id='.$event_id);
-            }
-            else{
-                echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
-            }
-        }
-    }
-
-    //submit type=option..........................
-    elseif ($submit_type==="option"){
-
-        $nic=$_SESSION['user_nic'];
-        $value1="not_selected";
-        $value2="not_selected";
-
-        $counts1=0;
-        $counts2=0;
-
-        if (isset($_POST['update_button'])){
-            $event_id = $_POST['event_id'];
-
-            if( ! empty( $_POST['type'] )){
-                $counts1 = count($_POST['type']);
-            }
-            if ($counts1==1){
-                if ($_POST['type'][0]=="Donor"){
-                    $value1="Donor";
-                }elseif($_POST['type'][0]=="Volunteer"){
-                    $value1="Volunteer";
-                }
-            }elseif ($counts1==2){
-                $value1="Donor & Volunteer";
-            }
-            $data="Money:0";
-            if( ! empty( $_POST['thing_type'] )){
-                $data="";
-                $things = $_POST['thing_type'];
-                $quantity = $_POST['quantity'];
-                $count_arr = count($_POST['thing_type']);
-                if($things[$count_arr-1]==""){
-                    for ($x = 0; $x <$count_arr-2; $x++) {
-                        $data=$data.$things[$x].":".$quantity[$x].",";
-                    }
-                    $data=$data.$things[$count_arr-2].":".$quantity[$count_arr-2];}
-                else{
-                    for ($x = 0; $x <$count_arr-1; $x++) {
-                        $data=$data.$things[$x].":".$quantity[$x].",";
-                    }
-                    $data=$data.$things[$count_arr-1].":".$quantity[$count_arr-1];}
-
-            }
-
-
-
-            $districts="not_selected";
-            if( ! empty( $_POST['district'] )){
-                $values = $_POST['district'];
-                $districts = implode(",", $values);
-            }
-
-            $query="UPDATE `event_".$event_id."_volunteers` SET service_district='$districts',type='$value1',abilities='$data' where NIC_num='$nic'";
-
-
-            $query_run= mysqli_query($con,$query);
-
-            if($query_run){
-                echo '<script type="text/javascript"> alert ("Data changed") </script>';
-                header('location:/event?event_id='.$event_id);
-
-
-            }
-            else{
-                echo '<script type="text/javascript"> alert ("Data not changed") </script>';
-            }
-        }
-
-    //submit type= cancel.........................
-    }elseif($submit_type==="cancel"){
-
-        $nic=$_SESSION['user_nic'];
-
-        $user_nic=$_SESSION['user_nic'];
-
-        $sql="SELECT user_".$user_nic." from disaster_events where event_id='$event_id'";
-        $result=($con->query($sql))->fetch_assoc();
-        $status=explode(" ",$result["user_".$user_nic]);
-        $status[2]="not_applied";
-        $my=join(" ",$status);
-
-        $now="no";
-
-        $query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$my."' WHERE `disaster_events`.`event_id` = $event_id";
-        $query1="UPDATE `event_".$event_id."_volunteers` SET now='$now' where NIC_num='$nic'";
-
-        $query_run= mysqli_query($con,$query);
-        $query_run1= mysqli_query($con,$query1);
-
-
-        if($query_run AND $query_run1){
-            echo '<script type="text/javascript"> alert ("Successfully leaved") </script>';
-            header('location:/event?event_id='.$event_id);
-        }
-        else{
-            echo '<script type="text/javascript"> alert ("Not leaved") </script>';
-        }
-
-    }
 ?>
 <link rel="stylesheet" href="/css_codes/volunteer_application.css">
 <form  class="form_box" action="volunteer_application.php" method="POST">
     <input type=hidden name=event_id value="<?php echo $_GET['event_id'] ?>">
     <input type=hidden name=method value='<?php echo $submit_type ?>'>
 
-    <?php
-    $ability[0]="money:0";
-    if ($submit_type==="option"){
-        $nic=$_SESSION['user_nic'];
-
-        $query="SELECT * FROM `event_".$event_id."_volunteers` where NIC_num='$nic'";
-        $result=($con->query($query))->fetch_assoc();
-        $service_district=explode(",",$result['service_district']);
-        $type=$result['type'];
-        $ability=explode(",",$result['abilities']);
-    }
-
-    ?>
-
     <div><label class="head_label">Like to be </label><br>
 
-        <input type="checkbox" name="type[]"  value="Donor" <?php if ($submit_type==="option"){if($type === 'Donor' OR $type === 'Donor & Volunteer' ) echo "checked='checked'"; }?>>Donor
-        <input type="checkbox" name="type[]" value="Volunteer" <?php if ($submit_type==="option"){if($type === 'Volunteer' OR $type === 'Donor & Volunteer' ) echo "checked='checked'"; }?>>Volunteer<br/><br/>
+        <input type="checkbox" name="type[]"  value="Donor" <?php if($old_type === 'Donor' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>Donor
+        <input type="checkbox" name="type[]" value="Volunteer" <?php if($old_type === 'Volunteer' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>Volunteer<br/><br/>
     </div>
 
 
@@ -242,8 +62,8 @@
                 foreach($district_arr as $dis){
                     echo "<a class='drp' data-value='$dis' onclick=select_option(this)>";
                     echo "<label class=\"container drp\">$dis";
-                    if ($submit_type==="option"){
-                        if(in_array($dis, $service_district)){
+                    if ($old_district!=''){
+                        if(in_array($dis, $old_district)){
                             echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" checked=\"checked\">
                                 <span class=\"checkmark drp\"></span>
                         </label>
@@ -271,36 +91,32 @@
 
     <div class=head_label_container><label class="head_label"> Abilities </label></div>
 
-
-
     <div class="input_container">
-
         <?php
-            foreach($ability as $row_req){
-                $arr = explode(":",$row_req);
+            foreach($old_content as $row_req){
                 echo "<div class=\"input_sub_container\">";
-                echo    "<input type='text' class='text_input request_input' value='".$arr[0]."' ";
-
-                echo        " >
-                        <input type='text' class='text_input request_input' value='".$arr[1]."'>";
-                echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>
+                        <input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                echo    "<button type='button' onclick='remove_ability_input(this)' class='add_rem_btn'>Remove</button>";
+                  echo "<input id='del_details' type='hidden' value='' name='del_details'>" ;     
+                echo "<input type='hidden' name='update_id[]' value='".$row_req['id']."'>";
                 echo "</div>";
             }
         ?>
         <div class="input_sub_container">
-            <input type="text" class='text_input request_input' name='thing_type[]'>
-            <input type="text" class='text_input request_input'  name='quantity[]'>
-            <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+            <input type="text" name='item[]' class='text_input request_input'>
+            <input type="text" name='amount[]' class='text_input request_input'>
+            <button type="button" onclick="add_ability_input(this)" class="add_rem_btn">Add</button>
+            <input type='hidden' name='update_id[]' value='0'>
         </div>
     </div>
-
-
     <br>
     <br>
     <div>
         <input name="update_button" type="submit"  value="Submit"  class="login_button">
-        <button id=close_request_popup class=submit_button>Cancel</button>
+        <button id=close_request_popup name='cancel_button' class=submit_button>Cancel</button>
 
     </div>
+</div>
 
 </form>
