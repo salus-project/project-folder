@@ -6,7 +6,11 @@ $event_name1="event_".$event_id."_help_requested";
 $event_name2="event_".$event_id."_pro_don";
 $event_name3="event_".$event_id."_pro_don_content";
 $event_name4="event_".$event_id."_requests";
-
+if ($_GET['type']=="1"){
+    $head="Promise your help";
+}else{
+    $head="Edit your promise";
+}
 function console_log($data) {
     $output = $data;
     if (is_array($output))
@@ -15,16 +19,79 @@ function console_log($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
+$id_s=[];
+$id_a=[];
+$arr=[];
+$string = $_GET['selected'];
+$str_arr = explode (",", $string);
+$newarray = "'".implode("', '", $str_arr)."'";
+$query="SELECT a.NIC_num AS nic, a.district AS district, a.village AS village, a.street AS street, b.item AS r_item, b.amount AS r_amount, c.id AS id_, c.by_org AS org, c.by_person AS person, c.note AS note, d.first_name AS first, d.last_name AS last, c.id AS ids, e.org_name as org_name, f.first_name as by_first, f.last_name as by_last FROM $event_name1 AS a INNER JOIN $event_name4 AS b ON (a.NIC_num = b.requester) LEFT OUTER JOIN $event_name2 AS c ON (a.NIC_num = c.to_person) INNER JOIN civilian_detail AS d ON (a.NIC_num = d.NIC_num) LEFT OUTER JOIN organizations AS e ON (c.by_org = e.org_id) LEFT OUTER JOIN civilian_detail AS f ON (c.by_person = f.NIC_num) WHERE a.NIC_num IN ($newarray)";
+$result=$con->query($query);
+if($result->num_rows>0){
+    while($row=$result->fetch_assoc()){
+        if (array_key_exists($row['nic'],$arr)){
+            if($row['org']!=""){
+                if($row['org']==$org_id){
+                    $arr[$row['nic']][3]=$row['ids'];
+                    $arr[$row['nic']][4]=$row['note'];
+                    $id_s[$row['nic']]=$row['id_'];
+                }
+                else{
+                    if (!in_array($row['org'],$arr[$row['nic']][5])){
+                        array_push($arr[$row['nic']][5],$row['org']);
+                        array_push($arr[$row['nic']][6],$row['org_name']);
+                    }
+                }
+            }
+            if($row['person']!=""){
+                if (!in_array($row['person'],$arr[$row['nic']][7])){
+                    array_push($arr[$row['nic']][7],$row['person']);
+                    array_push($arr[$row['nic']][8],$row['by_first']." ".$row['by_last']);
+                }
+            }
+            if($row['r_item'] != ""){
+                $ite=$row['r_item'].":".$row['r_amount'];
+                if (!in_array($ite,$arr[$row['nic']][2])){
+                    array_push($arr[$row['nic']][2],$ite);
+                }
+            }
+        }
+        else {
+            $arr[$row['nic']]=[$row['district'].' '.$row['village'].' '.$row['street'],$row['first'].' '.$row['last'],[$row['r_item'].":".$row['r_amount']],'','',[],[],[],[]];
+            if($row['org']!=""){
+                if($row['org']==$org_id){
+                    $arr[$row['nic']][3]=$row['ids'];
+                    $arr[$row['nic']][4]=$row['note'];
+                    $id_s[$row['nic']]=$row['id_'];
+                }
+                else{
+                    array_push($arr[$row['nic']][5],$row['org']);
+                    array_push($arr[$row['nic']][6],$row['org_name']);
+                }
+            }if($row['person']!=""){
+                array_push($arr[$row['nic']][7],$row['person']);
+                array_push($arr[$row['nic']][8],$row['by_first']." ".$row['by_last']);
+                
+            }
+        }
+        
+           
+        
+    }
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Promise help</title>
+    <title><?php echo $head; ?></title>
     <link rel="stylesheet" href='/css_codes/promise.css'>
 </head>
 <body>
 <div id="full_body">
-    <h2>Promise your help</h2>
+    <h2><?php echo $head; ?></h2>
     <div>
         <div class="input_container">
             <div class="input_sub_container">
@@ -42,166 +109,69 @@ function console_log($data) {
     <table id='main_table'>
         <tr><td>Name</td><td>Address</td><td>Requirements</td><td>Other promises</td><td>Your promise</td><td>Note</td></tr>
         <?php
-        $string = $_GET['selected'];
-        $str_arr = explode (",", $string);
-        //foreach($str_arr as $NIC) {
-        //   print($NIC);
-        //}
-        $array1=[];
-        $array2=[];
-        $array3=[];
-    
-        $query="select * from $event_name1 ";
-        $result=$con->query($query);
-        if($result->num_rows>0){
-            while($row=$result->fetch_assoc()){
-                $idd=$row['NIC_num'];
-                if (in_array($idd, $str_arr)) {
-                    echo "<tr>";
-                    $query1="select * from civilian_detail where NIC_num='$idd'";
-                    $result1=($con->query($query1))->fetch_assoc();
-                    echo"<td>".$result1['first_name']." ".$result1['last_name']."</td>";
-                    echo"<td>".$row['street']." ".$row['village']." ".$row['district']."</td>";
+        
+        foreach ($arr as $key => $value){
+            echo "<tr>";
+            
+            echo"<td>".$value[1]."</td>";
+            echo"<td>".$value[0]."</td>";
+        
+            echo"<td>";
+                foreach($value[2] as $items){
+                    echo $items."<br>";
+                }
+            echo "</td>";
+            
+            if (empty($value[6]) and empty($value[8])){
+                echo "<td>";
+                echo "<b>No other promises</b>";
+            }
+            else{
+                echo "<td onclick='other_promises(this)' data-id='".$key."' requests='".implode("<br>",$value[2])."' address='".$value[0]."' name='".$value[1]."'>";
 
-                    
-                    echo"<td>";
-                    $query4="select * from $event_name4 where requester='$idd'";
-                    $result4=$con->query($query4);
-                    if($result4->num_rows>0){
-                        while($row4=$result4->fetch_assoc()){
-                            echo $row4["item"]." ".$row4["amount"]."<br>";
-                        }
-                    }
-                
-                    echo"</td>";
-                    
-                    $org =[];
-                    $org_i=[];
-                    $person=[];
-                    $person_i=[];
-                    $our=[];
-                    $note='';
-                    $query1="SELECT a.by_org AS org, a.id AS id_d, a.by_person AS person, a.note AS note, b.id AS ids, b.item AS item, b.amount AS amount FROM $event_name2 AS a INNER JOIN $event_name3 AS b ON (a.id = b.don_id) WHERE a.to_person = '$idd'";
-                    $result1=$con->query($query1);
-                    if($result1->num_rows>0){
-                        while($row1=$result1->fetch_assoc()){
-                                if($row1['person']==""){
-                                    if($row1['org']==$org_id){
-                                        array_push( $our,$row1['item'].':'.$row1['amount']);
-                                        $note=$row1['note'];
-                                        if (in_array($idd, $array1)) {
-                                            $key = array_search($idd, $array1); 
-                                            $array2[$key]=$array2[$key].",".$row1['ids'];
-                                        }else{
-                                            array_push( $array1,$idd);
-                                            array_push( $array3,$row1['id_d']);
-                                            array_push( $array2,$row1['ids']);
-                                        }
-                                    }
-                                    else{
-                                        if (in_array($row1['org'], $org)) {
-                                            $key = array_search($row1['org'], $org); 
-                                            $org_i[$key]=$org_i[$key].",".$row1['item'].":".$row1['amount'];
-                                        }
+                foreach($value[6] as $orgn){
+                    echo $orgn."<br>";
+                }
+                foreach($value[8] as $pers){
+                    echo $pers."<br>";
+                }
 
-                                        else{
-                                            array_push( $org,$row1['org']);
-                                            array_push( $org_i,$row1['item'].":".$row1['amount']);
+            }
+            echo "</td>";
+            $note=$value[4];
+            $id=$value[3];
+            echo "<td class='your_promise' data-id='".$key."'>";
 
-                                        }
-                                    }
-                                }
-                                else{
-                                    if (in_array($row1['person'], $person)) {
-                                        $key = array_search($row1['person'], $person); 
-                                        $person_i[$key]=$person_i[$key].",".$row1['item'].":".$row1['amount'];
-                                    }
-
-                                    else{
-                                        array_push( $person,$row1['person']);
-                                        array_push( $person_i,$row1['item'].":".$row1['amount']);
-
-                                    }
-                                }
-                                }
-                            }
-
-                    echo "<td>";
-                    // console_log($array1);
-                    // console_log($array2);
-                    // console_log($our);
-                    // console_log($org);
-                    // console_log($org_i);
-                    // console_log($person);
-                    // console_log($person_i);
-                    $i=0;
-                    foreach($org as $_org){
-                        $query2="select * from organizations where org_id=".$_org;
-                        $result2=($con->query($query2))->fetch_assoc();
-                        echo "<b>".$result2['org_name']."</b>";
-                        echo "<br>";
-                        $string1 = explode (",", $org_i[$i]);
-                        foreach($string1 as $str) {
-                            $string2 = explode (":", $str);
-                            echo "\t".$string2[0]." ".$string2[1];
-                            echo "<br>";
-                        }
-                        $i += 1;
-                        echo "<br>";
-                    }
-
-                    $i=0;
-                    foreach($person as $_per){
-                        $query2="select * from civilian_detail where NIC_num='$_per'";
-                        $result2=($con->query($query2))->fetch_assoc();
-                        echo "<b>".$result2['first_name']." ".$result2['last_name']."</b>";
-                        echo "<br>";
-                        $string1 = explode (",", $person_i[$i]);
-                        foreach($string1 as $str) {
-                            $string2 = explode (":", $str);
-                            echo "\t".$string2[0]." ".$string2[1];
-                            echo "<br>";
-                        }
-                        $i += 1;
-                        echo "<br>";
-                    }
-                    if (empty($org) and empty($person)){
-                        echo "<b>No promises</b>";
-                    }
-
-                    echo "</td>";
-					
-					//echo "<input type='hidden' id='hidden' name='hidden' value=$idd >";
-
-                    echo "<td class='your_promise' data-id='".$idd."'>";
-
-                    echo "<div class='input_container'>";
-                    if (!empty($our)) { 
-                        foreach($our as $str) {
-                            $stri = explode (":", $str);
-                            echo "<div class='input_sub_container'>";
-                            echo "<input type='text' class='text_input' value='".$stri[0]."'>";
-                            echo "<input type='text' class='text_input'  value='".$stri[1]."'>";
-                            echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
-                            echo "</div>";
-                        }
-                    }
-                    
+            echo "<div class='input_container'>";
+            if ( $id !="" ){
+                $id_a[$key]=[];
+                $query1="SELECT * FROM $event_name3  WHERE don_id= $id";
+                $result1=$con->query($query1);
+                if($result1->num_rows>0){
+                    while($row1=$result1->fetch_assoc()){
+                    array_push($id_a[$key],$row1['id']);
                     echo "<div class='input_sub_container'>";
-                    echo "<input type='text' class='text_input'>";
-                    echo "<input type='text' class='text_input'>";
-                    echo "<button type='button' onclick='add_input(this)' class='add_rem_btn'>Add</button>";
-                    echo "</div>";
-                    
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td class='note_td'>";
-                    echo "<textarea type=text name=note class=note >".$note."</textarea>";
-                    echo "</td>";
-                    echo"</tr>"	;
+                    echo "<input type='text' class='text_input' value='".$row1['item']."'>";
+                    echo "<input type='text' class='text_input'  value='".$row1['amount']."'>";
+                    echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                    echo "</div>";  
                 }
             }
         }
+            echo "<div class='input_sub_container'>";
+            echo "<input type='text' class='text_input'>";
+            echo "<input type='text' class='text_input'>";
+            echo "<button type='button' onclick='add_input(this)' class='add_rem_btn'>Add</button>";
+            echo "</div>";
+            
+            echo "</div>";
+            echo "</td>";
+            echo "<td class='note_td'>";
+            echo "<textarea type=text name=note class=note >".$note."</textarea>";
+            echo "</td>";
+            echo"</tr>"	;
+        }
+    
         ?>
         <tr>
             <td colspan='5'>
@@ -266,17 +236,35 @@ function console_log($data) {
 			
         }
         document.getElementById('datas').value=arr.join("++");
-        //console.log(arr.join("++"))
+        console.log(arr.join("++"))
 		document.getElementById("myForm").submit();
+    }
+
+    function other_promises(nic){
+        document.getElementById('nic').value=nic.getAttribute("data-id");
+        document.getElementById('requests').value=nic.getAttribute("requests");
+        document.getElementById('name').value=nic.getAttribute("name");
+        document.getElementById('address').value=nic.getAttribute("address");
+        document.getElementById("other").submit();
     }
 </script>
 	<form id="myForm" action="submit.php" method=post>
 	    <input type="hidden" name="datas" id="datas"><br>
 	    <input type="hidden" name="org_id" value=<?php echo $org_id; ?> ><br>
 		<input type="hidden" name="event_id" value=<?php echo $event_id; ?> ><br>
-        <input type="hidden" name="array1" value=<?php echo implode(",",$array1); ?> ><br>
-        <input type="hidden" name="array2" value=<?php echo implode("++",$array2); ?> ><br>
-        <input type="hidden" name="array3" value=<?php echo implode(",",$array3); ?> ><br>
+        <input type="hidden" name="array1" value=<?php echo serialize($id_a); ?> ><br>
+        <input type="hidden" name="array2" value=<?php echo serialize($id_s); ?> ><br>
 	</form>
+
+    <form id="other" action="view_all_promises.php" method=post>
+	    <input type="hidden" name="org_id" value=<?php echo $org_id; ?> ><br>
+		<input type="hidden" name="event_id" value=<?php echo $event_id; ?> ><br>
+        <input type="hidden" name="nic" id="nic" ><br>
+        <input type="hidden" name="requests" id="requests" ><br>
+        <input type="hidden" name="name" id="name" ><br>
+        <input type="hidden" name="address" id="address" ><br>
+	</form>
+
+
 </body>
 </html>

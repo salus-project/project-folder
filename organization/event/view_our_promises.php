@@ -92,10 +92,11 @@
 			<tr>
 			<td>
 			<button type="button" onclick="select_all()" >select all</button>
-			<form id="edit_form" action="edit_our_promise.php" method=get>
+			<form id="edit_form" action="promise.php" method=get>
 				<input type="hidden" name="selected" id="selected"><br>
 				<input type="hidden" name="org_id" value=<?php echo $org_id ; ?> >
 				<input type="hidden" name="event_id" value=<?php echo $event_id ; ?> >
+				<input type="hidden" name="type" value="2" >
 				<input type='submit' name='submit_button' id='submitBtn' value='Edit'>
 			</form>
 			</td><td></td><td></td><td></td><td></td>
