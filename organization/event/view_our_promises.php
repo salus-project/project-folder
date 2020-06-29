@@ -32,12 +32,6 @@
 			}
 		}
 	}
-	
-
-	console_log($persons);
-	console_log($promises);
-	console_log($note);
-	console_log($name);
 ?>
 
 
@@ -81,7 +75,7 @@
 
 				echo "<tr onclick='select(this.firstElementChild.firstElementChild)'>
 				
-				<td><input type='checkbox' class='select_me' data-id='".$persons[$key]."' id='edit_box' ></td>
+				<td><input type='checkbox' class='select_me' data-id='".$persons[$key]."' id='edit_box' onclick='select_me(this)' ></td>
                 <td>".$name[$key]."</td><td>".$data."</td><td>".$note[$key]."</td>
 				<td>
 				<a href=$link_><button type='button' >Edit</button></a>
@@ -105,6 +99,8 @@
         </div>
     </body>
 	<script>
+
+
 		var jArray = <?php echo json_encode($persons); ?>;
 		var arr= new Array() ;  
 		function select_me(element){
@@ -119,12 +115,14 @@
 			console.log(arr);
 		}
 		function select(element){
-			if(element.checked==true){
-				element.checked=false;
-			}else{
-				element.checked=true;
+			if(event.target.type !== 'checkbox'){
+				if(element.checked==true){
+					element.checked=false;
+				}else{
+					element.checked=true;
+				}
+				select_me(element);
 			}
-			select_me(element);
 		}	
 
 		function select_all(){
@@ -145,6 +143,7 @@
 				for(var td of element){
 					td.checked =true;
 				}
+				console.log(jArray);
 			}
 			document.getElementById('selected').value=arr.join(",");
 		}
