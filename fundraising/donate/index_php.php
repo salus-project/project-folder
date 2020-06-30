@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $amount = $_POST['amount'];
         $update_id=$_POST['update_id'];
         $mark=$_POST['mark'];
-        $note=$_POST['note']?:'';
+        $note=filt_inp($_POST['note'])?:'';
         
         $query='';
 
@@ -25,35 +25,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             foreach( $del_detail as $row_del){
                 $query.= "delete from fundraising_pro_don_content where id=".$row_del.";";
             }
-            $query.="update fundraising_pro_don set note='{$note}' where id={$_POST['entry_update_id']};";
+            $query.="update fundraising_pro_don set note='".$note."' where id={$_POST['entry_update_id']};";
             for($x=0 ; $x < count($item) ; $x++){
                 if(!empty($item[$x])){
+                    $item1=filt_inp(ready_input($item[$x]));
+                    $amout1=filt_inp($amount[$x]);
                     if(empty($amount[$x])){
-                            $amount[$x]=0;
+                            $amout1=0;
                     }
                     if($update_id[$x]=='0'){
-                        $query .= "INSERT INTO fundraising_pro_don_content (don_id, item, amount, pro_don) VALUES ({$_POST['entry_update_id']}, '$item[$x]', '$amount[$x]', '{$mark[$x]}');";
+                        $query .= "INSERT INTO fundraising_pro_don_content (don_id, item, amount, pro_don) VALUES ({$_POST['entry_update_id']}, '".$item1."', '".$amout1."', '{$mark[$x]}');";
                     }else{
-                        $query .= "UPDATE `fundraising_pro_don_content` SET item='$item[$x]', amount = '$amount[$x]', pro_don='{$mark[$x]}' where id=$update_id[$x];";
+                        $query .= "UPDATE `fundraising_pro_don_content` SET item='".$item1."', amount = '".$amout1."', pro_don='{$mark[$x]}' where id=$update_id[$x];";
                     }
                 }
             }
         }else{
 
-            $query = "insert into fundraising_pro_don (by_person, for_fund, note) values ($by_person,$for_fund,'$note');";
-            if(count($item)>0){
+            $query = "insert into fundraising_pro_don (by_person, for_fund, note) values ($by_person,$for_fund,'".$note."');";
+            if(count($item)>0){                
                 $querry_arr = array();
                 for($x=0; $x < count($item); $x++ ){
-                    $row_item = $item[$x]?"'".$item[$x]."'":'NULL';
-                    $row_amount = $amount[$x]?:'0';
-                    array_push($querry_arr, "(last_insert_id(),'$item[$x]','$row_amount','$mark[$x]')");
+                    $item1=filt_inp(ready_input($item[$x]));
+                    $row_amount = filt_inp($amount[$x])?:'0';
+                    array_push($querry_arr, "(last_insert_id(),'".$item1."','$row_amount','$mark[$x]')");
                 }
                 $query.= "INSERT INTO `fundraising_pro_don_content`(`don_id`, `item`, `amount`, `pro_don`) VALUES ". implode(", ", $querry_arr).";";
             }
             
         }
     }
-
+echo $query;
     if(mysqli_multi_query($con, $query)){
         header('location:'.$_SERVER['HTTP_REFERER']);
     }else{

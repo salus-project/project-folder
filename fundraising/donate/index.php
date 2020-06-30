@@ -126,6 +126,7 @@
                                 echo "<tr><td>your promises </td> <td>".$your_promise."</td></tr>";
                                 echo "<tr><td>your note </td><td> ".($old_note?: "No notes")."</td></tr>";
                             echo "</table>";
+                            echo '</div>';
                             
                             echo '<div class="edit_cancel_button">';
                                 echo '<button type="button" name="pro_edit_button" class="edit_button" onclick="edit_my_promise(this)" id=edit_btn >EDIT</button>';      
@@ -170,6 +171,16 @@
                         echo '<div class="table_div">'; 
                             echo '<div class=head_label_container id="old_donation">Your Promises</div>';
                             echo '<div class="input_container">';
+                                foreach($fund_expect as $row_req){
+                                    echo "<div class='input_sub_container'>";
+                                    echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>";
+                                    echo    "<input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                                    echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                                    echo    "<input type='checkbox' onchange='checkbox_fun(this)'>";
+                                    echo    "<input type='hidden' name='mark[]' value='promise'>";
+                                    echo    "<input type='hidden' name='update_id[]' value='0'>";
+                                    echo "</div>";
+                                }
                                 echo '<div class="input_sub_container">';
                                     echo '<input type="text" name="item[]" class="text_input request_input">';
                                     echo '<input type="text" name="amount[]" class="text_input request_input">';
