@@ -20,7 +20,7 @@
     }
     register_shutdown_function('shutdown');
 
-    function filter_input($data){
+    function filt_inp($data){
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
