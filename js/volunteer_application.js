@@ -102,7 +102,7 @@ function add_ability_input(element){
     }
 }
 function remove_ability_input(element){
-    var parent = element.nextElementSibling.nextElementSibling;
+    var parent = element.nextElementSibling;
     if(parent.value!=='0'){
         document.getElementById('del_details').value+=(parent.value + ',');
     }
