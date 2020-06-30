@@ -1,5 +1,4 @@
-
-    <?php
+<?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
  
@@ -19,7 +18,7 @@
         }
         $district= implode(",", $district);
 
-        $type=$_POST['type'];
+        $type=isset($_POST['type'])?$_POST['type']:array();
         for($x=0 ; $x < count($type) ; $x++){
             filter_input_value($type[$x]);
         }
@@ -83,12 +82,9 @@
         
     }
     if(mysqli_multi_query($con,$pri_query)){
-        echo $pri_query;
-        //header("location:".$_SERVER['HTTP_REFERER']);
-        
+        header("location:".$_SERVER['HTTP_REFERER']);
     }
     else{
         echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
     }
-
 ?>
