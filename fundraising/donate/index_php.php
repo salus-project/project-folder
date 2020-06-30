@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             
         }
     }
-echo $query;
+
     if(mysqli_multi_query($con, $query)){
         header('location:'.$_SERVER['HTTP_REFERER']);
     }else{
