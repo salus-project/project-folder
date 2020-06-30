@@ -127,7 +127,7 @@
                             
                             echo '<div class="edit_cancel_button">';
                                 echo '<button type="button" name="pro_edit_button" class="edit_button" onclick="edit_my_promise(this)" id=edit_btn >EDIT</button>';      
-                                echo '<input type="submit" name="pro_cancel_button" class="cancel_button" value="CANCEL" id=cancel_btn ></input>';
+                                echo '<input type="submit" name="pro_cancel_button" class="cancel_button" value="CANCEL PROMISE" id=cancel_btn ></input>';
                             echo '</div>';            
                         echo '</div>';
                     
