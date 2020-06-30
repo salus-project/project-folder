@@ -4,12 +4,27 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
  
     if(isset($_POST['update_button'])){
+        function filter_input_value($data){
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         $event_id=$_POST['event_id'];
         $user_nic=$_SESSION['user_nic'];
+
         $district=$_POST['district'];
+        for($x=0 ; $x < count($district) ; $x++){
+            filter_input_value($district[$x]);
+        }
         $district= implode(",", $district);
+
         $type=$_POST['type'];
+        for($x=0 ; $x < count($type) ; $x++){
+            filter_input_value($type[$x]);
+        }
         $type= implode("&", $type);
+
         $item = array_filter($_POST['item']);
         $amount = $_POST['amount'];
         $update_id=$_POST['update_id'];
@@ -27,10 +42,10 @@
                     }
                     
                     if($update_id[$x]=='0'){
-                        $pri_query .= "INSERT INTO event_".$event_id."_abilities (donor, item, amount) VALUES ('$user_nic', '$item[$x]', '$amount[$x]');";
+                        $pri_query .= "INSERT INTO event_".$event_id."_abilities (donor, item, amount) VALUES ('$user_nic', '".filter_input_value($item[$x])."', '".filter_input_value($amount[$x])."');";
                     
                     }else{
-                        $pri_query .= "UPDATE `event_".$event_id."_abilities` SET `item` = '$item[$x]', `amount` = '$amount[$x]' WHERE `event_".$event_id."_abilities`.`id` = '".$update_id[$x]."';";
+                        $pri_query .= "UPDATE `event_".$event_id."_abilities` SET `item` = '".filter_input_value($item[$x])."', `amount` = '".filter_input_value($amount[$x])."' WHERE `event_".$event_id."_abilities`.`id` = '".$update_id[$x]."';";
                     }
                     $pri_query.= "UPDATE `event_".$event_id."_volunteers` SET `now` = 'yes',`service_district` = '$district',`type` = '$type' WHERE `NIC_num` = '".$user_nic."';";
                 }
@@ -40,8 +55,8 @@
            if(count($item)>0){
                 $querry_arr = array();
                 for($x=0; $x < count($item); $x++ ){
-                    $row_item = $item[$x]?$item[$x]:'NULL';
-                    $row_amount = $amount[$x]?:'0';
+                    $row_item = $item[$x]?filter_input_value($item[$x]):'NULL';
+                    $row_amount = $amount[$x]?filter_input_value($amount[$x]):'0';
                     array_push($querry_arr, "('$user_nic','$row_item','$row_amount')");
                 }
                 $pri_query.= "INSERT INTO `event_".$event_id."_abilities`(`donor`, `item`, `amount`) VALUES ". implode(", ", $querry_arr).";";
@@ -68,8 +83,9 @@
         
     }
     if(mysqli_multi_query($con,$pri_query)){
-        echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-        header('location:/event?event_id='.$event_id);
+        echo $pri_query;
+        //header("location:".$_SERVER['HTTP_REFERER']);
+        
     }
     else{
         echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';

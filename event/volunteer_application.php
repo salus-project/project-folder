@@ -98,7 +98,6 @@
                 echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>
                         <input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
                 echo    "<button type='button' onclick='remove_ability_input(this)' class='add_rem_btn'>Remove</button>";
-                  echo "<input id='del_details' type='hidden' value='' name='del_details'>" ;     
                 echo "<input type='hidden' name='update_id[]' value='".$row_req['id']."'>";
                 echo "</div>";
             }
@@ -118,5 +117,5 @@
 
     </div>
 </div>
-
+<?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>
 </form>
