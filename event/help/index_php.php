@@ -62,8 +62,7 @@
             }
         }
         if(mysqli_multi_query($con, $pri_query)){
-            //header('location:/event?event_id='.$event_id);
-            echo "success";
+            header('location:'.$_SERVER['HTTP_REFERER']);
         }else{
             //header("location:/event/help?event_id=".$event_id."&by=".$by."&to=".$to);
             echo "not sucess";
