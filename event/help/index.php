@@ -186,6 +186,16 @@
                                     echo "Promise on behalf of ".$org_name;
                                 }
                             echo '</label></div>';
+                            foreach($event_requests as $row_req){
+                                echo "<div class='input_sub_container'>";
+                                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>";
+                                echo    "<input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                                echo    "<button type='button' onclick='remove_old(this)' class='add_rem_btn'>Remove</button>";
+                                echo    "<input type='checkbox' onchange='checkbox_val(this)'>";
+                                echo    "<input type='hidden' name='mark[]' value='promise'>";
+                                echo    "<input type='hidden' name='update_id[]' value='0'>";
+                                echo "</div>";
+                            }
 
                             echo '<div class="input_container">';
                                 echo '<div class="input_sub_container">';
