@@ -1,29 +1,40 @@
-var allOptions = document.getElementsByTagName('option');
-
-for(var x=0; x<allOptions.length; x++){
-    if(allOptions[x].value == district_in_nic){
-        allOptions[x].defaultSelected = true;
-    }
-}
-function add_input(element){
+function add_new(element){
     var parent = element.parentElement.parentElement;
-    if(element.parentElement.children[0].value!=='' || element.parentElement.children[1].value!=='') {
+    if(element.parentElement.children[0].value!=='') {
         for (var ele of parent.children) {
             ele.children[0].setAttribute("value", ele.children[0].value);
             ele.children[1].setAttribute("value", ele.children[1].value);
-            ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
+            ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+            if(ele.children[3].checked){
+                ele.children[3].setAttribute("checked","checked");
+            }
         }
         parent.innerHTML += '<div class="input_sub_container">\n' +
-            '        <input type="text" class="text_input request_input">\n' +
-            '        <input type="text" class="text_input request_input">\n' +
+            '        <input type="text" class="text_input request_input" name="item[]">\n' +
+            '        <input type="text" class="text_input request_input" name="amount[]">\n' +
             '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
+            '        <input type="checkbox" onchange="checkbox_val(this)">\n' +
+            '        <input type="hidden" name="mark[]" value="promise">\n' +
+            '        <input type="hidden" name="update_id[]" value="0">\n' +
             '    </div>';
     }
 }
-function remove_input(element){
+function remove_old(element){
+    var parent = element.nextElementSibling.nextElementSibling.nextElementSibling;
+    if(parent.value!=='0'){
+        document.getElementById('del_detail').value+=(parent.value + ',');
+    }
     element.parentElement.outerHTML='';
 }
-function edit_promise(element){
+function checkbox_val(element){
+    if(element.checked){
+        element.nextElementSibling.value='pending';
+    }else{
+        element.nextElementSibling.value='promise';
+    }
+}
+
+function edit_event_promise(element){
     if(element.innerHTML==="EDIT"){
         element.innerHTML="Hide Edit";
     }else{
