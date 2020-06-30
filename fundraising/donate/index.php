@@ -16,6 +16,7 @@
         select id from fundraising_pro_don where by_person = '".$_SESSION['user_nic']."' and for_fund = ".$_GET['id']."
     );";
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,7 +63,8 @@
 
                     mysqli_next_result($con);
                     $result = mysqli_store_result($con);
-                    $event_name_fundraising = mysqli_fetch_assoc($result)['name'];
+                    $event_name_result=mysqli_fetch_assoc($result);
+                    $event_name_fundraising = (isset($event_name_result['name']))?$event_name_result['name']:'';
                     mysqli_free_result($result);
 
                     mysqli_next_result($con);
@@ -87,9 +89,9 @@
                                 echo '<tr><td class=column1> Org name</td><td class=column2>' . $org_name_fundraising . '</td></tr>';
                             }
                             if($fundraising_detail['for_event']==NULL){
-                                echo '<tr><td class=column1> Purpose</td><td class=column2>' . $fundraising_detail['for_any'] . '</td></tr>';
+                                echo '<tr><td class=column1> Purpose</td><td class=column2>' . $fundraising_detail['for_any']. '</td></tr>';
                             }else{
-                                echo '<tr><td class=column1>Purpose</td><td class=column2>' . $event_name_fundraising. '</td></tr>';
+                                echo '<tr><td class=column1>Purpose</td><td class=column2>' .$event_name_fundraising. '</td></tr>';
                             }
                             $content="";
                             foreach($fund_expect as $row_req){
@@ -114,9 +116,14 @@
                         echo '<div class="old_promise_div">';
                             echo '<div class="my_promise_div"><b>My promises</b></div>';
                             echo '<div>';      
-                                echo $content."<br>";
-                                echo "your note : ".($old_note ?: "No notes");
-                            echo '</div>';
+                            $your_promise='';
+                            foreach($old_content as $row_req){
+                               $your_promise.=$row_req['item'].":".$row_req['amount']."<br>";
+                            }
+                            echo "<table>";
+                                echo "<tr><td>your promises </td> <td>".$your_promise."</td></tr>";
+                                echo "<tr><td>your note </td><td> ".($old_note?: "No notes")."</td></tr>";
+                            echo "</table>";
                             
                             echo '<div class="edit_cancel_button">';
                                 echo '<button type="button" name="pro_edit_button" class="edit_button" onclick="edit_my_promise(this)" id=edit_btn >EDIT</button>';      
