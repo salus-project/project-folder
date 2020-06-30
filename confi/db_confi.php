@@ -26,5 +26,9 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+
+    function ready_input($input){
+        return strtolower(trim($input));
+    }
     
 ?>
