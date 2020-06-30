@@ -11,4 +11,20 @@
     }catch(Exception $e){
         header('location:'.$_SERVER['DOCUMENT_ROOT'].'/confi/error.html');
     }
+
+    function shutdown(){
+        global $con,$org_DB,$notification_DB;
+        $con->close();
+        $org_DB->close();
+        $notification_DB->close();
+    }
+    register_shutdown_function('shutdown');
+
+    function filter_input($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    
 ?>
