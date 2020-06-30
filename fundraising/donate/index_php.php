@@ -55,8 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if(mysqli_multi_query($con, $query)){
-        //header('location:/event?event_id='.$event_id);
-        echo "<br>Success";
+        header('location:'.$_SERVER['HTTP_REFERER']);
     }else{
         //header("location:/event/help?event_id=".$event_id."&by=".$by."&to=".$to);
         echo "<br>Not Success";

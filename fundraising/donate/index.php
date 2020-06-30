@@ -1,5 +1,4 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 
     $query = "select id, note from fundraising_pro_don where by_person = '".$_SESSION['user_nic']."' and for_fund = ".$_GET['id'].";
@@ -24,6 +23,9 @@
         <link rel="stylesheet" href='/css_codes/donate_index.css'>
     </head>
     <body>
+        <script>
+            btnPress(7);
+        </script>
         <?php
             if(mysqli_multi_query($con,$query)){
                 echo '<div class="form_div">';
