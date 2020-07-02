@@ -1,5 +1,5 @@
 #side_nav_container{
-    width:320px;
+    width:300px;
     border:1px solid black;
     padding: 5px;
     display: inline-table;
@@ -17,10 +17,19 @@
     font-size: 18px;
     height: 25px;
 }
+.side_nav_profile{
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
 .side_nav_a, a.side_nav_a:visited, a.side_nav_a:active{
     text-decoration: none;
     color: black;
     cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: cursive;
 }
 a.side_nav_a:hover{
     color: rgb(55, 113, 146);

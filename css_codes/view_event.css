@@ -216,13 +216,27 @@ input:checked + .slider:before{
     cursor: pointer;
     background-color: white;
 }
-#indi_prom_btn{
-    outline: none;
-    height: 33px;
-    font-size: 18px;
-    position: absolute;
+.other_menu_container{
+    position: relative;
     right: 220px;
     top: 93px;
+}
+.other_menus{
+    appearance: button;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -ms-appearance: button;
+    -o-appearance: button;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    outline: none;
+    height: 33px;
+    line-height: 33px;
+    font-size: 18px;
+    padding: 0 2px 0 2px;
+    
 }
 
 /*---------------popup loader ------------------------ */
@@ -237,12 +251,4 @@ input:checked + .slider:before{
     animation: spin 2s linear infinite;
     margin: auto;
     
-}
-#indi_prom_btn{
-    outline: none;
-    height: 33px;
-    font-size: 18px;
-    position: absolute;
-    right: 220px;
-    top: 93px;
 }
