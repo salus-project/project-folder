@@ -1,5 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    require $_SERVER['DOCUMENT_ROOT']."/organization/event/org_event_header.php";
 	$org_id= $_GET['org_id'];
 	$event_id= $_GET['event_id'];	
 	$event_name1="event_".$event_id."_pro_don";
@@ -39,11 +39,11 @@
 <html>
     <head>
         <title>view our my promises</title>
-        <link rel="stylesheet" href='view_our_promises.css'>
+        <link rel="stylesheet" href='/css_codes/view_our_promises.css'>
     </head>
     <body>
 		<script>
-        btnPress(6);
+            btnPress(6);
 		</script>
 		
 		<div id="title">
@@ -52,49 +52,49 @@
         
 		<div id='promise_body'>
             <table id='promise_table'>
-            <thead>
-				<th colspan=1></th>
-                <th colspan=1>Person name</th>
-                <th colspan=1>Promises</th>
-                <th colspan=1>Note</th>
-				<th colspan=1></th>
-             </thead>
+                <thead>
+                    <th colspan=1></th>
+                    <th colspan=1>Person name</th>
+                    <th colspan=1>Promises</th>
+                    <th colspan=1>Note</th>
+                    <th colspan=1></th>
+                </thead>
 
-            <?php
-			
-			foreach($persons as $person){
-				$key = array_search($person, $persons); 
+                <?php
+                
+                foreach($persons as $person){
+                    $key = array_search($person, $persons); 
 
-                $ability=explode(",",$promises[$key]);
-                $count_arr = count($ability);
-                $data="";
-                for ($x = 0; $x <$count_arr; $x++) {
-                    $data=$data.$ability[$x]."<br>";
+                    $ability=explode(",",$promises[$key]);
+                    $count_arr = count($ability);
+                    $data="";
+                    for ($x = 0; $x <$count_arr; $x++) {
+                        $data=$data.$ability[$x]."<br>";
+                    }
+                    $link_='/event/help/help/?event_id='.$event_id.'&to='.$person.'&by='.$org_id.'';
+
+                    echo "<tr onclick='select(this.firstElementChild.firstElementChild)'>
+                    
+                    <td><input type='checkbox' class='select_me' data-id='".$persons[$key]."' id='edit_box' onclick='select_me(this)' ></td>
+                    <td>".$name[$key]."</td><td>".$data."</td><td>".$note[$key]."</td>
+                    <td>
+                    <a href=$link_><button type='button' >Edit</button></a>
+                    </td>
+                    </tr>";
                 }
-				$link_='/event/help/help/?event_id='.$event_id.'&to='.$person.'&by='.$org_id.'';
-
-				echo "<tr onclick='select(this.firstElementChild.firstElementChild)'>
-				
-				<td><input type='checkbox' class='select_me' data-id='".$persons[$key]."' id='edit_box' onclick='select_me(this)' ></td>
-                <td>".$name[$key]."</td><td>".$data."</td><td>".$note[$key]."</td>
-				<td>
-				<a href=$link_><button type='button' >Edit</button></a>
-				</td>
-                </tr>";
-            }
-            ?>    
-			<tr>
-			<td>
-			<button type="button" onclick="select_all()" >select all</button>
-			<form id="edit_form" action="promise.php" method=get>
-				<input type="hidden" name="selected" id="selected"><br>
-				<input type="hidden" name="org_id" value=<?php echo $org_id ; ?> >
-				<input type="hidden" name="event_id" value=<?php echo $event_id ; ?> >
-				<input type="hidden" name="type" value="2" >
-				<input type='submit' name='submit_button' id='submitBtn' value='Edit'>
-			</form>
-			</td><td></td><td></td><td></td><td></td>
-			</tr>
+                ?>    
+                <tr>
+                    <td>
+                        <button type="button" onclick="select_all()" >select all</button>
+                        <form id="edit_form" action="promise.php" method=get>
+                            <input type="hidden" name="selected" id="selected"><br>
+                            <input type="hidden" name="org_id" value=<?php echo $org_id ; ?> >
+                            <input type="hidden" name="event_id" value=<?php echo $event_id ; ?> >
+                            <input type="hidden" name="type" value="2" >
+                            <input type='submit' name='submit_button' id='submitBtn' value='Edit'>
+                        </form>
+                    </td><td></td><td></td><td></td><td></td>
+                </tr>
             </table>
         </div>
     </body>
@@ -148,6 +148,5 @@
 			document.getElementById('selected').value=arr.join(",");
 		}
 	</script>
-
-
+	<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
 </html>

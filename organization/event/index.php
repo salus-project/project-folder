@@ -140,7 +140,7 @@
                 for (input of inputs){
                     selected.push(input.value);
                 }
-                window.location.href="promise.php?event_id=<?php echo $_GET['event_id']?>&org_id=<?php echo $_GET['selected_org'] ?>&selected="+selected.toString();
+                window.location.href="promise.php?type=1&event_id=<?php echo $_GET['event_id']?>&org_id=<?php echo $_GET['selected_org'] ?>&selected="+selected.toString();
                 /*var help_popup = document.getElementById("help_popup");
                 help_popup.classList.toggle("active_popup");
                 document.getElementById("overlay").classList.toggle("active_overlay");
