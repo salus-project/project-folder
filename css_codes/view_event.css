@@ -252,3 +252,6 @@ input:checked + .slider:before{
     margin: auto;
     
 }
+#map_container{
+    height: 500px;
+}

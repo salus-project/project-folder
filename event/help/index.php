@@ -1,6 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
     $to=$_GET['to'];
     $event_id = $_GET['event_id'];
     $by=$_GET['by'];

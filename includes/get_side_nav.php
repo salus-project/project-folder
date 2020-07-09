@@ -6,13 +6,30 @@
     $civilian = $con->query($civilian_query);
     while($row=$civilian->fetch_assoc()){
         if($row['NIC_num']!=$_SESSION['user_nic']){
-            echo "<tr><td><a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$row['first_name']." ".$row['last_name']."</a></td><td><span class='last_seen'>".findLast($row['last_seen'])."</span></td></tr>";
+            
+            $profile_path = "http://eme-service.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
+            $profile_path_header = get_headers($profile_path);
+            if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
+                $profile_path = "http://eme-service.000webhostapp.com/Profiles/resized/default.jpg";
+            }
+            
+            echo    "<tr>
+                        <td>
+                            <a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".
+                                "<img src='".$profile_path."' alt='oops' class='side_nav_profile'>".
+                                $row['first_name']." ".$row['last_name']."
+                            </a>
+                        </td>
+                        <td>
+                            <span class='last_seen'>".findLast($row['last_seen'])."</span>
+                        </td>
+                    </tr>";
         }
     }
     $query = "update civilian_detail SET last_seen='".date("Y-m-d H:i:s")."' where NIC_num='{$_SESSION['user_nic']}'";
     $con->query($query);
 
-    function findLast($date){  
+    function findLast($date){
         $date = new DateTime($date);
         $now = new DateTime();
         $diff=explode(',',$date->diff($now)->format("%y,%m,%d,%h,%i,%s"));
@@ -26,7 +43,7 @@
             return $diff[3]." hrs";
         }elseif((int)$diff[4]>=1){
             return $diff[4]." mins";
-        }elseif((int)$diff[5]>=1){
+        }elseif((int)$diff[5]>0){
             return "online";
         }else{
             return "long ago";
