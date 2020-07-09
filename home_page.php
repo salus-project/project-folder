@@ -50,6 +50,7 @@
                     <input type=hidden name="directory" value="Profiles/">
                     <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
                     <input type=hidden name="header" value="true">
+                    <input type=hidden name="resize" value="true">
                 </form>
                 <button id='edit_profile' onclick="document.getElementById('upload_profile_btn').click()">Change</button>
             </div>

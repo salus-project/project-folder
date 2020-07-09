@@ -91,10 +91,6 @@
                     <div class="input_sub_container">
                         <input type="text" class="text_input">
                         <input type="text" class="text_input">
-                        <label class="container">
-                            <input type="checkbox" onclick='check_click(this)' >
-                            <span class="checkmark"></span>
-                        </label>
                         <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
                     </div>
                 </div>
@@ -148,20 +144,9 @@
                         if($result1->num_rows>0){
                             while($row1=$result1->fetch_assoc()){
                             array_push($id_a[$key],$row1['id']);
-                            
                             echo "<div class='input_sub_container'>";
                             echo "<input type='text' class='text_input' value='".$row1['item']."'>";
                             echo "<input type='text' class='text_input'  value='".$row1['amount']."'>";
-                            echo "<label class='container'>";
-                            if($row1['pro_don']=="promise"){
-                                echo "<input type='checkbox' onclick='check_click(this)'>";
-                            }
-                            elseif($row1['pro_don']=="pending"){
-                                echo "<input type='checkbox' onclick='check_click(this)' checked='true'>";
-                            }
-                            echo "<input type='checkbox' onclick='check_click(this)'>";
-                            echo "<span class='checkmark'></span>";
-                            echo "</label>";
                             echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
                             echo "</div>";  
                         }
@@ -170,10 +155,6 @@
                     echo "<div class='input_sub_container'>";
                     echo "<input type='text' class='text_input'>";
                     echo "<input type='text' class='text_input'>";
-                    echo "<label class='container'>";
-                    echo "<input type='checkbox' onclick='check_click(this)'>";
-                    echo "<span class='checkmark'></span>";
-                    echo "</label>";
                     echo "<button type='button' onclick='add_input(this)' class='add_rem_btn'>Add</button>";
                     echo "</div>";
                     
@@ -202,20 +183,11 @@
                     for (var ele of parent.children) {
                         ele.children[0].setAttribute("value", ele.children[0].value);
                         ele.children[1].setAttribute("value", ele.children[1].value);
-                        if (ele.children[2].children[0].checked){
-                            ele.children[2].children[0].setAttribute("checked","true");
-                        }else{
-                            ele.children[2].children[0].outerHTML ='<input type="checkbox" onclick="check_click(this)">'
-                        }
-                        ele.children[3].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
+                        ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
                     }
                     parent.innerHTML += '<div class="input_sub_container">\n' +
                         '        <input type="text" class="text_input">\n' +
                         '        <input type="text" class="text_input">\n' +
-                        '<label class="container">'+
-                            '<input type="checkbox" onclick="check_click(this)">'+
-                            '<span class="checkmark"></span>'+
-                        '</label>'+
                         '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
                         '    </div>';
                 }
@@ -239,13 +211,6 @@
                     td.firstElementChild.value = ele.value;
                 }
             }
-            function check_click(ele){
-                if (ele.checked){
-                    ele.setAttribute("checked","true");
-                }else{
-                    ele.outerHTML ='<input type="checkbox" onclick="check_click(this)">'
-                }
-            }
             function submit_all(){
                 var all_td = document.getElementsByClassName("your_promise");
                 
@@ -256,16 +221,11 @@
                     for(var tdd of td.firstElementChild.children){
                         var val1= tdd.children[0].value;
                         var val2= tdd.children[1].value;
-                        var checked="";
-                        if (!((val1 == "" ) || (val1 == null))){
-                            if(tdd.children[2].children[0].checked){
-                                checked +="1";
-                            }else{
-                                checked +="0";
+                        if(val1 != "" ){
+                            if(val1 != null){
+                                promise += val1+":"+val2+",";
                             }
-                            promise += val1+":"+val2+":"+checked+",";
                         }
-                        
                     }
                     var promise = promise.slice(0,promise.length-1);
                     var note=td.nextElementSibling.firstElementChild.value;
@@ -274,7 +234,7 @@
                     
                 }
                 document.getElementById('datas').value=arr.join("++");
-                //console.log(arr.join("++"))
+                console.log(arr.join("++"))
                 document.getElementById("myForm").submit();
             }
 

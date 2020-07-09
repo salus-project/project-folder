@@ -1,6 +1,6 @@
 <?php
 session_start();
-require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 ?>
 
 <!DOCTYPE html>
