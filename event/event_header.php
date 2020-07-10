@@ -19,7 +19,7 @@
         <?php
             $query="select * from disaster_events where event_id =" . $_GET['event_id'].";
                     select * from event_".$_GET['event_id']."_locations;
-                    select * from organizations where leader = '" . $_SESSION['user_nic'] . "' OR co_leader = '" . $_SESSION['user_nic'] . "';
+                    select * from organizations;
                     select * from event_".$_GET['event_id']."_help_requested;";
             $result;
             if(mysqli_multi_query($con, $query)){
