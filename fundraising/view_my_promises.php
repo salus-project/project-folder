@@ -1,14 +1,27 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
-    $id=$_SESSION['user_nic'];
-    $query="SELECT * FROM fundraising_pro_don INNER JOIN fundraisings ON fundraising_pro_don.for_fund = fundraisings.id where by_person='$id'";
-    $result=$con->query($query);
+require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
+require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+$id=$_SESSION['user_nic'];
+$query="select p.*,f.*,f.id AS  fundraising_pro_donid from fundraising_pro_don f inner join fundraisings p on f.for_fund = p.id where by_person='".$id."';
+select * from fundraising_pro_don_content inner join fundraising_pro_don on fundraising_pro_don.id = fundraising_pro_don_content.don_id where by_person='".$id."';";
+if(mysqli_multi_query($con,$query)){
+    $result=mysqli_store_result($con);
+    $fundraising_detail=[];
+    if(mysqli_num_rows($result)>0){
+        $fundraising_detail=mysqli_fetch_all($result,MYSQLI_ASSOC);
+    }
+    
+    $content_detail=[];
+    mysqli_next_result($con);
+    $result = mysqli_store_result($con);
+    $content_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    mysqli_free_result($result);
+}
 ?>
-
 
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <title>view my promises</title>
         <link rel="stylesheet" href='/css_codes/view_my_promise.css'>
     </head>
@@ -19,37 +32,32 @@
         <div id="title">
             <?php echo "My Promises" ?>
         </div>
-        
-        <div id='promise_body'>
-            <table id='promise_table'>
-            <thead>
-                <th colspan=1>Fundraising name</th>
-                <th colspan=1>Promises</th>
-                <th colspan=1>Note</th>
-            </thead>
+<div id='promise_body'>
+    <table id='promise_table'>
+        <thead>
+        <th colspan=1>Fundraising name </th>
+        <th colspan=1>Promises</th>
+        <th colspan=1>Note</th>
+        </thead>
 
-            <?php
-            while($row=$result->fetch_assoc()){
-                $name=$row['name'];
-                $ability=explode(",",$row['content']);
-                $count_arr = count($ability);
-                $data="";
-                for ($x = 0; $x <$count_arr; $x++) {
-                    $data=$data.$ability[$x]."<br>";
+        <?php
+            foreach($fundraising_detail as $row_req){
+                $item_amount="";
+                $name=$row_req['name'];
+                $note=$row_req['note'];
+                foreach($content_detail as $row_req1){
+                    if ($row_req1['don_id']==$row_req['id']){
+                        $item_amount=$item_amount.$row_req1['item'].":".$row_req1['amount']."<br>";
+                        }
                 }
-
-                echo "<tr class='my_promises_tr' onclick='mypromise_click(this)'>
-                <td>".$name."</td><td>".$data."</td><td>".$row['note']."</td>
-                </tr>";
+                echo "<tr>
+            <td>".$name."</td><td>".$item_amount."</td><td>".$note."</td>
+            </tr>";
             }
-            ?>    
-            </table>
-        </div>
-
-        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
-
-    </body>
-    <script>
-    </script>
+            
+        ?>
+    </table>
+</div>
+</body>
 
 </html>
