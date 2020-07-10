@@ -1,6 +1,7 @@
 <?php
-    $nameErr=$leaderErr=$disErr=$emailErr=$phoneErr=$coleaderErr=$memberErr=$str_members=$str_coleaders='';           //Defining error message values
-    $org_name=$leader=$district=$email=$phone_num=$discription=$coleader=$member='';    //Definig variables and initiate them to empty values
+    $nameErr=$leaderErr=$disErr=$emailErr=$phoneErr='';           //Defining error message values
+    $org_name=$leader=$district=$email=$phone_num=$discription='';    //Definig variables and initiate them to empty values
+    $coleaders=$members=array();
 
 
     if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
@@ -69,27 +70,23 @@
         }
 
         $discription=filter($_POST['discription']);
+        $coleaders=array_filter($_POST['coleaders']);
+        $members=array_filter($_POST['members']);
         $str_members=$_POST['hidden'];
         $str_coleaders = $_POST['hidden_coleaders'];
 
         //code for validating coleader and member detail
 
-        $coleader = $str_coleaders;
-        $member=$str_members;
-
         if($isOk==1){
-            
-            
             $query="INSERT INTO organizations (org_name, leader, co_leader, district, email, phone_num, members, discription) VALUES ('$org_name','$leader','$str_coleaders', '$district','$email','$phone_num','$str_members','$discription')";
-            $query_run=$con->query($query);
+            //$query_run=$con->query($query);
             $org_id = $con->insert_id;
             
             if($query_run){
                 $table_query = 'create table org_'.$org_id." (msg_id int(11) auto_increment primary key, NIC_num varchar(12), sender varchar(60), message text, date date,time time(6))";
-                $org_DB->query($table_query);
-                header('location:/Project/view_org.php?selected_org='.$org_id);
-                echo '<script type="text/javascript">alert("Successfully created")</script>';
-                
+                //$org_DB->query($table_query);
+                echo $table_query;
+                //header('location:/Project/view_org.php?selected_org='.$org_id);
             }else{
                 echo '<script type="text/javascript">alert("Error")</script>';
             }
