@@ -62,6 +62,9 @@
                     <a href="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='other_menus'>
                         My Promises
                     </a>
+                    <a href="view_promises_on_me.php?event_id=<?php echo $_GET['event_id']?>" id="pro_on_me_btn" class='other_menus'>
+                        Promises on me
+                    </a>
                     <a href="/event/mark_area?event_id=<?php echo $_GET['event_id']?>" id="mark_area" class='other_menus'>
                         Suggest an Area
                     </a>
