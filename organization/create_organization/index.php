@@ -182,9 +182,7 @@
                         </td>
                     </tr>
                 </table>
-                <input type='hidden' id='hidden' name='hidden'>
-                <input type='hidden' id='hidden_coleaders' name='hidden_coleaders'>
-            </form>
+              </form>
         </div>
         <script>
 
