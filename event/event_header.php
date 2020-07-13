@@ -5,11 +5,16 @@
 <html>
     <head>
         <title>Event</title>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        
+        <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
         <link rel="stylesheet" href="/css_codes/view_event.css">
         <link rel="stylesheet" href="/css_codes/style.css">
         <link rel="stylesheet" href="/css_codes/help_request_popup.css">
         <script type="text/javascript" src="/js/request_help_popup.js"></script>
         <script type="text/javascript" src="/js/volunteer_application.js"></script>
+        <script defer src='/js/view_event.js'></script>
     </head>
     <body>
 
@@ -70,8 +75,7 @@
                     </a>
                 </div>
                 <div id=status>
-                    <div id=safe_btn>
-
+                    <div id=safe_btn_container>
                     </div>
 
                     <div id=help_btn>
@@ -84,3 +88,15 @@
                 </div>
             </div>
         </div>
+        <script>
+            var safe_status = '<?php echo $status[0]?>';
+            var help_status = '<?php echo $status[1]?>';
+            var volunteer_status = '<?php echo $status[2]?>';
+
+            var event_id='<?php echo $result['event_id'] ?>';
+            var nic_num = '<?php echo $_SESSION['user_nic']?>';
+            var organization = <?php echo $js_organization ?>;
+            var district_in_nic = '<?php echo $_SESSION['district'] ?>';
+        </script>
+
+        

@@ -70,17 +70,4 @@
 </div>
 <div id='overlay'>
 </div>
-
-<script>
-    var safe_status = '<?php echo $status[0]?>';
-    var help_status = '<?php echo $status[1]?>';
-    var volunteer_status = '<?php echo $status[2]?>';
-
-    var event_id='<?php echo $result['event_id'] ?>';
-    var nic_num = '<?php echo $_SESSION['user_nic']?>';
-    var organization = <?php echo $js_organization ?>;
-    var district_in_nic = '<?php echo $_SESSION['district'] ?>';
-</script>
-
-<script src='/js/view_event.js'></script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

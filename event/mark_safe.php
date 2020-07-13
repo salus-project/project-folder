@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require 'dbconfi/confi.php';
+    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 
     if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['safe_status'])){
         $status_query = "select user_" . $_SESSION['user_nic'] . " from disaster_events where event_id = '" . $_POST['event_id']."'";

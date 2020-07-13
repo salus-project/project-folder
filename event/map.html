@@ -53,11 +53,11 @@
                     this.fillOpacity = 0.08;
                     break;
                 case 'suggested':
-                    this.fillColor='organge';
+                    this.fillColor='orange';
                     this.color='orange';
-                    this.weight = 3;
+                    this.weight = 0.1;
                     this.opacity = 0.3;
-                    this.fillOpacity = 0.08;
+                    this.fillOpacity = 0.3;
                     break;
             }
             return {"fillColor":this.fillColor,
@@ -170,8 +170,8 @@
             case 'suggested_circle':
                 myGeo.draw_circle(arr['latitude'], arr['longitude'],arr['radius'],arr['detail']);
                 break;
-            case 'suggested_json':
-                myGeo.markPlace(arr['geojson'], arr['detail'], 'suggested');
+            case 'suggested_area':
+                myGeo.markPlace(JSON.parse(arr['geojson']), 'suggested', arr['detail']);
         }
     }
 
@@ -239,11 +239,6 @@
         }
         return inside;
     }
-
-    window.dispatchEvent(new Event('resize', { 'bubbles': true }));
-    window.setTimeout(()=>{
-        myGeo.fit_screen();
-    },1);
 
     (document.getElementsByClassName('leaflet-control-attribution leaflet-control')[0]).style.display='none';
 </script>

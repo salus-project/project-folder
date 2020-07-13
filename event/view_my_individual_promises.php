@@ -25,10 +25,14 @@ if(mysqli_multi_query($con,$query)){
 <head>
     <title>view my promises</title>
     <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    
+    <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
 </head>
 <body>
 <script>
-    btnPress(4);
+    //btnPress(4);
 </script>
 
 <div id="title">
@@ -41,6 +45,7 @@ if(mysqli_multi_query($con,$query)){
         <th colspan=1>Full name </th>
         <th colspan=1>Promises</th>
         <th colspan=1>Note</th>
+        <th colspan=1>Status</th>
         </thead>
 
         <?php
@@ -53,13 +58,28 @@ if(mysqli_multi_query($con,$query)){
                     $item_amount=$item_amount.$row_req1['item'].":".$row_req1['amount']."<br>";
                     }
                 }
-                echo "<tr>
-            <td>".$name."</td><td>".$item_amount."</td><td>".$note."</td>
-            </tr>";
+                $to=$row_req['NIC_num'];
+                echo "  <tr onclick='edit_promise(\"/event/help/?event_id=".$event_id."&by=".$id."&to=".$to."\")'>
+                            <td>".$name."</td><td>".$item_amount."</td>
+                            <td>".$note."</td>
+                            <td class='not_click'>
+                            <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                            </td>
+                        </tr>";
             }
         ?>
     </table>
 </div>
 </body>
+<script>
+    function edit_promise(url){
+        var target = event.target ? event.target : event.srcElement;
+        if(!'not_click toggle btn btn-warning off toggle-group btn btn-success toggle-on btn btn-warning active toggle-off toggle-handle btn btn-default'.includes(target.className)){
+            window.location=url;
+        }else{
+            
+        }
+    }
+</script>
 
 </html>
