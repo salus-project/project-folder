@@ -80,10 +80,12 @@
             $query2="INSERT INTO org_members (org_id, NIC_num, role) VALUES ('$org_id', '$leader', 'leader')";
             
             for($x=0 ; $x < count($members) ; $x++){
-                $query2.=", ('$org_id', '$members[$x]', 'member')";
+                $mem_fil=filt_inp($members[$x]);
+                $query2.=", ('$org_id', '$mem_fil', 'member')";
             }
             for($x=0 ; $x < count($coleaders) ; $x++){
-                $query2.=", ('$org_id', '$coleaders[$x]', 'co_leder')";
+                $co_lea_fil=$coleaders[$x];
+                $query2.=", ('$org_id', '$co_lea_fil', 'co_leder')";
             }
             $query2_run=$con->query($query2);
             if($query1_run && $query2_run){
