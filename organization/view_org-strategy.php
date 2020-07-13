@@ -18,9 +18,9 @@
 
 
     abstract class Role{
-        private $join_text;
-        private $leave_text;
-        private $edit_text;
+        protected $join_text;
+        protected $leave_text;
+        protected $edit_text;
 
         public function __construct(){
             $this->join_text =  "<div id=membership_btn_container>
@@ -99,7 +99,8 @@
         }
     }
 
-    if($text_role == "visiter"){
+    $text_role=$_GET['role'];
+    if($text_role == "visitor"){
         $role = new Visitor();
     }elseif($text_role == "member"){
         $role = new Member();
