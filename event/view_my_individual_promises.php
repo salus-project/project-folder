@@ -3,14 +3,21 @@ require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 $id=$_SESSION['user_nic'];
 $event_id = $_GET['event_id'];
-$query="select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."';
+$query="select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."' AND (pro_don='promise' OR pro_don='pending');
+select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."' AND pro_don='donated' ;
 select * from event_".$event_id."_pro_don_content inner join event_".$event_id."_pro_don on event_".$event_id."_pro_don_content.don_id = event_".$event_id."_pro_don.id where by_person='".$id."';";
 
 if(mysqli_multi_query($con,$query)){
-    $person_detail=[];
+    $promise_person_detail=[];
     $result=mysqli_store_result($con);
     if(mysqli_num_rows($result)>0){
-        $person_detail=mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $promise_person_detail=mysqli_fetch_all($result,MYSQLI_ASSOC);
+    }
+    $donated_person_detail=[];
+    mysqli_next_result($con);
+    $result=mysqli_store_result($con);
+    if(mysqli_num_rows($result)>0){
+        $donated_person_detail=mysqli_fetch_all($result,MYSQLI_ASSOC);
     }
     $content_detail=[];
     mysqli_next_result($con);
@@ -35,11 +42,12 @@ if(mysqli_multi_query($con,$query)){
     //btnPress(4);
 </script>
 
+
+
+<div id='promise_body'>
 <div id="title">
     <?php echo "My Promises" ?>
 </div>
-
-<div id='promise_body'>
     <table id='promise_table'>
         <thead>
         <th colspan=1>Full name </th>
@@ -49,15 +57,17 @@ if(mysqli_multi_query($con,$query)){
         </thead>
 
         <?php
-            foreach($person_detail as $row_req){
+            foreach($promise_person_detail as $row_req){
                 $item_amount="";
-                $name=$row_req['first_name'].$row_req['last_name'];
+                $name=$row_req['first_name']." ".$row_req['last_name'];
                 $note=$row_req['note'];
+                $status=$row_req['pro_don'];
                 foreach($content_detail as $row_req1){
                     if ($row_req1['don_id']==$row_req['id']){
                     $item_amount=$item_amount.$row_req1['item'].":".$row_req1['amount']."<br>";
                     }
                 }
+                if ($status=="promise"){
                 $to=$row_req['NIC_num'];
                 echo "  <tr onclick='edit_promise(\"/event/help/?event_id=".$event_id."&by=".$id."&to=".$to."\")'>
                             <td>".$name."</td><td>".$item_amount."</td>
@@ -65,6 +75,45 @@ if(mysqli_multi_query($con,$query)){
                             <td class='not_click'>
                             <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
                             </td>
+                        </tr>";
+                }
+                else if ($status=="pending"){
+                    $to=$row_req['NIC_num'];
+                echo "  <tr onclick='edit_promise(\"/event/help/?event_id=".$event_id."&by=".$id."&to=".$to."\")'>
+                            <td>".$name."</td><td>".$item_amount."</td>
+                            <td>".$note."</td>
+                            <td class='not_click'>
+                            <input type='checkbox' checked='checked' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                            </td>
+                        </tr>";
+                }
+            }
+        ?>
+    </table>
+</div>
+<div id='donated_body'>
+<div id="title">
+    <?php echo "My Donations" ?>
+</div>
+    <table id='donated_table'>
+        <thead>
+        <th colspan=1>Full name </th>
+        <th colspan=1>Donations</th>
+        <th colspan=1>Note</th>
+        </thead>
+
+        <?php
+            foreach($donated_person_detail as $row_req){
+                $item_amount="";
+                $name=$row_req['first_name']." ".$row_req['last_name'];
+                $note=$row_req['note'];
+                foreach($content_detail as $row_req1){
+                    if ($row_req1['don_id']==$row_req['id']){
+                    $item_amount=$item_amount.$row_req1['item'].":".$row_req1['amount']."<br>";
+                    }
+                }
+                echo "  <td>".$name."</td><td>".$item_amount."</td>
+                            <td>".$note."</td>
                         </tr>";
             }
         ?>
