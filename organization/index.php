@@ -6,26 +6,22 @@
         <link rel="stylesheet" href='/css_codes/publ.css'>
     </head>
     <body>
-        <?php require 'view_org_header.php' ?>
+        <?php require 'view_org_header.php'; ?>
         
         <div id='org_body'>
             
             <table class='view_org_table'>
                 <tr>
-                    <td>leader</td>
-                    <td><?php echo $result['leader'] ?></td>
-                </tr>
-                <tr>
                     <td>District</td>
-                    <td><?php echo $result['district'] ?></td>
+                    <td><?php echo $org_detail['district'] ?></td>
                 </tr>
                 <tr>
                     <td>Contact email</td>
-                    <td><?php echo $result['email'] ?></td>
+                    <td><?php echo $org_detail['email'] ?></td>
                 </tr>
                 <tr>
                     <td>Contact number</td>
-                    <td><?php echo $result['phone_num'] ?></td>
+                    <td><?php echo $org_detail['phone_num'] ?></td>
                 </tr>
             </table>
         </div>
@@ -78,8 +74,9 @@
                                 </div>";
                     echo "</div>";
                 }
-            ?>
-        </div>
+        echo '</div>';
+
+    ?>
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
         <script>
             var choose_file = document.getElementById('hidden_upload_file');
