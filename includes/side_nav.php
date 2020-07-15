@@ -3,10 +3,11 @@
         Other Members
     </div>
     <table id="side_nav_table">
+        <h2>Temporarily unavailable</h2>
     </table>
 </div>
 <script>
-    setInterval(get_last_seen,5000);
+    /*setInterval(get_last_seen,5000);
     const side_nav_table = document.getElementById('side_nav_table');
     function get_last_seen(){
         const request = new XMLHttpRequest();
@@ -17,5 +18,5 @@
         }
         request.open('GET','/includes/get_side_nav.php',true);
         request.send();
-    }
+    }*/
 </script>

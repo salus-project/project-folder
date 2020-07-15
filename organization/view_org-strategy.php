@@ -9,9 +9,10 @@
         public function get_role(){
             return $this->role;
         }
-
-        public function display(){
+        public function show_membership_button(){
             $this->role->show_membership_button();
+        }
+        public function show_edit_button(){
             $this->role->show_edit_button();
         }
     }
@@ -99,7 +100,7 @@
         }
     }
 
-    $text_role=$_GET['role'];
+    
     if($text_role == "visitor"){
         $role = new Visitor();
     }elseif($text_role == "member"){
@@ -112,6 +113,4 @@
 
     $viewer = new Viewer();
     $viewer->set_role($role);
-
-    $viewer->display(); 
 ?>

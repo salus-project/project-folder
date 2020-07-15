@@ -1,28 +1,12 @@
 #title{
-    height: 60px;
-    border: 1px solid black;
-    padding: 10px;
-    font-size: 25px;
-    font-weight: 600;
-    background-color: rgb(234, 234, 243);
+  height: 60px;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 600;
+  background-color: rgb(234, 234, 243);
 }
 #promise_table{
-    display: table;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    border-spacing: 2px;
-    border:1px solid black;
-    padding: 5px;
-    margin-left: 300px;
-    margin-top: 25px;
-}
-
-#promise_body{
-    border:1px solid black;
-    padding: 15px;
-
-}
-#donated_table{
   display: table;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -33,19 +17,35 @@
   margin-top: 25px;
 }
 
-#donated_body{
+#promise_body{
   border:1px solid black;
   padding: 15px;
 
 }
- table, th, td {
-    border: 1px solid black;
-    height: 20px;
-    padding: 5px;
-  }
-  th{
-    background-color:rgb(234, 234, 243);
-  }
-  tr{
-    width: 600px;
-  }
+#donated_table{
+display: table;
+border-collapse: collapse;
+box-sizing: border-box;
+border-spacing: 2px;
+border:1px solid black;
+padding: 5px;
+margin-left: 300px;
+margin-top: 25px;
+}
+
+#donated_body{
+border:1px solid black;
+padding: 15px;
+
+}
+table, th, td {
+  border: 1px solid black;
+  height: 20px;
+  padding: 5px;
+}
+th{
+  background-color:rgb(234, 234, 243);
+}
+tr{
+  width: 600px;
+}

@@ -45,29 +45,24 @@
     margin-right: 15px;
     margin-top: 10px;
 }
-#edit_btn{
+#edit_btn, #membership_btn{
     margin-top: 0px;
     width:100px;
     height:30px;
     background-color: skyblue;
 }
-#leave_btn{
-    margin-top: 0px;
-    width:100px;
-    height:30px;
-    background-color: skyblue;
-}
+
 #discription{
     margin-left: 30px;
 }
-#org_button_container{
+#org_button_container, #membership_btn_container{
     display:flex;
     margin:auto;
     margin-left:200px;
     margin-top:10px;
     margin-bottom:10px;
 }
-#org_button_container button{
+#org_button_container button, #membership_btn_container button{
     height:25px;
     width:100px;
 }
@@ -90,4 +85,18 @@
 
     transform:scale(1.05);
     background-color: rgb(221, 221, 221);
+}
+
+/*------------------------*/
+#org_main_body{
+    display:flex;
+}
+#org_sub_body{
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+}
+#org_side_nav{
+    border:1px solid black;
+    width:250px;
 }

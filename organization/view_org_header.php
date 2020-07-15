@@ -4,6 +4,7 @@
     if(!isset($_GET['selected_org'])){
         $_GET['selected_org']=$_GET['org_id'];
     }
+    $org_id=$_GET['selected_org'];
     $query="select * from organizations where org_id=".$_GET['selected_org'].";
     select * from org_members where org_id=".$_GET['selected_org']." and NIC_num='".$_SESSION['user_nic']."';";
 
@@ -30,15 +31,17 @@
         }
         mysqli_free_result($result1);
     }
+    require 'view_org-strategy.php';
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href='/css_codes/view_org_header.css'>
+        <link rel="stylesheet" href='/css_codes/member_nav.css.css'>
     </head>
     <body>
-        <?php require 'view_org-strategy.php'; ?>
+        
         <script>
             btnPress(6);
         </script>
@@ -54,7 +57,10 @@
             <div id=title_sub>
                 <div id=org_name>
                     <h2 id=org_name_h2><?php echo $org_detail['org_name'] ?></h2>
-                    
+                    <?php
+                        $viewer->show_membership_button();
+                        $viewer->show_edit_button();
+                    ?>
                 </div>
                 <div id=discription>
                     <h4 id=org_detail><?php echo $org_detail['discription'] ?></h4>
@@ -75,7 +81,8 @@
             const selected_org = "<?php echo $_GET['selected_org'] ?>";
         </script>
         <script src='/js/view_org.js'></script>
-        
-    </body>
-
-</html>
+        <div id='org_main_body'>
+            <div id='org_side_nav'>
+                <?php include($_SERVER['DOCUMENT_ROOT']."/organization/member_nav.php");?>
+            </div>
+            <div id='org_sub_body'>

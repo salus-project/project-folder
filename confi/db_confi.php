@@ -1,6 +1,7 @@
 <?php
+    //error_reporting(0);
     try{
-        $con = mysqli_connect("remotemysql.com","kfm2yvoF5R","4vkzHfeBh6") or header('location:'.$_SERVER['DOCUMENT_ROOT'].'/confi/error.html');
+        $con = mysqli_connect("remotemysql.com","kfm2yvoF5R","4vkzHfeBh6") or die('Unable to connect')/*header('location:'.$_SERVER['DOCUMENT_ROOT'].'/confi/error.html')*/;
         mysqli_select_db($con,"kfm2yvoF5R");
 
         $org_DB = mysqli_connect("remotemysql.com","LvFAfm4fFA","JGhOtcM4ez") or die("Unable to connect");
@@ -17,6 +18,8 @@
         $con->close();
         $org_DB->close();
         $notification_DB->close();
+
+        ob_end_flush();
     }
     register_shutdown_function('shutdown');
 

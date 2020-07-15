@@ -1,7 +1,4 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
-    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-    $org_id='15';
     $query="SELECT * FROM org_members INNER JOIN civilian_detail ON org_members.NIC_num = civilian_detail.NIC_num where org_members.org_id='$org_id' and org_members.role='leader';
             SELECT * FROM org_members INNER JOIN civilian_detail ON org_members.NIC_num = civilian_detail.NIC_num where org_members.org_id='$org_id' and org_members.role='coleader' ;
             SELECT * FROM org_members INNER JOIN civilian_detail ON org_members.NIC_num = civilian_detail.NIC_num where org_members.org_id='$org_id' and org_members.role='member';";

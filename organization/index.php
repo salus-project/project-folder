@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
+
         <title>view organization</title>
         <link rel="stylesheet" href='/css_codes/view_org.css'>
         <link rel="stylesheet" href='/css_codes/publ.css'>
-    </head>
-    <body>
+
         <?php require 'view_org_header.php'; ?>
         
         <div id='org_body'>
@@ -77,7 +74,7 @@
         echo '</div>';
 
     ?>
-        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+        
         <script>
             var choose_file = document.getElementById('hidden_upload_file');
             function upload(){
@@ -145,8 +142,5 @@
                 xhttp.send(send_str);
             }
         </script>
-<!-- end of post part-->
 
-    </body>
-
-</html>
+        <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
