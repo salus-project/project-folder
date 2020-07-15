@@ -1,6 +1,5 @@
 <?php  
-    session_start();
-    require 'dbconfi/confi.php';
+    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,34 +16,18 @@
             $nic=$_SESSION['user_nic'];    
             $value="null";
 
-           $query="select * from organizations where org_id=".$org_id;
-            $result=($con->query($query))->fetch_assoc();
-            $status=explode(" ",$result['members']);
-            $leader=$result['leader'];
-            $co_leader=$result['co_leader'];
-
-            if ($leader===$nic ){
-                $query="UPDATE `organizations` SET `leader` = '".$value."' where org_id='$org_id'";
-            }
-            elseif($co_leader===$nic){
-                $query="UPDATE `organizations` SET `co_leader` = '".$value."' where org_id='$org_id'";
-
-            }
-            elseif(in_array($nic, $status)){
-                $key = array_search($nic,$status);
-                unset($status[$key]);
-                $my=join(" ",$status);
-                $query="UPDATE `organizations` SET `members` = '".$my."' where org_id='$org_id'";
+            $query="select * from org_members where org_id=".$org_id." and  NIC_num='".$nic."';";
+            $result=$con->query($query);
+            if(mysqli_num_rows($result)>0){
+                $query1="DELETE FROM org_members where org_id=".$org_id." and  NIC_num='".$nic."';";
             }else{
-                array_push($status,$nic);
-                $my=join(" ",$status);
-                $query="UPDATE `organizations` SET `members` = '".$my."' where org_id='$org_id'";
+                $query1="INSERT INTO org_members (org_id, NIC_num, role) VALUES ('$org_id', '$nic', 'member')";
             }   
 
-            $query_run= mysqli_query($con,$query);
+            $query_run= mysqli_query($con,$query1);
             if($query_run ){
                 echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-                header('location:view_org.php?selected_org='.$org_id);
+                header('location:/organization/?selected_org='.$org_id);
             }
         ?>
     </body>
