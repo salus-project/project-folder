@@ -1,13 +1,14 @@
 #org_body{
     border:1px solid black;
     margin: auto;
+    width: 250px;
 }
 .view_org_table{
     margin:auto;
     margin-top: 20px;
     margin-bottom: 20px;
     border:1px solid black;
-    width:400px;
+    width:250px;
     border-collapse: collapse;
 }
 .loader{
@@ -27,4 +28,9 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+#detail{
+    background-color: #9fb5de;
+    text-align: center;
+    padding: 5px;
 }

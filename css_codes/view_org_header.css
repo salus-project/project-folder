@@ -95,8 +95,23 @@
     width: -moz-available;
     width: -webkit-fill-available;
     width: fill-available;
+    border: 1px solid black;
 }
 #org_side_nav{
     border:1px solid black;
+    width: 250px;
+}
+.member{
+    background-color: #9fb5de;
+    text-align: center;
+    padding: 5px;
+    
+}  
+.member_table{
+    margin:auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border:1px solid black;
     width:250px;
+    border-collapse: collapse;
 }
