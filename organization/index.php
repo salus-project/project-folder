@@ -1,28 +1,14 @@
-
+<?php 
+    require 'view_org_header.php'; 
+?>
+<!DOCTYPE html>
+<html>
+    <head>
         <title>view organization</title>
         <link rel="stylesheet" href='/css_codes/view_org.css'>
         <link rel="stylesheet" href='/css_codes/publ.css'>
-
-        <?php require 'view_org_header.php'; ?>
-        
-        <div id='org_body'>
-            
-            <table class='view_org_table'>
-                <tr>
-                    <td>District</td>
-                    <td><?php echo $org_detail['district'] ?></td>
-                </tr>
-                <tr>
-                    <td>Contact email</td>
-                    <td><?php echo $org_detail['email'] ?></td>
-                </tr>
-                <tr>
-                    <td>Contact number</td>
-                    <td><?php echo $org_detail['phone_num'] ?></td>
-                </tr>
-            </table>
-        </div>
-
+    </head>
+    <body>
 <!-- post part should modify  -->
         <div id="title">
             Posts 
@@ -71,10 +57,9 @@
                                 </div>";
                     echo "</div>";
                 }
-        echo '</div>';
-
+        echo '</div>';       
     ?>
-        
+       
         <script>
             var choose_file = document.getElementById('hidden_upload_file');
             function upload(){
@@ -144,3 +129,5 @@
         </script>
 
         <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
+    </body>
+</html>
