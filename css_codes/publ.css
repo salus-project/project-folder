@@ -5,8 +5,12 @@
     font-size: 25px;
     font-weight: 600;
 }
+body{
+    background-color: rgb(242 244 246);
+}
 #content{
-    border:1px solid black;
+    width: 500px;
+    margin: auto;
 }
 #new_post{
     width: 70%;
@@ -15,6 +19,11 @@
     margin:auto;
     padding-right:6px;
     font-size: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+}
+#new_post:hover{
+    transform: scale(1.03); 
 }
 #post_text_area{
     width: 100%;
@@ -67,25 +76,40 @@
 }
 /*------------------post ----------------------------*/
 .posts{
-    width:75%;
     min-height: 100px;
-    margin:auto;
+    margin: auto;
     margin-top: 10px;
     margin-bottom: 5px;
-    border:1px solid black;
+    background-color: white;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    color: #1c1e21;
+    direction: ltr;
+    line-height: 1.34;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+.posts:hover{
+    transform: scale(1.03); 
 }
 .post_title{
-    border:1px solid black;
-    height:40px;
-    padding:2px;
-    margin:3px;
+    height: 50px;
+    padding: 2px;
+    margin: auto;
+    margin-left: 16px;
+    display: flex;
 
 }
 .post_content{
-    margin:3px;
-    border:1px solid black;
-    padding:2px;
-
+    margin: auto;
+    margin-left: 16px;
+    padding: 5px;
+}
+.profile_pic{
+    margin-right: 20px;
+}
+.profile{
+    margin-left: 10px;
 }
 .post_image{
     width:70%;
@@ -97,6 +121,55 @@
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+.likes{
+    position: relative;
+    padding-bottom: 10px;
+    font-size: .9375rem;
+    padding-top: 10px;
+    display: flex;
+    flex-grow: 1;
+    margin-left: 16px;
+    align-items: center;
+    /* justify-content: flex-end; */
+    line-height: 1.3333;
+    border-bottom: 1px solid #8f8b8b;
+}
+.like_count{
+    align-content: inherit;
+    flex-basis: inherit;
+    max-height: inherit;
+    flex-grow: inherit;
+}
+.like_buttons_container{
+    min-height: 32px;
+    display: flex;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-left: 16px;
+    padding-left: 0px;
+    color: #1c1e21;
+    direction: ltr;
+    line-height: 1.34;
+    border-bottom: 1px solid #8f8b8b;
+}
+.button_container{
+    display: flex;
+    order: 1;
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: row;
+    direction: ltr;
+    line-height: 1.34;
+    font-size: .9375rem;
+}
+.button_con{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    margin: auto;
 }
 /*------------ comment box -----------*/
 .comment_box_container{
