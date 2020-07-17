@@ -130,3 +130,11 @@ o	From to create an disaster event
 Notification
 •	To show the notification
 •	This will common to all government staffs.
+
+
+Primary Color - #4c5fd7
+Scondary color - #0c7dff47
+font color - #6b7c93
+font-weight: 400;
+    font-size: 16px;
+    color: #6b7c93;
