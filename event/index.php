@@ -1,5 +1,5 @@
 <?php  
-    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";   
+    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
 ?>
 <div id='map_container'>
     <?php require $_SERVER['DOCUMENT_ROOT']."/event/map.html"; ?>
@@ -27,6 +27,7 @@
         Goverment posts and announcements about this event
     </div>
     
+    
 </div>
 <div id=pictures>
     <h3>Photos</h3>
@@ -36,31 +37,35 @@
         <h2>Help requested people<h2>
         <table>
         <?php
-            $query1='select NIC_num,first_name,last_name from civilian_detail';
-            $result1=$con->query($query1);
-            if(!$result1){
-                echo mysqli_error($con);
-            }
-            while($civilian=$result1->fetch_assoc()){
-                $nic_num=$civilian["NIC_num"];
-                $help_request_status= explode(" ",$result['user_'.$nic_num])[1];
-                if ($help_request_status=='requested') {
-                    $full_name=$civilian["first_name"].' '.$civilian["last_name"];
+            foreach($help_requested as $row_req){
+                $nic_num=$row_req["NIC_num"];
+                    $full_name=$row_req["first_name"].' '.$row_req["last_name"];
                     echo "<tr>";
                     echo    "<td id=data>";
-                    echo            "<input type=hidden name='to' value=".$civilian['NIC_num'].">";
-                    echo            "<div class='requested' onclick='help_option(this)'>";
-                    echo                $full_name;
-                    echo            "</div>";
+                    echo                "<a href='/event/requester.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
                     echo    "</td>";
                     echo "</tr>";
-                }
+                
             }
         ?>
         </table>
     </div>
     <div id=affected>
-        <h2>Affected people detail</h2>
+        <h2>Volunteers detail</h2>
+        <table>
+        <?php
+            foreach($volunteers as $row_req){
+                $nic_num=$row_req["NIC_num"];
+                    $full_name=$row_req["first_name"].' '.$row_req["last_name"];
+                    echo "<tr>";
+                    echo    "<td id=data>";
+                    echo                "<a href='/event/volunteer.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
+                    echo    "</td>";
+                    echo "</tr>";
+                
+            }
+        ?>
+        </table>
     </div>
     <div id=organizations>
         <h2>Organizations on action</h2>

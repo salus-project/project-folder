@@ -25,7 +25,8 @@
             $query="select * from disaster_events where event_id =" . $_GET['event_id'].";
                     select * from event_".$_GET['event_id']."_locations;
                     select * from organizations;
-                    select * from event_".$_GET['event_id']."_help_requested;";
+                    SELECT `event_".$_GET['event_id']."_help_requested`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_help_requested INNER JOIN civilian_detail on event_".$_GET['event_id']."_help_requested.NIC_num=civilian_detail.NIC_num;
+                    SELECT `event_".$_GET['event_id']."_volunteers`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_volunteers INNER JOIN civilian_detail on event_".$_GET['event_id']."_volunteers.NIC_num=civilian_detail.NIC_num";    
             $result;
             if(mysqli_multi_query($con, $query)){
                 $sql_result = mysqli_store_result($con);
@@ -53,6 +54,12 @@
             $sql_result = mysqli_store_result($con);
             $help_requested = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
             mysqli_free_result($sql_result);
+
+            mysqli_next_result($con);
+            $sql_result = mysqli_store_result($con);
+            $volunteers = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
+            mysqli_free_result($sql_result);
+        
         ?>
         <script>
             var event_name = '<?php echo $result['name'] ?>';
