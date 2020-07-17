@@ -2,7 +2,7 @@
     require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
 ?>
 <div id='map_container'>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/event/map.html"; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
 </div>
 <div id=detail_body>
     <div id='table_caontainer'>
