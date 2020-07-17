@@ -11,40 +11,48 @@
         public function log_on_screen(){
             echo    "<div class='posts'>
                         <input type='hidden' class='post_index' value='".$this->detail_arr['post_index']."'>
-                        <div class='post_title'>
-                            <div class='author'>
-                                <a class='post_a' href='".$this->author_link."'>"
+                        <div class='post_title'>".
+                            "<div class='profile_pic'>
+                                    <img src='' alt='pic'>
+                            </div>
+                            <div class='profile'>
+                                <div class='author'>
+                                <a class='post_a' href='".$this->author_link."'><b>"
                                     . $this->author .
-                                "</a>";
+                                "</b></a>";
                                 if(!$this->detail_arr['tag']==''){
                                     echo " <i class='fa fa-toggle-right'></i> ".$this->detail_arr['tag'];
                                 }
-                                echo "</div>" . "<div class='post_date'> Date: {$this->detail_arr['date']}</div>";
+                                echo "</div>" . "<div class='post_date'> Date: {$this->detail_arr['date']}</div></div>";
                         echo"</div>";
-                        echo"<div class='post_content'>" . $this->detail_arr['content'] . "</div>";
+                        echo"<div><div class='post_content'>" . $this->detail_arr['content'] . "</div></div>";
                         if(!$this->detail_arr['img']==''){
                             echo "<div class=post_image_container><img class=post_image src='".$this->detail_arr['img']."'/></div>";
                         }
                         $likes = array_filter(explode(" ",$this->detail_arr['likes']));
             echo        "<div class='like_bar'>
-                            <span class='like_count'>
-                                " . sizeof($likes) . " likes
-                            </span>
+                            <div class='likes'>
+                                <span class='like_count'>
+                                    " . sizeof($likes) . " likes
+                                </span>
+                            </div>
                             <div class='like_buttons_container'>
-                                <button class='like_button' ";
-                                    if((in_array($_SESSION['user_nic'],$likes))){
-                                        echo "onclick='unlike(this)'><i class='fas fa-thumbs-up'></i> liked";
-                                    }else{
-                                        echo "onclick='like(this)'><i class='far fa-thumbs-up'></i> like";
-                                    }
-            echo                "</button>
-                                <button onclick='show_comment(this)'>
-                                    <i class='far fa-comment-alt'></i> "
-                                    . $this->detail_arr['comments'] . " comments
-                                </button>
-                                <button>
-                                    <i class='fa fa-share'></i> share
-                                </button>
+                                <div class='button_container'>
+                                    <button class='button_con like_button' ";
+                                        if((in_array($_SESSION['user_nic'],$likes))){
+                                            echo "onclick='unlike(this)'><i class='fas fa-thumbs-up'></i><b> liked</b>";
+                                        }else{
+                                            echo "onclick='like(this)'><i class='far fa-thumbs-up'></i> <b>like</b>";
+                                        }
+                echo                "</button>
+                                    <button class='button_con' onclick='show_comment(this)'>
+                                        <i class='far fa-comment-alt'></i><b> "
+                                        . $this->detail_arr['comments'] . " comments
+                                    </b></button>
+                                    <button class='button_con'>
+                                        <i class='fa fa-share'></i><b> share</b>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class='comment_box_container'>
