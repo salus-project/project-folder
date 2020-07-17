@@ -19,7 +19,7 @@
     padding:15px;
     font-size: medium;
 }
-#promise_body{
+#promise_body,#fund_post_div{
     border:1px solid black;
     margin:auto;
     padding:15px;
