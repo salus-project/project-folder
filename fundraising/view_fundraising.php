@@ -1,17 +1,19 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+require $_SERVER['DOCUMENT_ROOT']."/includes/post_creator.php";
 $query="select * from fundraisings where id=".$_GET['view_fun'].";
-select * from civilian_detail where NIC_num=(
-    select by_civilian from fundraisings where id=".$_GET['view_fun']."
-);
-select org_name from organizations where org_id=(
-    select by_org from fundraisings where id=".$_GET['view_fun']."); 
-select name from disaster_events where event_id=(
-    select for_event from fundraisings where id=".$_GET['view_fun'].");
-select * from fundraisings_expects where fund_id=".$_GET['view_fun'].";
-select * from fundraising_pro_don inner join civilian_detail on civilian_detail.NIC_num = fundraising_pro_don.by_person where for_fund=".$_GET['view_fun'].";
-select * from fundraising_pro_don inner join organizations on organizations.org_id = fundraising_pro_don.by_org where for_fund=".$_GET['view_fun'].";
-select * from  fundraising_pro_don inner join fundraising_pro_don_content on fundraising_pro_don.id = fundraising_pro_don_content.don_id where for_fund=".$_GET['view_fun'].";";
+    select * from civilian_detail where NIC_num=(
+        select by_civilian from fundraisings where id=".$_GET['view_fun']."
+    );
+    select org_name from organizations where org_id=(
+        select by_org from fundraisings where id=".$_GET['view_fun']."); 
+    select name from disaster_events where event_id=(
+        select for_event from fundraisings where id=".$_GET['view_fun'].");
+    select * from fundraisings_expects where fund_id=".$_GET['view_fun'].";
+    select * from fundraising_pro_don inner join civilian_detail on civilian_detail.NIC_num = fundraising_pro_don.by_person where for_fund=".$_GET['view_fun'].";
+    select * from fundraising_pro_don inner join organizations on organizations.org_id = fundraising_pro_don.by_org where for_fund=".$_GET['view_fun'].";
+    select * from  fundraising_pro_don inner join fundraising_pro_don_content on fundraising_pro_don.id = fundraising_pro_don_content.don_id where for_fund=".$_GET['view_fun'].";
+    select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id=".$_GET['view_fun'].";";
 
     if(mysqli_multi_query($con,$query)){
         $result = mysqli_store_result($con);
@@ -63,6 +65,11 @@ select * from  fundraising_pro_don inner join fundraising_pro_don_content on fun
         $content_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
         mysqli_free_result($result);
 
+        mysqli_next_result($con);
+        $result = mysqli_store_result($con);
+        $fund_post=mysqli_fetch_all($result,MYSQLI_ASSOC);
+        mysqli_free_result($result);
+       
         $person_org_array=array_merge($person_detail,$org_detail);
     }
 ?>
@@ -72,6 +79,7 @@ select * from  fundraising_pro_don inner join fundraising_pro_don_content on fun
     <head>
         <title>view fundraising event</title>
         <link rel="stylesheet" href='/css_codes/view_fundraising.css'>
+        <link rel="stylesheet" href='/css_codes/publ.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     
@@ -211,6 +219,17 @@ select * from  fundraising_pro_don inner join fundraising_pro_don_content on fun
                     }   
                 ?>
             </table>
+        </div>
+        <div id='fund_post_div'>
+            <div id="title">
+                <?php echo "Posts" ?>
+            </div>
+            <?php           
+                $post_factory = new PostFactory();           
+                foreach($fund_post as $row){
+                    $post_factory->getPost($row)->log_on_screen();
+                }           
+            ?>
         </div>
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
 
