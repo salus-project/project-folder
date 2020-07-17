@@ -1,27 +1,22 @@
 switch(safe_status){
     case 'not_set':
-        var html1 = "<button id='mark' onclick='markFun()'>Mark</button>";
+        var html1 = "<button id='mark' onclick='markFun()'>Mark</button>\n"+
+                    '<div id="safe_btn" style="display:none">\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
+                    '</div>';
         break;
     case 'safe':
-        var html1 = "<div class=switch_container>"+
-                        "<label class='switch'>"+
-                            "<input type=checkbox id=checkbox onclick=markingFun()>"+
-                            "<span class=slider></span>"+
-                        "</label>"+
-                        "<span class=indicator id=indicator>Safe</span>"+
-                    "</div>";
+        var html1 = '<div id="safe_btn">\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
+                    '</div>';
         break;
     case 'not_safe' :
-        var html1 = "<div class=switch_container>"+
-                        "<label class='switch'>"+
-                            "<input type=checkbox id=checkbox onclick=markingFun() checked>"+
-                            "<span class=slider></span>"+
-                        "</label>"+
-                        "<span class=indicator id=indicator style='background-color:rgb(231, 74, 74)'>Not Safe</span>"+
-                    "</div>";
+        var html1 = '<div id="safe_btn">\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()" checked>\n'+
+                    '</div>';
         break;
 }
-var safe_btn = document.getElementById('safe_btn');
+var safe_btn = document.getElementById('safe_btn_container');
 safe_btn.innerHTML = html1;
 
 switch(help_status){
@@ -59,30 +54,18 @@ volunteer_btn.innerHTML = html3;
 ////////////Mark as safe /////////////////////////////
 
 function markFun(){
-    mark_html=  "<div class=switch_container>"+
-                    "<label class='switch'>"+
-                        "<input type=checkbox id=checkbox onclick=markingFun()>"+
-                        "<span class=slider></span>"+
-                    "</label>"+
-                    "<span class=indicator id=indicator>Safe</span>"+
-                "</div>";
-    
-    safe_btn.innerHTML = ( mark_html );
+    safe_btn.firstElementChild.outerHTML='';
+    safe_btn.firstElementChild.style.display='block';
     status='safe';
     update();
 }
 function markingFun(){
-    var checkbox = document.getElementById('checkbox');
-    var indicator = document.getElementById('indicator');
+    var checkbox = safe_btn.querySelector('input');
     if(checkbox.checked){
         status='not_safe';
-        indicator.innerHTML = 'Not Safe';
-        indicator.style.backgroundColor = 'rgb(231, 74, 74)';
         update();
     }else{
         status='safe';
-        indicator.innerHTML = 'Safe';
-        indicator.style.backgroundColor = 'rgb(55, 230, 84)';
         update();
     }
 }
@@ -90,18 +73,19 @@ function update(){
     const request = new XMLHttpRequest();
 
     request.onload = () => {
-        //console.log(request.responseText);
-        let responseObject = null;
-        try{
-            responseObject = JSON.parse(request.responseText);
-        }catch(e){
-            console.error('Could not parse JSON');
-        }
-        if(responseObject){
-            console.log(responseObject);
+        if(this.readyState == 4 && this.status == 200){
+            //console.log(request.responseText);
+            let responseObject = null;
+            try{
+                responseObject = JSON.parse(request.responseText);
+            }catch(e){
+                console.error('Could not parse JSON');
+            }
+            if(responseObject){
+                console.log(responseObject);
+            }
         }
     };
-
     const requestData = `event_id=`+ event_id + `&safe_status=`+status;
 
     request.open('post', '/event/mark_safe.php');
@@ -111,8 +95,11 @@ function update(){
 
 ///////////////////////////////////////////
 
-
+window.addEventListener('load',()=>{
+    
+})
 var requested = document.getElementsByClassName('requested');
+console.log(requested.length);
 for(div of requested){
 
     var help_people_html ='<div id=requested_container>';
@@ -154,12 +141,15 @@ close_help_popup.forEach(button => {
     })
 })
 
-overlay.addEventListener('click',()=>{
-    const popups = document.querySelectorAll('.popup.active_pop')
-    popups.forEach(popup =>{
-        close_popup(popup);
-    })
-})
+if(overlay!==null){
+    overlay.addEventListener('click',()=>{
+        const popups = document.querySelectorAll('.popup.active_pop')
+        popups.forEach(popup =>{
+            close_popup(popup);
+        })
+    });
+}
+
 
 function open_popup(url){
     const popup = document.getElementById('popup_div');
