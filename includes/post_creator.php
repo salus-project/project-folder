@@ -11,20 +11,22 @@
         public function log_on_screen(){
             echo    "<div class='posts'>
                         <input type='hidden' class='post_index' value='".$this->detail_arr['post_index']."'>
-                        <div class='post_title'>".
-                            "<div class='profile_pic'>
-                                    <img src='' alt='pic'>
-                            </div>
-                            <div class='profile'>
-                                <div class='author'>
-                                <a class='post_a' href='".$this->author_link."'><b>"
-                                    . $this->author .
-                                "</b></a>";
-                                if(!$this->detail_arr['tag']==''){
-                                    echo " <i class='fa fa-toggle-right'></i> ".$this->detail_arr['tag'];
-                                }
-                                echo "</div>" . "<div class='post_date'> Date: {$this->detail_arr['date']}</div></div>";
-                        echo"</div>";
+                        <div>  
+                            <div class='post_title'>".
+                                "<div class='profile_pic'>
+                                        <img src='' alt='pic'>
+                                </div>
+                                <div class='profile'>
+                                    <div class='author'>
+                                    <a class='post_a' href='".$this->author_link."'><b>"
+                                        . $this->author .
+                                    "</b></a>";
+                                    if(!$this->detail_arr['tag']==''){
+                                        echo " <i class='fa fa-toggle-right'></i> ".$this->detail_arr['tag'];
+                                    }
+                                    echo "</div>" . "<div class='post_date'> Date: {$this->detail_arr['date']}</div></div>";
+                            echo"</div>
+                        </div>";
                         echo"<div><div class='post_content'>" . $this->detail_arr['content'] . "</div></div>";
                         if(!$this->detail_arr['img']==''){
                             echo "<div class=post_image_container><img class=post_image src='".$this->detail_arr['img']."'/></div>";
@@ -36,31 +38,46 @@
                                     " . sizeof($likes) . " likes
                                 </span>
                             </div>
-                            <div class='like_buttons_container'>
-                                <div class='button_container'>
-                                    <button class='button_con like_button' ";
+                            <div class='buttons_container'>
+                                <div class='button_div'>
+                                    <button class='button_con  but_1_2' ";
                                         if((in_array($_SESSION['user_nic'],$likes))){
                                             echo "onclick='unlike(this)'><i class='fas fa-thumbs-up'></i><b> liked</b>";
                                         }else{
                                             echo "onclick='like(this)'><i class='far fa-thumbs-up'></i> <b>like</b>";
                                         }
                 echo                "</button>
-                                    <button class='button_con' onclick='show_comment(this)'>
+                                </div>
+                                <div class='button_div'>
+                                    <button class='button_con  but_1_2' onclick='show_comment(this)'>
                                         <i class='far fa-comment-alt'></i><b> "
-                                        . $this->detail_arr['comments'] . " comments
-                                    </b></button>
-                                    <button class='button_con'>
+                                        . $this->detail_arr['comments'] . " comments</b>
+                                    </button>
+                                </div>
+                                <div class='button_div'>
+                                    <button class='button_con  but_3'>
                                         <i class='fa fa-share'></i><b> share</b>
                                     </button>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class='comment_box_container'>
                             <div class='comment_box'>
+                            comment1<br>
+                            comment2<br>
+                            commemnt
                             </div>
-                            <div class='new_comment'>
-                                <input type='text' class='comment_input' placeholder='Enter comment here'><span class='send_btn' onclick='comment(this)'>send</span>
-                            </div>
+                                <div class='new_comment'>
+                                    <div class='comment_div'>
+                                        <input type='text' class='comment_input' placeholder='Enter your comment..'>
+                                    </div>
+                                    <div class='tooltip send_icon'>
+                                        <span class='send_btn' onclick='comment(this)'><i class='fa fa-send'></i></span>
+                                        <span class='tooltiptext'>SEND</span>
+                                    </div>
+                                </div>
+                           
                         </div>";
             echo    "</div>";
         }
