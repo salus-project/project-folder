@@ -19,14 +19,14 @@
         <div class="title">
             <div id='cover'>
                 <?php
-                    $cover_path = "http://eme-service.000webhostapp.com/Covers/" . $_SESSION['user_nic'] . ".jpg";
+                    $cover_path = "http://d-c-a.000webhostapp.com/Covers/" . $_SESSION['user_nic'] . ".jpg";
                     $cover_path_header = get_headers($cover_path);
                     if($cover_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $cover_path = "http://eme-service.000webhostapp.com/Covers/default.jpg";
+                        $cover_path = "http://d-c-a.000webhostapp.com/Covers/default.jpg";
                     }
                 ?>
                 <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
-                <form method='post' action="http://eme-service.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
+                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
 
                     <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Covers/">
@@ -37,14 +37,14 @@
             </div>
             <div class="profile_container">
                 <?php
-                    $profile_path = "http://eme-service.000webhostapp.com/Profiles/" . $_SESSION['user_nic'] . ".jpg";
+                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $_SESSION['user_nic'] . ".jpg";
                     $profile_path_header = get_headers($profile_path);
                     if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $profile_path = "http://eme-service.000webhostapp.com/Profiles/default.jpg";
+                        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
                     }
                 ?>
                 <img src="<?php echo $profile_path;?>" alt="Opps..." class="profile_pic">
-                <form method='post' action="http://eme-service.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
+                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
 
                     <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Profiles/">
