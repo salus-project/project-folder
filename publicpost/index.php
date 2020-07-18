@@ -131,7 +131,7 @@
                 element.outerHTML = " <button class='like_button' onclick='like(this)'><i class='far fa-thumbs-up' aria-hidden='true'></i> like</button>";
             }
             function show_comment(element){
-                var cmt_btn = element.parentElement.parentElement.parentElement.querySelector('.comment_box_container');
+                var cmt_btn = element.parentElement.parentElement.parentElement.parentElement.querySelector('.comment_box_container');
                 cmt_btn.classList.toggle('comment_box_active');
                 var post_index = cmt_btn.parentElement.querySelector('.post_index').value;
                 var send = "view_cmt=true&post_index=".concat(post_index);
