@@ -117,18 +117,18 @@
                 //document.getElementById('image_container').style.height = img.height;
             }
             function like(element){
-                var parent = element.parentElement.parentElement.parentElement;
+                var parent = element.parentElement.parentElement.parentElement.parentElement;
                 var post_index = parent.querySelector('.post_index').value;
                 var send = "like=true&post_index=".concat(post_index);
                 response(send);
-                element.outerHTML = " <button class='like_button' onclick='unlike(this)'><i class='fas fa-thumbs-up' aria-hidden='true'></i> liked</button>";
+                element.outerHTML = " <button class='button_con  but_1_2' onclick='unlike(this)'><i class='fas fa-thumbs-up' aria-hidden='true'></i><b> liked</b></button>";
             }
             function unlike(element){
-                var parent = element.parentElement.parentElement.parentElement;
+                var parent = element.parentElement.parentElement.parentElement.parentElement;
                 var post_index = parent.querySelector('.post_index').value;
                 var send = "unlike=true&post_index=".concat(post_index);
                 response(send);
-                element.outerHTML = " <button class='like_button' onclick='like(this)'><i class='far fa-thumbs-up' aria-hidden='true'></i> like</button>";
+                element.outerHTML = " <button class='button_con but_1_2' onclick='like(this)'><i class='far fa-thumbs-up' aria-hidden='true'></i><b> like</b></button>";
             }
             function show_comment(element){
                 var cmt_btn = element.parentElement.parentElement.parentElement.parentElement.querySelector('.comment_box_container');
