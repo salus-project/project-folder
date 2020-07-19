@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/css_codes/publ.css">
         <link rel="stylesheet" href="/css_codes/auto_complete.css">
         <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
+        <script src="/common/post/post.js"></script>
     </head>
     <body>
 
@@ -55,52 +56,13 @@
         </div>
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
         <script>
+
+            var post = new Post('select civilian_detail.first_name, civilian_detail.last_name, organizations.org_name, fundraisings.name, public_posts.* from (((public_posts LEFT JOIN civilian_detail on public_posts.author = civilian_detail.NIC_num) LEFT JOIN organizations on public_posts.org = organizations.org_id)  LEFT JOIN fundraisings on public_posts.fund = fundraisings.id)');
+            post.get_post();
+
             var choose_file = document.getElementById('hidden_upload_file');
             function upload(){
                 choose_file.click();
-            }
-            window.addEventListener('scroll',loadpage);
-
-            var first = true;
-            var offset=0;
-            get_post();
-
-            function loadpage() {
-                //console.log(document.body.scrollTop, document.body.scrollHeight );
-                if (document.body.scrollTop > document.body.scrollHeight - window.innerHeight -100 || document.documentElement.scrollTop > document.body.scrollHeight - window.innerHeight -100) {
-                    if(first){
-                        get_post();
-                    }
-                }
-            }
-
-            function get_post(){
-                var body = document.getElementById('content');
-                send_str="from="+offset;
-
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState == 4 && this.status == 200){
-                        body.querySelector('#page_loader').outerHTML='';
-                        if(this.responseText==''){
-                            body.innerHTML += "<div>End of posts</div>";
-                            first = false;
-                        }else{
-                            body.innerHTML+= this.responseText;
-                            first = true;
-                        }
-                    }
-                    if(this.readyState == 1){
-                        body.innerHTML += "<div class='page_loader' id='page_loader'></div>";
-                        first = false;
-                    }
-                };
-                xhttp.open('POST', '/publicpost/load_page.php',true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(send_str);
-
-                
-                offset+=5;
             }
 
             var loadFile = function(event){
@@ -116,52 +78,7 @@
                 document.getElementById('image_container').style.margin = "10px";
                 //document.getElementById('image_container').style.height = img.height;
             }
-            function like(element){
-                var parent = element.parentElement.parentElement.parentElement.parentElement;
-                var post_index = parent.querySelector('.post_index').value;
-                var send = "like=true&post_index=".concat(post_index);
-                response(send);
-                element.outerHTML = " <button class='button_con  but_1_2' onclick='unlike(this)'><i class='fas fa-thumbs-up' aria-hidden='true'></i><b> liked</b></button>";
-            }
-            function unlike(element){
-                var parent = element.parentElement.parentElement.parentElement.parentElement;
-                var post_index = parent.querySelector('.post_index').value;
-                var send = "unlike=true&post_index=".concat(post_index);
-                response(send);
-                element.outerHTML = " <button class='button_con but_1_2' onclick='like(this)'><i class='far fa-thumbs-up' aria-hidden='true'></i><b> like</b></button>";
-            }
-            function show_comment(element){
-                var cmt_btn = element.parentElement.parentElement.parentElement.parentElement.querySelector('.comment_box_container');
-                cmt_btn.classList.toggle('comment_box_active');
-                var post_index = cmt_btn.parentElement.querySelector('.post_index').value;
-                var send = "view_cmt=true&post_index=".concat(post_index);
-                response(send,cmt_btn.querySelector('.comment_box'));
-            }
-            function comment(element){
-                var comment = element.parentElement.querySelector('.comment_input').value;
-                if(comment!==''){
-                    var parent = element.parentElement.parentElement.parentElement;
-                    var post_index = parent.querySelector('.post_index').value;
-                    send = "comment=true&post_index=".concat(post_index,"&content=",comment);
-                    response(send);
-                    send = "view_cmt=true&post_index=".concat(post_index);
-                    response(send,element.parentElement.previousElementSibling);
-                    element.parentElement.firstElementChild.value = '';
-                }
-            }
-            function response(send_str,element){
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState == 4 && this.status == 200){
-                        if(typeof element !== 'undefined'){
-                            element.innerHTML =  this.responseText;
-                        }
-                    }
-                };
-                xhttp.open('POST', 'public_post_get.php',true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(send_str);
-            }
+            
             function add_tag(){
                 //frsrgrsrfvgv
             }
