@@ -14,7 +14,7 @@
                         <div>  
                             <div class='post_title'>".
                                 "<div class='profile_pic'>
-                                        <img src='' alt='pic'>
+                                        <img src='".$this->profile_url."' alt='pic'>
                                 </div>
                                 <div class='profile'>
                                     <div class='author'>
@@ -72,8 +72,8 @@
                                     <div class='comment_div'>
                                         <input type='text' class='comment_input' placeholder='Enter your comment..'>
                                     </div>
-                                    <div class='tooltip send_icon'>
-                                        <span class='send_btn' onclick='comment(this)'><i class='fa fa-send'></i></span>
+                                    <div class='tooltip send_icon' onclick='comment(this)'>
+                                        <span class='send_btn'><i class='fa fa-send'></i></span>
                                         <span class='tooltiptext'>SEND</span>
                                     </div>
                                 </div>
@@ -89,6 +89,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['first_name']. " ".$detail_arr['last_name'];
             $this->author_link = "/view_profile.php?id=".$detail_arr['author'];
+            $this->profile_url = "http://d-c-a.000webhostapp.com/Profiles/resized/".$detail_arr['author'].".jpg";
         }
     }
 
@@ -98,6 +99,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['org_name'];
             $this->author_link = "/organization?selected_org=".$detail_arr['org'];
+            $this->profile_url = '';
         }
     }
 
@@ -107,6 +109,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['name'];
             $this->author_link = "/fundraising/view_fundraising.php?view_fun=".$detail_arr['fund'];
+            $this->profile_url = '';
         }
     }
 
