@@ -35,11 +35,16 @@
         $result = $con->query($query);
         while($row = $result->fetch_assoc()){
             echo "<div class='comment_container'>
-                    <div class='cmt_name'>"
-                        . $row['first_name'] . " " . $row['last_name'] . " "  . $row['date'] . " " . $row['time'] .
-                    "</div>";
-            echo $row['content'];
-            echo "</div>";
+                    <div class='cmt_name'><b>"
+                        . $row['first_name'] . " " . $row['last_name'] . 
+                    "</b></div>
+                    <div class='cmt_content'>"
+                        .$row['content']."
+                    </div>
+                    <div class='cmt_time'>"
+                        . $row['date'] . " " . $row['time'] ."
+                    </div>                      
+            </div>";
         }
     }
     if(isset($_POST['comment'])){
