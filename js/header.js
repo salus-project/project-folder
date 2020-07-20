@@ -10,42 +10,50 @@ window.onscroll = function(){
         body.style.paddingTop = '0'
     }
 }
+
 var btn_num;
+// function btnPress(btn){
+//     btn_num =btn;
+//     var buttons = document.getElementsByClassName('menubar_buttons');
+//     for(var item of buttons){
+//         item.children[0].children[0].children[0].classList.remove('active');
+//     }
+//     var button = document.getElementById('menu_bar_btn_'.concat(btn));
+//     button.children[0].children[0].children[0].classList.toggle('active');
+// };
+
 function btnPress(btn){
     btn_num =btn;
-    var buttons = document.getElementsByClassName('menubar_buttons');
-    for(var item of buttons){
+    var tdd=document.getElementsByClassName('menu_icon');
+    for(var item of tdd){
         item.classList.remove('active');
     }
-    var button = document.getElementById('menu_bar_btn_'.concat(btn));
-    button.classList.toggle('active');
-};
+    document.getElementsByClassName('menu_bar_btn_'.concat(btn))[0].classList.add('active');
+}
+
 function showevent(element){
-    var buttons = document.getElementsByClassName('menubar_buttons');
-    for(var item of buttons){
+    var tdd=document.getElementsByClassName('menu_icon');
+    for(var item of tdd){
         item.classList.remove('active');
     }
-    var button = document.getElementById('menu_bar_btn_4');
-    button.classList.toggle('active');
+    document.getElementsByClassName('menu_bar_btn_4')[0].classList.add('active');
     getDoc(document.querySelector('#event_container'),'/event/event_list.php');
     overlay_obj.setState('opened');
 }
 function show_org(element){
-    var buttons = document.getElementsByClassName('menubar_buttons');
-    for(var item of buttons){
+    var tdd=document.getElementsByClassName('menu_icon');
+    for(var item of tdd){
         item.classList.remove('active');
     }
-    var button = document.getElementById('menu_bar_btn_6');
-    button.classList.toggle('active');
+    document.getElementsByClassName('menu_bar_btn_6')[0].classList.add('active');
     getDoc(document.querySelector('#menubar_org_container'),'/organization/org_list.php');
 }
 function show_notification(element){
-    var buttons = document.getElementsByClassName('menubar_buttons');
-    for(var item of buttons){
+    var tdd=document.getElementsByClassName('menu_icon');
+    for(var item of tdd){
         item.classList.remove('active');
     }
-    var button = document.getElementById('menu_bar_btn_5');
-    button.classList.toggle('active');
+    document.getElementsByClassName('menu_bar_btn_5')[0].classList.add('active');
     getDoc(document.querySelector('#notification_container'),'/notification/get_notification.php');
 }
 function getDoc(container,url){
@@ -126,3 +134,8 @@ overlay_obj.add_observers(notification_container_obj);
 overlay_obj.add_observers(organization_container_obj);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function show_dropdown(td){
+    td.nextElementSibling.classList.toggle('dropdown_container_active');
+    td.classList.toggle('dropdown_btn_active');
+}
