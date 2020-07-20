@@ -13,7 +13,7 @@ button,input{
 #titlebar{
     display: flex;
     height:40px;
-    background-color: rgb(173, 219, 247);
+    background-color:white;
     border: 1px solid mediumblue;
     border-bottom: 0px;
 }
@@ -46,17 +46,24 @@ button,input{
     margin-right: 0px;
 }
 #menubar{
+    text-align:center; 
     min-height:30px;
     border:1px solid black;
     border-top: 0px;
     font-size: 0px;
-    background-color: rgb(173, 219, 247);
+    background-color:white;
+}
+.dropdown_cont{
+    float: right;
+}
+.menubar_buttons_cont{
+    margin:5px;
 }
 a{
     text-decoration: none;
 }
-.menubar_buttons {
-    height:30px !important;
+ .menubar_buttons {
+    /* height:30px !important;
     max-width:15%;
     min-width:130px !important;
     width:12.5% !important;
@@ -80,13 +87,10 @@ a{
     border-top:0px;
     border-style: double;
     border-color: rgb(208, 232, 248);
-    border-image: initial;
-}
-.active{
-    background-color: white;
-    color:rgb(15, 73, 160);
-    border:2px solid rgb(16, 134, 163);
-}
+    border-image: initial; */
+    display: inline-block;
+} 
+
 x{
     color:rgb(16, 134, 163);
 }
@@ -111,6 +115,7 @@ x{
 #event_container,#menubar_org_container,#notification_container{
     display:inline-block;
     position: absolute;
+    
 }
 .menubar_button_container{
     display:inline;
@@ -130,3 +135,181 @@ x{
     color: black;
     cursor: pointer;
 }
+
+
+.menu_icon:hover {
+    cursor: pointer;
+    background-color: #6f7e6f;
+    } 
+    
+    .font_aws{
+        display: inline-block;
+    }
+    .menu_icon.active:hover {
+    cursor: pointer;
+    background-color: blue;
+    } 
+
+    .menu_icon{
+    color: blue;
+    font-size:32px;
+    padding:5px
+    }
+    .active{
+    background-color:blue;
+    color:white;
+    }
+    
+    .menu_icon_tooltip {
+    position: relative;
+    display: inline-block;
+    }
+
+    .menu_icon_tooltip .menu_icon_tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 13px;
+    
+    /* Position the menu_icon_tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    transition-delay: 500ms;
+    }
+
+    .menu_icon_tooltip:hover .menu_icon_tooltiptext {
+    visibility: visible;
+    }
+    .dropdown_container{
+        width:100px;
+        height:100px;
+        border:1px solid;
+        display:none;
+        font-size: 20px;
+    }
+    .dropdown_container_active{
+        display:block;
+    }
+    .dropdown_btn{
+        background:blue;
+        border-radius:50%;
+        width:35px;
+        height:35px;
+        color:white;
+        text-align:center;
+        margin-right: 20px;
+    }
+    .dropdown_btn_active{
+        background:white;
+        color:blue;
+        border:1px solid blue;
+    }
+
+    /* Event.css */
+    #event_table{
+        border:1px solid black;
+        border-collapse: collapse;
+        margin:auto;
+        margin-top: 30px;
+    }
+    #event_table td{
+        border:1px solid black;
+        width:75px;
+        text-align: center;
+        font-size: initial;
+    }
+    td.name{
+        width:200px;
+        text-align: left;
+        padding:0px;
+    }
+    .event_name{
+        height:30px;
+        width:200px;
+        border:0px;
+        background-color: white;
+        cursor: pointer;
+    }
+    .active_event{
+        background-color: lightblue;
+    }
+    .events_php_container{
+        transform:translate(-130px,0);
+        position:absolute;
+        z-index:4;
+    }
+    #event_overlay{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top:0;
+        z-index:2;
+        display: block;
+    }
+
+/* Organizations.css */
+#header{
+    height:40px;
+    border:1px solid black;
+    font-size: large;
+    padding:3px;
+    padding-left: 5px;
+    margin:auto;
+
+}
+#detail_body{
+    background-color: white;
+    margin-top:30px;
+    border:1px solid black;
+    transform:translate(-130px,0);
+    position:absolute;
+    z-index:4;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+}
+#table{
+    border:1px solid black;
+    border-collapse: collapse;
+    width:400px;
+    table-layout: fixed;
+    border-spacing: 5px;
+    margin:auto;
+}
+#no{
+    width:15px;
+    border:1px solid black;
+    /*padding:5px;*/
+    background-color: cadetblue;
+}
+#name{
+    width:200px;
+}
+.name_td{
+    padding:0px;
+    border:1px solid black;
+    /*padding:5px;*/
+    padding-left: 10px;
+}
+
+.org_name,.create_org_btn{
+    width:100%;
+    height:30px;
+    background-color: white;
+    cursor: pointer;
+    border: white;
+    text-align: left;
+}
+.create_org_btn{
+    background-color: cadetblue;
+}
+
