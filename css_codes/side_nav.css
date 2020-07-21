@@ -2,7 +2,7 @@
     width:300px;
     border:1px solid black;
     padding: 5px;
-    display: inline-table;
+    display :none;
     min-height: 100vh;
 }
 #other_mem_header{
