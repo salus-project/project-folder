@@ -173,3 +173,7 @@ label {
     background-color: #f0ad4e;
     border-color: #eea236;
 }
+/*        containers         */
+.common_div{
+    display:inline-block;
+}
