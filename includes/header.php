@@ -7,7 +7,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="/css_codes/header.css">
-        <link rel='stylesheet' type='text/css' href='/css_codes/events.css'>
         <link rel='stylesheet' type='text/css' href='/css_codes/side_nav.css'>
         <link rel="shortcut icon" href="/common/logo.jpg" type="image/x-icon" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,22 +23,8 @@
                 <div class="logo_box">
                     <div class="logo"><img src="/common/logo.jpg" alt="logo" class="logo"></div>
                 </div>
-                <div class="username">
-                    <label>
-                        <?php 
-                        echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
-                        
-                        ?>
-                    </label>
-                </div>
-                <div class="logout">
-                    
-                    <form action="/logs/logout.php" method="post">
-                        <input name="logout" type="submit" class="logout_btn" value="logout"/>
-                    </form>
-                </div>
-                
             </div>
+
             <div>
                 <div id="menubar">
                     <!-- <a href="/home_page.php"> <div class="menubar_buttons" id='menu_bar_btn_1'>Home</div> </a> -->
@@ -54,9 +39,41 @@
                         <i class="fa fa-caret-down" style="font-size:30px"></i>
                     <span class="menu_icon_tooltiptext">More</span></div></div>
                     <div id=dropdown_container class='dropdown_container'> 
-                        <a class="header_drop_down" href='Apple'>Apple</a>
-                        <a class="header_drop_down" href="Banana">Orane</a>
-                        <a class="header_drop_down" href='Orange'>Banana</a>
+                        <a href="/home_page.php"  class="header_dropdown_item username">
+                            <div class='header_dropdown_profile dropdown_profile_image'>
+                                <img src='http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
+                            </div>
+                            <div class='header_dropdown_profile'>
+                                <div >
+                                    <?php 
+                                    echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
+                                    
+                                    ?>
+                                </div>
+                            </div>
+                        </a>
+                        <div class='header_horizontal_line'></div>
+                        <div class="header_dropdown_item header_dropdown_toggle">
+                            <div class="toggle_btn_text" > Toggle Button </div>
+                            <div class="dropdown_toggle_btn" >
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class='header_subline'></div>
+                        <div class="header_dropdown_item ">
+                            <a class='logout_btn' href="/update_cd.php" >Edit Profile</a>
+                        </div>
+                        <div class='header_subline'></div>
+                        <div class="header_dropdown_item " > 
+                            <a href=""  class="logout_btn" >About</a>
+                        </div>
+                        <div class='header_subline'></div>
+                        <div class="header_dropdown_item ">
+                            <a class='logout_btn' href="/logs/logout.php" >Logout</a>
+                        </div>
                     </div></div>
                     <!-- <a href=""> <button type="submit" class="menubar_buttons" id='menu_bar_btn_8'>About</button> </a> -->
                 </div>
