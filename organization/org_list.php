@@ -3,7 +3,6 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 ?>
 
-<link rel="stylesheet" href="/css_codes/organizations.css">
 <div id='event_overlay' onclick='remove(this)'></div>
 <div id="detail_body">
     <form method='get' action='/organization'>

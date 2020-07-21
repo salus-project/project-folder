@@ -25,11 +25,7 @@
 			if (sizeof($str_items)==sizeof($ids)){
 				foreach($str_items as $items){
 					$item=explode (":", $items);
-					$checked="promise";
-					if ($item[2]=="1"){
-						$checked="pending";
-					}
-					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$checked' WHERE `id` = '$ids[$i]';";
+					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
 					$query_run=mysqli_query($con,$query);
 					$i=$i+1;
 				}
@@ -37,11 +33,7 @@
 			if (sizeof($str_items) < sizeof($ids)){
 				foreach($str_items as $items){
 					$item=explode (":", $items);
-					$checked="promise";
-					if ($item[2]=="1"){
-						$checked="pending";
-					}
-					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$checked' WHERE `id` = '$ids[$i]';";
+					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
 					$query_run=mysqli_query($con,$query);
 					$i=$i+1;
 				}
@@ -54,18 +46,14 @@
 			if (sizeof($str_items) > sizeof($ids)){
 				foreach($str_items as $items){
 					$item=explode (":", $items);
-					$checked="promise";
-					if ($item[2]=="1"){
-						$checked="pending";
-					}
 					if(sizeof($ids) > $i ){
-						$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$checked' WHERE `id` = '$ids[$i]';";
+						$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
 						$query_run=mysqli_query($con,$query);
 						$i=$i+1;
 					}
 					else{
 						$pro_id=$array2[$str[0]];
-						$query1="INSERT INTO `$event_name2` (`don_id`,`item`,`amount`,`pro_don` ) VALUES ($pro_id, '$item[0]', '$item[1]','$checked');";
+						$query1="INSERT INTO `$event_name2` (`don_id`,`item`,`amount` ) VALUES ($pro_id, '$item[0]', '$item[1]');";
 						$query_run=mysqli_query($con,$query1);
 					}
 				}
@@ -75,15 +63,11 @@
 			if ($str[1] !=""){
 				$str_items=explode (",", $str[1]);
 
-				$sub_query = "INSERT INTO `$event_name2`(`don_id`,`item`,`amount`,`pro_don` ) VALUES ";
+				$sub_query = "INSERT INTO `$event_name2`(`don_id`,`item`,`amount`) VALUES ";
 				$querry_arr = array();
 				foreach ($str_items as $items) {
 					$item=explode (":", $items);
-					$checked="promise";
-					if ($item[2]=="1"){
-						$checked="pending";
-					}
-				array_push($querry_arr, "(last_insert_id(),'$item[0]','$item[1]','$checked')");
+				array_push($querry_arr, "(last_insert_id(),'$item[0]','$item[1]')");
 				}
 		
 				$sub_query = $sub_query . implode(", ", $querry_arr).";";

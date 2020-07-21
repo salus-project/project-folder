@@ -25,4 +25,7 @@
             <div id='marka_area_btn_container'>
                 <a class=a_button href="/organization/event/mark_area/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">Mark Area</a>
             </div>
+            <div id='mark_place_btn_container'>
+                <a class=a_button href="/organization/event/mark_place/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">Mark Place</a>
+            </div>
         </div>
