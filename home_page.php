@@ -49,20 +49,20 @@
                     </form>
                     <button id='edit_profile_btn' onclick="document.getElementById('upload_profile_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
                 </div>
-                <div id='gradient_div'>
-                    <div id='name_container'>
-                        <span id='name'><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
-                    </div>
-                    <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
-
-                        <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
-                        <input type=hidden name="directory" value="Covers/">
-                        <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
-                        <input type=hidden name="header" value="true">
-                    </form>
-                    <button id='edit_cover_but' onclick="document.getElementById('upload_cover_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>CHANGE</button>
-
+            </div>
+            <div id='gradient_div'>
+                <div id='name_container'>
+                    <span id='name'><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
                 </div>
+                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
+
+                    <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
+                    <input type=hidden name="directory" value="Covers/">
+                    <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
+                    <input type=hidden name="header" value="true">
+                </form>
+                <button id='edit_cover_but' onclick="document.getElementById('upload_cover_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>CHANGE</button>
+
             </div>
             
         </div>
