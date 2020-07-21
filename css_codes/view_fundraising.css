@@ -19,11 +19,16 @@
     padding:15px;
     font-size: medium;
 }
-#promise_body,#fund_post_div{
+#promise_body{
     border:1px solid black;
     margin:auto;
     padding:15px;
     font-size: medium;
+}
+#fund_post_div{
+    margin: auto;
+    margin-top: 16px;
+    width: 550px;
 }
 #promise_table,#donated_table,#fund_table{
     display: table;

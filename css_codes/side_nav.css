@@ -1,9 +1,25 @@
-#side_nav_container{
-    width:300px;
+.side_nav_container{
+    width:0;
     border:1px solid black;
-    padding: 5px;
-    display :none;
+    padding: 0px;
     min-height: 100vh;
+    overflow: hidden;
+    transition-duration: 1.5s;
+    background-color: white;
+    position: absolute;
+    right:8px;
+}
+.fixed_side_nav{
+    position:fixed;
+    top:40px;
+}
+.show_side_nav{
+    width:300px;
+    padding: 5px;
+}
+.fill_side_nav{
+    width:300px;
+    padding: 5px;
 }
 #other_mem_header{
     height: 25px;

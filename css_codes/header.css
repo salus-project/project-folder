@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 button,input{
     outline: none;
 }
@@ -16,16 +19,6 @@ button,input{
     background-color:white;
     border: 1px solid mediumblue;
     border-bottom: 0px;
-}
-
-.logout{
-    /* align-content: flex-end;
-    border-radius: 5px;
-    margin: auto;
-    text-align: end;
-    padding-right: 5px;
-    width:100%;
-    margin-right: 0px; */
 }
 .logout_btn {
     display: block;
@@ -129,10 +122,12 @@ x{
 #main_body{
     display: flex;
 }
-#sub_body{
-    width: -moz-available;          /* WebKit-based browsers will ignore this. */
-    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-    width: fill-available;
+.sub_body{
+    width: calc(100% - 300px);
+    transition: width 1.5s;
+}
+.full_sub_body{
+    width:100%
 }
 .all_a, a.all_a:visited, a.all_a:active{
     text-decoration: none;
@@ -205,6 +200,7 @@ x{
         font-size: 20px;
         font-weight: 400;
         padding: 6px;
+        z-index: 8;
     }
     .dropdown_container_active{
         display:block;
@@ -217,7 +213,6 @@ x{
         color:white;
         text-align:center;
         margin-right: 20px;
-        z-index:4;
     }
     .dropdown_btn_active{
         background:white;
@@ -411,3 +406,23 @@ x{
   .header_dropdown_toggle{
     display: inline-block;
   }
+
+  .show_main_overlay{
+      z-index: 3;
+      position: fixed;
+      top:0;
+      bottom:0;
+      left: 0;
+      right: 0;
+  }
+@keyframes dropdown_opacity{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.2;
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -1,15 +1,20 @@
-var header = document.getElementById("menubar").parentElement;
-var body = document.getElementsByTagName('body')[0];
-var sticky = header.offsetTop;
-window.onscroll = function(){
-    if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-        body.style.paddingTop = header.clientHeight+'px';
-    } else {
-        header.classList.remove("sticky");
-        body.style.paddingTop = '0'
-    }
-}
+window.addEventListener('load',function(){
+    var header = document.getElementById("menubar").parentElement;
+    var side_nav = document.getElementById("side_nav_container");
+    var body = document.getElementsByTagName('body')[0];
+    var sticky = header.offsetTop;
+    window.addEventListener('scroll', function(){
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+            side_nav.classList.add('fixed_side_nav');
+            body.style.paddingTop = header.clientHeight+'px';
+        } else {
+            header.classList.remove("sticky");
+            side_nav.classList.remove('fixed_side_nav');
+            body.style.paddingTop = '0'
+        }
+    });
+});
 
 var btn_num;
 // function btnPress(btn){
@@ -138,5 +143,9 @@ overlay_obj.add_observers(organization_container_obj);
 function show_dropdown(td){
     td.nextElementSibling.classList.toggle('dropdown_container_active');
     td.classList.toggle('dropdown_btn_active');
+    $('#main_overlay').toggleClass('show_main_overlay');
 }
-
+function hide_dropdown(){
+    $('#dropdown_container').removeClass('dropdown_container_active');
+    $('#main_overlay').toggleClass('show_main_overlay');
+}

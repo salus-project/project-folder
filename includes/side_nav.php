@@ -1,11 +1,6 @@
-<div id="show_nav">
-  <button class="show_button show_nav show_xlarge" onclick="side_nav_open(this)">☰</button>
+<div id='side_nav_space_filler'>
 </div>
-<div id='side_nav_container'>
-    <div id='close'>
-        <button class="show_button show_nav show_xlarge" onclick="side_nav_close(this)">CLOSE</button>
-
-    </div>
+<div id='side_nav_container' class='side_nav_container <?php echo (($_SESSION['side_nav']=='1')?'show_side_nav':''); ?>'>
     <div id="other_mem_header">
         Other Members
     </div>
@@ -26,13 +21,27 @@
         request.open('GET','/includes/get_side_nav.php',true);
         request.send();
     }*/
-    function side_nav_open(element) {
+    /*function side_nav_open(element) {
         document.getElementById("side_nav_container").style.display = "inline-table";
         document.getElementById("show_nav").style.display="none";
     }
-
     function side_nav_close(element) {
         document.getElementById("side_nav_container").style.display = "none";
         document.getElementById("show_nav").style.display="block";
-    }
+    }*/
+    /*function toggle_side_nav(){
+        document.getElementById("side_nav_container").classList.toggle('show_side_nav');
+    }*/
+    $('#dropdown_toggle_checkbox').change(function(){
+        $('#side_nav_container').toggleClass('show_side_nav');
+        $('#sub_body').toggleClass('full_sub_body');
+        if($('#dropdown_toggle_checkbox').prop('checked')){
+            var side = 1;
+        }else{
+            var side = 0;
+        }
+        $.post("/includes/set_sidenav_ajax.php",{
+            side_nav: side
+        });
+    })
 </script>

@@ -1,7 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require_once $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +15,7 @@
         <meta name="author" content="John Doe">
         <script src='/js/font_awesome.js' defer></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     </head>
 
     <body>
@@ -38,7 +38,7 @@
                     <div class='menubar_button_container dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">
                         <i class="fa fa-caret-down" style="font-size:30px"></i>
                     <span class="menu_icon_tooltiptext">More</span></div></div>
-                    <div id=dropdown_container class='dropdown_container'> 
+                    <div id=dropdown_container class='dropdown_container'>
                         <a href="/home_page.php"  class="header_dropdown_item username">
                             <div class='header_dropdown_profile dropdown_profile_image'>
                                 <img src='http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
@@ -57,7 +57,7 @@
                             <div class="toggle_btn_text" > Toggle Button </div>
                             <div class="dropdown_toggle_btn" >
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id='dropdown_toggle_checkbox' <?php echo ($_SESSION['side_nav']=='1')?'checked':''; ?>>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -74,11 +74,13 @@
                         <div class="header_dropdown_item ">
                             <a class='logout_btn' href="/logs/logout.php" >Logout</a>
                         </div>
-                    </div></div>
+                    </div>
+                    <div id='main_overlay' onclick='hide_dropdown()'></div>
+                </div>
                     <!-- <a href=""> <button type="submit" class="menubar_buttons" id='menu_bar_btn_8'>About</button> </a> -->
                 </div>
             </div>
 
         <script src="/js/header.js"></script>
         <div id='main_body'>
-	        <div id='sub_body'>
+	        <div id='sub_body' class='sub_body <?php echo (($_SESSION['side_nav']=='1')?'':'full_sub_body'); ?>'>
