@@ -7,7 +7,9 @@
     <head>
         <title>Home Page</title>
         <link rel="stylesheet" href="css_codes/homePage.css">
-        
+        <link rel="stylesheet" href="css_codes/publ.css">
+        <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
+        <script src="/common/post/post.js"></script>
 
     </head>
 
@@ -26,37 +28,43 @@
                     }
                 ?>
                 <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
-                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
+                
+                <div id='profile_edit'>
+                    <div class="profile_container">
+                        <?php
+                            $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $_SESSION['user_nic'] . ".jpg";
+                            $profile_path_header = get_headers($profile_path);
+                            if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
+                                $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
+                            }
+                        ?>
+                        <img src="<?php echo $profile_path;?>" alt="Opps..." class="my_profile_pic">
+                    </div>
+                    <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
+                        <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
+                        <input type=hidden name="directory" value="Profiles/">
+                        <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
+                        <input type=hidden name="header" value="true">
+                        <input type=hidden name="resize" value="true">
+                    </form>
+                    <button id='edit_profile_btn' onclick="document.getElementById('upload_profile_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
+                </div>
+                <div id='gradient_div'>
+                    <div id='name_container'>
+                        <span id='name'><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
+                    </div>
+                    <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
 
-                    <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
-                    <input type=hidden name="directory" value="Covers/">
-                    <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
-                    <input type=hidden name="header" value="true">
-                </form>
-                <button id='edit_cover' onclick="document.getElementById('upload_cover_btn').click()">Change</button>
-            </div>
-            <div class="profile_container">
-                <?php
-                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $_SESSION['user_nic'] . ".jpg";
-                    $profile_path_header = get_headers($profile_path);
-                    if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
-                    }
-                ?>
-                <img src="<?php echo $profile_path;?>" alt="Opps..." class="profile_pic">
-                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
+                        <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
+                        <input type=hidden name="directory" value="Covers/">
+                        <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
+                        <input type=hidden name="header" value="true">
+                    </form>
+                    <button id='edit_cover_but' onclick="document.getElementById('upload_cover_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>CHANGE</button>
 
-                    <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
-                    <input type=hidden name="directory" value="Profiles/">
-                    <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
-                    <input type=hidden name="header" value="true">
-                    <input type=hidden name="resize" value="true">
-                </form>
-                <button id='edit_profile' onclick="document.getElementById('upload_profile_btn').click()">Change</button>
+                </div>
             </div>
-            <div id='name_container'>
-                <span id='name'><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
-            </div>
+            
         </div>
 
 
@@ -89,29 +97,19 @@
                     </tr>
                 </table>
             </div>
-            <div id="content">
-                <div id=new_post>
-                    <form method=post action=publicpost.php>
-                        <textarea id=post_text_area name=post_text_area rows=3 cols=5></textarea>
-                        <button type=submit id=submit name=submit value=post>POST</button>
-                    </form>
+            <div id='home_post'>
+                <div id="my_posts">
+                    MY POSTS 
                 </div>
-                <?php
-                    $author=$_SESSION['user_nic'];
+                <div id="content">
 
-                    $query="select * from public_posts  WHERE author='$author' ORDER BY post_index DESC";
-                    $result=$con->query($query);
-                    while($row=$result->fetch_assoc()){
-                        echo "<div id='posts'>";
-                            echo "<div id='post_title'>";
-
-                                echo  "<div id='post_date'> Date: " . $row['date'] . "</div>";
-                            echo "</div>";
-                            echo "<div id='post_content'>" . $row['content'] . "</div>";
-                        echo "</div>";
-                    }
-                ?>
+                </div>
             </div>
+            <script>
+                var post = new Post("select civilian_detail.first_name, civilian_detail.last_name, organizations.org_name, fundraisings.name, public_posts.* from (((public_posts LEFT JOIN civilian_detail on public_posts.author = civilian_detail.NIC_num) LEFT JOIN organizations on public_posts.org = organizations.org_id)  LEFT JOIN fundraisings on public_posts.fund = fundraisings.id) WHERE author='"+<?php echo $_SESSION['user_nic']?>+"'");
+                post.get_post();
+            </script>
+
         </div>
             <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
     </body>
