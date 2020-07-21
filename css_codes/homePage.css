@@ -18,15 +18,18 @@
 
 }
 #gradient_div{
-    height: 190px;
+    height: 0;
     width: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
     background-image: none;
-    transition: background-image 2s;
-     
+    transition-duration:  2s;
+    background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
 }
+.title:hover #gradient_div{
+    height: 190px;
+ }
 #cover{
     height: 350px;
     width: 100%;
@@ -35,14 +38,6 @@
     opacity: 1;
 }
 
-.title:hover #gradient_div{
-   /* animation-name: move;
-    animation-duration: 4s;
-    animation-direction: reverse; */
-    background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
-    
-   
-}
 @keyframes move {
     0% {opacity: 1;}
     33% {opacity: 0.3;}
