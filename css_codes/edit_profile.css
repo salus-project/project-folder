@@ -1,0 +1,71 @@
+.edit_prof_form_box{
+    width: 500px;
+    padding: 0px;
+    background-color: #ffffff;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 0 auto;
+    font-weight: 400;
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    font-size: 16px;
+    margin-bottom: 300px;
+}
+.head_edit_prof_form,.body_edit_prof_form,.foot_edit_prof_form{
+    display: block;
+}
+.head_edit_prof_form{
+    margin-top: 25px;
+    background-color: #0c7dff47;
+    text-align: center;
+    font-size: 25px;
+    height: bold;
+    height: 60px;
+    padding: 10px;
+}
+.head_edit_prof_form_det{
+    margin-top: 0px;
+}
+.body_edit_prof_form{
+    padding: 15px;
+}
+.foot_edit_prof_form{
+    text-align: center;
+}
+.edit_form_submit_button{
+    border: none;
+    width: 500px;
+    background-color: #0c7dff47;
+    padding: 0px;
+    height: 60px;
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    font-size: 25px;
+}
+.edit_prof_grp{
+    display: flex;
+}
+.edit_prof_input_box{
+    margin-top: 12px;
+    width: 300px;
+    height: 25px;
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    border: 1px solid #2980B9;
+     clear: both;
+     float: right;
+}
+input[type=text] {
+    min-width: 150px;
+}
+.edit_form_label{
+    min-width: 150px;
+    font-size: 16px;
+    color: #393939
+}
+select{
+    border-radius: 0px;
+    background: none;
+    color: #6b7c93;
+    padding: 0px;
+}
