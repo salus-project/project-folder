@@ -164,3 +164,31 @@
     font-weight: bold;
     line-height: 25px;
 }
+
+.org_event_area_select{
+    display: block;
+    width: 140px;
+    height: 40px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+.org_event_area_select_div{
+    float:left;
+}
+.org_event_area_select_opt{
+    display: block;
+    width: 140px;
+    height: 40px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    float: left;
+}

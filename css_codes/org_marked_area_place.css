@@ -1,0 +1,24 @@
+.table_marked_ap {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .table_marked_ap_th, .table_marked_ap_td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table_marked_ap_tr:hover {
+      background-color:#00ffbf;
+    }
+    .our_suggest_cont{
+      display: inline-block;
+    }
+    .our_suggest_table_cont{
+      display: inline-block;
+      width: 550px;
+    }
+    .our_suggest_map_cont{
+      display: inline-block;
+    }
