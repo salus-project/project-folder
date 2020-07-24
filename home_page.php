@@ -1,23 +1,18 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    $query="select * from civilian_detail where NIC_num='".$_SESSION['user_nic']."'";
+    $query_result=mysqli_query($con,$query)->fetch_assoc();
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Home Page</title>
-        <link rel="stylesheet" href="css_codes/homePage.css">
-        <link rel="stylesheet" href="css_codes/publ.css">
-        <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
-        <script src="/common/post/post.js"></script>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="css_codes/homePage.css">
+    <link rel="stylesheet" href="css_codes/publ.css">
+    <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
+    <script src="/common/post/post.js"></script>
 
-    </head>
-
-    <body>
-
-        <script>
-            btnPress(1);
-        </script>
+    <script>
+        btnPress(1);
+    </script>
         <div class="title">
             <div id='cover'>
                 <?php
@@ -47,22 +42,20 @@
                         <input type=hidden name="header" value="true">
                         <input type=hidden name="resize" value="true">
                     </form>
-                    <button id='edit_profile_btn' onclick="document.getElementById('upload_profile_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
+                    <button id='edit_profile_btn' onclick="document.getElementById('upload_profile_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>CHANGE</button>
                 </div>
             </div>
             <div id='gradient_div'>
                 <div id='name_container'>
-                    <span id='name'><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></span>
+                    <span id='name'><?php echo $query_result['first_name'] . " " . $query_result['last_name']; ?></span>
                 </div>
                 <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
-
                     <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Covers/">
                     <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
                     <input type=hidden name="header" value="true">
                 </form>
                 <button id='edit_cover_but' onclick="document.getElementById('upload_cover_btn').click()"><i class="fa fa-camera" aria-hidden="true"></i>CHANGE</button>
-
             </div>
             
         </div>
@@ -77,23 +70,23 @@
                 <table style="width:100%">
                     <tr>
                         <td><?php echo "Name" ?></td>
-                        <td><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></td>
+                        <td><?php echo $query_result['first_name'] . " " . $query_result['last_name']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo "Gender" ?></td>
-                        <td><?php echo $_SESSION['gender']; ?></td>
+                        <td><?php echo $query_result['gender']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo "District" ?></td>
-                        <td><?php echo $_SESSION['district']; ?></td>
+                        <td><?php echo $query_result['district']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo "Occupation" ?></td>
-                        <td><?php echo $_SESSION['Occupation']; ?></td>
+                        <td><?php echo $query_result['Occupation']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo "Address" ?></td>
-                        <td><?php echo $_SESSION['address']; ?></td>
+                        <td><?php echo $query_result['address']; ?></td>
                     </tr>
                 </table>
             </div>
