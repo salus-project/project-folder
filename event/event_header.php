@@ -80,6 +80,12 @@
                     <a href="/event/mark_area?event_id=<?php echo $_GET['event_id']?>" id="mark_area" class='other_menus'>
                         Suggest an Area
                     </a>
+                    <a href="/event/suggested_area_mine.php?event_id=<?php echo $_GET['event_id']?>" id="suggested_area_mine" class='other_menus'>
+                        My suggestens
+                    </a>
+                    <a href="/event/suggested_area_all.php?event_id=<?php echo $_GET['event_id']?>" id="suggested_area_all" class='other_menus'>
+                        Suggested areas
+                    </a>
                 </div>
                 <div id=status>
                     <div id=safe_btn_container>
