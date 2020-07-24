@@ -23,13 +23,10 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background-image: none;
     transition-duration:  2s;
     background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+     
 }
-.title:hover #gradient_div{
-    height: 190px;
- }
 #cover{
     height: 350px;
     width: 100%;
@@ -38,6 +35,13 @@
     opacity: 1;
 }
 
+.title:hover #gradient_div{
+   /* animation-name: move;
+    animation-duration: 4s;
+    animation-direction: reverse; */
+    height: 190px; 
+   
+}
 @keyframes move {
     0% {opacity: 1;}
     33% {opacity: 0.3;}
@@ -46,7 +50,6 @@
 }
 #cover_photo{
     width: 100%;
-    height: 350px;
 }
 #profile_edit{
     position: absolute;
@@ -102,10 +105,7 @@
     -ms-transform: translate(-50%, -50%);*/
     text-align: center;
     order: -1; 
-    
-
 }
-
 #name{
     font-weight: 700;
     font-size: 50px;
