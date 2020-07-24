@@ -22,10 +22,28 @@
             <div id='promise_btn_container'>
                 <a class=a_button href="/organization/event/view_our_promises.php?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">Our Promises</a>
             </div>
-            <div id='marka_area_btn_container'>
-                <a class=a_button href="/organization/event/mark_area/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">Mark Area</a>
+            <div class="org_event_area_select_div"  >
+                <select  id="select_type" class="org_event_area_select" name="select_type" onchange="location = this.value;">
+                    <option selected disabled hidden class="org_event_select_first" value="0">Select option:</option>
+                    <option class="org_event_area_select_opt" value="/organization/event/mark_area/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>" >
+                        <div id='marka_area_btn_container'>
+                            <a class=a_button >Mark Area</a>
+                        </div>
+                    </option>
+                    <option class="org_event_area_select_opt" value="/organization/event/mark_place/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">
+                        <div id='mark_place_btn_container'>
+                            <a class=a_button >Mark Place</a>
+                        </div>
+                    </option>
+                    <option class="org_event_select_marked org_event_area_select_opt"  value="/organization/event/org_marked_area_place.php?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">
+                        <div id="marked_area_btn_container">
+                            <a >Marked Area</a>
+                        </div>
+                    </option>
+                    
+                </select>
             </div>
-            <div id='mark_place_btn_container'>
-                <a class=a_button href="/organization/event/mark_place/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>">Mark Place</a>
-            </div>
+            
+            
+            
         </div>
