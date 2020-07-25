@@ -2,23 +2,17 @@
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
 
-<!DOCTYPE html>
-
-<html>
-    <head>
         <title>Public posts</title>
         <link rel="stylesheet" href="/css_codes/publ.css">
         <link rel="stylesheet" href="/css_codes/auto_complete.css">
         <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
         <script src="/common/post/post.js"></script>
-    </head>
-    <body>
 
         <script>
             btnPress(3);
         </script>
-        <div id="title">
-            Public posts 
+        <div id="post_title">
+            POSTS 
         </div>
         <div id=new_post>
             <form method=post action='http://eme-service.000webhostapp.com/createpost.php' enctype="multipart/form-data">
@@ -111,5 +105,3 @@
             }
         </script>
         <script src="/js/auto_complete.js"></script>
-    </body>
-</html>
