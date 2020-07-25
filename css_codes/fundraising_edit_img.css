@@ -1,0 +1,14 @@
+.fund_image{
+    width: 300px;
+    height: 200px;
+    border: 1px solid #d8e0e7;
+    margin: 5px;
+}
+.img_cont{
+    margin: 16px;
+    display: flex;
+    flex-flow: wrap row;
+}
+.fund_pic{
+    width: 100%;
+}
