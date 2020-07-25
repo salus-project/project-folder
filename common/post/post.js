@@ -50,7 +50,7 @@ function like(element){
     var post_index = parent.querySelector('.post_index').value;
     var send = "like=true&post_index=".concat(post_index);
     response(send);
-    element.outerHTML = " <button class='button_con  but_1_2' onclick='unlike(this)'><i class='fas fa-thumbs-up' aria-hidden='true'></i><b> liked</b></button>";
+    element.outerHTML = " <button class='button_con  but_1_2' style='color:#4c5fd7'><i class='fas fa-thumbs-up' style='color:#4c5fd7' aria-hidden='true'></i><b> liked</b></button>";
 }
 function unlike(element){
     var parent = element.parentElement.parentElement.parentElement.parentElement;
@@ -88,7 +88,7 @@ function response(send_str,element){
             }
         }
     };
-    xhttp.open('POST', '/common/post_event_ajax.php',true);
+    xhttp.open('POST', '/common/post/post_event_ajax.php',true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(send_str);
 }

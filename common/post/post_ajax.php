@@ -16,7 +16,7 @@
                         <input type='hidden' class='post_index' value='".$this->detail_arr['post_index']."'>
                         <div>  
                             <div class='post_title'>".
-                                "<div class='profile_pic'>
+                                "<div class='post_profile_pic'>
                                         <img src='".$this->profile_url."' alt='pic'>
                                 </div>
                                 <div class='profile'>
@@ -27,7 +27,12 @@
                                     if(!$this->detail_arr['tag']==''){
                                         echo " <i class='fa fa-toggle-right'></i> ".$this->detail_arr['tag'];
                                     }
-                                    echo "</div>" . "<div class='post_date'> Date: {$this->detail_arr['date']}</div></div>";
+                                    echo "</div>
+                                    <div class='post_date'> Date: {$this->detail_arr['date']}</div>
+                                </div>
+                                <div class='view_post_div'>
+                                    <a href='/common/post/view_post.php?post_index=".$this->detail_arr['post_index']."' class='vie_post_a'><button class='view_post_but'>View</button></a>
+                                </div>";
                             echo"</div>
                         </div>";
                         echo"<div><div class='post_content'>" . $this->detail_arr['content'] . "</div></div>";
@@ -45,7 +50,7 @@
                                 <div class='button_div'>
                                     <button class='button_con  but_1_2' ";
                                         if((in_array($_SESSION['user_nic'],$likes))){
-                                            echo "onclick='unlike(this)'><i class='fas fa-thumbs-up'></i><b> liked</b>";
+                                            echo "onclick='unlike(this)' style='color:#4c5fd7'><i class='fas fa-thumbs-up' style='color:#4c5fd7'></i><b> liked</b>";
                                         }else{
                                             echo "onclick='like(this)'><i class='far fa-thumbs-up'></i> <b>like</b>";
                                         }
@@ -134,6 +139,7 @@
     if($_SERVER['REQUEST_METHOD']=="POST"){
         //$query='select civilian_detail.first_name, civilian_detail.last_name, organizations.org_name, fundraisings.name, public_posts.* from (((public_posts LEFT JOIN civilian_detail on public_posts.author = civilian_detail.NIC_num) LEFT JOIN organizations on public_posts.org = organizations.org_id)  LEFT JOIN fundraisings on public_posts.fund = fundraisings.id) ORDER BY post_index DESC limit '.$_POST['from'].', 5';
         $query=$_POST['query'];
+        //echo $query;
         $result=$con->query($query);
         while($row=$result->fetch_assoc()){
             $post_factory->getPost($row)->log_on_screen();
