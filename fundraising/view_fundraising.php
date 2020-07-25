@@ -1,6 +1,5 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
-require $_SERVER['DOCUMENT_ROOT']."/includes/post_creator.php";
 $query="select * from fundraisings where id=".$_GET['view_fun'].";
     select * from civilian_detail where NIC_num=(
         select by_civilian from fundraisings where id=".$_GET['view_fun']."
@@ -74,22 +73,76 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
     }
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
         <title>view fundraising event</title>
         <link rel="stylesheet" href='/css_codes/view_fundraising.css'>
         <link rel="stylesheet" href='/css_codes/publ.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    
+        <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
+        <script src="/common/post/post.js"></script>
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
-    </head>
-    <body>
 
         <script>
             btnPress(7);
         </script>
+        <div class='main_slide_show'>	
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                <img class='slide_show_img' src="/fundraising/images/1127259.jpg" style="width:100%">
+                <div class="text">Caption Text</div>
+                </div>
+
+                <div class="mySlides fade">
+                <img class='slide_show_img' src="/fundraising/images/228396562.jpg" style="width:100%">
+                <div class="text">Caption Two</div>
+                </div>
+
+                <div class="mySlides fade">
+                <img class='slide_show_img' src="/fundraising/images/e8c7c4d4e14a9e3b21faf3d7b37c5b03.jpg" style="width:100%">
+                <div class="text">Caption Three</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img class='slide_show_img' src="/fundraising/images/Fabulous scenery.jpg" style="width:100%">
+                    <div class="text">Caption four</div>
+                </div>
+                <div class='dot_div' style="text-align:center">
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                </div>
+            </div>
+        </div>
+        	
+	<script>
+		var slideshow = document.getElementsByClassName("slideshow-container"); // Do not use a period here!
+		var j;
+		for (j = 0; j < slideshow.length; j++) {
+			al_show_slide(slideshow[j]);
+		}	
+		function al_show_slide(element){	
+			var slideIndex = 0;	
+			function showSlides() {			
+				var i;
+				var slides = element.getElementsByClassName("mySlides");
+				var dots = slideshow[0].getElementsByClassName("dot");
+				for (i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";  
+				}
+				slideIndex++;
+				if (slideIndex > slides.length) {slideIndex = 1}    
+				for (i = 0; i < dots.length; i++) {
+					dots[i].className = dots[i].className.replace(" active", "");
+				}
+				slides[slideIndex-1].style.display = "block";  
+				dots[slideIndex-1].className += " active";
+				setTimeout(showSlides, 5000);
+			}			
+			showSlides();
+		}
+	</script>
         <div id="title">
             <?php echo '<center>'.$fundraising['name'].'</center>' ?>
         </div>
@@ -221,18 +274,16 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             </table>
         </div>
         <div id='fund_post_div'>
-            <div id="title">
-                <?php echo "Posts" ?>
+            <div id="post_title">
+                <?php echo "OUR POSTS" ?>
+            </div>           
+            <div id="content">
+
             </div>
-            <?php           
-                $post_factory = new PostFactory();           
-                foreach($fund_post as $row){
-                    $post_factory->getPost($row)->log_on_screen();
-                }           
-            ?>
         </div>
+        <script>
+            var post = new Post("select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id="+<?php echo $_GET['view_fun'] ?>);
+            post.get_post();
+        </script>     
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
 
-    </body>
-
-</html>
