@@ -150,9 +150,15 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             <?php
                 if($fundraising['by_civilian']==$_SESSION['user_nic']){
                     echo "<div id=fund_edit_btn_container >";
-                    echo "<form action='/fundraising/edit_fundraising.php' method=get>";
-                    echo "<button id=edit_btn type='submit' name=edit_btn value=".$_GET['view_fun'].">Edit</button>";
-                    echo "</form>";
+                    echo "<a href='/fundraising/edit_fundraising.php?edit_btn=".$_GET['view_fun']."'>";
+                    echo "<button id='edit_btn' >Edit</button>";
+                    echo "</a>";
+                    echo"</div>";
+
+                    echo "<div id=img_edit_btn_container >";
+                    echo "<a href='/fundraising/edit_fundraising_img.php?id=".$_GET['view_fun']."'>";
+                    echo "<button id='edit_img_btn' >Edit Images</button>";
+                    echo "</a>";
                     echo"</div>";
                 }
             ?>
