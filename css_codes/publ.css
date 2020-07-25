@@ -86,8 +86,8 @@ body{
 .posts{
     min-height: 100px;
     margin: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     padding: 10px 10px 5px 16px;
     background-color: white;
     box-sizing: border-box;
@@ -115,8 +115,7 @@ body{
 }
 .post_profile_pic{
     float: right;
-    border-radius: 50%;
-    border: 2px solid #d8e0e7; 
+    border-radius: 50%; 
     height: 50px;
     width: 50px;
     overflow: hidden;
@@ -141,6 +140,24 @@ body{
 }
 .post_a{
     font-size: 20px;
+}
+.view_post_div{
+    position: absolute;
+    right:0;
+    top:0;
+}
+.view_post_but{
+    background-color: white;
+    border: 1px solid #d8e0e7;
+    width: 55px;
+    font-family: Open Sans,sans-serif;
+    color: #6b7c93;
+    height: 25px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.view_post_but:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
 }
 .likes{
     position: relative;
