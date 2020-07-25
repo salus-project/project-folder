@@ -15,6 +15,18 @@
         public function show_edit_button(){
             $this->role->show_edit_button();
         }
+        public function show_coleader_option(){
+            $this->role->show_coleader_option();
+        }
+        public function show_member_option(){
+            $this->role->show_member_option();
+        }
+        public function change_profile_option(){
+            $this->role->change_profile_option();
+        }
+        public function change_coverphoto_option(){
+            $this->role->change_coverphoto_option();
+        }
     }
 
 
@@ -22,23 +34,37 @@
         protected $join_text;
         protected $leave_text;
         protected $edit_text;
+        protected $coleader_text;
+        protected $profile_text;
+        protected $cover_photo_text;
 
         public function __construct(){
             $this->join_text =  "<div id=membership_btn_container>
                                     <form action=org_join_leave.php method=get>
-                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org'].">Join</button>
+                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-handshake-o' aria-hidden='true'></i>Join</button>
                                     </form>
                                 </div>";
             $this->leave_text = "<div id=membership_btn_container>
                                     <form action=org_join_leave.php method=get>
-                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org'].">Leave</button>
+                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-share-square-o' aria-hidden='true'></i></i>Leave</button>
                                     </form>
                                 </div>";
             $this->edit_text= "<div id=edit_btn_container >
                                     <form action=edit_org.php method=get>
-                                        <button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org'].">Edit</button>
+                                        <button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
                                     </form>
                                 </div>";
+            $this->coleader_text= "<div class='add_remove_div none'>
+                                        <div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
+                                        <div class='add_remove pro'><button class='add_remove_but'>Promote to leader</button></div>
+                                    </div>";
+            $this->member_text= "";
+            $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\'upload_org_profile_btn\').click()'>
+                                        <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
+                                    </button>";
+            $this->cover_photo_text= "<button id='org_edit_cover_but' onclick='document.getElementById(\'org_upload_cover_btn\').click()'>
+                                        <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
+                                    </button>";                    
         }
         abstract function show_membership_button();
         abstract function show_edit_button();
@@ -56,6 +82,19 @@
         public function show_edit_button(){
             echo '';
         }
+        public function show_coleader_option(){
+            echo '';
+        }
+        public function show_member_option(){
+            echo '';
+        }
+        public function change_profile_option(){
+            echo '';
+        }
+        public function change_coverphoto_option(){
+            echo '';
+        }
+        
     }
 
     class Member extends Role{
@@ -68,6 +107,18 @@
             echo $this->leave_text;
         }
         public function show_edit_button(){
+            echo '';
+        }
+        public function show_coleader_option(){
+            echo '';
+        }
+        public function show_member_option(){
+            echo '';
+        }
+        public function change_profile_option(){
+            echo '';
+        }
+        public function change_coverphoto_option(){
             echo '';
         }
     }
@@ -84,6 +135,19 @@
         public function show_edit_button(){
             echo $this->edit_text;
         }
+        public function show_coleader_option(){
+            echo '';
+        }
+        public function show_member_option(){
+            echo "<div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
+                <div class='add_remove pro'><button class='add_remove_but'>Promote to co_leader</button></div>";
+        }
+        public function change_profile_option(){
+            echo $this->profile_text;
+        }
+        public function change_coverphoto_option(){
+            echo $this->cover_photo_text;
+        }
     }
 
     class Leader extends Role{
@@ -97,6 +161,20 @@
         }
         public function show_edit_button(){
             echo $this->edit_text;
+        }
+        public function show_coleader_option(){
+            echo $this->coleader_text;
+        }
+        public function show_member_option(){
+            echo  "<div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
+                <div class='add_remove pro'><button class='add_remove_but'>Promote to co_leader</button></div>
+                <div class='add_remove pro'><button class='add_remove_but'>Promote to leader</button></div>";
+        }
+        public function change_profile_option(){
+            echo $this->profile_text;
+        }
+        public function change_coverphoto_option(){
+            echo $this->cover_photo_text;
         }
     }
 
