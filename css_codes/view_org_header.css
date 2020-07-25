@@ -1,71 +1,142 @@
-#org_title{
-    height:150px;
-    border:1px solid black;
-    display: flex;
-    background-color: rgb(179, 219, 235);
-    
-}
-#title_margin{
-    min-width:180px;
-    min-height:150px;
-}
-#org_logo{
-    height:120px;
-    width:120px;
+.org_title{
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 16px;
+    height: 350px;
+    width: 900px;
     position: relative;
-    top:40px;
-    left:40px;
-    border:1px solid black;
-    background-color: rgb(224, 233, 247);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#org_gradient_div{
+    height: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition-duration: 2s;
+    background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));   
+}
+#org_cover{
+    height: 350px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
 }
 
-#logo{
-    height:120px;
-    width:120px;
+.org_title:hover #org_gradient_div{
+   /* animation-name: move;
+    animation-duration: 4s;
+    animation-direction: reverse; */
+    height: 190px; 
+   
+}
+
+#org_cover_photo{
+    width: 100%;
+}
+#org_profile_edit{
     position: absolute;
-    top:0px;
-    left:0px;
-    
+    height: 170px;
+    width: 200px;
+    left: 0;
+    top: 0;
+
+}
+.org_profile_pic{
+    height: 150px;
+}
+.org_profile_container{
+    height: 150px;
+    width: 150px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    overflow: hidden;
+}
+
+#org_edit_cover_but, #org_edit_profile_btn{
+    position: absolute;
+    background-color: #d8e0e7;
+    border-radius: 12px;
+    border: none;
+    padding: 7px 9px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;   
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#org_edit_cover_but:hover, #org_edit_profile_btn:hover,#edit_btn:hover, #membership_btn:hover{
+    background-color: #c1d0dd;
+}
+.fa.fa-share-square-o, .fa.fa-pencil-square-o, .fa.fa-handshake-o{
+    margin-right: 4px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 800;
+}
+#org_edit_profile_btn{
+    bottom: 18px;
+    left: 108px;
+}
+#org_edit_cover_but{
+    bottom: 10px;
+    left: 790px;
+}
+#org_name_container{
+    position: absolute;
+    bottom:10px;
+    left: 27px;
+    text-align: center;
+    order: -1; 
+}
+
+#org_name{
+    font-weight: 700;
+    font-size: 50px;
+    font-family: Open Sans,sans-serif;
+    color: white;
+    transition: color 3s;
+}
+#org_detail{
+    font-weight: 500;
+    font-size: 30px;
+    font-family: Open Sans,sans-serif;
+    color: white;
+    margin-left: 10px;
+    transition: color 3s;
+}
+.org_title:hover #org_name,.org_title:hover #org_detail{
+    color: #6b7c93;
 }
 #title_sub{
-    width:100%;
-    height:150px;
-}
-#org_name{
-    height:75px;
-    font-size: 30px;
-    display:flex;
-}
-#org_name_h2{
-    margin-left: 20px;
-    margin-top: 0px;
-}
-#edit_btn_container{
-    margin:auto;
-    margin-right: 15px;
-    margin-top: 10px;
-}
-#edit_btn, #membership_btn{
-    margin-top: 0px;
-    width:100px;
-    height:30px;
-    background-color: skyblue;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 750px;
+    top: 0;
+    width: 150px;
+    height: 150px;
 }
 
-#discription{
-    margin-left: 30px;
+#edit_btn_container, #membership_btn_container{
+    margin: 16px 16px 1px 16px;
 }
-#org_button_container, #membership_btn_container{
-    display:flex;
-    margin:auto;
-    margin-left:200px;
-    margin-top:10px;
-    margin-bottom:10px;
+#edit_btn, #membership_btn{
+    background-color: #d8e0e7;
+    border-radius: 12px;
+    border: none;
+    padding: 7px 9px;
+    font-size: 20px;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#org_button_container button, #membership_btn_container button{
-    height:25px;
-    width:100px;
-}
+
+
 #event_list_container{
     width:100px;
     height:0px;
@@ -95,23 +166,49 @@
     width: -moz-available;
     width: -webkit-fill-available;
     width: fill-available;
-    border: 1px solid black;
+    border-top: 2px solid #d8e0e7;
 }
 #org_side_nav{
-    border:1px solid black;
+    border:2px solid #d8e0e7;
     width: 250px;
 }
 .member{
-    background-color: #9fb5de;
+    background-color: #d8e0e7;
     text-align: center;
     padding: 5px;
-    
+    font-weight: 800;
 }  
 .member_table{
     margin:auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    border:1px solid black;
     width:250px;
     border-collapse: collapse;
+}
+#chat_button_container, #event_button_container, #home_button_container{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #d8e0e7;
+    margin-right: 10px;
+    border: none;
+    font-size: 20px;
+    height: 40px;
+    width: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#chat_btn, #event_button, #home_btn{
+    background-color: #d8e0e7;
+    border-radius: 12px;
+    border: none;
+    padding: 7px 9px;
+    font-size: 20px;
+    text-align: center;
+    height: 40px;
+    cursor: pointer;
+}
+#org_button_container{
+    display: flex;
+    margin: auto;
+    width: 900px;
+    text-align: center;
+    margin-bottom: 10px;
 }
