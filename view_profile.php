@@ -18,7 +18,9 @@ while($row=$viewer->fetch_assoc()){
 <head>
     <title>View Profile</title>
     <link rel="stylesheet" href="css_codes/homePage.css">
-
+    <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
+    <script src="/common/post/post.js"></script>
+    <link rel="stylesheet" href='/css_codes/publ.css'>
 </head>
 
 <body>
@@ -32,27 +34,25 @@ while($row=$viewer->fetch_assoc()){
         }
         ?>
         <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
-    </div>
-    <div class="profile_container">
-        <?php
-        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $viewer_nic . ".jpg";
-        $profile_path_header = get_headers($profile_path);
-        if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-            $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
-        }
-        ?>
-        <img src="<?php echo $profile_path;?>" alt="Opps..." class="profile_pic">
-        <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
-
-            <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
-            <input type=hidden name="directory" value="Profiles/">
-            <input type=hidden name="filename" value="<?php echo $viewer_nic?>">
-            <input type=hidden name="header" value="true">
-        </form>
-    </div>
-    <div id='name_container'>
-        <span id='name'><?php echo $first_name . " " . $last_name; ?></span>
-    </div>
+    
+        <div id='profile_edit'>
+            <div class="profile_container">
+                <?php
+                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $viewer_nic . ".jpg";
+                    $profile_path_header = get_headers($profile_path);
+                    if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
+                        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
+                    }
+                ?>
+                <img src="<?php echo $profile_path;?>" alt="Opps..." class="my_profile_pic">
+            </div>
+        </div>
+        <div id='gradient_div'>
+            <div id='name_container'>
+                <span id='name'><?php echo $first_name . " " . $last_name; ?></span>
+            </div>
+        </div>
+    </div>    
 </div>
 
 <div id='home_sub_body'>
@@ -81,24 +81,20 @@ while($row=$viewer->fetch_assoc()){
             </tr>
         </table>
     </div>
-    <div id="content">
-        <?php
-        $author=$viewer_nic;
-        $query="select * from public_posts  WHERE author='$author' ORDER BY post_index DESC";
-        $result=$con->query($query);
-        while($row=$result->fetch_assoc()){
-            echo "<div id='posts'>";
-            echo "<div id='post_title'>";
+    <div id='home_post'>
+        <div id="my_posts">
+            MY POSTS 
+        </div>
+        <div id="content">
 
-            echo  "<div id='post_date'> Date: " . $row['date'] . "</div>";
-            echo "</div>";
-            echo "<div id='post_content'>" . $row['content'] . "</div>";
-            echo "</div>";
-        }
-        ?>
+        </div>
     </div>
+    <script>
+        var post = new Post("select public_posts.*,civilian_detail.first_name,civilian_detail.last_name from public_posts inner join civilian_detail on public_posts.author=civilian_detail.NIC_num where public_posts.author='"+'<?php echo $viewer_nic?>'+"'");
+        post.get_post();
+    </script> 
 </div>
-
+<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
 </body>
 
 </html>
