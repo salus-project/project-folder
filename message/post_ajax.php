@@ -10,6 +10,7 @@
 	$to_person=$_POST["to_person"];
 	$id=$_POST["id"];
 	$message=$_POST["message"];
+
 	$table_1='user_message_'.$id;
 	$table_2='user_message_'.$to_person;
 	$sql="INSERT INTO $table_1 ( `from`,`to`, `time`,`content`) VALUES (NUll,'$to_person','$timedate' ,'$message');INSERT INTO $table_2 ( `from`,`to`, `time`, `content`) VALUES ('$id',NUll,'$timedate' , '$message');";
