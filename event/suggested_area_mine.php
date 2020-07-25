@@ -33,6 +33,31 @@
             }
             ?>
         </table>
+        <table class='table_suggested_area'>
+            <tr class='table_suggested_area_tr'>
+                <th class='table_suggested_area_th'>Type</th>
+                <th  class='table_suggested_area_th'>By</th>
+                <th  class='table_suggested_area_th'>Detail</th>
+            </tr>
+            <?php
+            $query="SELECT $location_table.type,$location_table.detail,$location_table.latitude,$location_table.longitude,$location_table.radius,$location_table.geojson, civilian_detail.first_name, civilian_detail.last_name, organizations.org_name FROM $location_table  LEFT OUTER JOIN civilian_detail  ON ($location_table.by_person = civilian_detail.NIC_num) LEFT OUTER JOIN organizations  ON ($location_table.by_org = organizations.org_id) Where $location_table.by_person <> '$Nic_num' ";
+            $result=$con->query($query);
+            if($result->num_rows>0){
+                while($row=$result->fetch_assoc()){
+                    if ($row['org_name']==""){
+                        $by_who=$row['first_name']." ".$row['last_name'];
+                    }else{
+                        $by_who=$row['org_name'];
+                    }
+                    echo "<tr class='table_suggested_area_tr'>";
+                        echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</th>";
+                        echo "<td  class='table_suggested_area_td'>".$by_who."</th>";
+                        echo "<td  class='table_suggested_area_td'>".$row['detail']."</th>";
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </table>
     </div>
     <div class='my_suggest_map_cont'>
         <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
