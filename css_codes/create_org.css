@@ -23,9 +23,10 @@
     background-color: #0c7dff47;
     height: 70px;
     font-size: 25px;
-    padding: 13px;    
+    padding: 13px;
     color: #393939;
     text-align: center;
+    line-height: 1.5;
     font-weight: 400;
 }
 .sub_head{
@@ -36,7 +37,7 @@
     margin-left: 13px;
 }
 .create_org_btn_container{
-    display: inline-block;
+    display: flex;
     margin-bottom: 0px;
     text-align: center;
 }
@@ -44,8 +45,7 @@
     font-family: "Open Sans",sans-serif;
     margin: 0px;
     font-size: 20px;
-    width: 286.93px;
-    border-radius: 0;
+    width: 289px;    border-radius: 0;
     border: 0px;
     background-color: #0c7dff47;
     height: 50px;
@@ -53,8 +53,10 @@
     color: #393939;
     font-weight: 400;
 }
-
-label{
+.submitt{
+    border-right: 1px solid white;
+}
+.create_org_label{
     color: #393939;
     font-weight: 400;
     font-size: 18px;
@@ -63,23 +65,26 @@ label{
     margin-bottom: 15px;
     font-family: "Open Sans",sans-serif;
 }
-
-input[type=text], input[type=tel],input[type=email] {
+.create_org_input[type=text], .create_org_input[type=tel],.create_org_input[type=email] {
     font-family: "Open Sans",sans-serif;
-    min-width: 260px;
+    min-width: 300px;
     height: 30px;
+    border-radius: 5px;
     border: 1px solid #2980B9;
     color: #393939;
+    padding-left: 10px;
 }
-textarea{
+.create_org_textarea{
     font-family: "Open Sans",sans-serif;
-    min-width: 260px;
-    height: 60px;
+    min-width: 300px;
+    height: 80px;
     border: 1px solid #2980B9;
     color: #393939;
+    padding-left: 10px;
     resize: none;
+    border-radius: 5px;
 }
-select{
+.create_org_select{
     font-family: "Open Sans",sans-serif;
     padding: 0px;
     color: #393939;
@@ -101,6 +106,11 @@ select{
 }
 .mem_div,.dis_div,.email_div,.phone_div,.leader_div,.co_leader_div{
     display: flex;
+}
+.dis_div{
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .leader_nic_div{
     display: none;
@@ -129,10 +139,13 @@ display: flex;
 .add_rem_btn{
     color: white;
     border: none;
+    border-bottom: 0.5px solid white;
     padding: 0px;
     background-color: #2980B9;
-    height: 29px;
-    width: 100px;
+    height: 30px;
+    width: 50px;
+    margin-left: 2px;
+    border-radius: 5px;
     font-family: "Open Sans",sans-serif;
 }
 .text_input{
@@ -245,8 +258,9 @@ display: flex;
 
 /*        Custom dropdown                */
 .custom-select {
+    width: 260px;
     position: relative;
-    font-family: Arial;
+    font-family: "Open Sans",sans-serif;
   }
   
   .custom-select select {
@@ -254,7 +268,7 @@ display: flex;
   }
   
   .select-selected {
-    background-color: DodgerBlue;
+    background-color: #2980B9;
   }
   
   /*style the arrow inside the select element:*/
@@ -262,7 +276,7 @@ display: flex;
     position: absolute;
     content: "";
     top: 14px;
-    right: 10px;
+    right: 7px;
     width: 0;
     height: 0;
     border: 6px solid transparent;
@@ -277,8 +291,13 @@ display: flex;
   
   /*style the items (options), including the selected item:*/
   .select-items div,.select-selected {
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    line-height: 1;
+    position: relative;
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 8px 10px;
     border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
@@ -288,11 +307,13 @@ display: flex;
   /*style items (options):*/
   .select-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: #2980B9;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
+    margin-left: 100px;
+    width: 160px;
   }
   
   /*hide the items when the select box is closed:*/
