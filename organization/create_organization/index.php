@@ -1,29 +1,26 @@
 <?php
+ob_start();
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
-require 'create_org_php.php';
+require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_php.php';
 ?>
 <title>create new organization </title>
 <link rel='stylesheet' href='/css_codes/create_org.css'>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script>
     btnPress(6);
-</script>
+</script>   
 
 <div id='form_main_body'>
     <div class="form_header_div">Create a new organization</div>
 
-    <div class="detail_div">
-        <span class='sub_head'>Enter details</span><br>
-    </div>
-
-    <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' ng-app="" name="createOrgForm" id='createOrgForm' novalidate>
+    <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' ng-app="" name="createOrgForm" id='createOrgForm' novalidate ng-init="orgName='<?php echo $org_name?>';orgMail='<?php echo $email ?>';orgNum=<?php echo $phone_num ?>">
         <div id='form_sub_body'>
 
             <div class="name_div">
-                <label>Organization name</label>
+                <label class='create_org_label'>Organization name</label>
                 <div>
                     <div ng-class="{'has-error': (createOrgForm.org_name.$invalid && createOrgForm.org_name.$touched)}">
-                        <input type='text' name="org_name" value='<?php echo $org_name; ?>' ng-model="orgName" required>
+                        <input class="create_org_input" type='text' name="org_name"  ng-model="orgName" required>
                     </div>
                     <span class='error'><?php echo $nameErr ?></span>
                     <span class='error' data-ng-show="createOrgForm.org_name.$invalid && createOrgForm.org_name.$touched"><i class='fas fa-exclamation-circle'></i> Name Required</span>
@@ -31,7 +28,7 @@ require 'create_org_php.php';
             </div>
 
             <div class="leader_div">
-                <label class='leader'>Leader</label>
+                <label class='create_org_label'>Leader</label>
                 <?php
                     if(!isset($leader) || $leader=='' || $leader==$_SESSION['user_nic']){
                         $rad_you='checked';
@@ -47,18 +44,18 @@ require 'create_org_php.php';
                 ?>
                 <div style="width:100px;">
                     <input type='radio' name="leader" id="leader" value='you' <?php echo $rad_you ?> onclick='leaderFun()'>
-                    <label for="leader">You</label>
+                    <label class="create_org_label" for="leader">You</label>
                 </div>
                 <div >
                     <input type='radio' name="leader" id='other_leader' value='others' <?php echo $rad_others; ?> onclick='leaderFun()'>
-                    <label for="other_leader">Others</label>
+                    <label class="create_org_label" for="other_leader">Others</label>
                 </div>
             </div>
             <div class="leader_nic_div" id='other_leader_nic'>
-                <label>Leader NIC</label>
+                <label class="create_org_label">Leader NIC</label>
                 <div>
                     <div ng-class="{'has-error': createOrgForm.leader_nic.$invalid}">
-                        <input type='text' name='leader_nic' placeholder='Leader NIC num' value='<?php echo $others_value ?>' pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}"ng-model="leaderNic" required>
+                        <input class="create_org_input" type='text' name='leader_nic' placeholder='Leader NIC num' value='<?php echo $others_value ?>' pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic" required>
                     </div>
                     <span class='error'><?php echo '' ?></span>
                     <span class='error' data-ng-show="createOrgForm.leader_nic.$invalid && createOrgForm.leader_nic.$touched"><i class='fas fa-exclamation-circle'></i> Invalid NiC Format</span>
@@ -75,19 +72,23 @@ require 'create_org_php.php';
             </script>
 
             <div class="co_leader_div">
-                <label>Co-leaders</label> </td>
+                <label class="create_org_label">Co-leaders</label> 
                 <div class="input_container" id='coleader_container'></div>
             </div>
 
             <div class="dis_div">
-                <label class='district'>Service district</label>
+                <label class="create_org_label">Service district</label>
                 <div class="custom-select" style="width:200px;">
                     <select name="district">
                         <?php $dis_array = ['All Island','Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota',
                         'Jaffna','Kaltura','Kandy','Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala',
                         'Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam','Ratnapura','Tricomalee','Vavuniya'];
                         foreach($dis_array as $dis){
-                            echo "<option value='".$dis."'>".$dis."</option>";
+                            echo "<option value='".$dis."' ";
+                            if($dis == $district){
+                                echo 'selected';
+                            }
+                            echo ">".$dis."</option>";
                         }
                         ?>
                     </select>
@@ -95,48 +96,46 @@ require 'create_org_php.php';
             </div>
 
             <div class="email_div">
-                <label>Organization Email</label>
+                <label class="create_org_label">Organization Email</label>
                 <div>
                     <div ng-class="{'has-error': createOrgForm.email.$invalid}">
-                        <input type='email' name="email" value='<?php echo $email; ?>' ng-model="orgMail">
+                        <input class="create_org_input" type='email' name="email" value='<?php echo $email; ?>' ng-model="orgMail">
                     </div>
-                    <span class='error'><?php echo $emailErr ?></span>
                     <span class='error' data-ng-show="createOrgForm.email.$error.email && createOrgForm.email.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Email</span>
                 </div>
             </div>
 
             <div class="phone_div">
-                <label class='phone_num'>Phone number</label>
+                <label class="create_org_label">Phone number</label>
                 <div>
                     <div ng-class="{'has-error': (createOrgForm.phone_num.$invalid && createOrgForm.phone_num.$touched)}">
-                        <input type='tel' name="phone_num" value='<?php echo $phone_num; ?>' pattern="[0-9]{9}|[0-9]{10}" ng-model="orgNum">
+                        <input class="create_org_input" type='tel' name="phone_num" value='<?php echo $phone_num; ?>' pattern="[0-9]{9}|[0-9]{10}" ng-model="orgNum">
                     </div>
-                    <span class='error'><?php echo $phoneErr ?></span>
                     <span class='error' data-ng-show="createOrgForm.phone_num.$invalid && createOrgForm.phone_num.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Number Format</span>
                 </div>
             </div>
 
             <div class="discrip_div">
-                <label>Discription</label>
-                <textarea name='discription'><?php echo $discription; ?></textarea>
+                <label class="create_org_label">Discription</label>
+                <textarea class="create_org_textarea" name='discription'><?php echo $discription; ?></textarea>
             </div>
 
             <div class="mem_div">
-                <label> Members</label> 
+                <label class="create_org_label"> Members</label> 
                 <div class="input_container" id="member_container">
                     <div class="input_sub_container">
-                        <input type="text" class="text_input" name='members[]'>
+                        <input type="text" class="create_org_input" name='members[]'>
                         <button type="button" onclick="add(this)" class="add_rem_btn">Add</button>
                     </div>
                 </div>
             </div>
-            
+            </div>
             <div class="create_org_btn_container">
-                <button type='submit' name='submit_button' class="create_org_submit_btn" id='submitBtn'>Submit</button>
-                <button type='submit' name='cancel_button' class="create_org_cancel_btn" id='submitBtn'd>Cancel</button>
+                <button type='submit' name='submit_button' class="create_org_submit_btn submitt" id='submitBtn'>Submit</button>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' name='cancel_button' class="create_org_cancel_btn" id='submitBtn'>Cancel</button></a>
             </div>
         
-            </div>
+            
             
         </form>
 </div>
@@ -171,12 +170,12 @@ require 'create_org_php.php';
     var str='';
     for(var coleader of coleaders){
         str+=   '<div class="input_sub_container">\n'+
-                    '<input type="text" class="text_input" name="coleaders[]" value="'+coleader+'" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n'+
+                    '<input type="text" class="create_org_input" name="coleaders[]" value="'+coleader+'" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n'+
                     '<button type="button" onclick="remove(this)" class="add_rem_btn">Remove</button>\n'+
                 '</div>';
     }
     str+=       '<div class="input_sub_container">\n'+
-                    '<input type="text" class="text_input" name="coleaders[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n'+
+                    '<input type="text" class="create_org_input" name="coleaders[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n'+
                     '<button type="button" onclick="add_coleader(this)" class="add_rem_btn">Add</button>\n'+
                 '</div>';
     document.getElementById('coleader_container').innerHTML=str;
@@ -184,12 +183,12 @@ require 'create_org_php.php';
     var str='';
     for(var member of members){
         str+=   '<div class="input_sub_container">\n'+
-                    '<input type="text" class="text_input" name="members[]" value="'+member+'" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n'+
+                    '<input type="text" class="create_org_input" name="members[]" value="'+member+'" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n'+
                     '<button type="button" onclick="remove(this)" class="add_rem_btn">Remove</button>\n'+
                 '</div>';
     }
     str+=       '<div class="input_sub_container">\n'+
-                    '<input type="text" class="text_input" name="members[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n'+
+                    '<input type="text" class="create_org_input" name="members[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n'+
                     '<button type="button" onclick="add(this)" class="add_rem_btn">Add</button>\n'+
                 '</div>';
     document.getElementById('member_container').innerHTML=str;
@@ -203,7 +202,7 @@ require 'create_org_php.php';
                 ele.children[1].outerHTML = "<button type='button' onclick='remove(this)' class='add_rem_btn'>Remove</button>"
             }
             parent.innerHTML += '<div class="input_sub_container">\n' +
-                '        <input type="text" class="text_input" name="members[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n' +
+                '        <input type="text" class="create_org_input" name="members[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n' +
                 '        <button type="button" onclick="add(this)" class="add_rem_btn">Add</button>\n' +
                 '    </div>';
         }
@@ -221,7 +220,7 @@ require 'create_org_php.php';
                 ele.children[1].outerHTML = "<button type='button' onclick='remove(this)' class='add_rem_btn'>Remove</button>"
             }
             parent.innerHTML += '<div class="input_sub_container">\n' +
-                '        <input type="text" class="text_input" name="coleaders[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic">\n' +
+                '        <input type="text" class="create_org_input" name="coleaders[]" pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" >\n' +
                 '        <button type="button" onclick="add_coleader(this)" class="add_rem_btn">Add</button>\n' +
                 '    </div>';
         }
@@ -314,3 +313,4 @@ require 'create_org_php.php';
     
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+<?php ob_end_flush();
