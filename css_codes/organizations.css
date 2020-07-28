@@ -15,7 +15,7 @@
 #table{
     border: 2px solid #d8e0e7;
     border-collapse: collapse;
-    width:500px;
+    width:700px;
     table-layout: fixed;
     border-spacing: 5px;
     margin:auto;
@@ -32,6 +32,7 @@
 .create_but{
     width: 265px;
     height: 100px;
+    background-color: #e5e5f4;
     border: none;
     font-weight: 700;
     font-size: 20px;
@@ -54,12 +55,37 @@
       margin: 10px;
       border: 2px solid #d8e0e7;
   }
+  .org_main{
+    position: relative;
+    display: flex;
+    flex-flow: wrap row;
+    margin: 2px 16px 2px 16px;
+  }
+  .org_logo_container{
+    height: 50px;
+    width: 50px;
+    border: 1px solid #d8e0e7;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .org_logo_pic{
+      width: 100%;
+  }
+  .org_name_des{
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    border: white;
+    text-align: left;
+  }
   .org_list{
-      height: 40px;
+    height: 60px;
+    cursor: pointer;
   }
   .dis_name{   
     text-align: center;
     width: 200px;
+    height: 30px;
     font-size: 20px;
     font-weight: 600;
     background-color: #e5e5f4;
