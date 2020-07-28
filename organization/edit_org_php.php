@@ -1,43 +1,17 @@
 <?php
-    if($_SERVER['REQUEST_METHOD']=='GET'){
-        $query='select * from organizations where org_id='.$_GET['edit_detail'];
-        $result=($con->query($query))->fetch_assoc();
-        
-        $org_id=$_GET['edit_detail'];
-        $org_name=$result['org_name'];
-        $leader=$result['leader'];
-        $district=$result['district'];
-        $email=$result['email'];
-        $phone_num=$result['phone_num'];
-        $members=$result['members'];
-        $discription=$result['discription'];    //Definig variables and initiate them to empty values
-    }
-    
-
-
-    if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
+    if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['edit_button'])){
         //echo '<script type="text/javascript">alert("submit button clicked")</script>';
         $isOk=1;
-        $org_id=$_POST['hidden_2'];
+        $org_id=$_POST['org_id'];
+        $_GET['org_id']=$org_id;
         if(empty($_POST['org_name'])){
             $nameErr="Organization name is required";
             $isOk=0;
         }else{
-            $org_name=filter($_POST['org_name']);
+            $org_name=filt_inp($_POST['org_name']);
             if(!preg_match("/^[a-zA-Z ]*$/",$org_name)){
                 $nameErr='Only letters and white space allowed';
-            }
-        }
-
-        if(empty($_POST['leader'])){
-            $leaderErr="Organization name is required";
-            $isOk=0;
-        }else{
-            if($_POST['leader']=='you'){
-                $leader=$_SESSION['user_nic'];
-            }
-            elseif (isset($_POST['leader_nic'])) {
-                $leader=$_POST['leader_nic'];
+                $isOk=0;
             }
         }
 
@@ -45,47 +19,43 @@
             $disErr="Service district is required";
             $isOk=0;
         }else{
-            $district=filter($_POST['district']);
+            $district=filt_inp($_POST['district']);
         }
 
         if(empty($_POST['email'])){
             $emailErr="Email is required";
             $isOk=0;
         }else{
-            $email=filter($_POST['email']);
+            $email=filt_inp($_POST['email']);
         }
 
         if(empty($_POST['phone_num'])){
             $phoneErr="Phone number is required";
             $isOk=0;
-        }else{
-            $phone_num=filter($_POST['phone_num']);
+        }
+        else{
+            $phone_num=filt_inp($_POST['phone_num']);
+            if(!preg_match("/^[0-9]*$/",$phone_num)){
+                $phoneErr='Only numbers allowed';
+                $isOk=0;
+            }
         }
 
         $discription=$_POST['discription'];
 
         if($isOk==1){
-            $str_members=$_POST['hidden'];
-            
-            //echo '<script type="text/javascript">alert("submit button sucess")</script>';
-
-            $query2="UPDATE organizations SET org_name='$org_name', leader='$leader', district='$district', email='$email', phone_num='$phone_num', members='$str_members', discription='$discription' WHERE org_id=".$org_id;
-            //echo '<script type="text/javascript">alert("'.$query2.'")</script>';
-
+            $query2="UPDATE organizations SET org_name='$org_name', district='$district', email='$email', phone_num='$phone_num', discription='$discription' WHERE org_id=".$org_id;
             $query_run=$con->query($query2);
             if($query_run){
-                header('location:organizations.php');
+                header('location:/organization/?selected_org='.$org_id);
                 echo '<script type="text/javascript">alert("Successfully created")</script>';
 
             }else{
-                echo '<script type="text/javascript">alert("Errorr")</script>';
+                echo '<script type="text/javascript">alert("Error")</script>';
             }
-            #header('location:home_page.php');
         }else{
             echo "try again";
         }
     }
-    function filter($input){
-        return(htmlspecialchars(stripslashes(trim($input))));
-    }
+    
 ?> 
