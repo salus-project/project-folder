@@ -53,19 +53,21 @@
 						</div>
 					</div>';
 					echo "<div class='fund_detail'>";
-					echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
-					echo "<div>";
-						echo "<form id=view_fund action=view_fundraising.php method=get>";
-							echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
-						echo "</form>";
+						echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
+						echo "<div>";
+							echo "<form id=view_fund action=view_fundraising.php method=get>";
+								echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
+							echo "</form>";
+						echo "</div>";
 					echo "</div>";
-					echo "</div>";
-				echo "<div id='create_box'>
-						<a href='create_fundraising.php'><button class='create_btn'>Create new fundraising event</button></a>
-					</div>";
-			echo"</div>";
+				echo "</div>";
 			}
-		echo "</div>";
+			echo "<div id='create_box'>
+					<a href='create_fundraising.php'><button class='create_btn'>Create new fundraising event</button></a>
+				</div>";
+		echo"</div>";
+			
+		
 		echo"<div id='boxes'>";
 			echo"<div id='program'>
 					<div id='program_title'>Other fundraising programs</div>
