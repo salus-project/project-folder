@@ -5,13 +5,13 @@ button,input{
     outline: none;
 }
 .sticky{
-    position: fixed;
+    position:sticky;
     left: 0px;
     right: 0px;
     top: 0;
-    padding: 0px 8px 0 8px;
     z-index: 3;
     background-color: white;
+    -webkit-backface-visibility: hidden;
 }
 #titlebar{
     display: flex;
@@ -139,32 +139,32 @@ x{
 .menu_icon:hover {
     cursor: pointer;
     background-color: #6f7e6f;
-    } 
-    
-    .font_aws{
-        display: inline-block;
-    }
-    .menu_icon.active:hover {
-    cursor: pointer;
-    background-color: blue;
-    } 
+} 
 
-    .menu_icon{
-        color: blue;
-        font-size: 20px;
-        padding: 8px 15px 8px 15px;
-        border-radius: 8px;
-        min-width: 45px;
-    }
-    .active{
-    background-color:blue;
-    color:white;
-    }
-    
-    .menu_icon_tooltip {
-    position: relative;
+.font_aws{
     display: inline-block;
-    }
+}
+.menu_icon.active:hover {
+cursor: pointer;
+background-color: blue;
+} 
+
+.menu_icon{
+    color: blue;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    border-radius: 8px;
+    min-width: 45px;
+}
+.active{
+background-color:blue;
+color:white;
+}
+
+.menu_icon_tooltip {
+position: relative;
+display: inline-block;
+}
 
     .menu_icon_tooltip .menu_icon_tooltiptext {
     visibility: hidden;

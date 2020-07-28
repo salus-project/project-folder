@@ -7,50 +7,77 @@
     margin:auto;
 
 }
-#detail_body{
-    background-color: white;
+#org_body{
+    margin: auto;
     margin-top:30px;
-    border:1px solid black;
-    transform:translate(-130px,0);
-    position:absolute;
-    z-index:4;
-    max-height: 250px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    
+    position: relative;
 }
 #table{
-    border:1px solid black;
+    border: 2px solid #d8e0e7;
     border-collapse: collapse;
-    width:400px;
+    width:500px;
     table-layout: fixed;
     border-spacing: 5px;
     margin:auto;
 }
-#no{
-    width:15px;
-    border:1px solid black;
-    /*padding:5px;*/
-    background-color: cadetblue;
-}
-#name{
-    width:200px;
-}
-.name_td{
-    padding:0px;
-    border:1px solid black;
-    /*padding:5px;*/
-    padding-left: 10px;
-}
-
 .org_name,.create_org_btn{
     width:100%;
-    height:30px;
+    height:40px;
     background-color: white;
     cursor: pointer;
     border: white;
     text-align: left;
 }
-.create_org_btn{
-    background-color: cadetblue;
+
+.create_but{
+    width: 265px;
+    height: 100px;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    color: #6b7c93;
+    cursor: pointer;
+  }
+#create_org{
+    width: 265px;
+    height: 100px;
+    right: 16px;
+    float: right;
+    top: 0;
+    margin-bottom: 16px;  
+    margin-left: 16px;
+  }
+  #create_org:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .table_td{
+      margin: 10px;
+      border: 2px solid #d8e0e7;
+  }
+  .org_list{
+      height: 40px;
+  }
+  .dis_name{   
+    text-align: center;
+    width: 200px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #e5e5f4;
+  }
+.org_name:hover{
+    background-color:#0c7dff47;
+    color: #6b7c93;
+  }
+.org_search{
+    margin: 16px;
+}
+.search{
+    height: 30px;
+    width: 350px;
+
+}
+.top{
+    position: relative;
+    display: flex;
+    margin: auto;
 }
