@@ -8,19 +8,15 @@
         if($row['NIC_num']!=$_SESSION['user_nic']){
             
             $profile_path = "http://eme-service.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
-            $profile_path_header = get_headers($profile_path);
-            if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                $profile_path = "http://eme-service.000webhostapp.com/Profiles/resized/default.jpg";
-            }
-            
-            echo    "<tr>
-                        <td>
+
+            echo    "<tr class='user_row'>
+                        <td class='user_name'>
                             <a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".
                                 "<img src='".$profile_path."' alt='oops' class='side_nav_profile'>".
                                 $row['first_name']." ".$row['last_name']."
                             </a>
                         </td>
-                        <td>
+                        <td class='last_seen_data'>
                             <span class='last_seen'>".findLast($row['last_seen'])."</span>
                         </td>
                     </tr>";
