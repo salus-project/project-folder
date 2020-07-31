@@ -26,8 +26,10 @@
                     select * from event_".$_GET['event_id']."_locations;
                     select * from organizations;
                     SELECT `event_".$_GET['event_id']."_help_requested`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_help_requested INNER JOIN civilian_detail on event_".$_GET['event_id']."_help_requested.NIC_num=civilian_detail.NIC_num;
-                    SELECT `event_".$_GET['event_id']."_volunteers`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_volunteers INNER JOIN civilian_detail on event_".$_GET['event_id']."_volunteers.NIC_num=civilian_detail.NIC_num";    
-            $result;
+                    SELECT `event_".$_GET['event_id']."_volunteers`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_volunteers INNER JOIN civilian_detail on event_".$_GET['event_id']."_volunteers.NIC_num=civilian_detail.NIC_num;
+                    select org_name,org_id from organizations";    
+        
+                    $result;
             if(mysqli_multi_query($con, $query)){
                 $sql_result = mysqli_store_result($con);
                 $result = mysqli_fetch_assoc($sql_result);
@@ -58,6 +60,11 @@
             mysqli_next_result($con);
             $sql_result = mysqli_store_result($con);
             $volunteers = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
+            mysqli_free_result($sql_result);
+
+            mysqli_next_result($con);
+            $sql_result = mysqli_store_result($con);
+            $orgs = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
             mysqli_free_result($sql_result);
         
         ?>

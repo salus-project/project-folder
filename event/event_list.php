@@ -9,6 +9,7 @@
     <form action='/event' method='get'>
         <table id=event_table>
             <?php
+                echo "<tr ><td class=name><a href='/event/all_event.php'><button type=button class='event_name' name=event_id>View all</button></a></td></tr>";
                 while($row=$result->fetch_assoc()){
                     echo "<tr><td class=name><button type=submit class='event_name ". $row['status'] ."_event' name=event_id value=" . $row['event_id'] . ">" . $row['name'] . "</button></td></tr>";
                 }
