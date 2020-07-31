@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='/common/autocomplete/auto_complete.js'></script>
+    <link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
+</head>
+
+<body>
+    <!--Make sure the form has the autocomplete function switched off:-->
+    <form autocomplete="off" action="/action_page.php">
+        <div class="autocomplete" style="width:300px;" id="autocomplete">
+            <!--input id="myInput" type="text" name="myCountry" placeholder="Search here" spellcheck="false" aria-autocomplete="none">
+            <input type="hidden" name="value"-->
+        </div>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    autocomplete_ready(document.getElementById("autocomplete"), 'users', 'ready', '/message/?to_person=');
+</script>
+
+</html>
