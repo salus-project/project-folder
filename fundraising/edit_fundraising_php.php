@@ -1,120 +1,96 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submitBtn'])){
+    $fund_id=$_POST['fund_id'];
+    $_GET['edit_btn']=$fund_id;
+    $for_event=$_POST['for_event']?$_POST['for_event']:'NULL';
+    $for_any=$_POST['other_purpose']?$_POST['other_purpose']:'NULL';
+    $item = array_filter($_POST['item']);
+    $amount = $_POST['amount'];
+    $description=$_POST['description'];
+    $by=$_SESSION['user_nic']; 
 
-$string1= $_POST["list"];
-$string2 = explode ("++", $string1);
+    /*$district=$_POST['district']?$_POST['district']:[];
+    for($x=0 ; $x < count($district) ; $x++){
+        filt_inp($district[$x]);
+    }
+    $district= implode(",", $district);*/
+    $district="";
 
-
-$isOk=1;
-if(empty($string2[0])){
-    echo '<script type="text/javascript">alert("Fundraising event name is required")</script>';
-    $isOk=0;
-}else{
-    $fundraising_name=filter($string2[0]);
-    if($fundraising_name != $string2[0]){
+    if($_POST['organization']==""){
+        $org_id= "NULL";
+    } 
+    else{
+        $org_id=$_POST['organization'];
+    }
+    $isOk=1;
+    if(empty($_POST['fundraising_name'])){
+        $nameErr="Name required";
+        $isOk=0;
+    }else{
+        $fundraising_name=filt_inp($_POST['fundraising_name']);            
         $validate_name_query="select * from fundraisings where name='$fundraising_name'";
         $query_run=mysqli_query($con,$validate_name_query);
-        if(mysqli_num_rows($query_run)>0){
-            echo '<script type="text/javascript">alert("fundraising name already exits...")</script>';
+        if(mysqli_num_rows($query_run)>1){
+            $nameErr='Fundraising name already exists';
+            echo '<script type="text/javascript">alert("Fundraising name already exits...")</script>';
             $isOk=0;
         }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$fundraising_name)){
+            $nameErr='Only letters and white space allowed';
+            $isOk=0;
+        } 
     }
-}
-if($string2[1]==""){
-    $org_name= "NULL";
-}
-else{
-    $org_name=$string2[1];
-}
-
-$for_event=$string2[2];
-$for_any=$string2[3];
-
-$for_opt=$string2[4];
-$purpose='';
-if($for_opt=="00"){
-    echo '<script type="text/javascript">alert("fill purpose field")</script>';
-    $isOk=0;
-}
-elseif($for_opt=="1"){
-    $for_any=NULL;
-    $query2="select * from disaster_events where event_id=". $for_event;
-    $result2=($con->query($query2))->fetch_assoc();
-    $purpose=$result2['name'];
-}
-else{
-    $for_event="NULL";
-    $purpose=$for_any;
-    if(empty($for_any)){
-        echo '<script type="text/javascript">alert("purpose is required")</script>';
+    echo $fundraising_name;
+    $for_opt=$_POST['purp'];
+    if ($for_event==0){
         $isOk=0;
+        $noSelEveErr="Select an event";
     }
-}
-$mon=$string2[5];
-$thin=$string2[6];
+    if($for_opt==1){
+        $for_any='NULL';
+    }
+    elseif ($for_opt==2){
+        $for_event='NULL';   
+    }
+    $item = array_filter($_POST['item']);
+    $amount = $_POST['amount'];
+    $update_id=$_POST['update_id'];
+    $pri_query = '';
+    $del_detail = array_filter(explode(',', $_POST['del_details']));
+    echo $isOk;
+    if($isOk==1){
+        foreach( $del_detail as $row_del){
+            $pri_query.= "delete from fundraisings_expects where id=".$row_del.";";
+        }
+        for($x=0 ; $x < count($item) ; $x++){
+            if(!empty($item[$x])){
+                if(empty($amount[$x])){
+                    $amount[$x]=0;
+                }
+                
+                if($update_id[$x]=='0'){
+                    $pri_query .= "INSERT INTO fundraisings_expects (`fund_id`, `item`, `amount`) VALUES ('$fund_id', '".ready_input(filt_inp($item[$x]))."', '".filt_inp($amount[$x])."');";
+                
+                }else{
+                    $pri_query .= "UPDATE `fundraisings_expects` SET `item` = '".ready_input(filt_inp($item[$x]))."', `amount` = '".filt_inp($amount[$x])."' WHERE `fundraisings_expects`.`id` = '".$update_id[$x]."';";
+                }
+            }
+        }
+        $pri_query .="update `fundraisings` SET name='".$fundraising_name."', by_civilian='".$by."', by_org=".$org_id.", for_event=".$for_event.", for_any='".$for_any."', service_area='".$district."', description='".$description."' WHERE id=".$fund_id.";";
+        
+        $query_run=mysqli_multi_query($con,$pri_query);
 
+        if($query_run){
+            header('location:/fundraising/view_fundraising.php?view_fun='.$fund_id);
+            echo '<script type="text/javascript">alert("Successfully updated")</script>';
 
-if(($mon=="0") and ($thin=="0")){
-    echo '<script type="text/javascript">alert("select your requests")</script>';
-    $isOk=0;
-}
-elseif(($mon=="1") and ($thin=="1")){
-    $type="money and things";
-    $money=$string2[7];
-    $things=$string2[8];
-
-    if((empty($money)) or (empty($things))){
-        echo '<script type="text/javascript">alert("fill your request")</script>';
-        $isOk=0;
+        }else{
+            echo '<script type="text/javascript">alert("Error")</script>';
+        }
     }
 
-}
-elseif( $mon=="1"){
-    $type="money only";
-    $money=$string2[7];
-    $things=NULL;
-    if(empty($money)){
-        echo '<script type="text/javascript">alert("ammount is required")</script>';
-        $isOk=0;
+    else{
+        echo "try again";
     }
-}
-elseif($thin=="1"){
-    $type="things only";
-    $money="NULL";
-    $things=$string2[8];
-
-    if(empty($things)){
-        echo '<script type="text/javascript">alert("things required")</script>';
-        $isOk=0;
-    }
-}
-
-$service_area=$string2[9];
-$description=$string2[10];
-$by=filter($_SESSION['user_nic']);
-
-$location = "view_fundraising.php?view_fun=".$string2[11];
-// echo $fundraising_name.' '.$by.''.$org_name.' '.$type.' '. $for_event.' '.$for_any.' '. $money.' '.$things.' '.$service_area.' '.$description.' '.$last_id;
-if($isOk==1){
-    $query="UPDATE fundraisings set name='$fundraising_name' ,by_org=$org_name, type='$type',for_event=$for_event, for_any='$for_any', expecting_money=$money, expecting_things='$things', service_area='$service_area', description='$description' WHERE id=".$string2[11];
-
-    $query_run=mysqli_query($con,$query);
-
-    if($query_run){
-
-        echo '<script type="text/javascript">alert("Successfully updated")</script>';
-
-    }else{
-        echo '<script type="text/javascript">alert("Error")</script>';
-    }
-}
-else{
-    echo "try again";
-}
-
-header("Location:".$location);
-
-function filter($input){
-    return(htmlspecialchars(stripslashes(trim($input))));
 }
 ?>
