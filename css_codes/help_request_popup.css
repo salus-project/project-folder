@@ -1,71 +1,76 @@
-.div1{
-    position:fixed;
+.popup_div{
+    position: fixed;
     top: 50%;
-    left:50%;
+    left: 50%;
+    border-radius: 0px;
+    padding: 0px;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    width : 500px;
-    min-height: 250px;;
-    margin:0 auto;
-    background:white;
-    padding:5px;
-    border-radius: 10px;
-    border: 1px solid black;
+    width: 500px;
+    min-height: 250px;
+    margin: 0 auto;
+    background: white;
     z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
 }
-.div1.active_pop{
+.popup_div.active_pop{
     transform: translate(-50%, -50%) scale(1);
     max-height: 90vh;
     overflow: auto;
 }
-.form_box{
-    width:480px;
-    margin:0 auto;
+
+
+/*request form common style*/
+.dis_container,.village_container,.street_container{
+    display: flex;
+    margin-left: 13px;
 }
 .dis_container{
     margin-top: 10px;
 }
-.dis_selection{
-    height: 25px;
+.village_input,.street_input,.dis_selection{
     width: 200px;
-    margin-top: 5px;
+    height: 30px;
+    margin-left: 91px;
+    margin-top: 10px;
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    border: 1px solid #2980B9;
 }
-.h2_tag{
-    align-self: center;
-    color: black;
-    
+.street_input{
+    margin-left: 95px;
+}
+.dis_selection{ 
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 0px;   
+}
+
+/*request and volunteer form*/
+.submit_cancel_btn_container{
+    display: flex;
 }
 .submit_button{
+    font-family: "Open Sans",sans-serif;
     margin-top: 1px;
-    border-radius: 15px;
-    font-size:20px;
-    width: 150px;
-    margin:0 auto;
-    margin-bottom:15px;
-}
-.input_box{
-    width:90%;
-    height:20px;
-    font-size:15px;
-    resize: none;
-}
-.label{
-    font-size:10px;
+    font-size: 20px;
+    width: 248px;
+    margin: 0 auto;
+    border-radius: 0;
+    border: 0px;
+    background-color: #0c7dff47;
+    height: 50px;
 }
 .head_label{
     font-size: 18px;
+    color: #393939;
+    font-weight: 400;
 }
 .head_label_container{
-    margin:13px;
+    margin: 13px;
+    margin-bottom: 0px;
 }
-.check_menu{
-    border: 0;
-    width:100px;
-    height: 50px;
-}
-.des_area{
-    border: 0;
-}
+
 #overlay{
     position:fixed;
     opacity: 0;
@@ -81,4 +86,66 @@
     opacity: 1;
     pointer-events: all;
     z-index: 3;
+}
+
+/*item amount input buttons*/
+.text_input{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0px;
+    width: 33%;
+    color: #393939;
+    font-size: 14px;
+    font: none;
+}
+.request_input{
+    border: none;
+    border-right: 1px solid #d8e0e7;
+    min-width: 100px;
+    padding: 5px
+}
+.butn{
+    color: white;
+    border: none;
+    padding: 0px;
+    background-color: #2980B9;
+    height: 29px;
+    width: 159.5px;
+    font-family: "Open Sans",sans-serif;
+}
+
+
+/*requests and Abilities division*/
+.request_ability_container{
+    margin:13px;
+}
+.ability_input_container{
+    width: 495.5px;
+}
+.req_input_container{
+    width: 495.5px;
+    margin-bottom: 30px;
+}
+.input_sub_container{
+    display: flex;
+    margin-left: 13px;
+    margin-right: 10px;
+    color: #393939;
+    direction: ltr;
+    line-height: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
+    border: 1px solid #8f8b8b;    
+}
+
+/*Volunteer form some styles8*/
+.dis_label_container{
+    margin-left: 13px;
+    display: flex;
+}
+.donor_volun_div{
+    display: flex;
 }

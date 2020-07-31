@@ -1,50 +1,211 @@
-.dropbtn {
-    background-color: #3498DB;
+.popup_div{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 0px;
+    padding: 0px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    width: 500px;
+    min-height: 250px;
+    margin: 0 auto;
+    background: white;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+}
+.popup_div.active_pop{
+    transform: translate(-50%, -50%) scale(1);
+    max-height: 90vh;
+    overflow: auto;
+}
+
+
+/*request form common style*/
+.dis_container,.village_container,.street_container{
+    display: flex;
+    margin-left: 13px;
+}
+.dis_container{
+    margin-top: 10px;
+}
+.village_input,.street_input,.dis_selection{
+    width: 200px;
+    height: 30px;
+    margin-left: 91px;
+    margin-top: 10px;
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    border: 1px solid #2980B9;
+}
+.street_input{
+    margin-left: 95px;
+}
+.dis_selection{ 
+    width: 260px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 0px;   
+}
+
+/*request and volunteer form*/
+.submit_cancel_btn_container{
+    display: flex;
+}
+.submit_button{
+    font-family: "Open Sans",sans-serif;
+    margin-top: 1px;
+    font-size: 20px;
+    width: 248px;
+    color: #393939;
+    margin: 0 auto;
+    border-radius: 0;
+    border: 0px;
+    background-color: #0c7dff47;
+    height: 50px;
+}
+.head_label{
+    font-size: 18px;
+    color: #393939
+}
+.head_label_container{
+    margin: 13px;
+    margin-bottom: 0px;
+}
+
+#overlay{
+    position:fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+#overlay.active_pop{
+    opacity: 1;
+    pointer-events: all;
+    z-index: 3;
+}
+
+/*item amount input buttons*/
+.text_input[type=text]{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0px;
+    width: 33%;
+    color: #393939;
+    font-size: 14px;
+    min-width: 100px; 
+
+}
+.request_input{
+    border: none;
+    border-right: 1px solid #d8e0e7;
+    min-width: 100px;
+    padding: 5px;
+    line-height: 1;
+}
+.butn{
     color: white;
-    padding: 16px;
+    border: none;
+    padding: 0px;
+    background-color: #2980B9;
+    height: 29px;
+    width: 159.5px;
+    font-family: "Open Sans",sans-serif;
+}
+
+
+/*requests and Abilities division*/
+.request_ability_container{
+    margin:13px;
+}
+.ability_input_container{
+    width: 495.5px;
+}
+.req_input_container{
+    width: 495.5px;
+    margin-bottom: 30px;
+}
+.input_sub_container{
+    display: flex;
+    margin-left: 13px;
+    margin-right: 10px;
+    color: #393939;
+    direction: ltr;
+    line-height: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
+    border: 1px solid #8f8b8b;    
+}
+
+/*Volunteer form some styles8*/
+.dis_label_container{
+    margin-left: 13px;
+    display: flex;
+}
+.donor_volun_div{
+    display: flex;
+}
+
+
+
+/*Districts select drop down button styles of Volunteer form*/
+.dropbtn {
+    width: 150px;
+    color: white;
+    background-color: #2980B9;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    height: 30p;
+    margin-left: 20px;
+    margin-top: 15px;
+    font-family: "Open Sans",sans-serif;
 }
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
+    margin-left: 20px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: #6b7c93;
     text-decoration: none;
     display: block;
+    font-family: "Open san"sans-serif;
 }
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
+.dropdown-content.drp.show{
+    width: 150px;
+}
+.dropdown a:hover {
+    background-color: #ddd;
+}
+.show {
+    display: block;
+    z-index: 4;
+}
 
 /* The container */
 .container {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 14px;
+    color: black;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -53,11 +214,14 @@
 
 /* Hide the browser's default checkbox */
 .container input {
+    padding: 0;
     position: absolute;
     opacity: 0;
+    margin-bottom: 0;
+    display: none;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: initial;
+    width: initial;
 }
 
 /* Create a custom checkbox */
@@ -70,37 +234,93 @@
     background-color: #eee;
 }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.container input:checked + .checkmark:after {
+    content: '';
     display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    color: #393939;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.container .checkmark:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #0079bf;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    color: #393939;
+}
+
+/*-------------------------------------------------*/
+
+/*custom check box for donor or volunteer selection*/
+.new {
+    padding-left: 30px;
+    margin-top: 15px;
+}
+  
+.form-group {
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 150px;
+    text-align: center;
+}
+  
+.form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+  
+.form-group label {
+    position: relative;
+    cursor: pointer;
+    color: #393939;
+    font-weight: 400;
+}
+  
+.form-group label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #0079bf;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    color: #393939;
+}
+.form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
     left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+    color: #393939;
 }
