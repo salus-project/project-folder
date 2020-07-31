@@ -5,13 +5,15 @@
 <div id="org_body">
     <form method='get' action='/organization'>
         <div class='top'>
-            <div class='org_search'>
-                Search for: <input placeholder='Organization name' class='search' type=text>
-            </div>
-            <div id='create_org'>
-                <thead>
-                    <a href='/organization/create_organization'><button class='create_but'>Create new organization</button></a>
-                </thead>
+            <div class='cont'>
+                <div class='org_search'>
+                    <div>Search for: </div><div class='search'><input placeholder='Organization name' class='search_input' type=text></div>
+                </div>
+                <div id='create_org'>
+                    <thead>
+                        <a href='/organization/create_organization'><button class='create_but'>Create new organization</button></a>
+                    </thead>
+                </div>
             </div>
         </div>
         <table id="table">
