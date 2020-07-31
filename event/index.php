@@ -92,7 +92,7 @@
 <div id=news_field>
     Goverment posts and announcements about this event
 </div>
-<div class='div1 popup' id='popup_div'>
+<div class='popup_div popup' id='popup_div'>
 </div>
 <div id='overlay'>
 </div>
