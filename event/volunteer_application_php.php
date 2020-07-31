@@ -66,16 +66,7 @@
     }
 
     
-    if(isset($_POST['cancel_button'])){  
-        $event_id=$_POST['event_id'];
-        $status1=$_POST['status'];
-        $status=explode(" ",$status1);
-        $status[2]='not_applied';
-        $data1=join(" ",$status);
-        $pri_query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = ".$event_id.";
-              UPDATE `event_".$event_id."_volunteers` SET `now` = 'no' WHERE `event_".$event_id."_volunteers`.`NIC_num` = '".$_SESSION['user_nic']."';";
-        
-    }
+    
     if(mysqli_multi_query($con,$pri_query)){
         header("location:".$_SERVER['HTTP_REFERER']);
     }

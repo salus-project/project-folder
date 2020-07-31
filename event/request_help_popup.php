@@ -39,58 +39,45 @@
     }
 
 ?>
-<link rel='stylesheet' type='text/css' href='/css_codes/request.css'>
-<div  class="form_box">
+<link rel="stylesheet" href="/css_codes/volunteer_application.css">
+
+<form  class="form_box">
     <div class=dis_container>
-        <table>
-            <tr>
-                <td>
-                    <label class="head_label"> District (current) </label>
-                </td>
-                <td>
-                    <select name="district" class="dis_selection" id="district">
-                        <?php
-                            $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
-                                'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
-                                'Ratnapura','Tricomalee','Vavuniya');
-                            foreach($district_arr as $dis){
-                                echo "<option value='".$dis."' ";
-                                if(strtolower($dis)==strtolower($old_district)){
-                                    echo "selected";
-                                }
-                                echo ">".$dis."</option>";
+        <div class=head_lab_container><label class="head_label"> District (current) </label></div>
+        <div class=dis_input_container>
+                <select name="district" class="dis_selection" id="district">
+                    <?php
+                        $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
+                            'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
+                            'Ratnapura','Tricomalee','Vavuniya');
+                        foreach($district_arr as $dis){
+                            echo "<option value='".$dis."' ";
+                            if(strtolower($dis)==strtolower($old_district)){
+                                echo "selected";
                             }
-                        ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="head_label"> Village </label>
-                </td>
-                <td>
-                    <input type="text" name='village' value="<?php echo $old_village ?>" id="village">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="head_label"> Street </label>
-                </td>
-                <td>
-                    <input type="text" name="street" value="<?php echo $old_street ?>" id="street">
-                </td>
-            </tr>
-        </table>
+                            echo ">".$dis."</option>";
+                        }
+                    ?>
+                </select>
+                </div>
+    </div>
+    <div class=village_container>
+        <label class="head_label"> Village </label>
+        <input type="text" name='village' value="<?php echo $old_village ?>" class="village_input" id="village">
+    </div>
+    <div class=street_container>
+        <label class="head_label"> Street </label>
+        <input type="text" name="street" value="<?php echo $old_street ?>"class="street_input" id="street">
     </div>
 
-    <div class=head_label_container><label class="head_label"> Requests </label></div>
-    <div class="input_container">
+    <div class="request_ability_container"><label class="head_label"> Requests </label></div>
+    <div class="req_input_container">
         <?php
             foreach($old_content as $row_req){
                 echo "<div class=\"input_sub_container\">";
                 echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>
                         <input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
-                echo    "<button type='button' onclick='remove_request_input(this)' class='add_rem_btn'>Remove</button>";      
+                echo    "<button type='button' onclick='remove_request_input(this)' class='text_input butn'>Remove</button>";      
                 echo    "<input type='hidden' name='update_id[]' value='".$row_req['id']."'>";
                 echo "</div>";
             }
@@ -98,14 +85,14 @@
         <div class="input_sub_container">
             <input type="text" name='item[]' class='text_input request_input'>
             <input type="text" name='amount[]' class='text_input request_input'>
-            <button type="button" onclick="add_request_input(this)" class="add_rem_btn">Add</button>
+            <button type="button" onclick="add_request_input(this)" class="text_input butn">Add</button>
             <input type='hidden' name='update_id[]' value='0'>
         </div>
     </div>
-    <div class=buttons>
-        <input name="submit_button" type="submit"  value="Request"  class="submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">
+    <div class="submit_cancel_btn_container">
+        <button name="submit_button" type="submit"  value="Request"  class="submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">Request</button>
         <button type='button' id=close_request_popup name='cancel_button' class=submit_button >Cancel</button>
     </div>
-</div>
+
 <?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>
 </form>

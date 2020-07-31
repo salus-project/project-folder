@@ -39,21 +39,29 @@
 
 ?>
 <link rel="stylesheet" href="/css_codes/volunteer_application.css">
+
 <form  class="form_box" action="volunteer_application.php" method="POST">
     <input type=hidden name=event_id value="<?php echo $_GET['event_id'] ?>">
     <input type=hidden name=method value='<?php echo $submit_type ?>'>
-
-    <div><label class="head_label">Like to be </label><br>
-
-        <input type="checkbox" name="type[]"  value="Donor" <?php if($old_type === 'Donor' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>Donor
-        <input type="checkbox" name="type[]" value="Volunteer" <?php if($old_type === 'Volunteer' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>Volunteer<br/><br/>
+    <div class="donor_volun_div">
+        <div class=head_label_container><label class="head_label">Like to be </label></div>
+        <div class="new">
+                <div class="form-group">
+                    <input type="checkbox" name="type[]" id="donor"  value="Donor" <?php if($old_type === 'Donor' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>
+                    <label for="donor">Donor</label>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="type[]" id="volunteer" value="Volunteer" <?php if($old_type === 'Volunteer' OR $old_type === 'Donor&Volunteer' ) echo "checked='checked'"; ?>>
+                    <label for="volunteer">Volunteer</label>
+                </div>
+        </div>
     </div>
 
 
-    <div >
-        <label class="head_label"> District/Districts where you want to serve</label>
+    <div class=dis_label_container>
+        <label class="head_label"> District/s where you want to serve    </label>
         <div class="dropdown">
-            <button type="button" onclick="show_menu()" class="dropbtn">District</button>
+            <button type="button" onclick="show_menu()"  class="dropbtn">District</button>
             <div id="myDropdown" class="dropdown-content drp">
                 <?php
                 $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
@@ -88,16 +96,14 @@
         </div>
     </div>
 
-
-    <div class=head_label_container><label class="head_label"> Abilities </label></div>
-
-    <div class="input_container">
+    <div class="request_ability_container"><label class="head_label"> Abilities </label></div>
+    <div class="ability_input_container">
         <?php
             foreach($old_content as $row_req){
                 echo "<div class=\"input_sub_container\">";
                 echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>
                         <input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
-                echo    "<button type='button' onclick='remove_ability_input(this)' class='add_rem_btn'>Remove</button>";
+                echo    "<button type='button' onclick='remove_ability_input(this)' class='text_input butn'>Remove</button>";
                 echo "<input type='hidden' name='update_id[]' value='".$row_req['id']."'>";
                 echo "</div>";
             }
@@ -105,15 +111,15 @@
         <div class="input_sub_container">
             <input type="text" name='item[]' class='text_input request_input'>
             <input type="text" name='amount[]' class='text_input request_input'>
-            <button type="button" onclick="add_ability_input(this)" class="add_rem_btn">Add</button>
+            <button type="button" onclick="add_ability_input(this)" class="text_input butn">Add</button>
             <input type='hidden' name='update_id[]' value='0'>
         </div>
     </div>
     <br>
     <br>
-    <div>
-        <input name="update_button" type="submit"  value="Submit"  class="login_button">
-        <button id=close_request_popup name='cancel_button' class=submit_button>Cancel</button>
+    <div class="submit_cancel_btn_container">
+        <button name="update_button" type="submit"  value="Submit"  class="submit_button">Submit</button>
+        <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' id=close_request_popup name='cancel_button' class=submit_button>Cancel</button></a>
 
     </div>
 </div>
