@@ -169,3 +169,10 @@
 	background-size: 32px 30px;
 	text-align:center;
 }
+.fa-circle{
+	color: red;
+	font-size: 9px;
+}
+.selected_box{
+	background-color: burlywood;
+}
