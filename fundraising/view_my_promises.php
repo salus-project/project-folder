@@ -1,6 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $id=$_SESSION['user_nic'];
     $query="select p.*,f.*,f.id AS  fundraising_pro_donid from fundraising_pro_don f inner join fundraisings p on f.for_fund = p.id where by_person='".$id."';
     select * from fundraising_pro_don_content inner join fundraising_pro_don on fundraising_pro_don.id = fundraising_pro_don_content.don_id where by_person='".$id."';";
@@ -26,33 +25,32 @@
         <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
     </head>
     <body>
     <script>
-        //btnPress(7);
+        btnPress(7);
     </script>
     
-    <div id='promise_body'>
-        <div id="title">
-            <?php echo "My Promises" ?>
-        </div>
-        <table id='promise_table'>
-            <thead>
-                <th colspan=1>Full name </th>
-                <th colspan=1>Promises</th>
-                <th colspan=1>Status</th>
-                <th colspan=1>Note</th>
-            </thead>
-
-      
+    <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4>My Promises</th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Promises</th>
+                    <th colspan=1>Status</th>
+                    <th colspan=1>Note</th>
+                </tr>
             <?php
                 foreach($fundraising_detail as $row_req){
                     $name=$row_req['name'];
                     $note=$row_req['note'];
                     $promise_array=[];
                     $pending_array=[];
+                    $full_array=[];
                     foreach($content_detail as $row_req1){
                         if ($row_req1['don_id']==$row_req['id']){
                             $item_amount=$row_req1['item'].":".$row_req1['amount'];
@@ -61,9 +59,9 @@
                             }else if ($row_req1['pro_don']=="pending"){
                                 array_push($pending_array,$item_amount);
                             }
+                            array_push($full_array,$item_amount);
                         }
                     }
-                    $full_array=array_merge($pending_array,$promise_array);
                     for($x=0; $x < count($full_array); $x++ ){
                         $value=$full_array[$x];
                         if(in_array($value,$pending_array)){$checked="checked='checked'";}else{$checked="";}
@@ -81,17 +79,21 @@
                 }
         ?>
     </table>
-</div>
-<div id='donated_body'>
-<div id="title">
-    <?php echo "My Donations" ?>
-</div>
-    <table id='donated_table'>
-        <thead>
-        <th colspan=1>Full name </th>
-        <th colspan=1>Donations</th>
-        <th colspan=1>Note</th>
-        </thead>
+        </div>
+    </div>
+
+    <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4> My Donations </th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Donations</th>
+                    <th colspan=1>Note</th>
+                </tr>
+
 
         <?php
             foreach($fundraising_detail as $row_req){
@@ -113,7 +115,10 @@
             
         ?>
     </table>
-</div>
+    </div>
+        </div>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+
 </body>
 <script>
     function edit_promise(url){

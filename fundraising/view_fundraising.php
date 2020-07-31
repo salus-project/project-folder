@@ -1,4 +1,4 @@
-<?php
+<?php 
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 $query="select * from fundraisings where id=".$_GET['view_fun'].";
     select * from civilian_detail where NIC_num=(
@@ -9,8 +9,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
     select name from disaster_events where event_id=(
         select for_event from fundraisings where id=".$_GET['view_fun'].");
     select * from fundraisings_expects where fund_id=".$_GET['view_fun'].";
-    select * from fundraising_pro_don inner join civilian_detail on civilian_detail.NIC_num = fundraising_pro_don.by_person where for_fund=".$_GET['view_fun'].";
-    select * from fundraising_pro_don inner join organizations on organizations.org_id = fundraising_pro_don.by_org where for_fund=".$_GET['view_fun'].";
+    select * from fundraising_pro_don left join civilian_detail on civilian_detail.NIC_num = fundraising_pro_don.by_person left join organizations on organizations.org_id = fundraising_pro_don.by_org where for_fund=".$_GET['view_fun'].";
     select * from  fundraising_pro_don inner join fundraising_pro_don_content on fundraising_pro_don.id = fundraising_pro_don_content.don_id where for_fund=".$_GET['view_fun'].";
     select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id=".$_GET['view_fun'].";";
 
@@ -46,16 +45,10 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             $expect.=$row_req['item']." : ".$row_req['amount']."<br>";
         }
 
-        $person_detail=[];
+        $person_org_detail=[];
         mysqli_next_result($con);
         $result = mysqli_store_result($con);
-        $person_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        mysqli_free_result($result);
-
-        $org_detail=[];
-        mysqli_next_result($con);
-        $result = mysqli_store_result($con);
-        $org_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $person_org_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
         mysqli_free_result($result);
 
         $content_detail=[];
@@ -69,7 +62,6 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         $fund_post=mysqli_fetch_all($result,MYSQLI_ASSOC);
         mysqli_free_result($result);
        
-        $person_org_array=array_merge($person_detail,$org_detail);
     }
 ?>
 
@@ -81,6 +73,8 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
         <script src="/common/post/post.js"></script>
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
+        <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
+
 
         <script>
             btnPress(7);
@@ -192,17 +186,21 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             </table>
         </div>
 
-        <div id='promise_body'>
-            <div id="title">
-                <?php echo "Promises" ?>
-            </div>
-            <table id='promise_table'>
-                <thead>
-                    <th colspan=1>Full name </th><th colspan=1>Promises</th><th colspan=1>Status</th><th colspan=1>Note</th>
-                </thead>
+        <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4>Promises</th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Promises</th>
+                    <th colspan=1>Status</th>
+                    <th colspan=1>Note</th>
+                </tr>
                 <?php
-                    foreach($person_org_array as $row_req){
-                        if (in_array($row_req,$person_detail)){
+                    foreach($person_org_detail as $row_req){
+                        if ($row_req['org_name']==""){
                             $name=$row_req['first_name']." ".$row_req['last_name'];
                             $by=$row_req['NIC_num'];
                         }
@@ -213,6 +211,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                         $note=$row_req['note'];
                         $promise_array=[];
                         $pending_array=[];
+                        $full_array=[];
                         foreach($content_detail as $row_req1){
                             if ($row_req1['don_id']==$row_req['id']){
                                 $item_amount=$row_req1['item'].":".$row_req1['amount'];
@@ -221,28 +220,41 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                                 }else if ($row_req1['pro_don']=="pending"){
                                     array_push($pending_array,$item_amount);
                                 }
+                                array_push($full_array,$item_amount);
                             }
                         }
-                        $full_array=array_merge($pending_array,$promise_array);
                         for($x=0; $x < count($full_array); $x++ ){
                             $value=$full_array[$x];
-                            if(in_array($value,$pending_array)){$checked="checked='checked'";$text_value="pending";}else{$checked="";$text_value="promise";}
-                            if ($x==0){$name_data="<td rowspan=".count($full_array).">".$name."</td>";$note_data="<td rowspan=".count($full_array).">".$note."</td>";}else{$name_data=$note_data="";}
-                        if($fundraising['by_civilian']==$_SESSION['user_nic']){
-                        echo "  <tr>
-                            ".$name_data."
+                            if(in_array($value,$pending_array)){
+                                $checked="checked='checked'";
+                                $text_status="pending";
+                            }
+                            else{
+                                $checked="";
+                                $text_status="promise";
+                            }
+                            if ($x==0){
+                                $name_data_row="<td rowspan=".count($full_array).">".$name."</td>";
+                                $note_data_row="<td rowspan=".count($full_array).">".$note."</td>";
+                            }
+                            else{
+                                $name_data_row=$note_data_row="";
+                            }
+                            if($fundraising['by_civilian']==$_SESSION['user_nic']){
+                         echo "  <tr>
+                            ".$name_data_row."
                             <td>".$value."</td>
                             <td class='not_click'>
                             <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
                             </td>
-                            ".$note_data."
+                            ".$note_data_row."
                         </tr>";
                         }else{
                             echo "  <tr>
-                            ".$name_data."
+                            ".$name_data_row."
                             <td>".$value."</td>
-                            <td >".$text_value."</td>
-                            ".$note_data."
+                            <td >".$text_status."</td>
+                            ".$note_data_row."
                         </tr>";
                         }
                         }
@@ -250,18 +262,28 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 ?>
             </table>
         </div>
-        <div id='donated_body'>
-            <div id="title">
-                <?php echo "Donations" ?>
-            </div>
-            <table id='donated_table'>
-                <thead>
-                    <th colspan=1>Full name </th><th colspan=1>Donations</th><th colspan=1>Note</th>
-                </thead>
+        </div>
+        <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4> Donations </th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Donations</th>
+                    <th colspan=1>Note</th>
+                </tr>
                 <?php
-                    foreach($person_org_array as $row_req){
-                        if (in_array($row_req,$person_detail)){$name=$row_req['first_name']." ".$row_req['last_name'];}
-                        else{$name=$row_req['org_name'];}
+                    foreach($person_org_detail as $row_req){
+                        if ($row_req['org_name']==""){
+                            $name=$row_req['first_name']." ".$row_req['last_name'];
+                            $by=$row_req['NIC_num'];
+                        }
+                        else{
+                            $name=$row_req['org_name'];
+                            $by=$row_req['org_id'];
+                        }
                         $item_amount="";
                         $note=$row_req['note'];
                         foreach($content_detail as $row_req1){
@@ -279,6 +301,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 ?>
             </table>
         </div>
+        </div>
         <div id='fund_post_div'>
             <div id="post_title">
                 <?php echo "OUR POSTS" ?>
@@ -292,4 +315,3 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             post.get_post();
         </script>     
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
-
