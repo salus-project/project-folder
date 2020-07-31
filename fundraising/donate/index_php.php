@@ -1,7 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $by_person=$_SESSION['user_nic'];
     $for_fund=$_POST['for_fund']?:'NULL';
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }else{
 
-            $query = "insert into fundraising_pro_don (by_person, for_fund, note) values ($by_person,$for_fund,'".$note."');";
+            $query = "insert into fundraising_pro_don (by_person, for_fund, note) values ('$by_person',$for_fund,'".$note."');";
             if(count($item)>0){                
                 $querry_arr = array();
                 for($x=0; $x < count($item); $x++ ){
@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
+    echo $query;
     if(mysqli_multi_query($con, $query)){
         header('location:'.$_SERVER['HTTP_REFERER']);
     }else{
