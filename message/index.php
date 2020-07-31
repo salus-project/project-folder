@@ -68,7 +68,7 @@
 				document.getElementById('feedback').addEventListener("scroll", (e) => {
 					loadchats_check();
 				});
-				//change_top(to_person);
+				change_top(to_person);
 
 				$(document).ready(function(){
 					loadchats();
@@ -253,7 +253,8 @@
 			function change_top(td){
 				var htmlstr=document.getElementsByClassName(td)[0].outerHTML;
 				document.getElementsByClassName(td)[0].outerHTML='';
-				document.getElementsByClassName('Msg_nav_container')[0].innerHTML=htmlstr+document.getElementsByClassName('Msg_nav_container')[0].innerHTML;
+				document.getElementsByClassName('msg_nav_s_cont')[0].innerHTML=htmlstr+document.getElementsByClassName('msg_nav_s_cont')[0].innerHTML;
+				document.getElementsByClassName(to_person)[0].firstElementChild.classList.add('selected_box');
 			}
 		</script>
 		<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

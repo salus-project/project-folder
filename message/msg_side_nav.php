@@ -21,8 +21,8 @@ $result_nic=array_column($result,"NIC_num");
 echo "<div class='Msg_page_container' >";
 echo "<div class='Msg_nav_container' >";
 echo "<div id='Msg_search_container' class='Msg_search_container' >";
-
 echo "</div>";
+echo "<div class='msg_nav_s_cont'>";
 for ($x = 0; $x < sizeof($nic_arr); $x++) {
     $index=array_search($nic_arr[$x],$result_nic);
     $name_=$result[$index]["first_name"];
@@ -35,10 +35,11 @@ for ($x = 0; $x < sizeof($nic_arr); $x++) {
             $icon="<i class='fa fa-check unseen nav_icon'></i>";
         }
     }else{
-        if (! $detail[$x]["status"]){
-            $icon="<i class='fa fa-bell seen nav_icon'></i>";
+        if ((! $detail[$x]["status"]) && ($to_person != $nic_arr[$x]) ){
+            $icon="<i class='fa fa-circle nav_icon'></i>";
         }
     }
+
 ?>
     <a class='<?php echo $nic_arr[$x] ?>' href='/message/?to_person=<?php echo $nic_arr[$x] ?>' >
     <div class='Msg_nav' >
@@ -56,7 +57,7 @@ for ($x = 0; $x < sizeof($nic_arr); $x++) {
     </a>
 <?php    
 }
-
+echo "</div>";
 echo "</div>";
 
 ?> 
