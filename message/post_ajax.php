@@ -13,7 +13,7 @@
 
 	$table_1='user_message_'.$id;
 	$table_2='user_message_'.$to_person;
-	$sql="INSERT INTO $table_1 ( `from`,`to`, `time`,`content`) VALUES (NUll,'$to_person','$timedate' ,'$message');INSERT INTO $table_2 ( `from`,`to`, `time`, `content`) VALUES ('$id',NUll,'$timedate' , '$message');";
+	$sql="INSERT INTO $table_1 ( `_from`,`_to`, `time`,`content`) VALUES (NUll,'$to_person','$timedate' ,'$message');INSERT INTO $table_2 ( `_from`,`_to`, `time`, `content`) VALUES ('$id',NUll,'$timedate' , '$message');";
 	if($notification_DB -> multi_query($sql))
 	{
 		echo"Message sent";
