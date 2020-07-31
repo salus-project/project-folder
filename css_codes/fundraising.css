@@ -89,7 +89,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	padding-left:100px;
 }
 #boxA{
-  max-width: 265px;
+  width: 265px;
   position: relative;
   margin: 16px;
   max-height: 150px;
@@ -120,7 +120,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     min-height: 150px;
 }
 #boxB{
-  max-width: 265px;
+  width: 265px;
   position: relative;
   margin: 16px;
   max-height: 150px;

@@ -1,23 +1,47 @@
+body{
+    background-color: rgb(242 244 246);
+    font-family: Open Sans,sans-serif;
+    color:#6b7c93;
+  }
 #table_caontainer{
     width: 50%;
+    padding: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#table{
-    border:1px solid black;
+#view_event_table{
+    display: table;
     border-collapse: collapse;
-    margin:auto;
-    margin-top:20px;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    padding: 5px;
+    width: 100%;
+    background: white;
 }
-td.view_event_td{
-    border:1px solid black;
-    height: 20px;
-    padding:2px;
+.head{
+    background-color: #0c7dff47;
+    border: 1px solid #d8e0e7;
+    text-align: center;
+    font-family: "Open Sans",sans-serif;
+    height: 37px;
+    line-height: 1;
+    padding: 5px;
+    vertical-align: middle;
+}
+td.view_event_td, #column2{
+    border: 1px solid #d8e0e7;
+    text-align: left;
+    font-family: "Open Sans",sans-serif;
+    height: 37px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 5px;
+    vertical-align: middle;
+    color:#6b7c93;
 }
 #column1{
     width:150px;
 }
-#column2{
-    width:300px;
-}
+
 #event_header{
     height:150px;
     border:1px solid black;
@@ -81,7 +105,7 @@ input:checked + .slider:before{
 }
 .switch_container{
     font-size: 0;
-    border:1px solid black;
+    border:1px solid #d8e0e7;
     
 }
 .indicator{
@@ -97,40 +121,51 @@ input:checked + .slider:before{
     width:200px;
     font-size: 18px;
 }
-#detail_body{
+#event_body{
     display:flex;
-    background-color: rgb(222, 237, 243);
-    border:1px solid black;
 }
-#news_field{
-    border: 1px solid black;
+#pictures{
+    border: 1px solid #d8e0e7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding:10px;
     margin:3px;
     width:50%;
+    background: white;
 }
-#pictures{
+#news_field{
     width: 100%;
     min-height: 200px;
-    border: 1px solid black;
-    background-color: rgb(229, 239, 243);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid #d8e0e7;
+    background: white;
 }
 #social_events{
     display: flex;
-    border:1px solid black;
+    margin: 16px 0
 }
 #affected,#help_requested,#organizations{
-    border:1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin:2px;
     min-height: 200px;
+    height: 225px;
+    overflow: auto;
+    background: white;
 }
 #affected{
-    width:40%;
+    width:33%;
 }
 #help_requested{
-    width:30%;
+    width:33%;
+}
+.person_a{
+    display: inline-block;
+    color:#6b7c93;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
 }
 #organizations{
-    width:30%;
+    width:33%;
 }
 
 
