@@ -1,6 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
-    require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $id=$_SESSION['user_nic'];
     $event_id = $_GET['event_id'];
     $query="select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."';
@@ -12,7 +11,6 @@
         if(mysqli_num_rows($result)>0){
             $person_detail=mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
-   
         $content_detail=[];
         mysqli_next_result($con);
         $result = mysqli_store_result($con);
@@ -32,17 +30,21 @@
     </head>
     <body>
         <script>
-            //btnPress(4);
+            btnPress(4);
         </script>
 
-        <div id='promise_body'>
-            <div id="title">
-                <?php echo "My Promises" ?>
-            </div>
-            <table id='promise_table'>
-                <thead>
-                    <th colspan=1>Full name </th><th colspan=1>Promises</th><th colspan=1>Status</th><th colspan=1>Note</th>
-                </thead>
+    <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4>My Promises</th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Promises</th>
+                    <th colspan=1>Status</th>
+                    <th colspan=1>Note</th>
+                </tr>
 
             <?php
                 foreach($person_detail as $row_req){
@@ -50,6 +52,7 @@
                     $note=$row_req['note'];
                     $promise_array=[];
                     $pending_array=[];
+                    $full_array=[];
                     foreach($content_detail as $row_req1){
                         if ($row_req1['don_id']==$row_req['id']){
                             $item_amount=$row_req1['item'].":".$row_req1['amount'];
@@ -58,36 +61,52 @@
                             }else if ($row_req1['pro_don']=="pending"){
                                 array_push($pending_array,$item_amount);
                             }
+                            array_push($full_array,$item_amount);
                         }
                     }
-                    $full_array=array_merge($pending_array,$promise_array);
+                    $count=count($full_array);
                     for($x=0; $x < count($full_array); $x++ ){
                         $value=$full_array[$x];
-                        if(in_array($value,$pending_array)){$checked="checked='checked'";}else{$checked="";}
-                        if ($x==0){$name_data="<td rowspan=".count($full_array).">".$name."</td>";$note_data="<td rowspan=".count($full_array).">".$note."</td>";}else{$name_data=$note_data="";}
+                        if(in_array($value,$pending_array)){
+                            $checked="checked='checked'";
+                        }
+                        else{
+                            $checked="";
+                        }
+                        if ($x==0){
+                            $name_data_row="<td rowspan=".$count.">".$name."</td>";
+                            $note_data_row="<td rowspan=".$count.">".$note."</td>";}
+                        else{
+                            $name_data_row=$note_data_row="";
+                        }
                 
                         $to=$row_req['NIC_num'];
                         echo "  <tr onclick='edit_promise(\"/event/help/?event_id=".$event_id."&by=".$id."&to=".$to."\")'>
-                                ".$name_data."
-                            <td>".$value."</td>
-                            <td class='not_click'>
-                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
-                            </td>
-                            ".$note_data."
-                        </tr>";
+                                    ".$name_data_row."
+                                    <td>".$value."</td>
+                                    <td class='not_click'>
+                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                                    </td>
+                                    ".$note_data_row."
+                                </tr>";
                     }
                 }
             ?>
         </table>
-    </div>
-    <div id='donated_body'>
-        <div id="title">
-            <?php echo "My Donations" ?>
         </div>
-        <table id='donated_table'>
-            <thead>
-                <th colspan=1>Full name </th><th colspan=1>Donations</th><th colspan=1>Note</th>
-            </thead>
+    </div>
+
+    <div class='promise_body'>
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=4> My Donations </th>
+                </tr>
+                <tr class="second_head">
+                    <th colspan=1>Full name </th>   
+                    <th colspan=1>Donations</th>
+                    <th colspan=1>Note</th>
+                </tr>
 
         <?php
             foreach($person_detail as $row_req){
@@ -102,13 +121,17 @@
                     }
                 }
                 if ($item_amount!=""){
-                echo "  <td>".$name."</td><td>".$item_amount."</td>
+                echo " <tr> <td>".$name."</td>
+                            <td>".$item_amount."</td>
                             <td>".$note."</td>
                         </tr>";}
             }
         ?>
         </table>
     </div>
+        </div>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+
 </body>
 
 <script>
