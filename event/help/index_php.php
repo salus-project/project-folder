@@ -32,13 +32,13 @@
             
                 for($x=0 ; $x < count($item) ; $x++){
                     if(!empty($item[$x])){
-                        $item1=filt_inp(ready_input($item[$x]));
+                      $item1=filt_inp(ready_input($item[$x]));
                         $amount1=filt_inp($amount[$x]);
                         if(empty($amount[$x])){
                                 $amount1=0;
                             }
                         if($update_id[$x]=='0'){
-                            $pri_query .= "INSERT INTO event_".$event_id."_pro_don_content (don_id, item, amount, pro_don) VALUES ({$_POST['entry_update_id']}, '".$item1."', '".$amount1."', '{$mark[$x]}');";
+                             $pri_query .= "INSERT INTO event_".$event_id."_pro_don_content (don_id, item, amount, pro_don) VALUES ({$_POST['entry_update_id']}, '".$item1."', '".$amount1."', '{$mark[$x]}');";
                         }else{
                             $pri_query .= "UPDATE `event_".$event_id."_pro_don_content` SET item='".$item1."', amount = '".$amount1."', pro_don='{$mark[$x]}' where id=$update_id[$x];";
                         }
@@ -51,7 +51,7 @@
                     $by_person='';
                     $by_org=$by;
                 }
-                $pri_query = "insert into event_".$event_id."_pro_don (pro_don, by_org, by_person, to_person, note) values ('promise', $by_org, '$by_person', '$to', '".$note."');";
+                $pri_query = "insert into event_".$event_id."_pro_don (by_org, by_person, to_person, note) values ($by_org, '$by_person', '$to', '".$note."');";
                 if(count($item)>0){
                     $querry_arr = array();
                     for($x=0; $x < count($item); $x++ ){
@@ -63,6 +63,7 @@
                 }
             }
         }
+      
         if(mysqli_multi_query($con, $pri_query)){
             header('location:'.$_SERVER['HTTP_REFERER']);
         }else{
