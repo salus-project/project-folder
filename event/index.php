@@ -1,6 +1,7 @@
 <?php  
     require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
 ?>
+ <link href="/css_codes/slideshow.css" rel="stylesheet">
 <div id='map_container'>
     <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
 </div>
@@ -23,7 +24,31 @@
         </table>
     </div>
     <div id=pictures>
-        <h3>Photos</h3>
+        <h3 class='head'>Photos</h3>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src='/common/img/1.jfif' style='width: 100%;' alt="sally lightfoot crab"/>
+            </div>
+            <div class="mySlides fade">
+                <img  src='/common/img/2.jfif' style='width: 100%;' alt="fighting nazca boobies"/>
+            </div>
+            <div class="mySlides fade">
+                <img  src='/common/img/3.jfif' style='width: 100%;' alt="otovalo waterfall"/>
+            </div>
+            <div class="mySlides fade">
+                <img  src='/common/img/4.jfif' style='width: 100%;' alt="pelican"/>
+            </div>
+            <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
+            <a class="next" onclick='plusSlides(1)'>&#10095;</a>
+            </div>
+            <br/>
+            <div style='text-align: center;'>
+            <span class="dot" onclick='currentSlide(1)'></span>
+            <span class="dot" onclick='currentSlide(2)'></span>
+            <span class="dot" onclick='currentSlide(3)'></span>
+            <span class="dot" onclick='currentSlide(4)'></span>
+            </div>
+
     </div>  
 </div>
 
@@ -96,4 +121,5 @@
 </div>
 <div id='overlay'>
 </div>
+<script type="text/javascript" src="/js/slide_show.js"></script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
