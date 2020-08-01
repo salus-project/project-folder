@@ -46,60 +46,18 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
 <head>
     <link rel='stylesheet' href='/css_codes/requester.css'>
 </head>
-<style>
-    #main_container{
-        width:400px;
-        margin: auto;
-        border: 1px solid black;
-        margin-top: 10%;
-        background-color: white;
-    }
-    .requester_button{
-        display: inline-block;
-        width: 115px;
-        height: 35px;
-        background: #9b9b9b;
-        padding: 5px;
-        text-align: center;
-        border-radius: 5px;
-        color: white;
-        font-weight: bold;
-        line-height: 25px;
-    }
-    .requester_button_subcontainer{
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown_org_container{
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-    .org_drop{
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-    .org_drop:hover{background-color: #ddd;}
-    .requester_button_subcontainer:hover .dropdown_org_container{display: block;}
-    .requester_button_subcontainer:hover .org_drop{background-color: #3e8e41;}
-</style>
 
 <body>
     <script>
         btnPress(4);
     </script>
-    <div id='main_container'>
-        <div id='requester_div'>
-            <table id='requester_tab'>
-                <tr>
-                    <td colspan='2' id='requester_head'><b>Request Details of <?php echo "<a href='/view_profile.php?id=" . $requester_detail['NIC_num'] . "'>" .
-                                                                                    $name . "</a>"; ?></b></td>
-                </tr>
+    <div class='main_container'>
+        <div class='requester_div'>
+           <div class='requester_head'>
+                <b>Request Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=" . $requester_detail['NIC_num'] . "'>" .
+                                                                                    $name . "</a>"; ?></b>
+            </div>
+            <table class="requester_detail_table">
                 <tr>
                     <td class='request_col1'>District(current):</td>
                     <td class='request_col2'><?php echo $requester_detail['district']; ?></td>
@@ -118,9 +76,9 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
                 </tr>
             </table>
         </div>
-        <div id='requester_button_container'>
+        <div class='requester_button_container'>
             <div class='requester_button_subcontainer'>
-                <div class='requester_button'>Help</div>
+                <div class='requester_button butn'>Help</div>
                 <div id='dropdown_org_container' class='dropdown_org_container'>
                     <?php
                         if($status!='applied'&& count($orgs)==0){?>
