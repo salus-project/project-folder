@@ -3,7 +3,7 @@
     $id=$_SESSION['user_nic'];
     $event_id = $_GET['event_id'];
     $query="select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."';
-    select * from event_".$event_id."_pro_don_content inner join event_".$event_id."_pro_don on event_".$event_id."_pro_don_content.don_id = event_".$event_id."_pro_don.id where by_person='".$id."';";
+    select a.id as id,a.don_id as don_id,a.item as item,a.amount as amount,a.pro_don as pro_don,b.to_person as to_person,b.note as note,b.by_org as by_org,b.by_person as by_person from event_".$event_id."_pro_don_content as a inner join event_".$event_id."_pro_don as b on a.don_id =b.id where b.by_person='".$id."';";
 
     if(mysqli_multi_query($con,$query)){
         $person_detail=[];
@@ -53,6 +53,7 @@
                     $promise_array=[];
                     $pending_array=[];
                     $full_array=[];
+                    $id_arr=[];
                     foreach($content_detail as $row_req1){
                         if ($row_req1['don_id']==$row_req['id']){
                             $item_amount=$row_req1['item'].":".$row_req1['amount'];
@@ -62,6 +63,7 @@
                                 array_push($pending_array,$item_amount);
                             }
                             array_push($full_array,$item_amount);
+                            array_push($id_arr,$row_req1['id']);
                         }
                     }
                     $count=count($full_array);
@@ -85,7 +87,7 @@
                                     ".$name_data_row."
                                     <td>".$value."</td>
                                     <td class='not_click'>
-                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$event_id.",\"".$id_arr[$x]."\")'>
                                     </td>
                                     ".$note_data_row."
                                 </tr>";
@@ -142,6 +144,23 @@
         }else{
             
         }
+    }
+    function toggleFn(ele,event,id){
+        if (ele.checked){
+        var c_status='pending';
+        }else{
+        var c_status='promise';
+        }
+        var sql="UPDATE `event_"+event+"_pro_don_content` SET `pro_don` = '"+c_status+"' WHERE `id` = "+id+"";;
+        var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         console.log(this.responseText);
+        //     }
+        // };
+        xhttp.open("POST", "/common/postajax/post_ajax.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("sql="+sql);
     }
 </script>
 
