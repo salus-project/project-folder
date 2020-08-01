@@ -10,13 +10,11 @@
 	$string2 = explode ("++", $string1);
 	$array1=unserialize($_POST["array1"]);
 	$array2=unserialize($_POST["array2"]);
-
+	$query='';
 	foreach($string2 as $str_data) {
 		$str = explode ("--", $str_data);
 		if (array_key_exists($str[0], $array1)){
-			$query="UPDATE $event_name1 SET `note` = '$str[2]' WHERE by_org=$org_id AND to_person='$str[0]';";
-			$query_run=mysqli_query($con,$query);
-			
+			$query.="UPDATE $event_name1 SET `note` = '$str[2]' WHERE by_org=$org_id AND to_person='$str[0]';";
 
 			$ids=$array1[$str[0]];
 			$str_items=explode (",", $str[1]);
@@ -25,21 +23,18 @@
 			if (sizeof($str_items)==sizeof($ids)){
 				foreach($str_items as $items){
 					$item=explode (":", $items);
-					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
-					$query_run=mysqli_query($con,$query);
+					$query.="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$item[2]' WHERE `id` = '$ids[$i]';";
 					$i=$i+1;
 				}
 			}
 			if (sizeof($str_items) < sizeof($ids)){
 				foreach($str_items as $items){
 					$item=explode (":", $items);
-					$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
-					$query_run=mysqli_query($con,$query);
+					$query.="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$item[2]' WHERE `id` = '$ids[$i]';";
 					$i=$i+1;
 				}
 				while (sizeof($ids) > $i ) {
-					$sql = "DELETE FROM $event_name2 WHERE id=$ids[$i]";
-					$con->query($sql); 
+					$query.= "DELETE FROM $event_name2 WHERE id='$ids[$i]';";
 					$i=$i+1;
 				}
 			}
@@ -47,14 +42,12 @@
 				foreach($str_items as $items){
 					$item=explode (":", $items);
 					if(sizeof($ids) > $i ){
-						$query="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]' WHERE `id` = '$ids[$i]';";
-						$query_run=mysqli_query($con,$query);
+						$query.="UPDATE $event_name2 SET `item` = '$item[0]', `amount` = '$item[1]',`pro_don` = '$item[2]' WHERE `id` = '$ids[$i]';";
 						$i=$i+1;
 					}
 					else{
 						$pro_id=$array2[$str[0]];
-						$query1="INSERT INTO `$event_name2` (`don_id`,`item`,`amount` ) VALUES ($pro_id, '$item[0]', '$item[1]');";
-						$query_run=mysqli_query($con,$query1);
+						$query.="INSERT INTO `$event_name2` (`don_id`,`item`,`amount`,`pro_don` ) VALUES ($pro_id, '$item[0]', '$item[1]','$item[2]');";
 					}
 				}
 			}
@@ -72,11 +65,14 @@
 		
 				$sub_query = $sub_query . implode(", ", $querry_arr).";";
 		
-				$query = "INSERT INTO `$event_name1` (`pro_don`, `by_org`, `to_person`,`note` ) VALUES ( 'promise', '$org_id', '$str[0]', '$str[2]');".$sub_query;
-				mysqli_multi_query($con,$query);
+				$query.= "INSERT INTO `$event_name1` (`by_org`, `to_person`,`note` ) VALUES ('$org_id', '$str[0]', '$str[2]');".$sub_query;
 			}
 			
+			
 		}
+		
 	}
+	mysqli_multi_query($con,$query);
+	
 	header("location:".$_SERVER['HTTP_REFERER']);
 ?>

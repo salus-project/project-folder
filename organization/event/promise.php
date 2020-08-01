@@ -8,11 +8,11 @@
     $event_name4="event_".$event_id."_requests";
     if ($_GET['type']=="1"){
         $head="Promise your help";
-    }else{
+    }else{ 
         $head="Edit your promise";
     }
     function console_log($data) {
-        $output = $data;
+        $output = $data; 
         if (is_array($output))
             $output = implode(',', $output);
 
@@ -82,32 +82,51 @@
     <head>
         <title><?php echo $head; ?></title>
         <link rel="stylesheet" href='/css_codes/promise.css'>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
+    
     </head>
     <body>
-        <div id="full_body">
-            <h2><?php echo $head; ?></h2>
-            <div>
-                <div class="input_container">
-                    <div class="input_sub_container">
-                        <input type="text" class="text_input">
-                        <input type="text" class="text_input">
-                        <label class="container">
-                            <input type="checkbox" onclick='check_click(this)' >
-                            <span class="checkmark"></span>
-                        </label>
-                        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
+    <div id="full_body">
+        <div class="promise_header">
+            <?php echo $head; ?>
+        </div>
+        <div style="display:flex;">
+            <div class="input_container">
+                <div class="input_sub_container">
+                    <input type="text" class="text_input" placeholder="item">
+                    <input type="text" class="text_input" placeholder="amount">
+                    <div class='status_div'>
+                        <div class='toggle btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>
+                            <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)'>
+                            <div class='toggle-group'>
+                                <label class='btn btn-success toggle-on' style='line-height: 20px;'>
+                                    Helped
+                                </label>
+                                <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>
+                                    Not helped
+                                </label>
+                                <span class='toggle-handle btn btn-default'></span>
+                            </div>
+                        </div>
                     </div>
+                    <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>
                 </div>
-                <button type="button" onclick="add_to_all(this.previousElementSibling)">Add to all</button>
             </div>
-            <div>
-                <textarea name="note" class="note"></textarea>
-                <button type="button" onclick="note_to_all(this.previousElementSibling)">Add to all</button>
-            </div>
-            <table id='main_table'>
-                <tr><td>Name</td><td>Address</td><td>Requirements</td><td>Other promises</td><td>Your promise</td><td>Note</td></tr>
+            <button type="button" class="add_to_all" onclick="add_to_all(this.previousElementSibling)">Add to all</button>
+        </div>
+        <div style="display:flex;">
+            <textarea placeholder="Add a note" name="note" class="note"></textarea>
+            <button type="button" class="add_to_all" onclick="note_to_all(this.previousElementSibling)">Add to all</button>
+        </div>
+            
+        <div class="promise_table_body">
+            <table class='promise_table'>
+                <tr class="first_head">
+                    <th colspan=6>Promise Details</th>
+                </tr>
+                <tr class="second_head"><th>Name</th><th>Address</th><th>Requirements</th><th>Other promises</th><th>Your promise</th><th>Note</th></tr>
                 <?php
-                
                 foreach ($arr as $key => $value){
                     echo "<tr>";
                     
@@ -148,51 +167,74 @@
                         if($result1->num_rows>0){
                             while($row1=$result1->fetch_assoc()){
                             array_push($id_a[$key],$row1['id']);
-                            
-                            echo "<div class='input_sub_container'>";
-                            echo "<input type='text' class='text_input' value='".$row1['item']."'>";
-                            echo "<input type='text' class='text_input'  value='".$row1['amount']."'>";
-                            echo "<label class='container'>";
                             if($row1['pro_don']=="promise"){
-                                echo "<input type='checkbox' onclick='check_click(this)'>";
-                            }
+                                $checcked = '';
+                                $div_class = 'btn-warning off';                            }
                             elseif($row1['pro_don']=="pending"){
-                                echo "<input type='checkbox' onclick='check_click(this)' checked='true'>";
+                                $checcked = "checked";
+                                $div_class = 'btn-success';
                             }
-                            echo "<span class='checkmark'></span>";
-                            echo "</label>";
+                            echo "<div class='input_sub_container'>";
+                            echo "      <input type='text' class='text_input' value='".$row1['item']."'>";
+                            echo "      <input type='text' class='text_input'  value='".$row1['amount']."'>";
+                            echo "      <div class='status_div'>";
+                            echo "          <div class='toggle btn  {$div_class}' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>";
+                            echo "            <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' {$checcked} onchange='checkbox_change(this)' {$checcked}>";
+                            echo "            <div class='toggle-group'>";
+                            echo "                <label class='btn btn-success toggle-on' style='line-height: 20px;'>";
+                            echo "                    Helped";
+                            echo "                </label>";
+                            echo "                <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>";
+                            echo "                    Not helped";
+                            echo "                </label>";
+                            echo "                <span class='toggle-handle btn btn-default'></span>";
+                            echo "            </div>";
+                            echo "        </div>";
+                            echo "    </div>";
                             echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
                             echo "</div>";  
                         }
                     }
                 }
                     echo "<div class='input_sub_container'>";
-                    echo "<input type='text' class='text_input'>";
-                    echo "<input type='text' class='text_input'>";
-                    echo "<label class='container'>";
-                    echo "<input type='checkbox' onclick='check_click(this)'>";
-                    echo "<span class='checkmark'></span>";
-                    echo "</label>";
-                    echo "<button type='button' onclick='add_input(this)' class='add_rem_btn'>Add</button>";
+                    echo "      <input type='text' class='text_input' placeholder='item'>";
+                    echo "      <input type='text' class='text_input' placeholder='amount'>";
+                    echo "      <div class='status_div'>";
+                    echo "          <div class='toggle btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>";
+                    echo "              <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)' {$checcked}>";
+                    echo "              <div class='toggle-group'>";
+                    echo "                  <label class='btn btn-success toggle-on' style='line-height: 20px;'>";
+                    echo "                      Helped";
+                    echo "                  </label>";
+                    echo "                  <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>";
+                    echo "                      Not helped";
+                    echo "                  </label>";
+                    echo "                  <span class='toggle-handle btn btn-default'></span>";
+                    echo "              </div>";
+                    echo "          </div>";
+                    echo "      </div>";
+                    echo "      <button type='button' onclick='add_input(this)' class='add_rem_btn'>Add</button>";
                     echo "</div>";
                     
                     echo "</div>";
                     echo "</td>";
                     echo "<td class='note_td'>";
-                    echo "<textarea type=text name=note class=note >".$note."</textarea>";
+                    echo "<textarea type=text name=note class=note_td_edit >".$note."</textarea>";
                     echo "</td>";
                     echo"</tr>"	;
                 }
             
                 ?>
                 <tr>
-                    <td colspan='5'>
-                        <button id="submit_btn" onclick="submit_all()">submit all</button>
+                    <td style="padding:0px;" colspan='6'>
+                        <button id="submit_btn" class="submit_all_btn" onclick="submit_all()">submit all</button>
+                        <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button id="cancel_btn" type="button" class="submit_all_btn" onclick="submit_all()">Cancel</button></a>
+
                     </td>
                 </tr>
             </table>
         </div>
-
+        </div>
 
         <script>
             function add_input(element){
@@ -201,20 +243,25 @@
                     for (var ele of parent.children) {
                         ele.children[0].setAttribute("value", ele.children[0].value);
                         ele.children[1].setAttribute("value", ele.children[1].value);
-                        if (ele.children[2].children[0].checked){
-                            ele.children[2].children[0].setAttribute("checked","true");
-                        }else{
-                            ele.children[2].children[0].outerHTML ='<input type="checkbox" onclick="check_click(this)">'
-                        }
                         ele.children[3].outerHTML = "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>"
                     }
                     parent.innerHTML += '<div class="input_sub_container">\n' +
-                        '        <input type="text" class="text_input">\n' +
-                        '        <input type="text" class="text_input">\n' +
-                        '<label class="container">'+
-                            '<input type="checkbox" onclick="check_click(this)">'+
-                            '<span class="checkmark"></span>'+
-                        '</label>'+
+                        '        <input type="text" class="text_input" placeholder="item">\n' +
+                        '        <input type="text" class="text_input" placeholder="amount">\n' +
+                        '        <div class="status_div">\n'+
+                        '           <div class="toggle btn btn-waarning off" data-toggle="toggle" style="width: 100px; height: 15px;" onclick="click_checkbox(this)">\n'+
+                        '               <input type="checkbox" data-toggle="toggle" data-on="Helped" data-off="Not helped" data-width="100" data-height="15" data-offstyle="warning" data-onstyle="success" onchange="checkbox_change(this)">\n'+
+                        '               <div class="toggle-group">\n'+
+                        '                   <label class="btn btn-success toggle-on" style="line-height: 20px;">\n'+
+                        '                       Helped\n'+
+                        '                   </label>\n'+
+                        '                   <label class="btn btn-warning active toggle-off" style="line-height: 20px;">\n'+
+                        '                       Not helped\n'+
+                        '                   </label>\n'+
+                        '                   <span class="toggle-handle btn btn-default"></span>\n'+
+                        '               </div>\n'+
+                        '           </div>\n'+
+                        '        </div>\n'+
                         '        <button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>\n' +
                         '    </div>';
                 }
@@ -238,11 +285,19 @@
                     td.firstElementChild.value = ele.value;
                 }
             }
-            function check_click(ele){
-                if (ele.checked){
-                    ele.setAttribute("checked","true");
+            function click_checkbox(ele){
+                //ele.firstElementChild.toggleAttribute("checked");
+                ele.firstElementChild.click();
+            }
+            function checkbox_change(element){
+                element.parentElement.classList.toggle('btn-warning');
+                element.parentElement.classList.toggle('off');
+                element.parentElement.classList.toggle('btn-success');
+                element.toggleAttribute("checked");
+                if(element.checked){
+                    element.nextElementSibling.value='pending';
                 }else{
-                    ele.outerHTML ='<input type="checkbox" onclick="check_click(this)">'
+                    element.nextElementSibling.value='promise';
                 }
             }
             function submit_all(){
@@ -257,10 +312,10 @@
                         var val2= tdd.children[1].value;
                         var checked="";
                         if (!((val1 == "" ) || (val1 == null))){
-                            if(tdd.children[2].children[0].checked){
-                                checked +="1";
+                            if(tdd.children[2].children[0].children[0].checked){
+                                checked +="pending";
                             }else{
-                                checked +="0";
+                                checked +="promise";
                             }
                             promise += val1+":"+val2+":"+checked+",";
                         }
