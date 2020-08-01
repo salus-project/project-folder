@@ -212,15 +212,17 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                         $promise_array=[];
                         $pending_array=[];
                         $full_array=[];
+                        $id_arr=[];
                         foreach($content_detail as $row_req1){
                             if ($row_req1['don_id']==$row_req['id']){
                                 $item_amount=$row_req1['item'].":".$row_req1['amount'];
-                                if ($row_req1['pro_don']=="promise"){
+                                if (($row_req1['pro_don']=="promise") && ($row_req1['pro_don']=="pending")){
                                     array_push($promise_array,$item_amount);
-                                }else if ($row_req1['pro_don']=="pending"){
+                                }else if ($row_req1['pro_don']=="helped"){
                                     array_push($pending_array,$item_amount);
                                 }
                                 array_push($full_array,$item_amount);
+                                array_push($id_arr,$row_req1['id']);
                             }
                         }
                         for($x=0; $x < count($full_array); $x++ ){
@@ -245,7 +247,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                             ".$name_data_row."
                             <td>".$value."</td>
                             <td class='not_click'>
-                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$id_arr[$x].")'>
                             </td>
                             ".$note_data_row."
                         </tr>";
@@ -313,5 +315,23 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         <script>
             var post = new Post("select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id="+<?php echo $_GET['view_fun'] ?>);
             post.get_post();
+
+            function toggleFn(ele,id){
+                if (ele.checked){
+                var c_status='helped';
+                }else{
+                var c_status='pending';
+                }
+                var sql="UPDATE `fundraising_pro_don_content` SET `pro_don` = '"+c_status+"' WHERE `id` = "+id+"";;
+                var xhttp = new XMLHttpRequest();
+                // xhttp.onreadystatechange = function() {
+                //     if (this.readyState == 4 && this.status == 200) {
+                //         console.log(this.responseText);
+                //     }
+                //  };
+                xhttp.open("POST", "/common/postajax/post_ajax.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("sql="+sql);
+            }
         </script>     
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
