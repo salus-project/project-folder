@@ -16,6 +16,8 @@
         <script src='/js/font_awesome.js' defer></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src='/common/autocomplete/auto_complete.js'></script>
+        <link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
     </head>
 
     <body>
@@ -35,52 +37,66 @@
                     <a href="/fundraising" class="menubar_buttons_cont"><div class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-hand-holding-heart menu_icon menu_bar_btn_7'></i><span class="menu_icon_tooltiptext">Fundraising</span></div></div></a>
                     <a href="/message" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-comments menu_icon menu_bar_btn_8'></i><span class="menu_icon_tooltiptext">Chat</span></div></div> </a>
                     <div class='menubar_button_container menubar_buttons_cont' ><div class="menubar_buttons"  onclick="show_notification(this)"><div class="menu_icon_tooltip"><i class='fas fa-bell menu_icon menu_bar_btn_5'></i><span class="menu_icon_tooltiptext">Notification</span></div></div><div id=notification_container></div></div>
+
+                    <div id='header_search_box_cont'>
+                        <div id='header_search_box'></div>
+                    </div>
+
                     <div class='menubar_button_container dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">
-                        <i class="fa fa-caret-down" style="font-size:30px"></i>
-                    <span class="menu_icon_tooltiptext">More</span></div></div>
-                    <div id=dropdown_container class='dropdown_container'>
-                        <a href="/home_page.php"  class="header_dropdown_item username">
-                            <div class='header_dropdown_profile dropdown_profile_image'>
-                                <img src='http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
+                                <i class="fa fa-caret-down" style="font-size:30px"></i>
+                                <span class="menu_icon_tooltiptext">More</span>
                             </div>
-                            <div class='header_dropdown_profile'>
-                                <div >
-                                    <?php 
-                                    echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
-                                    
-                                    ?>
+                        </div>
+
+                    
+
+                        <div id=dropdown_container class='dropdown_container'>
+                            <a href="/home_page.php"  class="header_dropdown_item username">
+                                <div class='header_dropdown_profile dropdown_profile_image'>
+                                    <img src='http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
+                                </div>
+                                <div class='header_dropdown_profile'>
+                                    <div >
+                                        <?php 
+                                        echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
+                                        
+                                        ?>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class='header_horizontal_line'></div>
+                            <div class="header_dropdown_item header_dropdown_toggle">
+                                <div class="toggle_btn_text" > Toggle Button </div>
+                                <div class="dropdown_toggle_btn" >
+                                    <label class="switch">
+                                        <input type="checkbox" id='dropdown_toggle_checkbox' <?php echo ($_SESSION['side_nav']=='1')?'checked':''; ?>>
+                                        <span class="slider round"></span>
+                                    </label>
                                 </div>
                             </div>
-                        </a>
-                        <div class='header_horizontal_line'></div>
-                        <div class="header_dropdown_item header_dropdown_toggle">
-                            <div class="toggle_btn_text" > Toggle Button </div>
-                            <div class="dropdown_toggle_btn" >
-                                <label class="switch">
-                                    <input type="checkbox" id='dropdown_toggle_checkbox' <?php echo ($_SESSION['side_nav']=='1')?'checked':''; ?>>
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class='header_subline'></div>
+                            <div class="header_dropdown_item ">
+                                <a class='logout_btn' href="/update_cd.php" >Edit Profile</a>
+                            </div>
+                            <div class='header_subline'></div>
+                            <div class="header_dropdown_item " > 
+                                <a href=""  class="logout_btn" >About</a>
+                            </div>
+                            <div class='header_subline'></div>
+                            <div class="header_dropdown_item ">
+                                <a class='logout_btn' href="/logs/logout.php" >Logout</a>
                             </div>
                         </div>
-                        <div class='header_subline'></div>
-                        <div class="header_dropdown_item ">
-                            <a class='logout_btn' href="/update_cd.php" >Edit Profile</a>
-                        </div>
-                        <div class='header_subline'></div>
-                        <div class="header_dropdown_item " > 
-                            <a href=""  class="logout_btn" >About</a>
-                        </div>
-                        <div class='header_subline'></div>
-                        <div class="header_dropdown_item ">
-                            <a class='logout_btn' href="/logs/logout.php" >Logout</a>
-                        </div>
+                        <div id='main_overlay' onclick='hide_dropdown()'></div>
                     </div>
-                    <div id='main_overlay' onclick='hide_dropdown()'></div>
-                </div>
+
                     <!-- <a href=""> <button type="submit" class="menubar_buttons" id='menu_bar_btn_8'>About</button> </a> -->
                 </div>
             </div>
 
         <script src="/js/header.js"></script>
+        <script>
+            autocomplete_ready(document.getElementById("header_search_box"), 'all', 'ready', '');
+        </script>
         <div id='main_body'>
 	        <div id='sub_body' class='sub_body <?php echo (($_SESSION['side_nav']=='1')?'':'full_sub_body'); ?>'>
