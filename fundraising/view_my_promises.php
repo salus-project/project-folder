@@ -2,7 +2,7 @@
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $id=$_SESSION['user_nic'];
     $query="select p.*,f.*,f.id AS  fundraising_pro_donid from fundraising_pro_don f inner join fundraisings p on f.for_fund = p.id where by_person='".$id."';
-    select * from fundraising_pro_don_content inner join fundraising_pro_don on fundraising_pro_don.id = fundraising_pro_don_content.don_id where by_person='".$id."';";
+    select a.id as id,a.don_id as don_id,a.item as item,a.amount as amount,a.pro_don as pro_don,b.by_org as by_org,b.by_person as by_person,b.for_fund as for_fund,b.note as note from fundraising_pro_don_content as a inner join fundraising_pro_don as b on b.id = a.don_id where b.by_person='".$id."';";
 
     if(mysqli_multi_query($con,$query)){
         $result=mysqli_store_result($con);
@@ -51,6 +51,7 @@
                     $promise_array=[];
                     $pending_array=[];
                     $full_array=[];
+                    $id_arr=[];
                     foreach($content_detail as $row_req1){
                         if ($row_req1['don_id']==$row_req['id']){
                             $item_amount=$row_req1['item'].":".$row_req1['amount'];
@@ -60,6 +61,7 @@
                                 array_push($pending_array,$item_amount);
                             }
                             array_push($full_array,$item_amount);
+                            array_push($id_arr,$row_req1['id']);
                         }
                     }
                     for($x=0; $x < count($full_array); $x++ ){
@@ -71,7 +73,7 @@
                                 ".$name_data."
                             <td>".$value."</td>
                             <td class='not_click'>
-                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange=''>
+                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$id_arr[$x].")'>
                             </td>
                             ".$note_data."
                         </tr>";
@@ -128,6 +130,23 @@
         }else{
             
         }
+    }
+    function toggleFn(ele,id){
+        if (ele.checked){
+        var c_status='pending';
+        }else{
+        var c_status='promise';
+        }
+        var sql="UPDATE `fundraising_pro_don_content` SET `pro_don` = '"+c_status+"' WHERE `id` = "+id+"";;
+        var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         console.log(this.responseText);
+        //     }
+        //  };
+        xhttp.open("POST", "/common/postajax/post_ajax.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("sql="+sql);
     }
 </script>
 
