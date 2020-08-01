@@ -27,10 +27,12 @@ body{
     background: rgb(201, 198, 198); 
   }
 #table_caontainer{
-    width: 30%;
-    padding: 3px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: white;
+        margin: auto;
+        margin: 3px;
+        margin: auto;
+        height: 378px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: white;
 }
 #view_event_table{
     display: table;
@@ -47,10 +49,11 @@ body{
     text-align: center;
     font-family: "Open Sans",sans-serif;
     height: 37px;
-    line-height: 1;
+    line-height: 1.8;
     padding: 5px;
     margin: 0;
     vertical-align: middle;
+    font-weight: 600;
 }
 td.view_event_td, #column2{
     border: 1px solid #d8e0e7;
@@ -146,15 +149,21 @@ input:checked + .slider:before{
     width:200px;
     font-size: 18px;
 }
+.table_con{
+    height: 185px;
+    overflow: auto;
+}
 #event_body{
-    display:flex;
+    display: flex;
+    padding-right: 10px;
+    margin: auto;
+    width: 100%;
 }
 #pictures{
     border: 1px solid #d8e0e7;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 3px;
-    /* margin: 3px; */
-    width: 70%;
+    margin: 3px;
+    width: 720px;
     background: white;
 }
 #news_field{
@@ -166,7 +175,8 @@ input:checked + .slider:before{
 }
 #social_events{
     display: flex;
-    margin: 16px 0
+    margin: 16px 0;
+    padding-right: 10px;
 }
 #affected,#help_requested,#organizations{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
