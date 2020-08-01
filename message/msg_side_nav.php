@@ -14,7 +14,7 @@ for ($x = 0; $x < sizeof($result); $x++) {
 //echo var_dump($detail);
 $nic_ar=array_map(function($ver){return "'".$ver."'";},$nic_arr);
 
-$sql="SELECT NIC_num,first_name,last_name,last_seen FROM civilian_detail WHERE NIC_num in (".(implode(",",$nic_ar)!=''?implode(",",$nic_ar):'""').");";
+$sql="SELECT NIC_num,first_name,last_name,last_seen FROM civilian_detail WHERE NIC_num in (".implode(",",$nic_ar).");";
 $result=array_reverse($con->query($sql)->fetch_all(MYSQLI_ASSOC));
 //print_r ($result);
 $result_nic=array_column($result,"NIC_num");
@@ -49,8 +49,8 @@ for ($x = 0; $x < sizeof($nic_arr); $x++) {
         <div class='Msg_nav_detail' >
             <div class='Msg_nav_name' > <?php echo $name_?></div>
             <div class='Msg_nav_last' >
-                <?php echo $icon ?>
                 <div class='Msg_nav_last_msg' ><?php echo $last_msg ?> </div>
+                <?php echo $icon ?>
             </div>
         </div>
     </div>

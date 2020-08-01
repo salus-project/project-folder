@@ -35,6 +35,7 @@
 	
 ?>
 		<div id="feedback">
+			
 		</div>
 		<input type="hidden" name="id" id="id" value="<?php echo  $_SESSION['user_nic']; ?>"> 
 		<input type="hidden" name="to_person" id="to_person" value="<?php echo  $to_person  ?>">
@@ -42,7 +43,7 @@
 			<?php
 				if ($to_person != "")	{
 					echo "<div class='input_tag_cont'>";
-					echo '<input type="text" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="type massage here" /> ';  
+					echo '<input type="text" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="Type massage here" /> ';  
 					echo '</div>';
 					echo '<div id="post_btn" class="msg_post_btn" >';
 					echo '</div>';
@@ -141,10 +142,10 @@
 								}else{
 									var icon="<i class='fa fa-check unseen "+result[i]['id']+"'></i>";
 								}
-								str +="<div id='msg_box'><div><i id='mytime'>"+time+"</i> <br><div id='mymsg'>"+result[i]['content']+"</div></div>"+icon+"</div>";
+								str +="<div class='in_msg_box' id='msg_box'><div><div id='mymsg'>"+result[i]['content']+"</div><div class='in_time_box'><i id='mytime'>"+time+"</i> </div></div>"+icon+"</div>";
 							}
 							else{
-								str +="<div id='msg_box'><div><i id='time'>"+time+"</i> <br><div id='msg'>"+result[i]['content']+"</div></div></div>";
+								str +="<div class='out_msg_box' id='msg_box'><div><div id='msg'>"+result[i]['content']+"</div><div class='out_time_box'><i id='time'>"+time+"</i> </div></div></div>";
 							}
 						}
                         $("#feedback").html(document.getElementById('feedback').innerHTML+str);
@@ -176,10 +177,10 @@
 								var time=c_time(result[i]['time']);
 								if (result[i]['_from']==null){
 									var icon="<i class='fa fa-check unseen "+result[i]['id']+"'></i>";
-									str +="<div id='msg_box'><div><i id='mytime'>"+time+"</i> <br><div id='mymsg'>"+result[i]['content']+"</div></div>"+icon+"</div>";
+									str +="<div  class='in_msg_box' id='msg_box'><div><i id='mytime'>"+time+"</i> <br><div id='mymsg'>"+result[i]['content']+"</div></div>"+icon+"</div>";
 								}
 								else{
-									str +="<div id='msg_box'><div><i id='time'>"+time+"</i> <br><div id='msg'>"+result[i]['content']+"</div></div></div>";
+									str +="<div class='out_msg_box' id='msg_box'><div><i id='time'>"+time+"</i> <br><div id='msg'>"+result[i]['content']+"</div></div></div>";
 								}
 							}
 							for (var ele of document.getElementsByClassName('temp')){
@@ -247,7 +248,7 @@
 				return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 			}
 			function addMsg(message){
-				str ="<div id='msg_box' class='temp'><div><i id='mytime'>"+c_time()+"</i> <br><div id='mymsg'>"+message+"</div></div><i class='fa fa-check unseen'></i></div>";
+				str ="<div id='msg_box' class='temp in_msg_box'><div><i id='mytime'>"+c_time()+"</i> <br><div id='mymsg'>"+message+"</div></div><i class='fa fa-check unseen'></i></div>";
 				$("#feedback").html(str+document.getElementById('feedback').innerHTML);			
 			}
 			function change_top(td){
