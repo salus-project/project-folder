@@ -38,14 +38,16 @@
         private $_notifications = array();
         private $notification_DB;
         private $prototype_notification;
+        private $mail;
 
-        public function __construct($to,$content,$link){
+        public function __construct($to,$content,$link,$mail){
             $this->prototype_notification = new Notification($content,$link);
             if($to=="all"){
                 $this->set_all_users();
             }else{
                 $this->set_to_some($to);
             }
+            $this->mail=$mail;
         }
 
         public function add_users($user_nic){
@@ -81,5 +83,5 @@
     }
 
     /*sample code*/
-    /*$sender = new Notification_sender("982812763V","you got an message", "/organization.php");
+    /*$sender = new Notification_sender("982812763V","you got an message", "/organization.php", true);
     $sender->send();*/
