@@ -1,7 +1,11 @@
 function autocomplete_ready(ele, type, touch_ele = null, link = '') {
+    ele.style.position = 'relative';
     var clicked = false;
     var inp_ele = document.createElement('INPUT');
     inp_ele.setAttribute('class', 'autocomplete_text_inp');
+    inp_ele.setAttribute('spellcheck', 'false');
+    inp_ele.setAttribute('autocomplete', 'off');
+    inp_ele.setAttribute('placeholder', 'Search here');
     ele.appendChild(inp_ele);
     if (touch_ele == null) {
         touch_ele = inp_ele;
@@ -42,7 +46,10 @@ function autocomplete(inp, inp_arr, link) {
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
     arr = inp_arr;
-    img_path = inp_arr["img"];
+    for(ele of arr){
+        ele.loop_arr = splitAllWays([], [], ele['showname']);
+    }
+    arr = inp_arr;
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
@@ -56,35 +63,41 @@ function autocomplete(inp, inp_arr, link) {
         /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
         /*for each item in the array...*/
+        var tem=[];
         for (i = 0; i < arr.length; i++) {
-            /*check if the item starts with the same letters as the text field value:*/
-            if (arr[i]['showname'].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                /*create a DIV element for each matching element:*/
-                b = document.createElement("DIV");
-                b.setAttribute("data-select", "true");
-                /*make the matching letters bold:*/
-                var html = "<div class='autocomplete_img_cont'><img class='autocomplete_img' src='" + arr[i]['img_src'] + "' onload='{this.style.visibility=\"visible\"}'></div> ";
-                html += "<strong>" + arr[i]['showname'].substr(0, val.length) + "</strong>";
-                html += arr[i]['showname'].substr(val.length);
-                /*insert a input field that will hold the current array item's value:*/
-                html += "<input type='hidden' value='" + arr[i]['showname'] + "'><input type='hidden' value='" + arr[i]['link'] + "'>";
-                /*execute a function when someone clicks on the item value (DIV element):*/
-                b.innerHTML = html;
-                b.addEventListener("click", function(e) {
-                    /*insert the value for the autocomplete text field:*/
-                    if (link === '') {
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        inp.nextElementSibling.value = this.getElementsByTagName("input")[1].value;
-                    } else if (link === 'auto') {
+            tem = arr[i]['loop_arr'];
+            for (j = 0; j < tem.length; j++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (tem[j][1].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    b.setAttribute("data-select", "true");
+                    /*make the matching letters bold:*/
+                    var html = "<div class='autocomplete_img_cont'><img class='autocomplete_img' src='" + arr[i]['img_src'] + "' onload='{this.style.visibility=\"visible\"}'></div> ";
+                    html += tem[j][0];
+                    html += "<strong>" + tem[j][1].substr(0, val.length) + "</strong>";
+                    html += tem[j][1].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    html += "<input type='hidden' value='" + arr[i]['showname'] + "'><input type='hidden' value='" + arr[i]['link'] + "'><input type='hidden' value='" + arr[i]['value'] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.innerHTML = html;
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        if (link === '') {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            inp.nextElementSibling.value = this.getElementsByTagName("input")[1].value;
+                        } else if (link === 'auto') {
 
-                    } else {
-                        window.location.href = link + this.getElementsByTagName("input")[1].value;
-                    }
-                    /*close the list of autocompleted values,
-                    (or any other open lists of autocompleted values:*/
-                    closeAllLists();
-                });
-                a.appendChild(b);
+                        } else {
+                            window.location.href = link + this.getElementsByTagName("input")[2].value;
+                        }
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                    break;
+                }
             }
         }
     });
@@ -146,4 +159,25 @@ function autocomplete(inp, inp_arr, link) {
     document.addEventListener("click", function(e) {
         closeAllLists(e.target);
     });
+
+    
 }
+
+function splitAllWays(result, left, right){
+    arr = right.split(' ');
+    // Push current left + right to the result list
+    
+    result.push([(left.join(' ')==='')?'':left.join(' ')+' '].concat(right));
+    //document.write(left.concat(right) + '<br />');
+
+    // If we still have chars to work with in the right side then keep splitting
+    if (arr.length > 1){
+      // For each combination left/right split call splitAllWays()
+      for(var i = 1; i < arr.length; i++){
+        splitAllWays(result, left.concat((arr.slice(0, i)).join(' ')), (arr.slice(i)).join(' '));
+      }
+    }
+
+    // Return result
+    return result;
+};

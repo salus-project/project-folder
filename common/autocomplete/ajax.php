@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='GET' && $_GET['get']=='all'){
     echo json_encode($result_arr);
 }
 elseif($_SERVER['REQUEST_METHOD']=='GET' && $_GET['get']=='users'){
-    $query =    "select concat(first_name, ' ', last_name) as showname, concat('http://d-c-a.000webhostapp.com/Profiles/resized/',NIC_num,'.jpg') as img_src, concat('/view_profile.php?id=',NIC_num) as link from civilian_detail;";
+    $query =    "select concat(first_name, ' ', last_name) as showname, concat('http://d-c-a.000webhostapp.com/Profiles/resized/',NIC_num,'.jpg') as img_src, concat('/view_profile.php?id=',NIC_num) as link, NIC_num as value from civilian_detail;";
     $result_arr = array();
     if ($con->multi_query($query)) {
         do {
