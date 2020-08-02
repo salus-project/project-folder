@@ -514,3 +514,17 @@ input:checked+.slider:before {
         opacity: 1;
     }
 }
+
+/* search box */
+
+#header_search_box_cont{
+    display:inline-block;
+    border:1px solid black;
+    display: inline-block;
+    border: 1px solid black;
+    position: absolute;
+    right: 100px;
+    background-color: aliceblue;
+    width:300px;
+    font-size: initial;
+}
