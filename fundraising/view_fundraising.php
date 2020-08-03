@@ -218,7 +218,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                                 $item_amount=$row_req1['item'].":".$row_req1['amount'];
                                 if (($row_req1['pro_don']=="promise") && ($row_req1['pro_don']=="pending")){
                                     array_push($promise_array,$item_amount);
-                                }else if ($row_req1['pro_don']=="helped"){
+                                }else if ($row_req1['pro_don']=="donated"){
                                     array_push($pending_array,$item_amount);
                                 }
                                 array_push($full_array,$item_amount);
@@ -318,7 +318,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
 
             function toggleFn(ele,id){
                 if (ele.checked){
-                var c_status='helped';
+                var c_status='donated';
                 }else{
                 var c_status='pending';
                 }
