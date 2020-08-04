@@ -1,28 +1,28 @@
-#main_fund_form_body{ 
-        width: 578px;
-        padding: 0px;
-        background-color: #ffffff;
-        z-index: 4;
-        box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        margin: 0 auto;
-        font-weight: 400;
-        font-family: "Open Sans",sans-serif;
-        color: #393939;
-        font-size: 16px;
-        margin-top: 50px;
-        margin-bottom: 300px;
-} 
+#main_fund_form_body {
+    width: 578px;
+    padding: 0px;
+    background-color: #ffffff;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 auto;
+    font-weight: 400;
+    font-family: "Open Sans", sans-serif;
+    color: #393939;
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 300px;
+}
 
-#sub_fund_form_body{
+#sub_fund_form_body {
     margin-bottom: 20px;
     margin-top: 20px;
     color: #393939;
-    width:580px;
+    width: 580px;
     padding-left: 13px;
     padding: 13px;
 }
 
-.form_header_div{
+.form_header_div {
     background-color: #0c7dff47;
     height: 70px;
     line-height: 1.5;
@@ -35,7 +35,7 @@
     font-family: "Open Sans";
 }
 
-.sub_head{
+.sub_head {
     min-width: 150px;
     font-weight: 600;
     font-family: "Open Sans";
@@ -44,7 +44,7 @@
     margin-left: 13px;
 }
 
-.create_fund_label{
+.create_fund_label {
     color: #393939;
     font-weight: 400;
     font-size: 20px;
@@ -54,7 +54,9 @@
     font-family: "Open Sans";
 }
 
-.create_fund_input[type=text], .create_fund_input[type=tel],.create_fund_input[type=email] {
+.create_fund_input[type=text],
+.create_fund_input[type=tel],
+.create_fund_input[type=email] {
     padding-left: 10px;
     font-family: "Open Sans";
     min-width: 330px;
@@ -65,7 +67,7 @@
     color: #393939;
 }
 
-.create_fund_textarea{
+.create_fund_textarea {
     font-family: "Open Sans";
     min-width: 330px;
     height: 80px;
@@ -78,16 +80,17 @@
     padding-left: 10px;
 }
 
-.create_fund_select{
-    font-family: "Open Sans",sans-serif;
+.create_fund_select {
+    font-family: "Open Sans", sans-serif;
     padding: 0px;
     color: #393939;
-    min-width: 330px;    height: 30px;
+    min-width: 330px;
+    height: 30px;
     margin-left: 0px;
     border: 1px solid #2980B9;
 }
 
-.text_input_fund[type=text]{
+.text_input_fund[type=text] {
     font-family: "Open Sans";
     height: 30px;
     border: 1px solid #2980B9;
@@ -99,41 +102,52 @@
     padding-left: 10px;
 }
 
-.detail_div{
+.detail_div {
     margin-top: 10px;
     height: 15px;
     display: flex;
 }
-.fund_name_div,.purpose_div,.sel_org_div,.service_area_div,.descrip_div{
+
+.fund_name_div,
+.purpose_div,
+.sel_org_div,
+.service_area_div,
+.descrip_div {
     display: flex;
 }
-.sel_org_div{
+
+.sel_org_div {
     height: 30px;
     margin-top: 5px;
     margin-bottom: 10px;
 }
-.expects_div{
+
+.expects_div {
     display: block;
 }
-.error{
-    font-family: "Open Sans",sans-serif;
+
+.error {
+    font-family: "Open Sans", sans-serif;
     font-size: 12px;
     color: red;
     display: block;
     padding: 0px 0 4px 2px;
 }
-input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
+
+input.ng-touched.ng-invalid,
+input:required.ng-touched.ng-empty {
     border: 2px solid #b93a29;
     background-color: #b93a294d;
 }
 
-.create_fund_btn_container{
+.create_fund_btn_container {
     display: flex;
     margin-bottom: 0px;
     text-align: center;
 }
 
-.create_fund_submit_btn,.create_fund_cancel_btn{
+.create_fund_submit_btn,
+.create_fund_cancel_btn {
     font-family: "Open Sans";
     margin: 0px;
     font-size: 25px;
@@ -146,21 +160,22 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     color: #393939;
     font-weight: 400;
 }
-.create_fund_submit_btn{
+
+.create_fund_submit_btn {
     border-right: 1px solid white;
 }
 
-.input_container{
+.input_container {
     font-size: 0;
     margin-bottom: 10px;
 }
 
-.input_sub_container{
+.input_sub_container {
     display: flex;
     margin-bottom: 5px;
 }
 
-.add_rem_btn{
+.add_rem_btn {
     color: white;
     border: none;
     padding: 0px;
@@ -171,25 +186,25 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     font-family: "Open Sans";
 }
 
-.purpose_div{
+.purpose_div {
     display: flex;
 }
 
-.for_event_div{
+.for_event_div {
     margin-bottom: 5px;
 }
 
 
 /*custom radion button*/
+
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
 
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label
-{
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -198,21 +213,21 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     color: #666;
 }
 
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
-    width: 18px; 
+    width: 18px;
     height: 18px;
     border: 1px solid #2980B9;
     border-radius: 100%;
     background: #fff;
 }
 
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: '';
     width: 12px;
     height: 12px;
@@ -225,13 +240,13 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -239,23 +254,27 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
 
 
 /*        Custom dropdown                */
+
 .custom-select {
     margin-top: 0px;
     width: 260px;
     position: relative;
-    font-family: "Open Sans",sans-serif;
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
+    font-family: "Open Sans", sans-serif;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
     background-color: #2980B9;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
     position: absolute;
     content: "";
     top: 8px;
@@ -264,16 +283,21 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     height: 0;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 2px;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,
+.select-selected {
     width: 230px;
     height: 25px;
     font-family: "Open Sans";
@@ -287,8 +311,9 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  .select-selected{
+}
+
+.select-selected {
     width: 330px;
     border-radius: 5px;
     line-height: 0.5;
@@ -302,9 +327,11 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  
-  /*style items (options):*/
+}
+
+
+/*style items (options):*/
+
 .select-items {
     position: absolute;
     background-color: #2980B9;
@@ -313,21 +340,24 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     right: 0;
     z-index: 99;
     margin-left: 100px;
-    width: 230px;  
+    width: 230px;
 }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
-    display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
 
-  
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 
 /*Districts select drop down button styles of Volunteer form*/
+
 .dropbtn {
     border-radius: 5px;
     width: 330px;
@@ -340,19 +370,22 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     margin-left: 0px;
     padding-left: 10px;
     margin-top: 0px;
-    font-family: "Open Sans",sans-serif;
-    text-align: left;;
+    font-family: "Open Sans", sans-serif;
+    text-align: left;
+    ;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
+
 .dropdown-content {
-    margin-left: 180px;    
+    margin-left: 180px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -362,18 +395,23 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     display: block;
     font-family: "Open san"sans-serif;
 }
-.dropdown-content.drp.show{
+
+.dropdown-content.drp.show {
     width: 150px;
 }
+
 .dropdown a:hover {
     background-color: #ddd;
 }
+
 .show {
     display: block;
     z-index: 4;
 }
 
+
 /* The container */
+
 .container {
     display: block;
     position: relative;
@@ -388,7 +426,9 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     user-select: none;
 }
 
+
 /* Hide the browser's default checkbox */
+
 .container input {
     padding: 0;
     position: absolute;
@@ -400,7 +440,9 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     width: initial;
 }
 
+
 /* Create a custom checkbox */
+
 .checkmark {
     position: absolute;
     top: 0;
@@ -412,7 +454,8 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
 
 
 /* Show the checkmark when checked */
-.container input:checked + .checkmark:after {
+
+.container input:checked+.checkmark:after {
     content: '';
     display: block;
     position: absolute;
@@ -426,7 +469,9 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     color: #393939;
 }
 
+
 /* Style the checkmark/indicator */
+
 .container .checkmark:before {
     content: '';
     -webkit-appearance: none;
@@ -443,5 +488,6 @@ input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     color: #393939;
     margin-top: 5px;
 }
+
 
 /*-------------------------------------------------*/

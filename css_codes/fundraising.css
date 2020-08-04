@@ -1,44 +1,72 @@
-body{
-  color: #6b7c93;
+body {
+    color: #6b7c93;
 }
-#event_box{
-  border: 2px solid #d8e0e7;
-  margin: 10px;
-  position: relative;
-  height: 150px;
+
+#event_box {
+    border: 2px solid #d8e0e7;
+    margin: 10px;
+    position: relative;
+    height: 150px;
 }
+
+
 /*------slide show--------------------------------*/
+
 .mySlides {
-	display: none;
+    display: none;
 }
-.slide_show_img {vertical-align: middle;}
-.main_slide_show{
-  max-width: 900px;
-  position: relative;
-  margin: auto;
-  margin-top: 16px;
-  max-height: 350px;
-  overflow: hidden;
-  min-height: 350px;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.slide_show_img {
+    vertical-align: middle;
 }
+
+.main_slide_show {
+    max-width: 900px;
+    position: relative;
+    margin: auto;
+    margin-top: 16px;
+    max-height: 350px;
+    overflow: hidden;
+    min-height: 350px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
 /* Slideshow container */
+
 .slideshow-container {
-  max-height: 350px;
- }
+    max-height: 350px;
+}
+
 
 /* Caption text */
+
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
 }
 
-.fade{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+.fade {
+    position: relative;
+    animation: animateright 0.4s
+}
+
+@keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0
+    }
+    to {
+        right: 0;
+        opacity: 1
+    }
+}
+
 
 /* Fading animation 
 .fade {
@@ -58,52 +86,67 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   to {opacity: 1}
 }*/
 
+
 /* On smaller screens, decrease text size */
+
 @media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
+    .text {
+        font-size: 11px
+    }
 }
+
+
 /*---------------------------------------------------*/
-#title{
-    height:60px;
-    border:1px solid black;
-    padding:4px;
+
+#title {
+    height: 60px;
+    border: 1px solid black;
+    padding: 4px;
     font-size: 25px;
-	font-weight: 600;
+    font-weight: 600;
 }
-#fund_name{
-  position: absolute;
-  width: 100%;
+
+#fund_name {
+    position: absolute;
+    width: 100%;
 }
-  #view_fund{
-	display: inline-block; 
+
+#view_fund {
+    display: inline-block;
 }
-.fund_detail, .other_fund_detail{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
+.fund_detail,
+.other_fund_detail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
-#donate_fund{
-	display: inline-block; 
-	padding-left:100px;
+
+#donate_fund {
+    display: inline-block;
+    padding-left: 100px;
 }
-#boxA{
-  width: 265px;
-  position: relative;
-  margin: 16px;
-  max-height: 150px;
-  overflow: hidden;
-  min-height: 150px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+
+#boxA {
+    width: 265px;
+    position: relative;
+    margin: 16px;
+    max-height: 150px;
+    overflow: hidden;
+    min-height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
-#program{
-  width: 100%;
-  margin: auto;
+
+#program {
+    width: 100%;
+    margin: auto;
 }
-#program_title{
-  width: 400px;
-  border: none;
+
+#program_title {
+    width: 400px;
+    border: none;
     height: 50px;
     text-align: center;
     vertical-align: middle;
@@ -112,63 +155,67 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 30px;
     font-weight: 800;
 }
-.sub_slide_show{
-  max-width: 265px;
+
+.sub_slide_show {
+    max-width: 265px;
     position: relative;
     margin: auto;
     max-height: 150px;
     min-height: 150px;
 }
-#boxB{
-  width: 265px;
-  position: relative;
-  margin: 16px;
-  max-height: 150px;
-  overflow: hidden;
-  min-height: 150px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
+#boxB {
+    width: 265px;
+    position: relative;
+    margin: 16px;
+    max-height: 150px;
+    overflow: hidden;
+    min-height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#boxes{
-  border: 2px solid #d8e0e7;
-  margin: 10px;
-  display: flex;
-  flex-flow: wrap row;
 
+#boxes {
+    border: 2px solid #d8e0e7;
+    margin: 10px;
+    display: flex;
+    flex-flow: wrap row;
 }
-#create_box{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 265px;
-  height: 150px;
-  margin: 16px;
+
+#create_box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 265px;
+    height: 150px;
+    margin: 16px;
 }
+
 .btn_img_only {
-  text-align: center;
-  padding: 5px 15px;
-  margin: 5px;
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  font-size: 15px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-}
-.btn_img {
-  text-align: center;
-  padding: 5px 15px;
-  margin: 5px;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  font-size: 15px;
-  border: none;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
+    text-align: center;
+    padding: 5px 15px;
+    margin: 5px;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
-.create_btn{
-  width: 265px;
+.btn_img {
+    text-align: center;
+    padding: 5px 15px;
+    margin: 5px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 15px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.create_btn {
+    width: 265px;
     height: 150px;
     border: none;
     font-weight: 700;
@@ -176,14 +223,15 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
     color: #6b7c93;
 }
+
 .btn_prom {
-  text-align: center;
-  position: absolute;
-  left: 16px;
-  height: 50px;
-  bottom: 16px;
-  font-size: 18px;
-  border: none;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 16px;
+    height: 50px;
+    bottom: 16px;
+    font-size: 18px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
 }

@@ -11,6 +11,8 @@
 	height:400px;
 	overflow:auto;
 	max-width:100%;
+	display:flex;
+	flex-direction: column-reverse;
 	
 }   
 #time{

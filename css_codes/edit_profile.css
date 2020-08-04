@@ -1,9 +1,9 @@
-.edit_prof_form_box{
+.edit_prof_form_box {
     width: 500px;
     padding: 0px;
     background-color: #ffffff;
     z-index: 4;
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0 auto;
     font-weight: 400;
     font-family: "Open Sans";
@@ -11,13 +11,17 @@
     font-size: 16px;
     margin-bottom: 300px;
 }
-.head_edit_prof_form,.body_edit_prof_form{
+
+.head_edit_prof_form,
+.body_edit_prof_form {
     display: block;
 }
-.foot_edit_prof_form{
-  display: flex;
+
+.foot_edit_prof_form {
+    display: flex;
 }
-.head_edit_prof_form{
+
+.head_edit_prof_form {
     margin-top: 25px;
     background-color: #0c7dff47;
     text-align: center;
@@ -26,56 +30,64 @@
     height: 60px;
     padding: 10px;
 }
-.head_edit_prof_form_det{
+
+.head_edit_prof_form_det {
     margin-top: 0px;
 }
-.body_edit_prof_form{
+
+.body_edit_prof_form {
     padding: 15px;
 }
-.foot_edit_prof_form{
+
+.foot_edit_prof_form {
     text-align: center;
 }
-.edit_form_submit_button{
+
+.edit_form_submit_button {
     border: none;
-    width: 249.8px;    
+    width: 249.8px;
     background-color: #0c7dff47;
     padding: 0px;
     height: 60px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #393939;
     font-size: 25px;
 }
-.submitt{
-  border-right: 0.5px solid white;
+
+.submitt {
+    border-right: 0.5px solid white;
 }
-.edit_prof_grp{
+
+.edit_prof_grp {
     display: flex;
     line-height: 1;
 }
-.edit_prof_input_box{
-  border-radius: 5px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width: 300px;
-  height: 25px;
-  font-family: "Open Sans";
-  color: #393939;
-  border: 1px solid #2980B9;
-  clear: both;
-  font-size: 15px;
-  float: right;
-  padding-left: 7px;
-  min-width: 150px;
+
+.edit_prof_input_box {
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 25px;
+    font-family: "Open Sans";
+    color: #393939;
+    border: 1px solid #2980B9;
+    clear: both;
+    font-size: 15px;
+    float: right;
+    padding-left: 7px;
+    min-width: 150px;
 }
 
-.edit_form_label{
-  padding-top: 5px;
+.edit_form_label {
+    padding-top: 5px;
     min-width: 150px;
     font-size: 16px;
     color: #393939
 }
-.edit_prof_select{
-    font-family: "Open Sans",sans-serif;
+
+.edit_prof_select {
+    font-family: "Open Sans", sans-serif;
     color: #393939;
     border: 1px solid #2980B9;
     margin-top: 12px;
@@ -86,8 +98,9 @@
     padding: 0px 0px 0px 5px;
     min-width: 150px;
 }
-.error{
-    font-family: "Open Sans",sans-serif;
+
+.error {
+    font-family: "Open Sans", sans-serif;
     font-size: 12px;
     color: red;
     display: block;
@@ -96,24 +109,28 @@
 
 
 /*        Custom dropdown                */
+
 .custom-select {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width: 260px;
-  position: relative;
-  font-family: "Open Sans";
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 260px;
+    position: relative;
+    font-family: "Open Sans";
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
     background-color: #2980B9;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
     position: absolute;
     content: "";
     top: 8px;
@@ -122,16 +139,21 @@
     height: 0;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 2px;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,
+.select-selected {
     width: 300px;
     height: 25px;
     font-size: 14px;
@@ -144,10 +166,12 @@
     cursor: pointer;
     user-select: none;
     border-radius: 5px;
-  }
-  
-  /*style items (options):*/
-  .select-items {
+}
+
+
+/*style items (options):*/
+
+.select-items {
     position: absolute;
     background-color: #2980B9;
     top: 100%;
@@ -155,20 +179,26 @@
     right: 0;
     z-index: 99;
     margin-left: 185px;
-    width: 115px;  }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
+    width: 115px;
+}
+
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
     display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
+}
+
+.select-items div:hover,
+.same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-  }
+}
+
 
 /*               Angular Form validation                     */
 
-input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
+input.ng-touched.ng-invalid,
+input:required.ng-touched.ng-empty {
     border: 2px solid #b93a29;
     background-color: #b93a294d;
 }

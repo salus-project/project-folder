@@ -1,25 +1,26 @@
-#form_main_body{
+#form_main_body {
     width: 578px;
     padding: 0px;
     background-color: #ffffff;
     z-index: 4;
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0 auto;
     font-weight: 400;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #393939;
     font-size: 16px;
     margin-top: 50px;
     margin-bottom: 300px;
 }
 
-#form_sub_body{
+#form_sub_body {
     color: #393939;
-    width:580px;
-    margin:0;
+    width: 580px;
+    margin: 0;
     padding: 10px;
 }
-.form_header_div{
+
+.form_header_div {
     background-color: #0c7dff47;
     height: 70px;
     font-size: 25px;
@@ -29,23 +30,28 @@
     line-height: 1.5;
     font-weight: 400;
 }
-.sub_head{
+
+.sub_head {
     font-weight: 600;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #393939;
     font-size: 16px;
     margin-left: 13px;
 }
-.create_org_btn_container{
+
+.create_org_btn_container {
     display: flex;
     margin-bottom: 0px;
     text-align: center;
 }
-.create_org_submit_btn,.create_org_cancel_btn{
-    font-family: "Open Sans",sans-serif;
+
+.create_org_submit_btn,
+.create_org_cancel_btn {
+    font-family: "Open Sans", sans-serif;
     margin: 0px;
     font-size: 20px;
-    width: 289px;    border-radius: 0;
+    width: 289px;
+    border-radius: 0;
     border: 0px;
     background-color: #0c7dff47;
     height: 50px;
@@ -53,20 +59,25 @@
     color: #393939;
     font-weight: 400;
 }
-.submitt{
+
+.submitt {
     border-right: 1px solid white;
 }
-.create_org_label{
+
+.create_org_label {
     color: #393939;
     font-weight: 400;
     font-size: 18px;
     min-width: 200px;
     margin: 0px;
     margin-bottom: 15px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
-.create_org_input[type=text], .create_org_input[type=tel],.create_org_input[type=email] {
-    font-family: "Open Sans",sans-serif;
+
+.create_org_input[type=text],
+.create_org_input[type=tel],
+.create_org_input[type=email] {
+    font-family: "Open Sans", sans-serif;
     min-width: 300px;
     height: 30px;
     border-radius: 5px;
@@ -74,8 +85,9 @@
     color: #393939;
     padding-left: 10px;
 }
-.create_org_textarea{
-    font-family: "Open Sans",sans-serif;
+
+.create_org_textarea {
+    font-family: "Open Sans", sans-serif;
     min-width: 300px;
     height: 80px;
     border: 1px solid #2980B9;
@@ -83,9 +95,11 @@
     padding-left: 10px;
     resize: none;
     border-radius: 5px;
+    outline: none;
 }
-.create_org_select{
-    font-family: "Open Sans",sans-serif;
+
+.create_org_select {
+    font-family: "Open Sans", sans-serif;
     padding: 0px;
     color: #393939;
     min-width: 260px;
@@ -93,50 +107,66 @@
     margin-left: 0px;
     border: 1px solid #2980B9;
 }
-.error{
-    font-family: "Open Sans",sans-serif;
+
+.error {
+    font-family: "Open Sans", sans-serif;
     font-size: 12px;
     color: red;
     display: block;
     padding: 0px 0 4px 2px;
 }
-.name_div{
+
+.name_div {
     display: flex;
     margin-top: 15px;
 }
-.mem_div,.dis_div,.email_div,.phone_div,.leader_div,.co_leader_div{
+
+.mem_div,
+.dis_div,
+.email_div,
+.phone_div,
+.leader_div,
+.co_leader_div {
     display: flex;
 }
-.dis_div{
+
+.dis_div {
     height: 30px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.leader_nic_div{
+
+.leader_nic_div {
     display: none;
 }
-.discrip_div{
+
+.discrip_div {
     display: flex;
     margin-bottom: 10px;
 }
-.detail_div{
-height: 15px;
-display: flex;
+
+.detail_div {
+    height: 15px;
+    display: flex;
 }
-.detail_div label{
+
+.detail_div label {
     min-width: 150px;
 }
-.co_leader_div{
+
+.co_leader_div {
     margin-top: 10px;
 }
 
-.input_container{
+.input_container {
     font-size: 0;
 }
-.input_sub_container{
+
+.input_sub_container {
     display: flex;
 }
-.add_rem_btn{
+
+.add_rem_btn {
     color: white;
     border: none;
     border-bottom: 0.5px solid white;
@@ -146,20 +176,23 @@ display: flex;
     width: 50px;
     margin-left: 2px;
     border-radius: 5px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
-.text_input{
+
+.text_input {
     width: auto;
     height: auto;
 }
 
+
 /*checkbox--------------------------------------*/
+
 .form-group {
     margin-top: 15px;
     display: inline-block;
     text-align: center;
 }
-  
+
 .form-group input {
     padding: 0;
     height: initial;
@@ -168,16 +201,16 @@ display: flex;
     display: none;
     cursor: pointer;
 }
-  
+
 .form-group label {
     position: relative;
     cursor: pointer;
     color: #393939;
     font-weight: 400;
 }
-  
+
 .form-group label:before {
-    content:'';
+    content: '';
     -webkit-appearance: none;
     background-color: transparent;
     border: 2px solid #0079bf;
@@ -190,7 +223,8 @@ display: flex;
     margin-right: 5px;
     color: #393939;
 }
-.form-group input:checked + label:after {
+
+.form-group input:checked+label:after {
     content: '';
     display: block;
     position: absolute;
@@ -204,15 +238,17 @@ display: flex;
     color: #393939;
 }
 
+
 /*custom radion button*/
+
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label
-{
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -220,8 +256,9 @@ display: flex;
     display: inline-block;
     color: #666;
 }
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -232,8 +269,9 @@ display: flex;
     border-radius: 100%;
     background: #fff;
 }
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: '';
     width: 12px;
     height: 12px;
@@ -245,34 +283,41 @@ display: flex;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-[type="radio"]:not(:checked) + label:after {
+
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
-[type="radio"]:checked + label:after {
+
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
 
+
 /*        Custom dropdown                */
+
 .custom-select {
     width: 260px;
     position: relative;
-    font-family: "Open Sans",sans-serif;
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
+    font-family: "Open Sans", sans-serif;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
     background-color: #2980B9;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
     position: absolute;
     content: "";
     top: 14px;
@@ -281,16 +326,21 @@ display: flex;
     height: 0;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,
+.select-selected {
     width: 300px;
     height: 30px;
     border-radius: 5px;
@@ -302,10 +352,12 @@ display: flex;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  
-  /*style items (options):*/
-  .select-items {
+}
+
+
+/*style items (options):*/
+
+.select-items {
     position: absolute;
     background-color: #2980B9;
     top: 100%;
@@ -314,20 +366,25 @@ display: flex;
     z-index: 99;
     margin-left: 100px;
     width: 160px;
-  }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
+}
+
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
     display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
+}
+
+.select-items div:hover,
+.same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-  }
+}
+
 
 /*               Angular Form validation                     */
 
-input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
+input.ng-touched.ng-invalid,
+input:required.ng-touched.ng-empty {
     border: 2px solid #b93a29;
     background-color: #b93a294d;
 }
