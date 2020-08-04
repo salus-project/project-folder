@@ -7,6 +7,11 @@
         <title>Event</title>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+        <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <script src="/common/map/map.js"></script>
         
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
         <link rel="stylesheet" href="/css_codes/view_event.css">
@@ -27,9 +32,8 @@
                     select * from organizations;
                     SELECT `event_".$_GET['event_id']."_help_requested`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_help_requested INNER JOIN civilian_detail on event_".$_GET['event_id']."_help_requested.NIC_num=civilian_detail.NIC_num;
                     SELECT `event_".$_GET['event_id']."_volunteers`.*, civilian_detail.first_name,civilian_detail.last_name from event_".$_GET['event_id']."_volunteers INNER JOIN civilian_detail on event_".$_GET['event_id']."_volunteers.NIC_num=civilian_detail.NIC_num;
-                    select org_name,org_id from organizations";    
-        
-                    $result;
+                    select org_name,org_id from organizations;";    
+            $result;
             if(mysqli_multi_query($con, $query)){
                 $sql_result = mysqli_store_result($con);
                 $result = mysqli_fetch_assoc($sql_result);
@@ -72,7 +76,6 @@
             var event_name = '<?php echo $result['name'] ?>';
             var areaGeoJson = JSON.parse('<?php echo $result['geoJson'] ?>');
             var location_arr = <?php echo json_encode($location_arr) ?>;
-            console.log(location_arr);
         </script>
         <div id=event_header>
             <div id=title_box>
@@ -116,7 +119,5 @@
             var event_id='<?php echo $result['event_id'] ?>';
             var nic_num = '<?php echo $_SESSION['user_nic']?>';
             var organization = <?php echo $js_organization ?>;
-            var district_in_nic = '<?php echo $_SESSION['district'] ?>';
+            var district_in_nic = '<?php echo isset($_SESSION['district'])?$_SESSION['district']:'' ?>';
         </script>
-
-        

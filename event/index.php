@@ -1,10 +1,24 @@
-<?php  
-    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
-?>
- <link href="/css_codes/slideshow.css" rel="stylesheet">
+<?php require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";?>
 <div id='map_container'>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
+    <div id='map'></div>
 </div>
+<style>
+    #map{
+        margin:auto;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+</style>
+<script>
+    var myGeo = new EventGeo('map_container');
+    myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
+
+    for(var place of location_arr){
+        create_place(place);
+    }
+</script>
+<link href="/css_codes/slideshow.css" rel="stylesheet">
 <div id=event_body>
     <div id='table_caontainer'>
         <div class='head' colspan=2>

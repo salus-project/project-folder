@@ -9,6 +9,9 @@
 <head>
     <title>My suggested areas</title>
     <link rel="stylesheet" href='/css_codes/suggested_area_mine.css'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="/common/map/map.js"></script>
 </head>
 <body>
 <div class="my_suggest_cont">
@@ -49,7 +52,7 @@
                     }else{
                         $by_who=$row['org_name'];
                     }
-                    echo "<tr class='table_suggested_area_tr'>";
+                    echo "<tr class='table_suggested_area_tr' data-areadata='".json_encode($row)."' onclick=add_place_preview(this)>";
                         echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</th>";
                         echo "<td  class='table_suggested_area_td'>".$by_who."</th>";
                         echo "<td  class='table_suggested_area_td'>".$row['detail']."</th>";
@@ -60,12 +63,12 @@
         </table>
     </div>
     <div class='my_suggest_map_cont'>
-        <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
+        <div id='my_suggest_map' style='width:100%;height:100%'></div>
     </div>
 </div>
     <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
 <script>
-    var myGeo = new EventGeo();
+    var myGeo = new EventGeo('my_suggest_map');
     myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
 
     var remove=false;

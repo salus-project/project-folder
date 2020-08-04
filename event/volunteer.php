@@ -38,29 +38,14 @@
         <script>
             btnPress(4);
         </script>
-            <div class='main_container'>
-                <div class='volunteer_head'>
-                    <b>Volunteer Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=".$volunteer_detail['NIC_num']."'>".
-                                    $name."</a>"; ?></b>
-                </div>
-                <div class='voluteer_table_div'>
-                    <table class="volunteer_detail_table">
-                        <tr>
-                            <td class='volun_col1'>Service districts:</td>
-                            <td class='volun_col2'><?php echo $volunteer_detail['service_district']; ?></td>
-                        </tr>
-                        <tr>
-                            <td class='volun_col1'>Type:</td>
-                            <td class='volun_col2'><?php echo $volunteer_detail['type']; ?></td>
-                        </tr>
-                        <tr>
-                            <td class='volun_col1'>Abilities:</td>
-                            <td class='volun_col2'><?php echo $content; ?></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+        <div id='volunteer_div'>
+            <table id='volunteer_tab'>
+                <tr><td colspan='2' id='volunteer_head'><b>Volunteer Details of <?php echo "<a href='/view_profile.php?id=".$volunteer_detail['NIC_num']."'>".
+                                    $name."</a>"; ?></b></td></tr>
+                <tr><td class='volun_col1'>Service districts:</td><td class='volun_col2'><?php echo $volunteer_detail['service_district']; ?></td></tr>
+                <tr><td class='volun_col1'>Type:</td><td class='volun_col2'><?php echo $volunteer_detail['type']; ?></td></tr>
+                <tr><td class='volun_col1'>Abilities:</td><td class='volun_col2'><?php echo $content; ?></td></tr>
+            </table>
+        </div>
     </body>
 </html>
-
-<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?> 

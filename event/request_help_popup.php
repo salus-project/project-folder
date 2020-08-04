@@ -40,34 +40,89 @@
 
 ?>
 <link rel="stylesheet" href="/css_codes/volunteer_application.css">
-
+<style>
+    .form_td{
+        width:50%;
+    }
+    .active_option{
+        background-color: rgb(161, 218, 255);
+    }
+    .map_form_container{
+        display:none;
+        min-height:150px;
+    }
+    .show_container{
+        display:block;
+    }
+    .requester_detail_main_cont{
+        width: 700px;
+    }
+</style>
 <form  class="form_box">
-    <div class=dis_container>
-        <div class=head_lab_container><label class="head_label"> District (current) </label></div>
-        <div class=dis_input_container>
-                <select name="district" class="dis_selection" id="district">
-                    <?php
-                        $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
-                            'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
-                            'Ratnapura','Tricomalee','Vavuniya');
-                        foreach($district_arr as $dis){
-                            echo "<option value='".$dis."' ";
-                            if(strtolower($dis)==strtolower($old_district)){
-                                echo "selected";
-                            }
-                            echo ">".$dis."</option>";
-                        }
-                    ?>
-                </select>
+    <div class='requester_detail_main_cont'>
+        <div class='requester_detail_cont'>
+            <table>
+                <tr>
+                    <td onclick='change_option("address")' class='form_td active_option'>
+                        <input type='radio' name='add_type' id='radio_address' value='geoJson' checked='checked' style='display:none'>
+                        <label for='radio_address'>Text Address</label>
+                    </td>
+                    <td onclick='change_option("location")' class='form_td'>
+                        <input type='radio' name='add_type' id='radio_location' value='circle'  style='display:none'>
+                        <label for='radio_location'>Location</label>
+                    </td>
+                </tr>
+            </table>
+            <div id='requester_detail_address_cont' class='map_form_container show_container'>
+                <div class=dis_container>
+                    <div class=head_lab_container><label class="head_label"> District (current) </label></div>
+                    <div class=dis_input_container>
+                        <select name="district" class="dis_selection" id="req_district">
+                            <?php
+                                $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
+                                    'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
+                                    'Ratnapura','Tricomalee','Vavuniya');
+                                foreach($district_arr as $dis){
+                                    echo "<option value='".$dis."' ";
+                                    if(strtolower($dis)==strtolower($old_district)){
+                                        echo "selected";
+                                    }
+                                    echo ">".$dis."</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
                 </div>
-    </div>
-    <div class=village_container>
-        <label class="head_label"> Village </label>
-        <input type="text" name='village' value="<?php echo $old_village ?>" class="village_input" id="village">
-    </div>
-    <div class=street_container>
-        <label class="head_label"> Street </label>
-        <input type="text" name="street" value="<?php echo $old_street ?>"class="street_input" id="street">
+                <div class=village_container>
+                    <label class="head_label"> Village </label>
+                    <input type="text" name='village' value="<?php echo $old_village ?>" class="village_input" id="village">
+                </div>
+                <div class=street_container>
+                    <label class="head_label"> Street </label>
+                    <input type="text" name="street" value="<?php echo $old_street ?>"class="street_input" id="street">
+                </div>
+                <div id='mark_from_address_cont'>
+                    <button type='button' class='map_button' onclick='address_to_cord_click()'>Get Location from address</button>
+                </div>
+            </div>
+            <div id='requester_detail_location_cont' class='map_form_container'>
+                <div id='content_container'>
+                    <div id='button_container'>
+                        <label>OR point your location on the map</label><br/>
+                        <button type='button' class='map_button' onclick='locate_current()'>Locate your current position</button>
+                        <button type='button' class='map_button' onclick='mark_custom(this)'>Mark a custom position</button><br/>
+                        
+                        <input type='hidden' name='lat' id='lat'>
+                        <input type='hidden' name='lng' id='lng'>
+                    </div>
+                </div>
+                <div id='fill_address_cont'>
+                    <button type='button' class='map_button' onclick='fill_address_click()'>Fill Address</button>
+                </div>
+            </div>
+        </div>
+        <div id='requester_map_container'>
+        </div>
     </div>
 
     <div class="request_ability_container"><label class="head_label"> Requests </label></div>
@@ -96,3 +151,6 @@
 
 <?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>
 </form>
+<script>
+    
+</script>

@@ -4,6 +4,7 @@
     <head>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <script src="/common/map/map.js"></script>
         <style>
             #map_container{
                 box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
@@ -50,7 +51,6 @@
                 line-height: 1;
                 vertical-align: middle;
                 cursor:pointer;
-}
             }
             #content_container{
                 min-height: 150px;
@@ -95,12 +95,13 @@
         </script>
         <div id='map_container'>
             <div id='circle_map' style='display:none'>
-                <?php require $_SERVER['DOCUMENT_ROOT']."/event/map.html"; ?>
             </div>
             <div id='area_selector' style='display:block;height:500px'>
-                <?php require $_SERVER['DOCUMENT_ROOT']."/event/mark_area/maptiler-vector.html"; ?>
+                <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/maptiler-vector.html"; ?>
             </div>
         </div>
+
+        
         
         <div id='form'>
             <form method='post' action='/event/mark_area/mark.php'>
@@ -137,6 +138,7 @@
                 </div>
                 <span>Details</span>
                 <textarea id='detail' name='detail'></textarea>
+
                 <div id='sub_btn_container'>
                     <button type='button' class='sub_btn' onclick='submit_form()'>Submit</button>
                     <button type='button' class='sub_btn' onclick='preview(this)' id='preview_btn'>Preview</button>
@@ -145,7 +147,12 @@
             
         </div>
         <script>
+            var myGeo = new EventGeo('circle_map');
+            myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
 
+            for(var place of location_arr){
+                create_place(place);
+            }
             /*class AreaStyle{
                 constructor(){
                     
@@ -411,11 +418,11 @@
                     element.classList.add('preview')
                     if(document.getElementById('geoJson').checked){
                         editor.save(false);
-                        myGeo.markPlace(JSON.parse(document.getElementById('geoJson_input').value), 'Marked by you', 'suggested', true);
+                        myGeo.markPlace(JSON.parse(document.getElementById('geoJson_input').value), 'suggested', 'Marked by you', true);
 
                         show_map('circle');
                     }else{
-                        myGeo.draw_circle(document.getElementById('lat').value, document.getElementById('lng').value,document.getElementById('rad').value,"marked by you");
+                        myGeo.draw_circle(document.getElementById('lat').value, document.getElementById('lng').value,parseInt(document.getElementById('rad').value), 'suggested', "marked by you", true);
                     }
                 }
             }
