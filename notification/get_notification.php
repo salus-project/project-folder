@@ -2,6 +2,8 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 
+    $notification_DB = NotificationDb::getConnection();
+
     $user_nic=$_SESSION['user_nic'];
     $sql="SELECT * FROM user_notif_ic_$user_nic ORDER BY Notification_id ASC";
     $data=mysqli_query($notification_DB,$sql);
