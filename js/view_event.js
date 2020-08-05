@@ -99,7 +99,6 @@ window.addEventListener('load',()=>{
     
 })
 var requested = document.getElementsByClassName('requested');
-console.log(requested.length);
 for(div of requested){
 
     var help_people_html ='<div id=requested_container>';
@@ -131,7 +130,7 @@ const close_help_popup = document.querySelectorAll('#close_request_popup');
 const overlay = document.getElementById('overlay');
 
 function request_help(){
-    open_popup("/event/request_help_popup.php?event_id="+event_id);
+    open_popup("/event/request_help_popup.php?event_id="+event_id, init_request_map);
 }
 
 close_help_popup.forEach(button => {
@@ -151,13 +150,16 @@ if(overlay!==null){
 }
 
 
-function open_popup(url){
+function open_popup(url, c_function=null){
     const popup = document.getElementById('popup_div');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            popup.innerHTML =  this.responseText;
             popup.style.display = "block";
+            popup.innerHTML =  this.responseText;
+            if(c_function!==null){
+                c_function();
+            }
             for( i of popup.getElementsByTagName('script')){
                 eval(i.innerHTML);
                 console.log(i.innerHTML);
@@ -197,7 +199,7 @@ function cancel_request(){
         }*/
     };
 
-    const requestData = `event_id=`+ event_id + `&cancel_button=button`;
+    const requestData = `event_id=`+ event_id + `&cancel_button=button&status=`+safe_status+' '+help_status+' '+volunteer_status;
 
     request.open('post', '/event/request_help.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -219,7 +221,5 @@ function volunteer_btn_click(method){
     const url = "/event/volunteer_application.php?event_id="+event_id+"&method="+method;
     open_popup(url);
 }
-
-
 
 ////////////////////////help request popup /////////////////////////////////////////
