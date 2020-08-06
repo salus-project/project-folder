@@ -1,5 +1,7 @@
 <?php
 ob_start();
+ignore_user_abort();
+
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_php.php';
 ?>

@@ -75,9 +75,39 @@
                 $query2.=", ('$org_id', '$coleaders[$x]', 'coleader')";
             }
             $query2_run=$con->query($query2);
+            
             if($query1_run && $query2_run){
                 $table_query = 'create table org_'.$org_id." (msg_id int(11) auto_increment primary key, NIC_num varchar(12), sender varchar(60), message text, date date,time time(6))";
+                
+                $size = ob_get_length();
+                header("Content-Encoding: none");
+                header("Content-Length: {$size}");
+                header("location:".$_SERVER['HTTP_REFERER']);
+                header("Connection: close");
+                
                 header('location:/organization/?selected_org='.$org_id);
+                
+                ob_end_flush();
+                ob_flush();
+                flush();
+
+                $nic=$_SESSION['user_nic'];    
+                $members= \array_diff($members,[$nic]);
+                $coleaders= \array_diff($coleaders,[$nic]);
+
+                $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+                $mssg=$name." added you to the organization ".$org_name." as ";
+                $link="/organization/?selected_org=".$org_id;
+                
+                require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+                if($leader !=$nic){
+                    $sender = new Notification_sender($leader,$mssg."leader",$link,true);
+                    $sender->send();
+                }
+                $sender = new Notification_sender(implode(",",$coleaders),$mssg."co-leader",$link,true);
+                $sender->send();
+                $sender = new Notification_sender(implode(",",$members),$mssg."member",$link,true);
+                $sender->send();
 
             }else{
                 echo '<script type="text/javascript">alert("Error")</script>';
