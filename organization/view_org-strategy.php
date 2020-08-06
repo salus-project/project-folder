@@ -51,7 +51,7 @@
                                 </div>";
             $this->edit_text= "<div id=edit_btn_container >
                                     <form action=edit_org.php method=get>
-                                        <button id=edit_btn type='submit' name=edit_detail value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
+                                        <button id=edit_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
                                     </form>
                                 </div>";
             $this->coleader_text= "<div class='add_remove_div none'>
