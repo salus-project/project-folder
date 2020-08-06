@@ -41,12 +41,6 @@
 ?>
 <link rel="stylesheet" href="/css_codes/volunteer_application.css">
 <style>
-    .form_td{
-        width:50%;
-    }
-    .active_option{
-        background-color: rgb(161, 218, 255);
-    }
     .map_form_container{
         display:none;
         min-height:150px;
@@ -54,14 +48,15 @@
     .show_container{
         display:block;
     }
-    .requester_detail_main_cont{
-        width: 700px;
+    .popup_div {
+        width:auto;
     }
+    
 </style>
 <form  class="form_box">
     <div class='requester_detail_main_cont'>
         <div class='requester_detail_cont'>
-            <table>
+            <table class="req_loc_table">
                 <tr>
                     <td onclick='change_option("address")' class='form_td active_option'>
                         <input type='radio' name='add_type' id='radio_address' value='geoJson' checked='checked' style='display:none'>
@@ -75,7 +70,7 @@
             </table>
             <div id='requester_detail_address_cont' class='map_form_container show_container'>
                 <div class=dis_container>
-                    <div class=head_lab_container><label class="head_label"> District (current) </label></div>
+                    <div class=head_lab_container><label class="req_head_label"> District (current) </label></div>
                     <div class=dis_input_container>
                         <select name="district" class="dis_selection" id="req_district">
                             <?php
@@ -94,11 +89,11 @@
                     </div>
                 </div>
                 <div class=village_container>
-                    <label class="head_label"> Village </label>
+                    <label class="req_head_label"> Village </label>
                     <input type="text" name='village' value="<?php echo $old_village ?>" class="village_input" id="village">
                 </div>
                 <div class=street_container>
-                    <label class="head_label"> Street </label>
+                    <label class="req_head_label"> Street </label>
                     <input type="text" name="street" value="<?php echo $old_street ?>"class="street_input" id="street">
                 </div>
                 <div id='mark_from_address_cont'>
@@ -108,7 +103,7 @@
             <div id='requester_detail_location_cont' class='map_form_container'>
                 <div id='content_container'>
                     <div id='button_container'>
-                        <label>OR point your location on the map</label><br/>
+                        <label class="req_head_label_1">OR point your location on the map</label><br/>
                         <button type='button' class='map_button' onclick='locate_current()'>Locate your current position</button>
                         <button type='button' class='map_button' onclick='mark_custom(this)'>Mark a custom position</button><br/>
                         
@@ -125,7 +120,7 @@
         </div>
     </div>
 
-    <div class="request_ability_container"><label class="head_label"> Requests </label></div>
+    <div class="request_ability_container"><label class="req_head_label"> Requests </label></div>
     <div class="req_input_container">
         <?php
             foreach($old_content as $row_req){
@@ -145,12 +140,12 @@
         </div>
     </div>
     <div class="submit_cancel_btn_container">
-        <button name="submit_button" type="submit"  value="Request"  class="submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">Request</button>
-        <button type='button' id=close_request_popup name='cancel_button' class=submit_button >Cancel</button>
+        <button name="submit_button" type="submit"  value="Request"  class="req_submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">Request</button>
+        <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' id=close_request_popup name='cancel_button' class=req_submit_button >Cancel</button></a>
     </div>
 
 <?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>
 </form>
 <script>
     
-</script>
+</script>    
