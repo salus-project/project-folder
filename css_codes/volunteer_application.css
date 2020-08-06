@@ -6,13 +6,13 @@
     padding: 0px;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    min-width: 500px;
-    width:auto;
     min-height: 250px;
     margin: 0 auto;
     background: white;
     z-index: 4;
-    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-sizing: border-box;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
 }
 
 .popup_div.active_pop {
@@ -21,45 +21,7 @@
     overflow: auto;
 }
 
-
-/*request form common style*/
-
-.dis_container,
-.village_container,
-.street_container {
-    display: flex;
-    margin-left: 13px;
-}
-
-.dis_container {
-    margin-top: 10px;
-}
-
-.village_input,
-.street_input,
-.dis_selection {
-    width: 200px;
-    height: 30px;
-    margin-left: 91px;
-    margin-top: 10px;
-    font-family: "Open Sans", sans-serif;
-    color: #393939;
-    border: 1px solid #2980B9;
-}
-
-.street_input {
-    margin-left: 95px;
-}
-
-.dis_selection {
-    width: 260px;
-    margin-top: 10px;
-    margin-left: 10px;
-    padding: 0px;
-}
-
-
-/*request and volunteer form*/
+/*request and volunteer form*/  
 
 .submit_cancel_btn_container {
     display: flex;
@@ -69,18 +31,21 @@
     font-family: "Open Sans", sans-serif;
     margin-top: 1px;
     font-size: 20px;
-    width: 248px;
+    width: 249px;
     color: #393939;
     margin: 0 auto;
     border-radius: 0;
     border: 0px;
     background-color: #0c7dff47;
     height: 50px;
+    border-right: 1px solid white;
 }
 
 .head_label {
+    font-weight: 400;
     font-size: 18px;
-    color: #393939
+    color: #393939;
+    margin-right: 5px;
 }
 
 .head_label_container {
@@ -190,10 +155,11 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-    height: 30p;
+    height: 30px;
     margin-left: 20px;
     margin-top: 15px;
     font-family: "Open Sans", sans-serif;
+    overflow: auto;
 }
 
 .dropdown {
@@ -219,6 +185,8 @@
 
 .dropdown-content.drp.show {
     width: 150px;
+    overflow: auto;
+    height: 170px;
 }
 
 .dropdown a:hover {
@@ -227,7 +195,6 @@
 
 .show {
     display: block;
-    z-index: 4;
 }
 
 
@@ -252,7 +219,6 @@
 .container input {
     padding: 0;
     position: absolute;
-    opacity: 0;
     margin-bottom: 0;
     display: none;
     cursor: pointer;
@@ -321,7 +287,7 @@
 .form-group {
     display: inline-block;
     margin-bottom: 15px;
-    width: 150px;
+    width: 140px;
     text-align: center;
 }
 
@@ -370,31 +336,3 @@
     color: #393939;
 }
 
-/*--------------map---------------------*/
-
-.requester_detail_main_cont{
-    display: flex;
-}
-.requester_detail_cont{
-    width:50%;
-}
-#requester_map_container{
-    width:50%;
-    height:250px;
-}
-.map_button{
-    height: 50px;
-    width: 200px;
-    text-decoration: none;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-family: inherit;
-    font-size: 12.5px;
-    color: #393939;
-    padding: 16px;
-    display: table-cell;
-    border: 1px solid #d8e0e7;
-    line-height: 1;
-    vertical-align: middle;
-    cursor:pointer;
-}

@@ -1,168 +1,222 @@
-  .popup_div {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      border-radius: 0px;
-      padding: 0px;
-      transform: translate(-50%, -50%) scale(0);
-      transition: 200ms ease-in-out;
-      width: 500px;
-      min-height: 250px;
-      margin: 0 auto;
-      background: white;
-      z-index: 4;
-      box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-  }
-  
-  .popup_div.active_pop {
-      transform: translate(-50%, -50%) scale(1);
-      max-height: 90vh;
-      overflow: auto;
-  }
-  /*request form common style*/
-  
-  .dis_container,
-  .village_container,
-  .street_container {
-      display: flex;
-      margin-left: 13px;
-  }
-  
-  .dis_container {
-      margin-top: 10px;
-  }
-  
-  .village_input,
-  .street_input,
-  .dis_selection {
-      width: 200px;
-      height: 30px;
-      margin-left: 91px;
-      margin-top: 10px;
-      font-family: "Open Sans", sans-serif;
-      color: #393939;
-      border: 1px solid #2980B9;
-  }
-  
-  .street_input {
-      margin-left: 95px;
-  }
-  
-  .dis_selection {
-      margin-top: 10px;
-      margin-left: 10px;
-      padding: 0px;
-  }
-  /*request and volunteer form*/
-  
-  .submit_cancel_btn_container {
-      display: flex;
-  }
-  
-  .submit_button {
-      font-family: "Open Sans", sans-serif;
-      margin-top: 1px;
-      font-size: 20px;
-      width: 248px;
-      margin: 0 auto;
-      border-radius: 0;
-      border: 0px;
-      background-color: #0c7dff47;
-      height: 50px;
-  }
-  
-  .head_label {
-      font-size: 18px;
-      color: #393939;
-      font-weight: 400;
-  }
-  
-  .head_label_container {
-      margin: 13px;
-      margin-bottom: 0px;
-  }
-  
-  #overlay {
-      position: fixed;
-      opacity: 0;
-      transition: 200ms ease-in-out;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
-  }
-  
-  #overlay.active_pop {
-      opacity: 1;
-      pointer-events: all;
-      z-index: 3;
-  }
-  /*item amount input buttons*/
-  
-  .text_input {
-      background-color: Transparent;
-      background-repeat: no-repeat;
-      cursor: pointer;
-      overflow: hidden;
-      margin: 0px;
-      width: 33%;
-      color: #393939;
-      font-size: 14px;
-      font: none;
-  }
-  
-  .request_input {
-      border: none;
-      border-right: 1px solid #d8e0e7;
-      min-width: 100px;
-      padding: 5px
-  }
-  
-  .butn {
-      color: white;
-      border: none;
-      padding: 0px;
-      background-color: #2980B9;
-      height: 29px;
-      width: 159.5px;
-      font-family: "Open Sans", sans-serif;
-  }
-  /*requests and Abilities division*/
-  
-  .request_ability_container {
-      margin: 13px;
-  }
-  
-  .ability_input_container {
-      width: 495.5px;
-  }
-  
-  .req_input_container {
-      width: 495.5px;
-      margin-bottom: 30px;
-  }
-  
-  .input_sub_container {
-      display: flex;
-      margin-left: 13px;
-      margin-right: 10px;
-      color: #393939;
-      direction: ltr;
-      line-height: 30px;
-      height: 30px;
-      margin-bottom: 2px;
-      flex-wrap: wrap;
-      border: 1px solid #8f8b8b;
-  }
-  /*Volunteer form some styles8*/
-  
-  .dis_label_container {
-      margin-left: 13px;
-      display: flex;
-  }
-  
-  .donor_volun_div {
-      display: flex;
-  }
+.popup_div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 0px;
+    padding: 0px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    width: 500px;
+    min-height: 250px;
+    margin: 0 auto;
+    background: white;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.popup_div.active_pop {
+    transform: translate(-50%, -50%) scale(1);
+    max-height: 90vh;
+    overflow: auto;
+}  
+/*request form common style*/
+.requester_detail_main_cont{
+    width: 700px;
+}
+
+.dis_container,
+.village_container,
+.street_container {
+    display: flex;
+    margin-left: 13px;
+}
+
+.dis_container {
+    margin-top: 10px;
+}
+
+.village_input[type=text],
+.street_input[type=text],
+.dis_selection {
+    width: 188px;
+    min-width: 188px;
+    height: 30px;
+    margin-top: 10px;
+    font-family: "Open Sans", sans-serif;
+    color: #393939;
+    border: 1px solid #2980B9;
+}
+
+.dis_selection {
+    margin-top: 10px;
+    padding: 0px;
+    padding-left: 8px;
+}
+/*request and volunteer form*/
+
+.submit_cancel_btn_container {
+    display: flex;
+}
+
+.req_submit_button {
+    font-family: "Open Sans", sans-serif;
+    margin-top: 1px;
+    font-size: 20px;
+    width: 350px;
+    color: #393939;
+    margin: 0 auto;
+    border-radius: 0;
+    border: 0px;
+    background-color: #0c7dff47;
+    height: 50px;
+    border-right: 1px solid white;
+}
+
+.req_head_label {
+    font-size: 18px;
+    color: #393939;
+    font-weight: 400;
+    margin-right: 5px;
+    min-width: 128px;
+}
+
+.req_head_label_1 {
+    font-size: 16px;
+    color: #393939;
+    font-weight: 400;
+    margin-left: 13px;
+    min-width: 128px;
+}
+
+.head_label_container {
+    margin: 13px;
+    margin-bottom: 0px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active_pop {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 3;
+}
+/*item amount input buttons*/
+
+.text_input {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0px;
+    width: 33%;
+    color: #393939;
+    font-size: 14px;
+    font: none;
+}
+
+.request_input {
+    border: none;
+    border-right: 1px solid #d8e0e7;
+    min-width: 100px;
+    padding: 5px
+}
+
+.butn {
+    color: white;
+    border: none;
+    padding: 0px;
+    background-color: #2980B9;
+    height: 29px;
+    width: 159.5px;
+    font-family: "Open Sans", sans-serif;
+}
+/*requests and Abilities division*/
+
+.request_ability_container {
+    margin: 13px;
+}
+
+.ability_input_container {
+    width: 495.5px;
+}
+
+.req_input_container {
+    width: 495.5px;
+    margin-bottom: 30px;
+}
+
+.input_sub_container {
+    display: flex;
+    margin-left: 13px;
+    margin-right: 10px;
+    color: #393939;
+    direction: ltr;
+    line-height: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
+    border: 1px solid #8f8b8b;
+}
+/*Volunteer form some styles8*/
+
+.dis_label_container {
+    margin-left: 13px;
+    display: flex;
+}
+
+.donor_volun_div {
+    display: flex;
+}
+
+/*--------------map---------------------*/
+
+.requester_detail_main_cont{
+    display: flex;
+}
+.requester_detail_cont{
+    width:50%;
+}
+#requester_map_container{
+    width:50%;
+    height:250px;
+}
+.map_button{
+    height: 40px;
+    width: 323px;
+    font-family: "Open-Sans",sans-serif;
+    border-spacing: 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: white;
+    padding: 16px;
+    display: table-cell;
+    border: 1px solid #d8e0e7;
+    line-height: 0.5;
+    background-color: #2980B9;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 13px;
+    margin-top: 10px;
+}
+.active_option{
+    background-color: rgb(161, 218, 255);
+}
+.req_loc_table{
+    margin: 13px;
+    width: 92%;
+}
+.form_td{
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+}
