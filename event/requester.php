@@ -54,8 +54,8 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
     <div class='main_container'>
         <div class='requester_div'>
            <div class='requester_head'>
-                <b>Request Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=" . $requester_detail['NIC_num'] . "'>" .
-                                                                                    $name . "</a>"; ?></b>
+                Request Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=" . $requester_detail['NIC_num'] . "'>" .
+                                                                                    $name . "</a>"; ?>
             </div>
             <table class="requester_detail_table">
                 <tr>
