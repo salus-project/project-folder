@@ -286,7 +286,7 @@
                             echo '</div>';
 
                             echo '<div class="pro_button">';
-                                echo '<input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >';
+                                echo '<button name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >PROMISE</button>';
                                 echo '<button type="submit" name="pro_cancel_button" class="cancel_button" value="CANCEL" id=cancel_btn >CANCEL</button>';
 
                             echo '</div>';
@@ -303,3 +303,4 @@
 <script>
     var add_element = "<?php echo str_replace(array("\n","\r","\r\n"),'',$add_element) ?>";+++
 </script>
+<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
