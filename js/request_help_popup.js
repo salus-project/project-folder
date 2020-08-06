@@ -55,19 +55,19 @@ function OnChangeCheckbox(checkbox, textbox) {
     document.getElementById('popup_div').classList.remove('active_pop');
     overlay.classList.remove('active_pop');
 };*/
-
+ 
 function add_request_input(element) {
     var parent = element.parentElement.parentElement;
     if (element.parentElement.children[0].value !== '' || element.parentElement.children[1].value !== '') {
         for (var ele of parent.children) {
             ele.children[0].setAttribute("value", ele.children[0].value);
             ele.children[1].setAttribute("value", ele.children[1].value);
-            ele.children[2].outerHTML = "<button type='button' onclick='remove_input(this)' class='text_input butn'>Remove</button>"
+            ele.children[2].outerHTML = "<button type='button' onclick='remove_request_input(this)' class='text_input butn'>Remove</button>"
         }
         parent.innerHTML += '<div class="input_sub_container">\n' +
             '        <input type="text" class="text_input request_input" name="item[]">\n' +
             '        <input type="text" class="text_input request_input" name="amount[]">\n' +
-            '        <button type="button" onclick="add_input(this)" class="text_input butn">Add</button>\n' +
+            '        <button type="button" onclick="add_request_input(this)" class="text_input butn">Add</button>\n' +
             '        <input type="hidden" name="update_id[]" value="0">\n' +
             '    </div>';
     }
