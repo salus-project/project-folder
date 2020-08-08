@@ -39,16 +39,14 @@
                     <div class='menubar_button_container menubar_buttons_cont' ><div class="menubar_buttons"  onclick="show_notification(this)"><div class="menu_icon_tooltip"><i class='fas fa-bell menu_icon menu_bar_btn_5'></i><span class="menu_icon_tooltiptext">Notification</span></div></div><div id=notification_container></div></div>
 
                     <div id='header_search_box_cont'>
-                        <div id='header_search_box'></div>
+                        <div id='header_search_box'><i class="fa fa-search" aria-hidden="true"></i></div>
                     </div>
 
                     <div class='menubar_button_container dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">
                                 <i class="fa fa-caret-down" style="font-size:30px"></i>
                                 <span class="menu_icon_tooltiptext">More</span>
                             </div>
-                        </div>
-
-                    
+                        </div>                 
 
                         <div id=dropdown_container class='dropdown_container'>
                             <a href="/home_page.php"  class="header_dropdown_item username">
