@@ -1,13 +1,4 @@
-#org_body{
-    border: 2px solid color #6b7c93;
-    margin: auto;
-    width: 300px;
-}
-#org_side_nav{
-    width: 300px;
-    border: 2px solid color #6b7c93;
-    color: #6b7c93;
-}
+
 .view_org_table{
     margin: auto;
     margin-bottom: 20px;
@@ -59,7 +50,7 @@
     margin-bottom: 20px;
     border: none;
     border-top: 1px solid #d8e0e7;
-    width: 300px;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -109,19 +100,7 @@
     position: absolute;
     display: block;
 }
-.side_nav_profile{
-    height: 40px;
-    width: 40px;
-    vertical-align: middle;
-    border-radius: 50%;
-}
-.side_nav_a, a.side_nav_a:visited, a.side_nav_a:active {
-    text-decoration: none;
-    color: #6b7c93;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 400;
-}
+.
 .add_remove_but{
     border: none;
     background-color: #e5e5f4;

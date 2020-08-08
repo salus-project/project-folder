@@ -169,8 +169,14 @@
     border-top: 2px solid #d8e0e7;
 }
 #org_side_nav{
-    border:2px solid #d8e0e7;
-    width: 250px;
+    width: 300px;
+    color: #6b7c93;
+    background: white;
+    box-shadow: 0px 10px 12px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+#org_body {
+    margin: auto;
+    width: 300px;
 }
 .member{
     background-color: #d8e0e7;

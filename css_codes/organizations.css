@@ -17,7 +17,7 @@ body{
     margin-top:30px;
     position: relative;
 }
-#table{
+#org_table{
     border: 2px solid #d8e0e7;
     border-collapse: collapse;
     width:600px;
@@ -28,7 +28,7 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
-.org_name,.create_org_btn{
+.org_name_btn{
     width:100%;
     height:40px;
     background-color: transparent;
@@ -106,7 +106,7 @@ body{
     background-color: #e5e5f4;
   }
   .org_list:hover{
-    background: #0c7dff47;
+    background: aliceblue;
   }
 .org_search{
   position: relative;
