@@ -1,21 +1,26 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/organization/event/org_event_header.php" ?>
-        <div id=detail_body>
-            <div id='table_caontainer'>
-                <table id=table>
-                    <thead>
-                        <th colspan=2>
-                            Event Detail
-                        </th>
-                    </thead>
-                    <?php
-                        foreach($result as $x=>$y){
-                            echo "<tr><td id=column1>" . ucfirst($x) . "</td><td id=column2>" . ucfirst($y) . "</td></tr>";
-                        }
-                    ?>
-                </table>
+        <div id=org_detail_body>
+            <div id='org_event_table_caontainer'>
+                <div class='org_event_head' colspan=2>
+                    Event Detail
+                </div>
+                <div class='org_event_con'>
+                    <table id=org_view_event_table>           
+                        <?php
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('Name') . "</td><td id=column2>" . ucfirst($result['name']) . "</td></tr>";
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('Affected districts') . "</td><td id=column2>" . ucfirst($result['affected_districts']) . "</td></tr>";
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('Start date') . "</td><td id=column2>" . ucfirst($result['start_date']) . "</td></tr>";
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('End date') . "</td><td id=column2>" . ucfirst($result['end_date']) . "</td></tr>";
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('Status') . "</td><td id=column2>" . ucfirst($result['status']) . "</td></tr>";
+                            echo "<tr><td class='org_view_event_td'>" . ucfirst('Deaths and damages') . "</td><td id=column2>" . ucfirst($result['detail']) . "</td></tr>";
+                        ?>
+                    </table>
+                </div>
             </div>
             <div id=help_requested>
-                <h2>Help requested people</h2>
+                <div class='org_event_requests' colspan=2>
+                    Help Requested People
+                </div>
 				<?php
                     $query1="select civilian_detail.first_name, civilian_detail.last_name, civilian_detail.NIC_num, event_".$_GET['event_id']."_help_requested.* 
                     from civilian_detail INNER JOIN event_".$_GET['event_id']."_help_requested on civilian_detail.NIC_num = event_".$_GET['event_id']."_help_requested.NIC_num 
@@ -26,21 +31,25 @@
                     //print_r($req_result);
 
                     $districts = array_unique(array_column($all_requested,'district'));
-
-                    echo    "<table class='dis_container'>";
-                                foreach($districts as $row_dis){
-                                    echo "<tr><td><span onclick='select_con(this)'>". $row_dis . "<input type='checkbox' class='help_check'></span>";
-                                    innerDis($row_dis,$all_requested);
-                                    echo "</td></tr>";
-                                }
-                    echo "</table>";
+                    echo "<div class='request_people_div'>";
+                    echo "<div class='dis_con_div'>";
+                        
+                        echo    "<table class='dis_container'>";
+                                    foreach($districts as $row_dis){
+                                        echo "<tr><td class='dis_table_data'><span class='arrow dis_data' onclick='select_con(this)'><i class='fa fa-caret-down' aria-hidden='true'></i><input type='checkbox' class='help_check'>". $row_dis . "</span><div class='village_div'>";
+                                        innerDis($row_dis,$all_requested);
+                                        echo "</div></td></tr>";
+                                    }
+                        echo    "</table>";
+                        echo "</div>";
+echo "</div>";
 
                     function innerDis($selected_dis,$all_requested){
                         $dis_requested = array_filter(array_map(function($item) use($selected_dis) {return dis_filter($item,$selected_dis);},$all_requested));
                         $villages = array_unique(array_column($dis_requested,'village'));
                         echo "<table class='vil_container org_event_active'>";
                         foreach($villages as $row_village){
-                            echo "<tr><td><span onclick='select_con(this)'>" . $row_village . "<input type='checkbox' class='help_check'></span>";
+                            echo "<tr><td><span class='arrow' onclick='select_con(this)'><i class='fa fa-caret-right' aria-hidden='true'></i><input type='checkbox' class='help_check'>" . $row_village . "</span>";
                             innerVil($row_village,$dis_requested);
                             echo "</td></tr>";
                         }
@@ -58,7 +67,7 @@
                         $streets = array_unique(array_column($vil_requested,'street'));
                         echo "<table class='str_container'>";
                         foreach($streets as $row_street){
-                            echo "<tr><td><span onclick='select_con(this)'>" . $row_street . "<input type='checkbox' class='help_check'></span>";
+                            echo "<tr><td><span class='arrow street_data' onclick='select_con(this)'><i class='fa fa-caret-right' aria-hidden='true'></i><input type='checkbox' class='help_check'>" . $row_street . "</span>";
                             innerStr($row_street,$vil_requested);
                             echo "</td></tr>";
                         }
@@ -76,7 +85,7 @@
                         $people = array_map(function($item){return array(($item['first_name'] . " " . $item['last_name']),$item['NIC_num']);},$str_requested);
                         echo "<table class='per_container'>";
                         foreach($people as $person){
-                            echo "<tr><td><span>" . $person[0] . "<input type='checkbox' class='help_check requester' value='".$person[1]."'></span></td></tr>";
+                            echo "<tr><td><span><input type='checkbox' class='help_check requester' value='".$person[1]."'>" . $person[0] . "</span></td></tr>";
                         }
                         echo "</table>";
                     }
@@ -89,16 +98,19 @@
                     
                 ?>
                 <button id="promise_buttton" onclick="promise()">Promise to help</button>
-            </div>
-            
+                </div>
         </div>
         <div id=social_events>
             
             <div id=affected>
-                <h2>Affected people detail</h2>
+                <div class='org_event_requests' colspan=2>
+                    Affected people detail
+                </div>
             </div>
             <div id=organizations>
-                <h2>Organizations on action</h2>
+                <div class='org_event_requests' colspan=2>
+                    Organizations on action
+                </div>
             </div>
         </div>
         <div id='help_popup' class="help_popup">
