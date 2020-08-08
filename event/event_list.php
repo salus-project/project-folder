@@ -6,14 +6,17 @@
 ?>
 <div id='event_overlay' onclick='remove(this)'></div>
 <div class='events_php_container'>
+    <div class='event_table_con'>
     <form action='/event' method='get'>
-        <table id=event_table>
+        <table id=event_header_table>
             <?php
-                echo "<tr ><td class=name><a href='/event/all_events.php'><button type=button class='event_name' name=event_id>View all</button></a></td></tr>";
+                echo "<div class=view_all>EVENTS</div><button class='event_setting_btn' type=button><i class='fa fa-cog'  aria-hidden='true'></i></button>";
+                echo "<div class='hidden_event_div'><a href='/event/all_event.php'><button type=button class='event_name view_all_btn' name=event_id>View all</button></a></div>";
                 while($row=$result->fetch_assoc()){
-                    echo "<tr><td class=name><button type=submit class='event_name ". $row['status'] ."_event' name=event_id value=" . $row['event_id'] . ">" . $row['name'] . "</button></td></tr>";
+                    echo "<tr><td class=name ><button type=submit class='event_name ". $row['status'] ."_event' name=event_id value=" . $row['event_id'] . ">" . $row['name'] . "</button></td></tr>";
                 }
             ?>
         </table>
     </form>
+    </div>
 </div>
