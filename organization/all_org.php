@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <table id="table">
+        <table id="org_table">
             <?php
                 $org_detail=$con->query('select org_name,org_id,LOWER(district),discription from organizations ORDER BY district, org_name');
                 $result=$org_detail->fetch_all(MYSQLI_ASSOC);
@@ -39,7 +39,7 @@
                                     echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">
-                                    <button class="org_name" type="submit" name="selected_org" value="'.$org[1].'">'.ucfirst($org[0]).'<br>'.$org[2].'</button>
+                                    <button class="org_name_btn" type="submit" name="selected_org" value="'.$org[1].'">'.ucfirst($org[0]).'<br>'.$org[2].'</button>
                                 </div>
                                 </td>
                             </tr>';
