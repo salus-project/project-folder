@@ -16,21 +16,28 @@
 <div id='event_overlay' onclick='remove(this)'></div>
 <?php
     if($data->num_rows>0){
-        echo"<div id='notif'>
-                <table id='notif_table'>";
+        echo"<div id='header_notif'>
+            <div class='notif_table_con'>
+                <table id='notif_header_table'>";
+                echo "<div class=view_all>NOTIFICATION</div><button class='notif_setting_btn' type=button><i class='fa fa-cog'  aria-hidden='true'></i></button>";
+                echo "<div class='hidden_notif_div'>
+                        <a href='/notification/mark.php'><button type=button class='notif_name view_all_btn' name=event_id>Mark All As Read</button></a>
+                        <a href=''><button type=button class='notif_view_all view_all_btn' name=event_id>View All</button></a>
+                    </div>";
+                
         while($row=$data->fetch_assoc()) {
 
             $rowtime = date("h:i:s a ", strtotime($row['Time']));
             $rowdate = date("Y M d ", strtotime($row['Date']));
 
 
-            echo "<tr><td class='{$row['status']}'><a class='notif_a' href='{$row['link']}' onclick='notification_click(\"{$row['status']}\",{$row['Notification_id']})'><div class='notif_box'>";
+            echo "<tr><td class='notif_td header_{$row['status']}'><a class='notif_a' href='{$row['link']}' onclick='notification_click(\"{$row['status']}\",{$row['Notification_id']})'><div class='notif_header_box'>";
             echo
-            "<div class='content'>
+            "<div class='header_content'><p>
                             {$row['Content']}
-                        </div>";
+                        </p></div>";
             echo
-            "<div class='datetime'>";
+            "<div class='header_datetime'>";
             if ($row['Date'] == $current_date) {
                 echo " Today at ";
             } else {
@@ -44,6 +51,7 @@
         }
 
         echo    "</table>
-            </div>";
+            </div>
+        </div>";
     }
 ?>
