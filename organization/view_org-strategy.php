@@ -15,11 +15,11 @@
         public function show_edit_button(){
             $this->role->show_edit_button();
         }
-        public function show_coleader_option(){
-            $this->role->show_coleader_option();
+        public function show_coleader_option($nic){
+            $this->role->show_coleader_option($nic);
         }
-        public function show_member_option(){
-            $this->role->show_member_option();
+        public function show_member_option($nic){
+            $this->role->show_member_option($nic);
         }
         public function change_profile_option(){
             $this->role->change_profile_option();
@@ -54,10 +54,6 @@
                                         <button id=edit_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
                                     </form>
                                 </div>";
-            $this->coleader_text= "<div class='add_remove_div none'>
-                                        <div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
-                                        <div class='add_remove pro'><button class='add_remove_but'>Promote to leader</button></div>
-                                    </div>";
             $this->member_text= "";
             $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\'upload_org_profile_btn\').click()'>
                                         <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
@@ -82,10 +78,10 @@
         public function show_edit_button(){
             echo '';
         }
-        public function show_coleader_option(){
+        public function show_coleader_option($nic){
             echo '';
         }
-        public function show_member_option(){
+        public function show_member_option($nic){
             echo '';
         }
         public function change_profile_option(){
@@ -109,10 +105,10 @@
         public function show_edit_button(){
             echo '';
         }
-        public function show_coleader_option(){
+        public function show_coleader_option($nic){
             echo '';
         }
-        public function show_member_option(){
+        public function show_member_option($nic){
             echo '';
         }
         public function change_profile_option(){
@@ -124,7 +120,7 @@
     }
 
     class Co_leader extends Role{
-
+ 
         public function __construct(){
             parent::__construct();
         }
@@ -135,12 +131,12 @@
         public function show_edit_button(){
             echo $this->edit_text;
         }
-        public function show_coleader_option(){
+        public function show_coleader_option($nic){
             echo '';
         }
-        public function show_member_option(){
-            echo "<div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
-                <div class='add_remove pro'><button class='add_remove_but'>Promote to co_leader</button></div>";
+        public function show_member_option($nic){
+            echo "<div class='add_remove rem'><a href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
+                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to co_leader</button></a></div>";
         }
         public function change_profile_option(){
             echo $this->profile_text;
@@ -162,13 +158,17 @@
         public function show_edit_button(){
             echo $this->edit_text;
         }
-        public function show_coleader_option(){
-            echo $this->coleader_text;
+        public function show_coleader_option($nic){
+            echo "<div class='add_remove_div none'>
+            <div class='add_remove rem'><a href='/organization/member_operation.php?type=coleader_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
+            <div class='add_remove pro'><a href='/organization/member_operation.php?type=coleader_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to leader</button></a></div>
+            <div class='add_remove pro'><a href='/organization/member_operation.php?type=coleader_depromote_to_member&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>De-promote to member</button></a></div>
+            </div>";
         }
-        public function show_member_option(){
-            echo  "<div class='add_remove rem'><button class='add_remove_but'>Remove</button></div>
-                <div class='add_remove pro'><button class='add_remove_but'>Promote to co_leader</button></div>
-                <div class='add_remove pro'><button class='add_remove_but'>Promote to leader</button></div>";
+        public function show_member_option($nic){
+            echo  "<div class='add_remove rem'><a href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
+                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to co_leader</button></a></div>
+                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to leader</button></a></div>";
         }
         public function change_profile_option(){
             echo $this->profile_text;

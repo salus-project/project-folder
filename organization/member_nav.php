@@ -80,6 +80,7 @@
                     }else{
                         $coleader_name=$row['first_name']." ".$row['last_name'];
                     }
+
                     $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
 
                     echo    "<tr>
@@ -94,7 +95,7 @@
                                             </div>                                           
                                         </div>";
                                     echo "<div class='add_remove_div none'>";
-                                            $viewer->show_coleader_option();
+                                            $viewer->show_coleader_option($row['NIC_num']);
                                     echo "</div>";
                                     
                                     echo "</div>";
@@ -120,7 +121,7 @@
                                    
                                echo " <div class='role'>
                                         <div class='add_remove_div'>";
-                                            $viewer->show_member_option();
+                                            $viewer->show_member_option($row['NIC_num']);
                                 echo "  </div>";
                                      echo   "<div class='role_div'>
                                             <div class='role_pic'>
