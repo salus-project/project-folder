@@ -388,7 +388,16 @@ a.all_a:active {
 #header_notif{
     width: 300px;
 }
-
+#search_icon{
+    display: inline-block;
+    width: 10%;
+    line-height: 2;
+}
+                       
+#header_search_box{
+    display: flex;
+    height: 30px;
+}
 .events_php_container::after, .org_php_container::after, #header_notif::after{
     content: "";
     position: absolute;
@@ -596,11 +605,12 @@ input:checked+.slider:before {
     display: inline-block;
     border: 1px solid #d8e0e7;
     display: inline-block;
-    border-radius: 12px;
+    border-radius: 15px;
     position: absolute;
     bottom: 7px;
     right: 100px;
     background-color: aliceblue;
     width: 250px;
+    height: 30px;
     font-size: initial;
 }
