@@ -20,8 +20,8 @@
         $amount = $_POST['amount'];
         $update_id=$_POST['update_id'];
 
-        $lat=$_POST['lat'];
-        $lng=$_POST['lng'];
+        $lat=$_POST['lat']!=''?$_POST['lat']:'null';
+        $lng=$_POST['lng']!=''?$_POST['lng']:'null';
 
         $pri_query = '';
 
@@ -43,7 +43,7 @@
                     }
                 }
             }
-            $pri_query.= "UPDATE `event_".$event_id."_help_requested` SET `now` = 'yes' WHERE `NIC_num` = '".$user_nic."';";
+            $pri_query.= "UPDATE `event_".$event_id."_help_requested` SET `now` = 'yes',`district` = '$district',`village` = '$village',`street` = '$street',`lat` = $lat,`lng` = $lng WHERE `NIC_num` = '".$user_nic."';";
                 
         }else{
         $pri_query= "INSERT INTO event_".$event_id."_help_requested (NIC_num, district, village, street, lat, lng) VALUES ('$user_nic', '$district', '$village', '$street', $lat, $lng);";
@@ -64,14 +64,13 @@
         $data1=join(" ",$status);
         $pri_query.="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id;";
 
-        
-        /*if(mysqli_multi_query($con,$pri_query)){
+       if(mysqli_multi_query($con,$pri_query)){
             header("location:".$_SERVER['HTTP_REFERER']);
         }
         else{
             echo 'unsucessful in starting';
-        }*/
-        echo $pri_query;
+        }
+        /*echo $pri_query;*/
     }
 
         
