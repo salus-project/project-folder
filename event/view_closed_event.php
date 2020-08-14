@@ -5,6 +5,13 @@
 <html>
     <head>
         <title>Event</title>
+
+        <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <script src="/common/map/map.js"></script>
+
+        
         <link rel="stylesheet" href="/css_codes/view_event.css">
         <link rel="stylesheet" href="/css_codes/style.css">
         <link href="/css_codes/slideshow.css" rel="stylesheet">
@@ -15,14 +22,25 @@
             btnPress(4);
         </script>
         <?php
-            $query="select * from disaster_events where event_id =" . $_GET['event_id'];
+            $query="select * from disaster_events where event_id =" . $_GET['event_id'].";
+            select * from event_".$_GET['event_id']."_locations;";
                     
             if(mysqli_multi_query($con, $query)){
                 $sql_result = mysqli_store_result($con);
                 $result = mysqli_fetch_assoc($sql_result);
                 mysqli_free_result($sql_result);
+
+                mysqli_next_result($con);
+                $sql_result = mysqli_store_result($con);
+                $location_arr = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
+                mysqli_free_result($sql_result);
             }
         ?>
+        <script>
+            var event_name = '<?php echo $result['name'] ?>';
+            var areaGeoJson = JSON.parse('<?php echo $result['geoJson'] ?>');
+            var location_arr = <?php echo json_encode($location_arr) ?>;
+        </script>
         
         <div id=event_header>
             <div id=title_box>
@@ -31,8 +49,24 @@
         </div>
 
         <div id='map_container'>
-            <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
-        </div>
+    <div id='map'></div>
+</div>
+<style>
+    #map{
+        margin:auto;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+</style>
+<script>
+    var myGeo = new EventGeo('map_container');
+    myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
+
+    for(var place of location_arr){
+        create_place(place);
+    }
+</script>
         <div id=event_body>
             <div id='table_caontainer'>
                 <div class='head' colspan=2>
