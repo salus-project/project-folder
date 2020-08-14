@@ -30,7 +30,7 @@
             <div>
                 <div id="menubar">
                     <!-- <a href="/home_page.php"> <div class="menubar_buttons" id='menu_bar_btn_1'>Home</div> </a> -->
-                    <a href="/govermentpost.php" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons"><div class="menu_icon_tooltip"><i class='fas fa-university menu_icon menu_bar_btn_2'></i><span class="menu_icon_tooltiptext">Goverment post</span></div></div> </a>
+                    <a href="/govpost" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons"><div class="menu_icon_tooltip"><i class='fas fa-university menu_icon menu_bar_btn_2'></i><span class="menu_icon_tooltiptext">Goverment post</span></div></div> </a>
                     <a href="/publicpost" class="menubar_buttons_cont"><div class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-book-reader menu_icon menu_bar_btn_3'></i><span class="menu_icon_tooltiptext">Public post</span></div></div></a>
                     <div class='menubar_button_container menubar_buttons_cont'><div class="menubar_buttons" onclick='showevent(this)'><div class="menu_icon_tooltip"><i class='far fa-calendar-alt menu_icon menu_bar_btn_4'></i><span class="menu_icon_tooltiptext">Events</span></div></div><div id=event_container></div></div>
                     <div class='menubar_button_container menubar_buttons_cont'><div type="submit" class="menubar_buttons" name='menubar_buttons'  value=6 onclick='show_org(this)'><div class="menu_icon_tooltip"><i class='fas fa-users menu_icon menu_bar_btn_6'></i><span class="menu_icon_tooltiptext">Organization</span></div></div><div id=menubar_org_container></div></div>
