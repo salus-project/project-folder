@@ -2,17 +2,17 @@ switch(safe_status){
     case 'not_set':
         var html1 = "<button id='mark' onclick='markFun()'>Mark</button>\n"+
                     '<div id="safe_btn" style="display:none">\n'+
-                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="160" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
                     '</div>';
         break;
     case 'safe':
         var html1 = '<div id="safe_btn">\n'+
-                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="160" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
                     '</div>';
         break;
     case 'not_safe' :
         var html1 = '<div id="safe_btn">\n'+
-                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="200" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()" checked>\n'+
+                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="160" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()" checked>\n'+
                     '</div>';
         break;
 }
