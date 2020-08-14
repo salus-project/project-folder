@@ -336,6 +336,9 @@ a.all_a:active {
     cursor: pointer;
     padding: 0;
 }
+.active_event{
+    background-color: #f1fff2;
+}
 .notif_header_box {
     height: 55px;
     width: 100%;
