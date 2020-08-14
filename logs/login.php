@@ -19,7 +19,7 @@
             }
 
             if($_POST['location']=='http://localhost/logs/login.php' || $_POST['location']==''){
-                header("Location:/govermentpost.php");
+                header("Location:/govpost");
             }else{
                 //header('location:'.str_replace(PHP_EOL, '', $_POST['location']));
                 header('location:'.$_POST['location']);
