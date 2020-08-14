@@ -216,28 +216,23 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                         foreach($content_detail as $row_req1){
                             if ($row_req1['don_id']==$row_req['id']){
                                 $item_amount=$row_req1['item'].":".$row_req1['amount'];
-                                if (($row_req1['pro_don']=="promise") && ($row_req1['pro_don']=="pending")){
+                                if (($row_req1['pro_don']=="promise") or ($row_req1['pro_don']=="pending")){
                                     array_push($promise_array,$item_amount);
+                                    array_push($id_arr,$row_req1['id']);
                                 }else if ($row_req1['pro_don']=="donated"){
                                     array_push($pending_array,$item_amount);
                                 }
                                 array_push($full_array,$item_amount);
-                                array_push($id_arr,$row_req1['id']);
+                                
                             }
                         }
-                        for($x=0; $x < count($full_array); $x++ ){
-                            $value=$full_array[$x];
-                            if(in_array($value,$pending_array)){
-                                $checked="checked='checked'";
-                                $text_status="pending";
-                            }
-                            else{
-                                $checked="";
-                                $text_status="promise";
-                            }
+                        for($x=0; $x < count($promise_array); $x++ ){
+                            $value=$promise_array[$x];
+                            $text_status="pending";
+                            
                             if ($x==0){
-                                $name_data_row="<td rowspan=".count($full_array).">".$name."</td>";
-                                $note_data_row="<td rowspan=".count($full_array).">".$note."</td>";
+                                $name_data_row="<td rowspan=".count($promise_array).">".$name."</td>";
+                                $note_data_row="<td rowspan=".count($promise_array).">".$note."</td>";
                             }
                             else{
                                 $name_data_row=$note_data_row="";
@@ -247,7 +242,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                             ".$name_data_row."
                             <td>".$value."</td>
                             <td class='not_click'>
-                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$id_arr[$x].")'>
+                            <div onclick='confirmFn(this,".$id_arr[$x].")'><input type='checkbox' id='checkbox' disabled data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='this.checked = !this.checked' ></div>
                             </td>
                             ".$note_data_row."
                         </tr>";
@@ -286,20 +281,30 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                             $name=$row_req['org_name'];
                             $by=$row_req['org_id'];
                         }
-                        $item_amount="";
+                        $item_amount=[];
                         $note=$row_req['note'];
+                        $rows=0;
                         foreach($content_detail as $row_req1){
                             if ($row_req1['don_id']==$row_req['id']){
                                 if ($row_req1['pro_don']=="donated"){
-                                $item_amount=$item_amount.$row_req1['item'].":".$row_req1['amount']."<br>";
-                            }
+                                array_push($item_amount,$row_req1['item'].":".$row_req1['amount']);
+                                $rows += 1;
+                                }
                             }
                         }
-                        if ($item_amount!=""){
-                        echo "  <td>".$name."</td><td>".$item_amount."</td>
-                                    <td>".$note."</td>
-                                </tr>";}
-                    }   
+                        if (count($item_amount)>0){
+                            for($x=0; $x < $rows; $x++ ){
+                                if ($x==0){
+                                    $name_data_row="<td rowspan=".$rows.">".$name."</td>";
+                                    $note_data_row="<td rowspan=".$rows.">".$note."</td>";
+                                }
+                                else{
+                                    $name_data_row=$note_data_row="";
+                                }
+                                echo "<tr>".$name_data_row."<td>".$item_amount[$x]."</td>".$note_data_row."</tr>";
+                            }
+                        }   
+                    }
                 ?>
             </table>
         </div>
@@ -312,17 +317,31 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
 
             </div>
         </div>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             var post = new Post("select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id="+<?php echo $_GET['view_fun'] ?>);
             post.get_post();
+            
+            function confirmFn(ele,id) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once confirmed, you will not be able to change this!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        toggleFn(id);
+                        ele.outerHTML='<div class="toggle btn btn-success" data-toggle="toggle" disabled="disabled" style="width: 100px; height: 15px;"><input type="checkbox" id="checkbox" checked="" disabled="" data-toggle="toggle" data-on="Helped" data-off="Not helped" data-width="100" data-height="15" data-offstyle="warning" data-onstyle="success" onchange="this.checked = !this.checked"><div class="toggle-group"><label class="btn btn-success toggle-on" style="line-height: 20px;">Helped</label><label class="btn btn-warning active toggle-off" style="line-height: 20px;">Not helped</label><span class="toggle-handle btn btn-default"></span></div></div>';
+                    } 
+                });
+            }
+            
+           
 
-            function toggleFn(ele,id){
-                if (ele.checked){
-                var c_status='donated';
-                }else{
-                var c_status='pending';
-                }
-                var sql="UPDATE `fundraising_pro_don_content` SET `pro_don` = '"+c_status+"' WHERE `id` = "+id+"";;
+            function toggleFn(id){
+                var sql="UPDATE `fundraising_pro_don_content` SET `pro_don` = 'donated' WHERE `id` = "+id+"";;
                 var xhttp = new XMLHttpRequest();
                 // xhttp.onreadystatechange = function() {
                 //     if (this.readyState == 4 && this.status == 200) {
