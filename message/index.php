@@ -1,5 +1,6 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+	$notification_DB = NotificationDb::getConnection();
 	$to_person=isset($_GET['to_person'])?$_GET['to_person']:'';
 	$image_tag='';
 	$full_name_='';
