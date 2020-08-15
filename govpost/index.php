@@ -11,7 +11,7 @@
 <script>
     btnPress(2);
 </script>
-<div id="title">
+<div id="post_title">
     Goverment posts
 </div>
 <div id="content">
