@@ -1,4 +1,7 @@
 <?php
+ob_start();
+ignore_user_abort();
+
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
  
@@ -24,8 +27,9 @@
         $lng=$_POST['lng']!=''?$_POST['lng']:'null';
 
         $pri_query = '';
-
+        $request=" requests help during ";
         if($_POST['entry_update_id']!=0){
+            $request=" made changes in his help requests during ";
             $del_detail = array_filter(explode(',', $_POST['del_details']));
             foreach( $del_detail as $row_del){
                 $pri_query.= "delete from event_".$event_id."_requests where id=$row_del;";
@@ -63,9 +67,39 @@
         $status[1]='requested';
         $data1=join(" ",$status);
         $pri_query.="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id;";
+        
+        $sql="SELECT NIC_num FROM `event_".$event_id."_volunteers`; SELECT name FROM `disaster_events` WHERE event_id=$event_id;";
+        if(mysqli_multi_query($con,$sql.$pri_query)){
+            $sql_res=mysqli_store_result($con);
+            $result1=$sql_res->fetch_all();
+            mysqli_free_result($sql_res);
 
-       if(mysqli_multi_query($con,$pri_query)){
+            mysqli_next_result($con);
+            $sql_res=mysqli_store_result($con);
+            $result2=$sql_res->fetch_assoc();
+            mysqli_free_result($sql_res);
+
+            $size = ob_get_length();
+            header("Content-Encoding: none");
+            header("Content-Length: {$size}");
             header("location:".$_SERVER['HTTP_REFERER']);
+            header("Connection: close");
+
+            header("location:".$_SERVER['HTTP_REFERER']);
+
+            ob_end_flush();
+            ob_flush();
+            flush();
+
+            $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+            $to=implode(",",array_column($result1,0));
+            $mssg=$name.$request.$result2['name'];
+            $link="/event/requester.php?event_id=".$event_id."&nic=".$user_nic;
+             
+            require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+            
+            $sender = new Notification_sender($to,$mssg,$link,true);
+            $sender->send();
         }
         else{
             echo 'unsucessful in starting';
