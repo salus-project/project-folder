@@ -29,6 +29,7 @@
 
             <div>
                 <div id="menubar">
+                <div class='menubar_icons'>
                     <!-- <a href="/home_page.php"> <div class="menubar_buttons" id='menu_bar_btn_1'>Home</div> </a> -->
                     <a href="/govpost" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons"><div class="menu_icon_tooltip"><i class='fas fa-university menu_icon menu_bar_btn_2'></i><span class="menu_icon_tooltiptext">Goverment post</span></div></div> </a>
                     <a href="/publicpost" class="menubar_buttons_cont"><div class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-book-reader menu_icon menu_bar_btn_3'></i><span class="menu_icon_tooltiptext">Public post</span></div></div></a>
@@ -37,12 +38,13 @@
                     <a href="/fundraising" class="menubar_buttons_cont"><div class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-hand-holding-heart menu_icon menu_bar_btn_7'></i><span class="menu_icon_tooltiptext">Fundraising</span></div></div></a>
                     <a href="/message" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-comments menu_icon menu_bar_btn_8'></i><span class="menu_icon_tooltiptext">Chat</span></div></div> </a>
                     <div class='menubar_button_container menubar_buttons_cont' ><div class="menubar_buttons"  onclick="show_notification(this)"><div class="menu_icon_tooltip"><i class='fas fa-bell menu_icon menu_bar_btn_5'></i><span class="menu_icon_tooltiptext">Notification</span></div></div><div id=notification_container></div></div>
-
+</div>
                     <div id='header_search_box_cont'>
-                        <div id='header_search_box'><i class="fa fa-search" aria-hidden="true"></i></div>
+                        <div id='header_search_box'>
+                            <div id='search_icon'><i class="fa fa-search" aria-hidden="true"></i></div></div>
                     </div>
 
-                    <div class='menubar_button_container dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">
+                    <div class='dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">
                                 <i class="fa fa-caret-down" style="font-size:30px"></i>
                                 <span class="menu_icon_tooltiptext">More</span>
                             </div>
