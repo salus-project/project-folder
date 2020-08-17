@@ -81,21 +81,35 @@
             <div id=title_box>
                 <?php echo $result['name'] ?>
                 <div class='other_menu_container'>
-                    <a href="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='other_menus'>
-                        My Promises
+                    <a href="/event/?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='other_menus'>
+                        Home
                     </a>
-                    <a href="view_promises_on_me.php?event_id=<?php echo $_GET['event_id']?>" id="pro_on_me_btn" class='other_menus'>
-                        Promises on me
-                    </a>
-                    <a href="/event/mark_area?event_id=<?php echo $_GET['event_id']?>" id="mark_area" class='other_menus'>
-                        Suggest an Area
-                    </a>
-                    <a href="/event/suggested_area_mine.php?event_id=<?php echo $_GET['event_id']?>" id="suggested_area_mine" class='other_menus'>
-                        My suggestens
-                    </a>
-                    <a href="/event/suggested_area_all.php?event_id=<?php echo $_GET['event_id']?>" id="suggested_area_all" class='other_menus'>
-                        Suggested areas
-                    </a>
+                    <div class='dropdown_group'>
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Promises
+                        </button>
+                        <div class='drop_dwn_div'>
+                            <a href="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='drop_dwn_hidden'>
+                                My Promises
+                            </a>
+                            <a href="view_promises_on_me.php?event_id=<?php echo $_GET['event_id']?>" id="pro_on_me_btn" class='drop_dwn_hidden'>
+                                Promises on me
+                            </a>
+                        </div>
+                    </div>
+                    <div class='dropdown_group'>
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Area
+                        </button>
+                        <div class='drop_dwn_div'>
+                            <a href="/event/mark_area?event_id=<?php echo $_GET['event_id']?>" id="mark_area" class='drop_dwn_hidden'>
+                                Suggest an Area
+                            </a>
+                            <a href="/event/suggested_area_mine.php?event_id=<?php echo $_GET['event_id']?>" id="suggested_area_mine" class='drop_dwn_hidden'>
+                                Suggested areas
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div id=status>
                     <div id=safe_btn_container>

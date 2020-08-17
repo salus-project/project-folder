@@ -17,10 +17,10 @@
 <div class="my_suggest_cont">
     <div class='my_suggest_table_cont'>
         <table class='table_suggested_area'>
-            <tr class='table_suggested_area_tr'>
+            <tr>
                 <th class='table_suggested_area_th'>Type</th>
                 <th  class='table_suggested_area_th'>Detail</th>
-                <th  class='table_suggested_area_th'></th>
+                
             </tr>
             <?php
             $query="SELECT * FROM $location_table WHERE by_person='$Nic_num'";
@@ -30,14 +30,14 @@
                     echo "<tr class='table_suggested_area_tr' data-areadata='".json_encode($row)."' onclick=add_place_preview(this)>";
                         echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</th>";
                         echo "<td  class='table_suggested_area_td'>".$row['detail']."</th>";
-                        echo "<td  class='table_suggested_area_td'><a href='suggested_area_all_delete.php?event_id=".$_GET['event_id']."&location_id=".$row['id']."' class='my_suggest_del'>Delete</a></th>";
+                        echo "<td  class='table_suggested_area_th'><a href='suggested_area_all_delete.php?event_id=".$_GET['event_id']."&location_id=".$row['id']."' class='my_suggest_del'>Delete</a></th>";
                     echo "</tr>";
                 }
             }
             ?>
         </table>
         <table class='table_suggested_area'>
-            <tr class='table_suggested_area_tr'>
+            <tr>
                 <th class='table_suggested_area_th'>Type</th>
                 <th  class='table_suggested_area_th'>By</th>
                 <th  class='table_suggested_area_th'>Detail</th>
