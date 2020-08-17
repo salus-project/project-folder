@@ -179,6 +179,8 @@ x {
 #notification_container {
     display: inline-block;
     position: absolute;
+    bottom: 12px;
+    right: -19px;
 }
 
 .menubar_button_container {
