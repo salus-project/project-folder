@@ -111,7 +111,7 @@ body {
     width: 100%;
 }
 
-#view_fund {
+.view_fund {
     display: inline-block;
 }
 
@@ -145,10 +145,10 @@ body {
 }
 
 #program_title {
-    width: 400px;
+    width: 100%;
     border: none;
     height: 50px;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     margin: 16px 0 0 16px;
     color: #6b7c93;

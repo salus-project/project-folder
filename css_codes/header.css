@@ -9,7 +9,7 @@ body {
   /* width */
   div::-webkit-scrollbar {
     width: 9px;
-    
+    height: calc(100% - 40px);
   }
   
   /* Track */
@@ -109,15 +109,26 @@ input {
     font-size: 0px;
     background-color: white;
     position: relative;
+    display: flex;
+    flex-flow: nowrap;
 }
-
+.menubar_icons{
+    display: flex;
+    width: 400px;
+    margin: auto;
+    position: relative;
+    flex-flow: nowrap;
+}
 .dropdown_cont {
+    display: inline-block;
+    position: relative;
     float: right;
 }
 
 .menubar_buttons_cont {
     margin: 2px;
     margin-bottom: 5px;
+    width: 55px;
 }
 
 a {
@@ -127,6 +138,7 @@ a {
 .menubar_buttons {
     display: inline-block;
     margin: 4px 0;
+    width: 50px;
 }
 
 x {
@@ -134,11 +146,11 @@ x {
 }
 
 .loader {
-    border: 2px solid rgb(202, 202, 202);
+    border: 2px solid #0c7dff47;
     border-radius: 50%;
-    border-top: 2px solid rgb(65, 65, 65);
-    width: 10px;
-    height: 10px;
+    border-top: 2px solid #4c5fd7;
+    width: 12px;
+    height: 12px;
     margin: 5px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
@@ -209,7 +221,7 @@ a.all_a:active {
 
 .menu_icon.active:hover {
     cursor: pointer;
-    background-color: blue;
+    background-color: #4c5fd7;
 }
 
 .menu_icon {
@@ -217,7 +229,7 @@ a.all_a:active {
     font-size: 20px;
     padding: 8px 15px 8px 15px;
     border-radius: 8px;
-    min-width: 45px;
+    width: 50px;
 }
 
 .active {
@@ -375,7 +387,7 @@ a.all_a:active {
     transform: translate(-130px, 0);
     position: absolute;
     top: 47px;
-    left: 82px;
+    left: 80px;
     z-index: 4;
     border-radius: 12px;   
     background: white;
@@ -393,16 +405,21 @@ a.all_a:active {
     width: 10%;
     line-height: 2;
 }
-                       
+.fa-search{
+    padding: 5px
+}                  
 #header_search_box{
     display: flex;
     height: 30px;
+    text-align: left;
+    font-size: 14px;
 }
+
 .events_php_container::after, .org_php_container::after, #header_notif::after{
     content: "";
     position: absolute;
     top: -15px;
-    left: 9%;
+    left: 22px;
     margin-left: -5px;
     border-width: 8px;
     border-style: solid;
@@ -602,13 +619,10 @@ input:checked+.slider:before {
 /* search box */
 
 #header_search_box_cont{
-    display: inline-block;
     border: 1px solid #d8e0e7;
     display: inline-block;
     border-radius: 15px;
-    position: absolute;
-    bottom: 7px;
-    right: 100px;
+    margin: 10px;
     background-color: aliceblue;
     width: 250px;
     height: 30px;

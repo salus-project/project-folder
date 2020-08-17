@@ -1,3 +1,6 @@
+#sub_body{
+  background-color: rgb(242 244 246);
+}
 .mySlides {
 	display: none;
 }
@@ -9,11 +12,11 @@
     margin-top: 16px;
     margin-bottom: 16px;
     max-height: 350px;
-    /* overflow: hidden; */
+    overflow: hidden; 
     min-height: 400px}
 /* Slideshow container */
 .slideshow-container {
-    max-height: 350px;
+    height: 350px;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -51,43 +54,69 @@
 }
 .fade{position:relative;animation:animateright 0.3s}@keyframes animateright{from{right:-900px;opacity:0} to{right:0;opacity:1}}
 
-/* Fading animation 
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}*/
-
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
-#title{
-    height:50px;
-    border:1px solid black;
-    padding:4px;
-    font-size: 25px;
-    font-weight: 600;
+#fund_title{
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  font-size: 25px;
+  font-weight: 600;
+  background: #0c7dff47;
 }
-#fund_body{
-    border:1px solid black;
-    margin:auto;
-    padding:15px;
-    font-size: medium;
-
+#fund_body, .promise_body{
+  margin: auto;
+  padding: 15px;
+  font-size: medium;
+  display: flex;
+  flex-flow: wrap row;
 }
-
+.fund_detail_table, .promise_table_body{
+  width: 50%;
+}
+.img_cont{
+  width: 50%;
+  display: flex;
+  flex-flow: wrap row;
+}
+.fund_image_conatainer{
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin: 5px;
+  background: white;
+}
+.img_type{
+  position: absolute;
+  color: white;
+  top: 4px;
+  left: 4px;
+  font-size: 12px;
+}
+.fund_image{
+  overflow: hidden;
+    width: 120px;
+    height: 120px;
+}
+#img_edit_btn_container{
+  width: 120px;
+  height: 120px;
+  margin: 5px;
+}
+.fund_pic{
+  width: 100%;
+}
+#edit_img_btn{
+  width: 100%;
+  height: 100%;
+  color: #6b7c93;
+  border: 1px solid #6b7c93;
+  border-radius: 5px;
+  cursor: pointer;
+}
 #donated_body{
     border:1px solid black;
     margin:auto;
@@ -105,19 +134,68 @@
     margin-top: 16px;
     width: 550px;
 }
-#promise_table,#donated_table,#fund_table{
-    display: table;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    border-spacing: 2px;
-    border:1px solid black;
-    padding: 5px;
-    margin-left: 300px;
-    margin-top: 25px;
+#fund_table, .promise_table{
+  display: table;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  border-spacing: 2px;
+  padding: 5px;
+  width: 95%;
+  background: white;
   }
 
-th,tr,td {
-    border: 1px solid black;
-    height: 20px;
-    padding: 5px;
+.fund_detail_table th,.fund_detail_table tr,.fund_detail_table td, .promise_table td {
+  border: 1px solid #d8e0e7;
+  text-align: left;
+  font-family: "Open Sans",sans-serif;
+  height: 37px;
+  font-size: 16px;
+  line-height: 1;
+  padding: 5px;
+  vertical-align: middle;
+  color: #6b7c93;
   }
+.fund_head, .first_head th{
+  width: 95%;
+  background-color: #0c7dff47;
+  border: 1px solid #d8e0e7;
+  text-align: center;
+  font-family: "Open Sans",sans-serif;
+  height: 37px;
+  line-height: 1.8;
+  padding: 5px;
+  margin: 0;
+  vertical-align: middle;
+  font-weight: 600;
+}
+#edit_btn{
+  margin: 0;
+  font: inherit;
+  color: black;
+  float: right;
+  background-color: #0c7dff47;
+  border-radius: 12px;
+  border: none;
+  padding: 7px 9px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  }
+.fa-pencil-square-o {
+  margin-right: 5px;
+}
+.edit_data{
+  border: 0px !important;
+ }
+.second_head th {
+  height: 50px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid #d8e0e7;
+  line-height: 1;
+  padding: 5px;
+  vertical-align: middle;
+  color: #6b7c93;
+}
