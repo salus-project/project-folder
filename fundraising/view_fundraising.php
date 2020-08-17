@@ -61,7 +61,9 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         $result = mysqli_store_result($con);
         $fund_post=mysqli_fetch_all($result,MYSQLI_ASSOC);
         mysqli_free_result($result);
-       
+
+        $id=$_GET['view_fun'];
+        $imgs = array_filter(explode(',', $fundraising['img']));
     }
 ?>
 
@@ -73,41 +75,38 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
         <script src="/common/post/post.js"></script>
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
-        <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
 
 
         <script>
             btnPress(7);
         </script>
-        <div class='main_slide_show'>	
-            <div class="slideshow-container">
-
-                <div class="mySlides fade">
-                <img class='slide_show_img' src="/fundraising/images/1127259.jpg" style="width:100%">
-                <div class="text">Caption Text</div>
-                </div>
-
-                <div class="mySlides fade">
-                <img class='slide_show_img' src="/fundraising/images/228396562.jpg" style="width:100%">
-                <div class="text">Caption Two</div>
-                </div>
-
-                <div class="mySlides fade">
-                <img class='slide_show_img' src="/fundraising/images/e8c7c4d4e14a9e3b21faf3d7b37c5b03.jpg" style="width:100%">
-                <div class="text">Caption Three</div>
-                </div>
-
-                <div class="mySlides fade">
-                    <img class='slide_show_img' src="/fundraising/images/Fabulous scenery.jpg" style="width:100%">
-                    <div class="text">Caption four</div>
-                </div>
+        <div id="fund_title">
+            <?php echo '<center>'.$fundraising['name'].'</center>' ?>
+        </div>
+        <div class='main_slide_show'>
+        <?php	
+            if(count($imgs)>0){
+            echo '<div class="slideshow-container">';        
+                foreach ($imgs as $img) {?>
+                    <div class="mySlides fade">
+                        <img class='slide_show_img' src="http://d-c-a.000webhostapp.com/Fundraising/secondary/<?php echo $img ?>.jpg" style="width:100%">
+                    </div>
+            <?php }
+            echo '</div>';
+            }else{
+                echo '<div style="width:100%;">
+                    <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+                </div>';
+            }
+                ?>
                 <div class='dot_div' style="text-align:center">
+                <?php
+                    for($x=0 ; $x<count($imgs) ; $x++) {?>
                     <span class="dot"></span> 
-                    <span class="dot"></span> 
-                    <span class="dot"></span> 
-                    <span class="dot"></span> 
+                <?php }
+                ?>
                 </div>
-            </div>
+            
         </div>
         	
 	<script>
@@ -137,27 +136,11 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
 			showSlides();
 		}
 	</script>
-        <div id="title">
-            <?php echo '<center>'.$fundraising['name'].'</center>' ?>
-        </div>
+        
         <div id='fund_body'>
-            <?php
-                if($fundraising['by_civilian']==$_SESSION['user_nic']){
-                    echo "<div id=fund_edit_btn_container >";
-                    echo "<a href='/fundraising/edit_fundraising.php?edit_btn=".$_GET['view_fun']."'>";
-                    echo "<button id='edit_btn' >Edit</button>";
-                    echo "</a>";
-                    echo"</div>";
-
-                    echo "<div id=img_edit_btn_container >";
-                    echo "<a href='/fundraising/edit_fundraising_img.php?id=".$_GET['view_fun']."'>";
-                    echo "<button id='edit_img_btn' >Edit Images</button>";
-                    echo "</a>";
-                    echo"</div>";
-                }
-            ?>
-
+            <div class='fund_detail_table'>
             <table id='fund_table'>
+                <div class='fund_head' colspan=2>Fundraising Details</div>
                 <?php
                     echo '<tr><td id=column1> Created by </td><td id=column2>' . $civi_detail['first_name'] ." ". $civi_detail['last_name']. '</td></tr>';
 
@@ -182,10 +165,52 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                     <td>description </td>
                     <td><?php echo $fundraising['description'] ?></td>
                 </tr>
-
+                <tr class='edit_data'>
+                    <td class='edit_data' colspan=2>
+                <?php
+                
+                if($fundraising['by_civilian']==$_SESSION['user_nic']){
+                    echo "<div id=fund_edit_btn_container >";
+                    echo "<a href='/fundraising/edit_fundraising.php?edit_btn=".$_GET['view_fun']."'>";
+                    echo "<button id='edit_btn' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>";
+                    echo "</a>";
+                }
+?>
+</td></tr>
             </table>
-        </div>
+            </div>
+            <div class="img_cont">
+                <div class='fund_head' colspan=2>Photos</div>
+                <div class='fund_image_conatainer'>
+                    <div class='img_type'>Profile Image</div>
+                    <div class="fund_image prim">
+                        <img src="http://d-c-a.000webhostapp.com/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+                    </div>
+                </div>
+                
+                <?php
+                foreach ($imgs as $img) {?>
+                    <div class="fund_image_conatainer">
+                    <div class='img_type'>Secondary Images</div>
+                        <div class="fund_image seco">
+                            <img src="http://d-c-a.000webhostapp.com/Fundraising/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
+                        </div>
+                    </div>
+                <?php }
+                ?>
+                <?php
+                
+                if($fundraising['by_civilian']==$_SESSION['user_nic']){
+                    echo "<div id=img_edit_btn_container >";
+                    echo "<a href='/fundraising/edit_img?id=".$_GET['view_fun']."'>";
+                    echo "<button id='edit_img_btn' >Edit photos</button>";
+                    echo "</a>";
+                    echo"</div>";
+                }
+?>
 
+            </div>
+        </div>
         <div class='promise_body'>
         <div class="promise_table_body">
             <table class='promise_table'>
@@ -259,8 +284,6 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 ?>
             </table>
         </div>
-        </div>
-        <div class='promise_body'>
         <div class="promise_table_body">
             <table class='promise_table'>
                 <tr class="first_head">
@@ -308,7 +331,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 ?>
             </table>
         </div>
-        </div>
+    </div>
         <div id='fund_post_div'>
             <div id="post_title">
                 <?php echo "OUR POSTS" ?>

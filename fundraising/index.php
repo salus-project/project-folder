@@ -27,36 +27,28 @@
 			$query="select * from fundraisings where by_civilian='$id'";
 			$result=$con->query($query);
 			while($row=$result->fetch_assoc()){
+				$imgs = array_filter(explode(',', $row['img']));
 			echo '<div id="boxA">
-					<div class="sub_slide_show">
-						<div class="slideshow-container">
-
-							<div class="mySlides fade">
-							<img class="slide_show_img" src="/fundraising/images/1127259.jpg" style="width:100%">
-							<div class="text">Caption Text</div>
-							</div>
-					
-							<div class="mySlides fade">
-							<img class="slide_show_img" src="/fundraising/images/228396562.jpg" style="width:100%">
-							<div class="text">Caption Two</div>
-							</div>
-					
-							<div class="mySlides fade">
-							<img class="slide_show_img" src="/fundraising/images/e8c7c4d4e14a9e3b21faf3d7b37c5b03.jpg" style="width:100%">
-							<div class="text">Caption Three</div>
-							</div>
-					
-							<div class="mySlides fade">
-							<img class="slide_show_img" src="/fundraising/images/Fabulous scenery.jpg" style="width:100%">
-							<div class="text">Caption four</div>
-							</div>
-						</div>
-					</div>';
+					<div class="sub_slide_show">';
+						if(count($imgs)>0){
+							echo '<div class="slideshow-container">';		
+							foreach ($imgs as $img) {
+								echo '<div class="mySlides fade">
+									<img class="slide_show_img" src="http://d-c-a.000webhostapp.com/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
+								</div>';
+							}
+							echo '</div>';
+						}else{
+						echo '<div style="width:100%;">
+							<img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+						</div>';
+						}					
+					echo'</div>';
 					echo "<div class='fund_detail'>";
 						echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
 						echo "<div>";
-							echo "<form id=view_fund action=view_fundraising.php method=get>";
-								echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
+							echo "<form class=view_fund action=view_fundraising.php method=get>";
+								echo "<button class='btn_img_only' class=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
 							echo "</form>";
 						echo "</div>";
 					echo "</div>";
@@ -76,37 +68,30 @@
 			$query="select * from fundraisings where by_civilian!='$id'";
 			$result=$con->query($query);
 			while($row=$result->fetch_assoc()){
-				echo "<div id='boxB'>";?>
-				<div class='sub_slide_show'>
-					<div class="slideshow-container">
+				$imgs = array_filter(explode(',', $row['img']));
 
-						<div class="mySlides fade">
-						<img class='slide_show_img' src="/fundraising/images/1127259.jpg" style="width:100%">
-						<div class="text">Caption Text</div>
-						</div>
-				
-						<div class="mySlides fade">
-						<img class='slide_show_img' src="/fundraising/images/228396562.jpg" style="width:100%">
-						<div class="text">Caption Two</div>
-						</div>
-				
-						<div class="mySlides fade">
-						<img class='slide_show_img' src="/fundraising/images/e8c7c4d4e14a9e3b21faf3d7b37c5b03.jpg" style="width:100%">
-						<div class="text">Caption Three</div>
-						</div>
-				
-						<div class="mySlides fade">
-						<img class='slide_show_img' src="/fundraising/images/Fabulous scenery.jpg" style="width:100%">
-						<div class="text">Caption four</div>
-						</div>
-					</div>
-				</div>
-				<?php
+				echo "<div id='boxB'>";
+				echo '<div class="sub_slide_show">';
+					if(count($imgs)>0){
+						echo '<div class="slideshow-container">';
+						foreach ($imgs as $img) {
+							echo '<div class="mySlides fade">
+								<img class="slide_show_img" src="http://d-c-a.000webhostapp.com/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
+							</div>';
+						}
+						echo '</div>';
+					}else{
+					echo '<div style="width:100%;">
+						<img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+					</div>';
+					}						
+				echo '</div>';
+			
 				echo "<div class='fund_detail'>";
 					echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
 					echo "<div>";
-						echo "<form id=view_fund action=view_fundraising.php method=get>";
-							echo "<button class='btn_img_only' id=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
+						echo "<form class=view_fund action=view_fundraising.php method=get>";
+							echo "<button class='btn_img_only' class=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
 						echo "</form>";
 					echo "</div>";
 					echo "<div>";
@@ -131,6 +116,7 @@
 			function showSlides() {			
 				var i;
 				var slides = element.getElementsByClassName("mySlides");
+				console.log(slides.length);
 				for (i = 0; i < slides.length; i++) {
 					slides[i].style.display = "none";  
 				}
