@@ -39,26 +39,25 @@
 <html>
     <head>
         <title>view our my promises</title>
-        <link rel="stylesheet" href='/css_codes/view_our_promises.css'>
+        <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
     </head>
     <body>
 		<script>
             btnPress(6);
 		</script>
-		
-		<div id="title">
-            <?php echo "Our Promises" ?>
-        </div>
-        
-		<div id='promise_body'>
-            <table id='promise_table'>
-                <thead>
-                    <th colspan=1></th>
-                    <th colspan=1>Person name</th>
+
+		<div class='our_promise_body'>
+            <table class='our_promise_table'>
+			<tr class="first_head">
+                    <th colspan=5>Our Promises</th>
+                </tr>
+				<tr class="second_head">
+                    <th colspan=2>Person name</th>
                     <th colspan=1>Promises</th>
                     <th colspan=1>Note</th>
                     <th colspan=1></th>
-                </thead>
+                </tr>
+
 
                 <?php
                 
@@ -78,25 +77,24 @@
                     <td><input type='checkbox' class='select_me' data-id='".$persons[$key]."' id='edit_box' onclick='select_me(this)' ></td>
                     <td>".$name[$key]."</td><td>".$data."</td><td>".$note[$key]."</td>
                     <td>
-                    <a href=$link_><button type='button' >Edit</button></a>
+                    <a href=$link_><button class= 'our_pro_btn edit_pro'  type='button' ><i class='fas fa-edit'> Edit</i></button></a>
                     </td>
                     </tr>";
                 }
                 ?>    
-                <tr>
-                    <td>
-                        <button type="button" onclick="select_all()" >select all</button>
+			</table>
+				<div class="our_pro_btn_div">
+                        <button class= "our_pro_btn edit_pro_btn" type="button" onclick="select_all()" >Select all</button>
                         <form id="edit_form" action="promise.php" method=get>
                             <input type="hidden" name="selected" id="selected"><br>
                             <input type="hidden" name="org_id" value=<?php echo $org_id ; ?> >
                             <input type="hidden" name="event_id" value=<?php echo $event_id ; ?> >
                             <input type="hidden" name="type" value="2" >
-                            <input type='submit' name='submit_button' id='submitBtn' value='Edit'>
+                            <button class= "our_pro_btn edit_pro_btn" type='submit' name='submit_button' id='submitBtn'>Edit selected</button>
                         </form>
-                    </td><td></td><td></td><td></td><td></td>
-                </tr>
-            </table>
-        </div>
+			</div>
+		</div>
+		
     </body>
 	<script>
 
