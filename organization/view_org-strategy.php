@@ -124,8 +124,8 @@
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>
-                        <a action='/organization/suggestions'>
-                            <button id=chat_btn name=chat value=".$_GET['selected_org'].">Suggestion</button>
+                        <a href='/organization/suggestions/?org_id=".$_GET['selected_org']."'>
+                            <button id=chat_btn name=org_id value=".$_GET['selected_org'].">Suggestion</button>
                         </a>
                     </div>
                     <div id=event_button_container>
@@ -173,7 +173,7 @@
         public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
-                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                            <button id=chat_btn type='submit' name=org_id value=".$_GET['selected_org'].">Group chat</button>
                         </form>
                     </div>
                     <div id=event_button_container>
@@ -221,7 +221,7 @@
         public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
-                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                            <button id=chat_btn type='submit' name=org_id value=".$_GET['selected_org'].">Group chat</button>
                         </form>
                     </div>
                     <div id=event_button_container>
@@ -274,7 +274,7 @@
         public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
-                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                            <button id=chat_btn type='submit' name=org_id value=".$_GET['selected_org'].">Group chat</button>
                         </form>
                     </div>
                     <div id=event_button_container>
