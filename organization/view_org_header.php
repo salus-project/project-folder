@@ -3,6 +3,9 @@
     
     if(!isset($_GET['selected_org'])){
         $_GET['selected_org']=$_GET['org_id'];
+    }else{
+        //require('all_org.php');
+        //exit();
     }
     $org_id=$_GET['selected_org'];
     $query="select * from organizations where org_id=".$_GET['selected_org'].";
@@ -48,31 +51,16 @@
         <div class=org_title>
             <div id='org_cover'>
                 <?php
-                    $org_cover_path = "http://d-c-a.000webhostapp.com/Covers/" . $org_detail['org_id'] . ".jpg";
-                    $org_cover_path_header = get_headers($org_cover_path);
-                    if($org_cover_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $org_cover_path = "http://d-c-a.000webhostapp.com/Covers/default.jpg";
-                    }
+                    $org_cover_path = "http://d-c-a.000webhostapp.com/Organization/Covers/" . $org_detail['org_id'] . ".jpg";
                 ?>
                 <img id="org_cover_photo" src="<?php echo $org_cover_path;?>" alt="Opps..." class="org_cover_pic">
                 <div id='org_profile_edit'>
                     <div class="org_profile_container">
                         <?php
-                            $org_profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $org_detail['org_id'] . ".jpg";
-                            $org_profile_path_header = get_headers($org_profile_path);
-                            if($org_profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                                $org_profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
-                            }
+                            $org_profile_path = "http://d-c-a.000webhostapp.com/Organization/Profiles/" . $org_detail['org_id'] . ".jpg";
                         ?>
                         <img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_profile_pic">
                     </div>
-                    <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
-                        <input type=file name=upload_file accept="image/jpeg" id=upload_org_profile_btn style="display:none" onchange="this.parentElement.submit()">
-                        <input type=hidden name="directory" value="Profiles/">
-                        <input type=hidden name="filename" value="<?php echo $org_detail['org_id']?>">
-                        <input type=hidden name="header" value="true">
-                        <input type=hidden name="resize" value="true">
-                    </form>
                     <?php
                         $viewer->change_profile_option();
                     ?>
@@ -83,12 +71,6 @@
                     <span id='org_name'><?php echo $org_detail['org_name']; ?></span><br>
                     <span id=org_detail><?php echo $org_detail['discription'] ?></span>
                 </div>
-                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
-                    <input type=file name=upload_file accept="image/jpeg" id=org_upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
-                    <input type=hidden name="directory" value="Covers/">
-                    <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
-                    <input type=hidden name="header" value="true">
-                </form>
                 <?php
                     $viewer->change_coverphoto_option();
                 ?>
@@ -102,9 +84,9 @@
         </div>
         <div id=org_button_container>
             <div id=home_button_container>
-                <form action=/organization method=get>
-                    <button id=home_btn type='submit' name=chat value=<?php echo $_GET['selected_org'] ?>>Home</button>
-                </form>
+                <a href='/organization?selected_org=<?php echo $_GET['selected_org'] ?>'>
+                    <button id=home_btn>Home</button>
+                </a>
             </div>
             <div id=chat_button_container>
                 <form action=/organization/chat method=get>
