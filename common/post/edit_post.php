@@ -27,11 +27,23 @@
 </style> 
   
 <?php
+    ob_start();
+    ignore_user_abort();
+
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $post_index=$_GET['post_index'];
     $view_query="select public_posts.*,civilian_detail.first_name,civilian_detail.last_name from public_posts inner join civilian_detail on public_posts.author=civilian_detail.NIC_num where public_posts.post_index=".$post_index;
     //echo $view_query;
     $view_result=mysqli_query($con,$view_query)->fetch_assoc();
+
+    if($view_result['author']  != $_SESSION['user_nic']){
+
+        header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/publicpost/"));
+        ob_end_flush();
+        ob_flush();
+        flush();
+    }
+
     $author = $view_result['first_name']. " ".$view_result['last_name'];
     $author_link = "/view_profile.php?id=".$view_result['author'];
     $profile_url = "http://d-c-a.000webhostapp.com/Profiles/resized/".$view_result['author'].".jpg";
