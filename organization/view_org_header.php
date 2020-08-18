@@ -88,16 +88,9 @@
                     <button id=home_btn>Home</button>
                 </a>
             </div>
-            <div id=chat_button_container>
-                <form action=/organization/chat method=get>
-                    <button id=chat_btn type='submit' name=chat value=<?php echo $_GET['selected_org'] ?>>Group chat</button>
-                </form>
-            </div>
-            <div id=event_button_container>
-                <button id='event_button'>Events</button>
-                <div id=event_list_container>
-                </div>
-            </div>
+            <?php
+                $viewer->show_title_button();
+            ?>
         </div>
         <script>
             const selected_org = "<?php echo $_GET['selected_org'] ?>";

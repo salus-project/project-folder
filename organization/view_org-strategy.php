@@ -33,7 +33,7 @@
         public function show_member_input(){
             $this->role->show_member_input();
         }
-        public function show_title_buttons(){
+        public function show_title_button(){
             $this->role->show_title_button();
         }
     }
@@ -119,7 +119,7 @@
         public function show_member_input(){
             echo '';
         }
-        public function show_title_buttons(){
+        public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <a action='/organization/suggestions'>
                             <button id=chat_btn name=chat value=".$_GET['selected_org'].">Suggestion</button>
@@ -164,7 +164,7 @@
         public function show_member_input(){
             echo '';
         }
-        public function show_title_buttons(){
+        public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
                             <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
@@ -209,7 +209,7 @@
         public function show_member_input(){
             echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
         }
-        public function show_title_buttons(){
+        public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
                             <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
@@ -259,7 +259,7 @@
         public function show_member_input(){
             echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
         }
-        public function show_title_buttons(){
+        public function show_title_button(){
             echo    "<div id=chat_button_container>
                         <form action=/organization/chat method=get>
                             <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
