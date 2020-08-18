@@ -101,8 +101,16 @@
                                     echo "</div>";
                                     
                            echo    "</td>";
-                        echo   "</tr>";                     
+                        echo   "</tr>"; 
+                                                
                 }
+                echo "<tr >
+                        <td>
+                            <div class='add_div none'>";
+                                $viewer->show_coleader_input();
+                echo        "</div>
+                        </td>
+                    </tr>"; 
             
         echo '</table>';
         echo '<table class="member_table">';
@@ -134,12 +142,24 @@
                               echo "</div>";                                    
                             echo "</td>";
                         echo "</tr>";
-                }         
+                          
+                }  
+                echo "<tr>
+                        <td>
+                            <div class='add_div none'>";
+                                $viewer->show_member_input();
+                echo        "</div>
+                        </td>
+                    </tr>";       
         echo '</table>';
     ?>       
     <script>
         $(".role").click(function(){
             $(".add_remove_div",this).toggle();
+        });
+
+        $(".role").click(function(){
+            $(".add_div",this).toggle();
         });
     </script>
 

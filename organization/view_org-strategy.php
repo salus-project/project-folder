@@ -27,6 +27,12 @@
         public function change_coverphoto_option(){
             $this->role->change_coverphoto_option();
         }
+        public function show_coleader_input(){
+            $this->role->show_coleader_input();
+        }
+        public function show_member_input(){
+            $this->role->show_member_input();
+        }
     }
 
 
@@ -90,6 +96,12 @@
         public function change_coverphoto_option(){
             echo '';
         }
+        public function show_coleader_input(){
+            echo '';
+        }
+        public function show_member_input(){
+            echo '';
+        }
         
     }
 
@@ -115,6 +127,12 @@
             echo '';
         }
         public function change_coverphoto_option(){
+            echo '';
+        }
+        public function show_coleader_input(){
+            echo '';
+        }
+        public function show_member_input(){
             echo '';
         }
     }
@@ -143,6 +161,12 @@
         }
         public function change_coverphoto_option(){
             echo $this->cover_photo_text;
+        }
+        public function show_coleader_input(){
+            echo '';
+        }
+        public function show_member_input(){
+            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
         }
     }
 
@@ -175,6 +199,12 @@
         }
         public function change_coverphoto_option(){
             echo $this->cover_photo_text;
+        }
+        public function show_coleader_input(){
+            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter coleader NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+        }
+        public function show_member_input(){
+            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
         }
     }
 

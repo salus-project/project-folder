@@ -4,7 +4,8 @@
         
     $org_id=$_GET['org_id'];
     $type=$_GET['type'];
-    $nic=$_GET['nic'];
+    $nic=isset($_GET['nic_num'])?$_GET['nic_num']:$_GET['nic'];
+    //$nic_num=$_GET['nic_num']!=''?$_GET['nic_num']:'null';
 
     $query_role = "select * from org_members where NIC_num='".$_SESSION['user_nic']."' and org_id='".$org_id."';";
     $result= mysqli_query($con,$query_role);
@@ -42,6 +43,19 @@
         }
     }
 
+    /* this is for add member */ 
+    else if ($type=="add_member"){
+        if($role=='leader' || $role=='coleader'){
+            $query="INSERT INTO org_members (org_id, NIC_num, role)VALUES ('$org_id', '$nic', 'member')";
+        }
+    }
+
+    /* this is for add co-leader*/ 
+    else if ($type=="add_coleader"){
+        if($role=='leader'){
+            $query="INSERT INTO org_members (org_id, NIC_num, role)VALUES ('$org_id', '$nic', 'coleader')";
+        }
+    }
 
     if(mysqli_multi_query($con, $query)){
         echo '<script type="text/javascript"> alert ("Data updated") </script>';
@@ -50,6 +64,5 @@
         echo '<script type="text/javascript"> alert ("Data not updated") </script>';
     }
     header("location:".$_SERVER['HTTP_REFERER']);
-
 ?>
             
