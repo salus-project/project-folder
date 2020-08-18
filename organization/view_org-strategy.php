@@ -33,6 +33,9 @@
         public function show_member_input(){
             $this->role->show_member_input();
         }
+        public function show_title_buttons(){
+            $this->role->show_title_button();
+        }
     }
 
 
@@ -80,7 +83,7 @@
                                         <input type=hidden name='filename' value='".$_GET['selected_org']."'>
                                         <input type=hidden name='header' value='true'>
                                         <input type=hidden name='resize' value='false'>
-                                    </form>";                    
+                                    </form>";
         }
         abstract function show_membership_button();
         abstract function show_edit_button();
@@ -116,6 +119,18 @@
         public function show_member_input(){
             echo '';
         }
+        public function show_title_buttons(){
+            echo    "<div id=chat_button_container>
+                        <a action='/organization/suggestions'>
+                            <button id=chat_btn name=chat value=".$_GET['selected_org'].">Suggestion</button>
+                        </a>
+                    </div>
+                    <div id=event_button_container>
+                        <button id='event_button'>Events</button>
+                        <div id=event_list_container>
+                        </div>
+                    </div>";
+        }
         
     }
 
@@ -149,6 +164,18 @@
         public function show_member_input(){
             echo '';
         }
+        public function show_title_buttons(){
+            echo    "<div id=chat_button_container>
+                        <form action=/organization/chat method=get>
+                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                        </form>
+                    </div>
+                    <div id=event_button_container>
+                        <button id='event_button'>Events</button>
+                            <div id=event_list_container>
+                        </div>
+                    </div>";
+        }
     }
 
     class Co_leader extends Role{
@@ -181,6 +208,18 @@
         }
         public function show_member_input(){
             echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+        }
+        public function show_title_buttons(){
+            echo    "<div id=chat_button_container>
+                        <form action=/organization/chat method=get>
+                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                        </form>
+                    </div>
+                    <div id=event_button_container>
+                        <button id='event_button'>Events</button>
+                        <div id=event_list_container>
+                        </div>
+                    </div>";
         }
     }
 
@@ -219,6 +258,18 @@
         }
         public function show_member_input(){
             echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+        }
+        public function show_title_buttons(){
+            echo    "<div id=chat_button_container>
+                        <form action=/organization/chat method=get>
+                            <button id=chat_btn type='submit' name=chat value=".$_GET['selected_org'].">Group chat</button>
+                        </form>
+                    </div>
+                    <div id=event_button_container>
+                        <button id='event_button'>Events</button>
+                        <div id=event_list_container>
+                        </div>
+                    </div>";
         }
     }
 
