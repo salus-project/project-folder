@@ -12,5 +12,7 @@
 </div>
 
 <script>
-     btnPress(2);
+    btnPress(2);
+    var post = new Post('<?php echo isset($_SESSION['user_nic'])?$_SESSION['user_nic']:'' ?>');
+    post.get_post();
 </script>

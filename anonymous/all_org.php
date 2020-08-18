@@ -1,9 +1,10 @@
 <?php
         require $_SERVER['DOCUMENT_ROOT']."/anonymous/ano_header.php";
 ?>
+<link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
 <link rel="stylesheet" href="/css_codes/organizations.css">
 <div id="org_body">
-    <form method='get' action='/organization'>
+    <form method='get' action='/anonymous/view_org.php'>
         <div class='top'>
             <div class='cont'>
                 <div class='org_search'>
@@ -39,7 +40,7 @@
                                     echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">
-                                    <button class="org_name_btn" type="submit" name="selected_org" value="'.$org[1].'">'.ucfirst($org[0]).'<br>'.$org[2].'</button>
+                                    <button class="org_name_btn" type="submit" name="org_id" value="'.$org[1].'">'.ucfirst($org[0]).'<br>'.$org[2].'</button>
                                 </div>
                                 </td>
                             </tr>';

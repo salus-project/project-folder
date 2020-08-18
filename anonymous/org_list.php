@@ -5,7 +5,7 @@
 <div id='event_overlay' onclick='remove(this)'></div>
 <div class="org_php_container">
     <div class='org_table_con'>
-        <form method='get' action='/organization'>
+        <form method='get' action='/anonymous/view_org.php'>
             <table id="org_header_table">
                 <div class=view_all>ORGANIZATIONS</div><button class='org_setting_btn' type=button><i class='fa fa-cog'  aria-hidden='true'></i></button>
                 <div class='hidden_org_div'>
@@ -15,7 +15,7 @@
                 <?php
                     $org_detail=$con->query('select org_name,org_id from organizations');
                     while($row=$org_detail->fetch_assoc()){
-                        echo "<tr><td class='name_td'><button class='org_name' type='submit' name='selected_org' value='".$row['org_id']."'>".$row['org_name']."</button</td></tr>";
+                        echo "<tr><td class='name_td'><button class='org_name' type='submit' name='org_id' value='".$row['org_id']."'>".$row['org_name']."</button</td></tr>";
                     }
                 ?>
             </table>
