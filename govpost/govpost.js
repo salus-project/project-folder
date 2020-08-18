@@ -9,12 +9,16 @@ function create_post(arr,user_nic=''){
                                     if(!arr['event']==''){
                                         html+= " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='"+arr['event']+"'>"+arr['event_name']+"</a>";
                                     }
+                        if(user_nic!==''){
+                            var stt="<div class='view_post_div'>"+
+                                "<a href='/common/post/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
+                            "</div>";
+                        }else{
+                            var stt="";
+                        }
                         html+= "</div>"+
                                 "<div class='post_date'> Date: "+arr['date']+"</div>"+
-                            "</div>"+
-                            "<div class='view_post_div'>"+
-                                "<a href='/common/post/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
-                            "</div>"+
+                            "</div>"+stt+
                         "</div>"+
                     "</div>"+
                     "<div><div class='post_content'>" +arr['content'] + "</div></div>";
