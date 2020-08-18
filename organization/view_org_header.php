@@ -94,6 +94,7 @@
         </div>
         <script>
             const selected_org = "<?php echo $_GET['selected_org'] ?>";
+            const link = "<?php $viewer->show_event_link(); ?>";
         </script>
         <script src='/js/view_org.js'></script>
         <div id='org_main_body'>

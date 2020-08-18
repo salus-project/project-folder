@@ -36,6 +36,9 @@
         public function show_title_button(){
             $this->role->show_title_button();
         }
+        public function show_event_link(){
+            $this->role->show_event_link();
+        }
     }
 
 
@@ -131,6 +134,9 @@
                         </div>
                     </div>";
         }
+        public function show_event_link(){
+            echo '/organization/visitor_event';
+        }
         
     }
 
@@ -176,6 +182,9 @@
                         </div>
                     </div>";
         }
+        public function show_event_link(){
+            echo '/organization/visitor_event';
+        }
     }
 
     class Co_leader extends Role{
@@ -220,6 +229,9 @@
                         <div id=event_list_container>
                         </div>
                     </div>";
+        }
+        public function show_event_link(){
+            echo '/organization/event';
         }
     }
 
@@ -270,6 +282,9 @@
                         <div id=event_list_container>
                         </div>
                     </div>";
+        }
+        public function show_event_link(){
+            echo '/organization/event';
         }
     }
 
