@@ -56,28 +56,28 @@ while($row=$viewer->fetch_assoc()){
 </div>
 
 <div id='home_sub_body'>
-    <div class="detail">
+    <div class="person_detail">
         <div id='intro_heading'><b>Intro</b></div>
-        <table style="width:100%">
+        <table class='home_table'>
             <tr>
-                <td><?php echo "Name" ?></td>
-                <td><?php echo $first_name . " " . $last_name; ?></td>
+                <td class='home_view_td'><?php echo "Name" ?></td>
+                <td class='home_view_td'><?php echo $first_name . " " . $last_name; ?></td>
             </tr>
             <tr>
-                <td><?php echo "Gender" ?></td>
-                <td><?php echo $gender; ?></td>
+                <td class='home_view_td'><?php echo "Gender" ?></td>
+                <td class='home_view_td'><?php echo $gender; ?></td>
             </tr>
             <tr>
-                <td><?php echo "District" ?></td>
-                <td><?php echo $district; ?></td>
+                <td class='home_view_td'><?php echo "District" ?></td>
+                <td class='home_view_td'><?php echo $district; ?></td>
             </tr>
             <tr>
-                <td><?php echo "Occupation" ?></td>
-                <td><?php echo $Occupation; ?></td>
+                <td class='home_view_td'><?php echo "Occupation" ?></td>
+                <td class='home_view_td'><?php echo $Occupation; ?></td>
             </tr>
             <tr>
-                <td><?php echo "Address" ?></td>
-                <td><?php echo $address; ?></td>
+                <td class='home_view_td'><?php echo "Address" ?></td>
+                <td class='home_view_td'><?php echo $address; ?></td>
             </tr>
         </table>
     </div>

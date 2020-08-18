@@ -62,33 +62,34 @@
 
 
         <div id='home_sub_body'>
-            <div class="detail">
+            <div class="person_detail">
                 <div id='intro_heading'>Intro</div>
-                <div class="edit_btn">
-                    <a href='update_cd.php'><button id='edit_info_button'>Edit info</button></a>
-                </div>
-                <table style="width:100%">
+                
+                <table class='home_table'>
                     <tr>
-                        <td><?php echo "Name" ?></td>
-                        <td><?php echo $query_result['first_name'] . " " . $query_result['last_name']; ?></td>
+                        <td class='home_view_td'><?php echo "Name" ?></td>
+                        <td class='home_view_td'><?php echo $query_result['first_name'] . " " . $query_result['last_name']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo "Gender" ?></td>
-                        <td><?php echo $query_result['gender']; ?></td>
+                        <td class='home_view_td'><?php echo "Gender" ?></td>
+                        <td class='home_view_td'><?php echo $query_result['gender']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo "District" ?></td>
-                        <td><?php echo $query_result['district']; ?></td>
+                        <td class='home_view_td'><?php echo "District" ?></td>
+                        <td class='home_view_td'><?php echo $query_result['district']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo "Occupation" ?></td>
-                        <td><?php echo $query_result['Occupation']; ?></td>
+                        <td class='home_view_td'><?php echo "Occupation" ?></td>
+                        <td class='home_view_td'><?php echo $query_result['Occupation']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo "Address" ?></td>
-                        <td><?php echo $query_result['address']; ?></td>
+                        <td class='home_view_td'><?php echo "Address" ?></td>
+                        <td class='home_view_td'><?php echo $query_result['address']; ?></td>
                     </tr>
                 </table>
+                <div class="edit_btn">
+                    <a href='update_cd.php'><button id='edit_info_button'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit info</button></a>
+                </div>
             </div>
             <div id='home_post'>
                 <div id="my_posts">
