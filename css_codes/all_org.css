@@ -20,7 +20,7 @@ body{
 #org_table{
     border: 2px solid #d8e0e7;
     border-collapse: collapse;
-    width:600px;
+    width:90%;
     table-layout: fixed;
     border-spacing: 5px;
     margin:auto;
@@ -69,7 +69,6 @@ body{
   .org_main{
     position: relative;
     display: flex;
-    flex-flow: wrap row;
     margin: 2px 16px 2px 16px;
   }
   .org_logo_container{
