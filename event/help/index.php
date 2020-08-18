@@ -1,10 +1,13 @@
 <?php
+    ob_start();
+    ignore_user_abort();
+
     require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
     $to=$_GET['to'];
     $event_id = $_GET['event_id'];
     $by=$_GET['by'];
     $by_person=$_SESSION['user_nic'];
-    $query = "select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."';
+    $query = "select role FROM `org_members` WHERE org_id=".$by." and NIC_num='".$by_person."' and (role='leader' or role='coleader') ;select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."';
     select * from event_".$event_id."_requests WHERE requester='".$to."';";
     
     if($by=="your_self"){
@@ -36,8 +39,21 @@
             echo '<input type="hidden" name="by" value= '.$by.'>';
             
             $result = mysqli_store_result($con);
+            if($result->num_rows ==0){
+
+                header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/event/all_event.php"));
+                ob_end_flush();
+                ob_flush();
+                flush();
+            }
+            mysqli_free_result($result);
+
+
+            mysqli_next_result($con);
+            $result = mysqli_store_result($con);
             $old_result = mysqli_fetch_assoc($result);
             mysqli_free_result($result);
+
             if($old_result!=null){
                 $old_district = $old_result['district'] ?: '';
                 $old_village = $old_result['village'] ?: '';
