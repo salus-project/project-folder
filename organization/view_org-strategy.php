@@ -61,12 +61,26 @@
                                     </form>
                                 </div>";
             $this->member_text= "";
-            $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\'upload_org_profile_btn\').click()'>
+            $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\"upload_org_profile_btn\").click()'>
                                         <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
-                                    </button>";
-            $this->cover_photo_text= "<button id='org_edit_cover_but' onclick='document.getElementById(\'org_upload_cover_btn\').click()'>
+                                    </button>
+                                    <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                                        <input type=file name=upload_file accept='image/jpeg' id='upload_org_profile_btn' style='display:none' onchange='this.parentElement.submit()'>
+                                        <input type=hidden name='directory' value='Organization/Profiles/'>
+                                        <input type=hidden name='filename' value='".$_GET['selected_org']."'>
+                                        <input type=hidden name='header' value='true'>
+                                        <input type=hidden name='resize' value='true'>
+                                    </form>";
+            $this->cover_photo_text= "<button id='org_edit_cover_but' onclick='document.getElementById(\"org_upload_cover_btn\").click()'>
                                         <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
-                                    </button>";                    
+                                    </button>
+                                    <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                                        <input type=file name=upload_file accept='image/jpeg' id='org_upload_cover_btn' style='display:none' onchange='this.parentElement.submit()'>
+                                        <input type=hidden name='directory' value='Organization/Covers/'>
+                                        <input type=hidden name='filename' value='".$_GET['selected_org']."'>
+                                        <input type=hidden name='header' value='true'>
+                                        <input type=hidden name='resize' value='false'>
+                                    </form>";                    
         }
         abstract function show_membership_button();
         abstract function show_edit_button();
