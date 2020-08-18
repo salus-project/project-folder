@@ -1,7 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
-<link rel="stylesheet" href="/css_codes/organizations.css">
+<link rel="stylesheet" href="/css_codes/all_org.css">
 <div id="org_body">
     <form method='get' action='/organization'>
         <div class='top'>
