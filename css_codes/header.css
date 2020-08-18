@@ -6,6 +6,11 @@ body {
     margin:0;
     box-sizing: border-box;
 }
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
   /* width */
   div::-webkit-scrollbar {
     width: 9px;
