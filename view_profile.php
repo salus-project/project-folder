@@ -83,7 +83,7 @@ while($row=$viewer->fetch_assoc()){
     </div>
     <div id='home_post'>
         <div id="my_posts">
-            MY POSTS 
+            POSTS 
         </div>
         <div id="content">
 
