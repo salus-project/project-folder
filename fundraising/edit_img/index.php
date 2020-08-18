@@ -1,3 +1,8 @@
+<?php
+ob_start();
+ignore_user_abort();
+?>
+
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php"; ?>
 
 <link rel="stylesheet" href='/css_codes/fundraising_edit_img.css'>
@@ -5,6 +10,14 @@
     $id = intval($_GET['id']);
     $query = "select * from fundraisings where id=" . $id;
     $result = ($con->query($query))->fetch_assoc();
+
+    if($result['by_civilian']  != $_SESSION['user_nic']){
+
+        header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/fundraising/"));
+        ob_end_flush();
+        ob_flush();
+        flush();
+    }
 
     $id = $result['id'];
     $fundraising_name = $result['name'];
