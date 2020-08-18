@@ -154,6 +154,9 @@ x {
     margin: 5px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+    position: absolute;
+    left: -5px;
+    top: 10px;
 }
 
 @-webkit-keyframes spin {
@@ -179,8 +182,8 @@ x {
 #notification_container {
     display: inline-block;
     position: absolute;
-    bottom: 12px;
-    right: -19px;
+    bottom: 100%;
+    right: 0%;
 }
 
 .menubar_button_container {
