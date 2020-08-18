@@ -1,4 +1,3 @@
-
 document.getElementById('event_button').addEventListener('click',function(){
     const event_button_container = document.getElementById('event_list_container');
     getEvents(event_button_container);
@@ -18,5 +17,5 @@ function getEvents(container){
     request.send();
 }
 function view_event(event_id){
-    window.location.href = '/organization/event?event_id='+event_id+'&selected_org='+selected_org;
+    window.location.href = link+'?event_id='+event_id+'&selected_org='+selected_org;
 }
