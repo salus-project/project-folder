@@ -23,7 +23,9 @@
         <script>
             btnPress(8);
 		</script>
-	<?php require $_SERVER['DOCUMENT_ROOT']."/message/msg_side_nav.php"; ?>
+	<?php require $_SERVER['DOCUMENT_ROOT']."/message/msg_side_nav.php"; 
+		if ($to_person != "")	{
+	?>
 	<div id="container" class="msg_container">
 <?php
 		echo "<div class='msg_head_cont'>";
@@ -42,16 +44,25 @@
 		<input type="hidden" name="to_person" id="to_person" value="<?php echo  $to_person  ?>">
 		<div class='msg_type_cont'>
 			<?php
-				if ($to_person != "")	{
+				
 					echo "<div class='input_tag_cont'>";
-					echo '<input type="text" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="Type massage here" /> ';  
+					echo '<input type="texif ($to_person != "")	{t" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="Type massage here" /> ';  
 					echo '</div>';
 					echo '<div id="post_btn" class="msg_post_btn" >';
 					echo '</div>';
-				}
+				
 			?>
 		</div>
 	</div>
+	<?php
+		}else{
+			echo '<div id="container" class="start_msg_container">
+					<div class="start_msg">
+						Start Conversation...
+					</div>
+			</div>';
+		}
+	?>
 	</div>	
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script>
