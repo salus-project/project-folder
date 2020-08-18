@@ -11,7 +11,7 @@
 }
 
 .promise_table td {
-    border: 1px solid #38678f;
+    border: 1px solid #d8e0e7;
     text-align: center;
     font-family: "Open Sans", sans-serif;
     height: 37px;
@@ -19,6 +19,7 @@
     line-height: 1;
     padding: 5px;
     vertical-align: middle;
+    background-color: white;
 }
 
 .promise_body {
@@ -36,7 +37,7 @@
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     cursor: default;
-    border: 1px solid #38678f;
+    border: none;
 }
 
 .second_head th {
@@ -47,5 +48,61 @@
     color: #393939;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
-    border: 1px solid #38678f;
+    border: 1px solid #d8e0e7;
+}
+
+.our_pro_btn{
+    background-color: #0c7dff47;    
+    width: 150px;
+    border: none;
+    color: #6B7C93;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    font-weight: 600;
+}
+
+.edit_pro{
+    width: 100px;
+}
+
+.edit_pro_btn{
+    margin: 10px;
+}
+.our_pro_btn_div{
+    position: relative;
+    display: flex;
+}
+#edit_form{
+    display: flex;
+}
+
+.our_promise_table {
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    margin-top: 25px;
+    
+}
+.our_promise_table td {
+    border: 1px solid #d8e0e7;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    height: 37px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 5px;
+    vertical-align: middle;
+    background-color: white;
+}
+.our_promise_body{
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    width: 80%;
+    background-color: white;
 }
