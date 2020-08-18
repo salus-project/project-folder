@@ -86,8 +86,8 @@ function autocomplete(inp, inp_arr, link) {
                         if (link === '') {
                             inp.value = this.getElementsByTagName("input")[0].value;
                             inp.nextElementSibling.value = this.getElementsByTagName("input")[1].value;
-                        } else if (link === 'auto') {
-
+                        } else if (link === 'click') {
+                            window.location.href = this.getElementsByTagName("input")[1].value;
                         } else {
                             window.location.href = link + this.getElementsByTagName("input")[2].value;
                         }
