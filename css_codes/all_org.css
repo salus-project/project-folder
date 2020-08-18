@@ -141,3 +141,14 @@ body{
   font-weight: 600;
   margin-bottom: 5px;
 }
+
+.org_div{
+  display: flex;
+  padding: 20px;
+}
+.org_role_div{
+  margin-right: 20px;
+}
+.org_table_div{
+  margin: auto;
+}
