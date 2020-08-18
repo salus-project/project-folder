@@ -5,13 +5,32 @@ $nameErr=$phoneErr='';
 require $_SERVER['DOCUMENT_ROOT'].'/organization/edit_org_php.php';
 
     $org_id=$_GET['org_id'];
-    $query='select * from organizations where org_id='.$_GET['org_id'];
-    $result=($con->query($query))->fetch_assoc();
-    $org_name=$result['org_name'];
-    $district=$result['district'];
-    $email=$result['email'];
-    $phone_num=$result['phone_num'];
-    $discription=$result['discription']; 
+    $by_person=$_SESSION['user_nic'];
+    $query="select role FROM `org_members` WHERE org_id=".$_GET['org_id']." and NIC_num='".$by_person."' and (role='leader' or role='coleader') ;select * from organizations where org_id=".$_GET['org_id'];
+    
+    if(mysqli_multi_query($con,$query)){
+
+        $result_ = mysqli_store_result($con);
+        if($result_->num_rows ==0){
+            header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/organization/all_org.php"));
+            ob_end_flush();
+            ob_flush();
+            flush();
+        }
+        mysqli_free_result($result_);
+
+        mysqli_next_result($con);
+        $result_ = mysqli_store_result($con);
+        $result= mysqli_fetch_assoc($result_);
+        mysqli_free_result($result_);
+
+        //$result=($con->query($query))->fetch_assoc();
+        $org_name=$result['org_name'];
+        $district=$result['district'];
+        $email=$result['email'];
+        $phone_num=$result['phone_num'];
+        $discription=$result['discription']; 
+    }
 ?>
 <title>create new organization </title>
 <link rel='stylesheet' href='/css_codes/create_org.css'>
