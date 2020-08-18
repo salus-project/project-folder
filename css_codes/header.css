@@ -11,6 +11,7 @@ img{
     height: 100%;
     object-fit: cover;
 }
+
   /* width */
   div::-webkit-scrollbar {
     width: 9px;
@@ -637,4 +638,12 @@ input:checked+.slider:before {
     width: 250px;
     height: 30px;
     font-size: initial;
+}
+@media screen and (max-width: 740px) {
+    #header_search_box_cont {
+        min-width: 30px;
+    }
+    .autocomplete_text_inp {
+        display: none;
+    }
 }
