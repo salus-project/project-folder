@@ -11,7 +11,7 @@
                 </div>
                 <div id='create_org'>
                     <thead>
-                        <a href='/organization/create_organization'><button class='create_but'>Create new organization</button></a>
+                        <a href='/organization/create_organization'><button type='button' class='create_but'>Create new organization</button></a>
                     </thead>
                 </div>
             </div>
