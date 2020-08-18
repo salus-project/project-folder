@@ -96,7 +96,7 @@
 
         <script src="/js/header.js"></script>
         <script>
-            autocomplete_ready(document.getElementById("header_search_box"), 'all', 'ready', '');
+            autocomplete_ready(document.getElementById("header_search_box"), 'all', 'ready', 'click');
         </script>
         <div id='main_body'>
 	        <div id='sub_body' class='sub_body <?php echo (($_SESSION['side_nav']=='1')?'':'full_sub_body'); ?>'>
