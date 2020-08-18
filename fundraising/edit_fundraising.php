@@ -24,7 +24,15 @@ ob_start();
         $result = mysqli_store_result($con);
         $fundraising=mysqli_fetch_assoc($result);        
         mysqli_free_result($result);
+        
+        if($fundraising['by_civilian']  != $_SESSION['user_nic']){
 
+            header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/fundraising/"));
+            ob_end_flush();
+            ob_flush();
+            flush();
+        }
+        
         mysqli_next_result($con);
         $result = mysqli_store_result($con);
         $org_result = mysqli_fetch_all($result,MYSQLI_ASSOC);
