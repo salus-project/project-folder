@@ -134,12 +134,11 @@
     width: calc(100% - 300px);
     height: 100%;
     background: url(/common/chat_start_icon.png);
-    /* background-attachment: fixed; */
-    /* background-size: cover; */
     background-repeat: no-repeat;
     background-size: 600px auto;
     background-position: center;
     background-color: #336699;
+	background-position-y:50px ;
 }
 .start_msg{
     position: absolute;
