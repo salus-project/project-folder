@@ -46,6 +46,7 @@ input {
     box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
+
 #titlebar {
     display: flex;
     height: 40px;
@@ -53,7 +54,12 @@ input {
     border-bottom: 0px;
 }
 
-
+.please_login{
+    font-size: 15px;
+    position: absolute;
+    top: 18px;
+    left: 300px;
+}
 
 .header_dropdown_item {
     width: 340px;
