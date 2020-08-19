@@ -55,10 +55,11 @@ input {
 }
 
 .please_login{
-    font-size: 15px;
     position: absolute;
-    top: 18px;
-    left: 300px;
+    bottom: 10px;
+    left: 12px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .header_dropdown_item {
@@ -258,25 +259,32 @@ display: inline-block;
     bottom: 5px;
 
 }
-.enter_nic{
+.enter_nic,.enter_password{
     display: inline-block;
     padding: 4px;
-    border: 1px solid black;
+    border: 1px solid #d8e0e7;
+    border-radius: 5px;
+    height: 25px;
     margin-right: 2px;
 }
-.enter_password{
-    display: inline-block;
-    padding: 4px;
-    border: 1px solid black;
-    margin-left: 2px;
-    margin-right: 4px;
-}
+
 .ano_input_box{
     border: none;
     padding: 1px !important;
+    line-height: 1.8;
 }
 .ano_login_button{
     padding: 1px !important;
+    display: inline-block;
+    padding: 4px;
+    border: 1px solid #d8e0e7;
+    border-radius: 5px;
+    height: 34px;
+    width: 80px;
+    margin-right: 2px;
+    background-color: #4c5fd7;
+    color: white;
+    font-size: 16px;
 }
 
 /* Event.css*/
