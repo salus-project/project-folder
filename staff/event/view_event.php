@@ -55,23 +55,6 @@
                     ?>
                 </table>
             </div>
-            <div class='table_container'>
-                <table class='event_table'>
-                    <tr>
-                        <th colspan=2>
-                            Civilian Status Detail
-                        </th>
-                    </tr>
-                    <?php
-                        foreach($result as $x=>$y){
-                            if((ucfirst($x)!="GeoJson" and ucfirst($x)!="Event_id" and ucfirst($x)!="Name" and ucfirst($x)!="Type" 
-                            and ucfirst($x)!="Affected_districts" and ucfirst($x)!="Affected_no" and ucfirst($x)!="Start_date" and ucfirst($x)!="End_date" and ucfirst($x)!="Status" and ucfirst($x)!="Detail") ){
-                                echo "<tr><td>" . ucfirst($x) . "</td><td >" . ucfirst($y) . "</td></tr>";
-                            }
-                        }
-                    ?>
-                </table>
-            </div>
         </div>
     </body>
 </html>
