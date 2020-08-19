@@ -69,6 +69,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
 
         <title>view fundraising event</title>
         <link rel="stylesheet" href='/css_codes/view_fundraising.css'>
+        
         <link rel="stylesheet" href='/css_codes/publ.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -120,7 +121,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
 			function showSlides() {			
 				var i;
 				var slides = element.getElementsByClassName("mySlides");
-				var dots = slideshow[0].getElementsByClassName("dot");
+				var dots = document.getElementsByClassName("dot");
 				for (i = 0; i < slides.length; i++) {
 					slides[i].style.display = "none";  
 				}
