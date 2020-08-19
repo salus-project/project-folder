@@ -368,7 +368,7 @@ a.post_a:active {
 .comment_div {
     margin-left: 16px;
     display: inline-block;
-    width: 80%;
+    width: 90%;
 }
 
 .comment_input {
@@ -390,43 +390,49 @@ a.post_a:active {
 }
 
 .send_btn {
-    height: 25px;
+    height: 26px;
     background: transparent !important;
     border: none !important;
     float: right;
-    width: 25px;
+    width: 100%;
     margin: auto;
 }
 
 .new_comment .fa {
+    line-height: 1.5;
     float: right;
-    /* margin-top: 13px; */
     outline: none !important;
     border-radius: 20px;
     width: 100% !important;
     display: flex;
     text-align: center;
-    /* margin-left: 16px; */
     background: #e5e5f4;
     color: #2196F3;
+    height: 26px;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
+    width: 30px;
+    padding-left: 8px;
+    border-left: 1px solid white;
+    margin: 5px 0;
 }
 
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 50px;
-    background-color: #0c7dff47;
+    background-color: black;
     text-align: center;
     border-radius: 6px;
     padding: 1px 0;
     position: absolute;
     z-index: 1;
-    top: 40%;
-    left: 105%;
+    top: 100%;
+    left: 100%;
+    color: white;
+    font-size: 14px;
 }
 
 .tooltip:hover .tooltiptext {
