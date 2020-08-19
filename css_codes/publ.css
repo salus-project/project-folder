@@ -1,14 +1,15 @@
 #post_title {
-    background-color: #0c7dff47;
+    background-color: #d8e0e7;
     width: 550px;
     height: 50px;
     text-align: center;
     vertical-align: middle;
+    line-height: 1.7;
     margin: auto;
     margin-top: 16px;
     color: #6b7c93;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 600;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -23,19 +24,18 @@ body {
     margin: auto;
 }
 
-
 /* ----------- new post --------------------*/
 
 #new_post {
     width: 550px;
     min-height: 100px;
-    border: 1px solid black;
     margin: auto;
     margin-top: 16px;
-    padding-right: 6px;
     font-size: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 50px;
+    position: relative;
+    background: white;
 }
 
 #new_post:hover {
@@ -44,68 +44,80 @@ body {
 }
 
 #post_text_area {
-    width: 100%;
+    width: 97%;
     height: 60px;
-    margin: auto;
+    margin: 8px;
     resize: none;
+    outline: none;
+    border: 1px solid #d8e0e7;
+    font-family: Open Sans, sans-serif;
+    color: #6b7c93;
 }
 
 #submit {
-    width: 100px;
-    height: 30px;
-    margin: auto;
-    align-content: stretch;
+    width: 28%;
+    height: 25px;
+    background: transparent;
+    border: none;
+    border-right: 2px solid #ccc;
+    margin: 5px 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: Open Sans, sans-serif;
+    vertical-align: middle;
 }
 
 .post_btn {
-    width: 100px;
+    width: 28%;
     position: relative;
     display: inline-block;
     padding: 6px 8px 7px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    color: #333;
     text-align: center;
     white-space: nowrap;
-    vertical-align: top;
+    vertical-align: middle;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    background-color: transparent;
+    border-right: 2px solid #ccc;
+    height: 25px;
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: Open Sans, sans-serif;
 }
 
 #tag_container {
-    width: 0;
-    position: relative;
     display: inline-block;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
     text-align: center;
     vertical-align: top;
-    background-color: white;
+    background-color: transparent;
     position: relative;
-    width: 300px;
+    width: 44%;
+    height: 35px;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: Open Sans, sans-serif;
 }
 
 #preview {
-    width: 70%;
+    width: 90%;
 }
 
 #image_container {
     text-align: center;
+    border: 1px solid #d8e0e7;
 }
 
 #tag_input_field {
     border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
+    background-color: transparent;
+    padding: 5px;
     width: 100%;
+    height: 35px;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: Open Sans, sans-serif;
+    color: #6b7c93;
 }
 
 .autocomplete-items {
@@ -159,7 +171,6 @@ body {
     display: inline-block;
 }
 
-
 /*------------------post ----------------------------*/
 
 .posts {
@@ -186,7 +197,7 @@ body {
 }
 
 .post_title {
-    height: 65px;
+    min-height: 65px;
     margin: auto;
     display: flex;
     position: relative;
@@ -309,7 +320,6 @@ a.post_a:active {
     font-size: 15px;
     color: #6b7c93;
 }
-
 
 /*------------ comment box -----------*/
 

@@ -11,7 +11,10 @@ img{
     height: 100%;
     object-fit: cover;
 }
-
+a, .view_all_a, .view_all_a:hover{
+    color: #6b7c93;
+    text-decoration: none;
+}
   /* width */
   div::-webkit-scrollbar {
     width: 9px;
@@ -127,18 +130,16 @@ input {
 }
 .dropdown_cont {
     display: inline-block;
-    position: relative;
-    float: right;
+    position: absolute;
+    /* float: right; */
+    right: 0;
+    bottom: 5px;
 }
 
 .menubar_buttons_cont {
     margin: 2px;
     margin-bottom: 5px;
     width: 55px;
-}
-
-a {
-    text-decoration: none;
 }
 
 .menubar_buttons {
@@ -390,6 +391,11 @@ a.all_a:active {
     padding: 10px;
     width: 100%;
     border: none;
+    color: black;
+    font-size: 13px;
+    line-height: 1;
+    text-align: center;
+    word-break: break-word;
 }
 .view_all_btn:hover,.create_org_btn:hover {
     background-color: rgb(229, 241, 252);
@@ -638,12 +644,19 @@ input:checked+.slider:before {
     width: 250px;
     height: 30px;
     font-size: initial;
+    position: absolute;
+    bottom: 0;
+    right: 60px;
 }
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 1040px) {
     #header_search_box_cont {
-        min-width: 30px;
+        width: 30px;
+        margin-bottom: 10px;
     }
     .autocomplete_text_inp {
         display: none;
+    }
+    .menubar_icons{
+        margin: unset;
     }
 }
