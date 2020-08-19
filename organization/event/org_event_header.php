@@ -10,7 +10,7 @@
         ignore_user_abort();
 
         require $_SERVER['DOCUMENT_ROOT']."/organization/view_org_header.php" ;
-        if($text_role  == 'visitor'){
+        if($text_role  == 'visitor' || $text_role  == 'member'){
             header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/organization/visitor_event/?event_id=".$_GET['event_id']."&selected_org=".$org_id));
             ob_end_flush();
             ob_flush();
