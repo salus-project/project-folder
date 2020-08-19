@@ -14,6 +14,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 <body>
+    <script>
+        btnPress(2);
+    </script>
 
     <div class="new_member"><a class="tag" href="create_civilian_acc.php"><i class="fa fa-user-plus" aria-hidden="true" style="font-size:25px;color:black;">  Add new member</i></a></div>
     <div>

@@ -19,6 +19,10 @@
     </head>
 
     <body>
+    <script>
+        btnPress(3);
+    </script>
+
         <form action="edit_event_php.php" method="POST">
 
         <div class="create_event_form_box">

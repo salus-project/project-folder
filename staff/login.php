@@ -46,7 +46,7 @@
                             $_SESSION['address']=$row['address'];
                             $_SESSION['role']='staff';
                         }
-                            header('location:homepage.php');
+                            header('location:/staff');
                         
                     }else{
                         echo '<script type="text/javascript">';

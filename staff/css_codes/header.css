@@ -86,3 +86,6 @@ body{
   color: #6b7c93;
   font-family: "Open Sans",sans-serif;
 }
+.active{
+  background-color:#3e4d52;
+}

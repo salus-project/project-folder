@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="/staff/css_codes/view_member.css">
     </head>
     <body>
+    <script>
+        btnPress(2);
+    </script>
+    
         <?php
             $query="select * from civilian_detail where NIC_num ='". $_GET['nic']."'";
             $result=($con->query($query))->fetch_assoc();

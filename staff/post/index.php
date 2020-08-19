@@ -20,7 +20,7 @@
     <body>
     
 <script>
-    btnPress(2);
+    btnPress(4);
 </script>
 
     <div id="post_title">

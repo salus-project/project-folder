@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="/staff/css_codes/view_event.css">
     </head>
     <body>
+    <script>
+        btnPress(3);
+    </script>
+
         <?php
             $query="select * from disaster_events where event_id =" . $_GET['event_id'];
             $result=($con->query($query))->fetch_assoc();

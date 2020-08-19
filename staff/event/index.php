@@ -13,6 +13,10 @@
     </head>
 
     <body>
+    <script>
+        btnPress(3);
+    </script>
+
         <div id=body>
             <div>
                 <div class="new_event"> <a class="tag" href="/staff/event/create_event.php"><i class="fa fa-calendar" aria-hidden="true" style="font-size:25px;color:black;">  Create new event</i></a></div>
