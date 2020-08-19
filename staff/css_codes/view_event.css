@@ -2,7 +2,6 @@
 #event_header{
     display: flex;
     height:50px;
-    border:1px solid black;
     background-color: white;
 }
 #title_box{
@@ -40,15 +39,26 @@
 }
   
 .event_table th, td {
-  border: 1px solid #90969a;
-  color:  #6b7c93;
-  padding: 10px;
+    border: 1px solid #d8e0e7;
+    color:  #6b7c93;
+    position: relative;
+    padding: 10px;
+    font-family: "Open Sans",sans-serif;
   
 }
 
+.event_table th{
+    font-size: 16px;
+    text-align: center;
+    background-color: #0c7dff47;
+}
+
 .table_container{
-  width: 450px;
-  padding: 5px;
-  margin: auto;
-  margin-top: 30px;
+    width: 450px;
+    position: absolute;
+    margin: auto;
+    top: 170px;
+    left: 0;
+    right: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
