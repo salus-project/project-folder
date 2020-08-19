@@ -5,7 +5,7 @@
 <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
 <script src="/govpost/govpost.js"></script>
 
-<div id="title">
+<div id="post_title">
     Goverment posts
 </div>
 <div id="content">
