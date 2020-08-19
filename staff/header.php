@@ -18,7 +18,7 @@
                 <div class ="person_name">
                     <?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?>
                 </div>
-                <div><img src="Profiles/login_img.png" alt="Avatar" class="avatar"></div>
+                <div><img src="/staff/Profiles/login_img.png" alt="Avatar" class="avatar"></div>
                 <div  class="logout_anchor" ><a href="login.php"><i class="fa fa-sign-out" style="font-size:18px;color:white;" aria-hidden="true"> Log out</i></a></div>
             </div>  
         </div>

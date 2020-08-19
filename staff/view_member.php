@@ -42,6 +42,9 @@
         <div class="detail">
             <table class="detail_table" style="width:100%">
                 <tr>
+                    <th class="mem_det_head" colspan=2>Staff Detail</th>
+                </tr>
+                <tr>
                     <td><?php echo "Full name" ?></td>
                     <td><?php echo $name; ?></td>
                 </tr>

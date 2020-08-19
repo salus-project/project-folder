@@ -17,28 +17,28 @@
         <div class="detail">
             <table class="detail_table" style="width:100%">
                 <tr>
-                    <td colspan=2>Staff Detail</td>
+                    <th class="staff_det_head" colspan=2>Staff Detail</th>
                 </tr>
                 <tr>
-                    <td><?php echo "User id" ?></td>
-                    <td><?php echo $_SESSION['username']; ?></td>
+                    <td class="staff_det_data"><?php echo "User id" ?></td>
+                    <td class="staff_det_data"><?php echo $_SESSION['username']; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo "Full name" ?></td>
-                    <td><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></td>
+                    <td class="staff_det_data"><?php echo "Full name" ?></td>
+                    <td class="staff_det_data"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo "Gender" ?></td>
-                    <td><?php echo $_SESSION['gender']; ?></td>
+                    <td class="staff_det_data"><?php echo "Gender" ?></td>
+                    <td class="staff_det_data"><?php echo $_SESSION['gender']; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo "District" ?></td>
-                    <td><?php echo $_SESSION['district']; ?></td>
+                    <td class="staff_det_data"><?php echo "District" ?></td>
+                    <td class="staff_det_data"><?php echo $_SESSION['district']; ?></td>
                 </tr>
              
                 <tr>
-                    <td><?php echo "Address" ?></td>
-                    <td><?php echo $_SESSION['address']; ?></td>
+                    <td class="staff_det_data"><?php echo "Address" ?></td>
+                    <td class="staff_det_data"><?php echo $_SESSION['address']; ?></td>
                 </tr>
             </table>
         </div>
