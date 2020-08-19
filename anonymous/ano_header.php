@@ -16,6 +16,7 @@
                 $_SESSION['first_name']=$row["first_name"];
                 $_SESSION['last_name']=$row['last_name'];
                 $_SESSION['side_nav']=1;
+                $_SESSION['role']='civilian';
             }
             $self=explode("/",$_POST['location'])[1];
             if($_POST['location']=='http://localhost/logs/login.php' || $_POST['location']=='' || $self=='anonymous'){
