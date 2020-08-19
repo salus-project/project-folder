@@ -1,0 +1,52 @@
+.new_member{
+    border: none;
+    margin-left: 0px;
+    padding: 10px;
+    outline: none;
+}
+.tag{
+    font-family:"Open sans";
+    padding-left:10px;
+    color: black; 
+    font-size: 20px;
+    text-decoration:none;
+}
+
+
+.civilian_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: white;
+    width: 450px;
+
+}
+  
+.civilian_table th, td {
+    text-align: left;
+  border: 1px solid #90969a;
+  color:  #6b7c93;
+  padding: 10px;
+}
+.civilian_table th{
+    font-size: 20px;
+    text-align: center;
+}
+ 
+.civi_detail{
+    width: 450px;
+    padding: 5px;
+    margin: auto;
+}
+
+.civilian_name{
+    background: white;
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 100%;
+    color: #6b7c93;
+    text-align: left;
+    font-size: 16px;
+    font-family: "Open -Sans";
+}
+

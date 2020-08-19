@@ -1,0 +1,38 @@
+.div1{
+    
+    width : 500px;
+    margin:0 auto;
+    background:white;
+    padding:5px;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+.form_box{
+    width:480px;
+    margin:0 auto;
+}
+.h2_tag{
+    align-self: center;
+    color: black;
+    
+}
+.submit_button{
+    margin-top: 1px;
+    border-radius: 15px;
+    font-size:20px;
+    width: 150px;
+    margin:0 auto;
+    margin-bottom:15px;
+}
+.input_box{
+    margin-top:10px;
+    margin-bottom:15px;
+    width:90%;
+    height:30px;
+    font-size:20px;
+    border-radius: 5px;
+}
+.label{
+    font-size:20px;
+}

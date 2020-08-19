@@ -1,0 +1,207 @@
+.create_civ_form_box{
+    width: 500px;
+    padding: 0px;
+    background-color: #ffffff;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 0 auto;
+    font-weight: 400;
+    font-family: "Open Sans";
+    color: #393939;
+    font-size: 16px;
+    margin-bottom: 300px;
+}
+
+.head_create_civ_form,.body_create_civ_form{
+    display: block;
+}
+
+.foot_create_civ_form{
+  display: flex;
+}
+
+.head_create_civ_form{
+    margin-top: 25px;
+    background-color: #0c7dff47;
+    text-align: center;
+    font-size: 25px;
+    height: bold;
+    height: 40px;
+    padding: 10px;
+}
+
+.head_create_civ_form_det{
+    margin-top: 5px;
+}
+
+.body_create_civ_form{
+    padding: 15px;
+}
+
+.foot_create_civ_form{
+    text-align: center;
+}
+
+.create_civ_submit_button{
+    border: none;
+    width: 250px;    
+    background-color: #0c7dff47;  
+    padding: 0px;
+    height: 60px;
+    font-family: "Open Sans";
+    color: #393939;
+    font-size: 25px;
+    outline: none;
+}
+
+.submitt{
+  border-right: 0.5px solid white;
+}
+
+.create_civ_grp{
+    display: flex;
+    line-height: 1;
+}
+
+.create_civ_input_box{
+    outline: none;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 25px;
+  font-family: "Open Sans";
+  color: #393939;
+  border: 1px solid #2980B9;
+  clear: both;
+  font-size: 17px;
+  float: right;
+  padding-left: 7px;
+  min-width: 150px;
+}
+
+.create_civ_form_label{
+  padding-top: 5px;
+    min-width: 150px;
+    font-size: 18px;
+    color: #393939
+}
+
+.edit_prof_select{
+    font-family: "Open Sans",sans-serif;
+    color: #393939;
+    border: 1px solid #2980B9;
+    margin-top: 12px;
+    width: 300px;
+    height: 25px;
+    border-radius: 0px;
+    background: none;
+    padding: 0px 0px 0px 5px;
+    min-width: 150px;
+}
+
+.create_civ_textarea{
+    resize: none;
+    outline: none;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 60px;
+    font-family: "Open Sans";
+    color: #393939;
+    border: 1px solid #2980B9;
+    clear: both;
+    font-size: 17px;
+    float: right;
+    padding-left: 7px;
+    min-width: 150px;
+}
+
+.error{
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    color: red;
+    display: block;
+    padding: 0px 0 4px 2px;
+}
+
+
+/*        Custom dropdown                */
+.custom-select {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 260px;
+  position: relative;
+  font-family: "Open Sans";
+  }
+  
+  .custom-select select {
+    display: none; /*hide original SELECT element:*/
+  }
+  
+  .select-selected {
+    background-color: #2980B9;
+  }
+  
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 8px;
+    right: 7px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 2px;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    width: 289px;
+    height: 11px;
+    font-size: 17px;
+    line-height: 0.5;
+    position: relative;
+    color: #ffffff;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+  }
+  
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: #2980B9;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-left: 195px;
+    width: 115px;  }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+/*               Angular Form validation                     */
+
+input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
+    border: 2px solid #b93a29;
+    background-color: #b93a294d;
+}

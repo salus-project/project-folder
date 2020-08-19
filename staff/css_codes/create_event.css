@@ -1,0 +1,305 @@
+.create_event_form_box{
+    width: 500px;
+    padding: 0px;
+    background-color: #ffffff;
+    z-index: 4;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 0 auto;
+    font-weight: 400;
+    font-family: "Open Sans";
+    color: #6b7c93;
+    font-size: 16px;
+    margin-bottom: 300px;
+}
+
+.head_create_event_form,.body_create_event_form{
+    display: block;
+}
+
+.foot_create_event_form{
+  display: flex;
+}
+
+.head_create_event_form{
+    margin-top: 25px;
+    background-color: #0c7dff47;
+    text-align: center;
+    font-size: 25px;
+    height: bold;
+    height: 40px;
+    padding: 10px;
+}
+
+.head_edit_prof_form_det{
+    margin-top: 0px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #393939;
+}
+
+.body_create_event_form{
+    padding: 15px;
+}
+
+.foot_create_event_form{
+    text-align: center;
+}
+
+.create_event_submit_button{
+    border: none;
+    width: 250px;    
+    background-color: #0c7dff47;
+    padding: 0px;
+    height: 60px;
+    font-family: "Open Sans";
+    color: #393939;
+    font-size: 25px;
+    outline: none;
+}
+
+.submitt{
+  border-right: 0.5px solid white;
+}
+
+.create_event_grp{
+    display: flex;
+    line-height: 1;
+}
+
+.create_event_input_box{
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 300px;
+  outline: none;
+  height: 25px;
+  font-family: "Open Sans";
+  color: #6b7c93;
+  border: 1px solid #2980B9;
+  clear: both;
+  font-size: 18px;
+  float: right;
+  padding-left: 7px;
+  min-width: 150px;
+}
+
+.create_event_label{
+  padding-top: 5px;
+    min-width: 150px;
+    font-size: 20px;
+    color: #393939;
+}
+
+.create_event_textarea{
+    font-family: "Open Sans";
+    color: #6b7c93;
+    border: 1px solid #2980B9;
+    outline: none;
+    resize: none;
+    width: 304px;
+    font-size: 18px;
+    height: 60px;
+    border-radius: 5px;
+    background: none;
+    padding: 5px 0px 0px 5px;
+    min-width: 150px;
+}
+
+.error{
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    color: red;
+    display: block;
+    padding: 0px 0 4px 2px;
+}
+
+
+/*        Custom dropdown                */
+.custom-select {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 260px;
+  position: relative;
+  font-family: "Open Sans";
+  }
+  
+  .custom-select select {
+    display: none; /*hide original SELECT element:*/
+  }
+  
+  .select-selected {
+    background-color: #2980B9;
+  }
+  
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 8px;
+    right: 7px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 2px;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    width: 289px;
+    height: 11px;
+    font-size: 18px;
+    line-height: 0.5;
+    position: relative;
+    color: #ffffff;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+  }
+  
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: #2980B9;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-left: 195px;
+    width: 115px; }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  
+ 
+
+/*Districts select drop down button styles of Volunteer form*/
+.dropbtn {
+    outline: none;
+    border-radius: 5px;
+    width: 311px;
+    color: white;
+    background-color: #2980B9;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    height: 29px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    padding-left: 10px;
+    margin-top: 0px;
+    font-family: "Open Sans";
+    text-align: left;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    margin-left: 180px;    
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #6b7c93;
+    text-decoration: none;
+    display: block;
+    font-family: "Open san"sans-serif;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+.show {
+    display: block;
+    z-index: 4;
+}
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+    color: black;
+    font-family: "Open Sans";
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    padding: 0;
+    position: absolute;
+    opacity: 0;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+    height: initial;
+    width: initial;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+/* Show the checkmark when checked */
+.container input:checked + .checkmark:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    margin-left: 8px;
+    margin-top: 5px;
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    color: #393939;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #0079bf;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #393939;
+    margin-top: 5px;
+}
+
+/*-------------------------------------------------*/

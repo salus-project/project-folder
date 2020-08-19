@@ -1,0 +1,54 @@
+
+#event_header{
+    display: flex;
+    height:50px;
+    border:1px solid black;
+    background-color: white;
+}
+#title_box{
+    display:flex;
+    margin-top:10px;
+    margin-left: 10px;
+    font-size: 30px;
+}
+.edit_button,.close_button{
+    background:none;
+    outline: none;
+    border: none;
+    width: 50px;
+}
+
+.edit_close_btn_div{
+    align-content: flex-end;
+    border-radius: 5px;
+    margin: auto;
+    padding: 2px;
+    display: flex;
+    margin-right: 0px;
+}
+.edit_close_btn_div span{
+    font-size: 20px;
+}
+.edit_close_btn_div form{
+    width: 100px;
+}
+
+.event_table {
+    border-collapse: collapse;
+    background-color: white;
+    width: 100%;
+}
+  
+.event_table th, td {
+  border: 1px solid #90969a;
+  color:  #6b7c93;
+  padding: 10px;
+  
+}
+
+.table_container{
+  width: 450px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 30px;
+}

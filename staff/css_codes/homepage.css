@@ -1,0 +1,45 @@
+.detail_table {
+    border-collapse: collapse;
+    background-color: white;
+
+}
+  
+.detail_table th, td {
+  border: 1px solid #90969a;
+  color:  #6b7c93;
+  padding: 10px;
+}
+ 
+.detail_table td:first-child{
+    font-weight: 700;
+} 
+
+.detail{
+  width: 450px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 30px;
+
+}
+
+#event_header{
+  display: flex;
+  height:50px;
+  border:1px solid black;
+  background-color: white;
+}
+#title_box{
+  display:flex;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+.back_btn_div{
+  align-content: flex-end;
+  border-radius: 5px;
+  margin: auto;
+  padding: 2px;
+  display: flex;
+  margin-right: 0px;
+}

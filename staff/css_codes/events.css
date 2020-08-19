@@ -1,0 +1,51 @@
+.event_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: white;
+    width: 550px;
+
+}
+
+.event_table th, td {
+    text-align: center;
+  border: 1px solid #90969a;
+  color:  #6b7c93;
+  padding: 10px;
+}
+.event_table td:first-child{
+    padding: 0;
+}
+
+.event_table th{
+    font-size: 20px;
+}
+ 
+.event_detail{
+  padding: 5px;
+  margin: auto;
+}
+
+.new_event{
+    border: none;
+    margin-left: 0px;
+    padding: 10px;
+    outline: none;
+}
+.tag{
+    font-family:"Open sans";
+    padding-left:10px;
+    color: black; 
+    font-size: 20px;
+    text-decoration:none;
+}
+.event_name{
+    background: white;
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 100%;
+    color: #6b7c93;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Open -Sans";
+}
