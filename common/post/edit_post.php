@@ -66,7 +66,6 @@
                     </div>";
                 echo"</div>
             </div>";
-            echo "<form>";
                 echo"<div>
                     <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>". $view_result['content']."</textarea></div>
                 </div>";
@@ -75,8 +74,21 @@
                     echo "<div id=image_container>  
                             <img id='preview'/ src='".$view_result['img']."'/>
                         </div>
-                        <div for=upload_file id=upload_file class='post_btn' onclick=upload()>Change photo</div>
-                        <input type=file name=upload_file accept='image/*' id=hidden_upload_file style='display:none' onchange='loadFile(event)'>
+                        <div for=upload_file id='change_img_btn' class='post_btn' onclick='document.getElementById(\"change_img\").click()'>Change photo</div>
+                        <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                            <input type='file' name='upload_file' accept='image/jpeg' id='change_img' style='display:none' onchange='this.parentElement.submit()'>
+                            <input type='hidden' name='directory' value='public_posts/'>
+                            <input type='hidden' name='filename' value='".explode('.jpg',(explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]))[0]."'>
+                            <input type='hidden' name='header' value='true'>
+                            <input type='hidden' name='resize' value='false'>
+                        </form>
+                        
+                        <div id='remove_img' class='post_btn' onclick='document.getElementById(\"remove_img_form\").submit()'>Remove photo</div>
+                        <form method='post' action='http://d-c-a.000webhostapp.com/post_remove_img.php' id='remove_img_form'>
+                            <input type='hidden' name='file' value='".explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]."'>
+                            <input type='hidden' name='post_id' value='".$view_result['post_index']."'>
+                            <input type='hidden' name='remove' value='1'>
+                        </form>
                     </div>";
                 }
     echo "</div>";
@@ -102,3 +114,4 @@
         //document.getElementById('image_container').style.height = img.height;
     }
 </script>
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php" ?>
