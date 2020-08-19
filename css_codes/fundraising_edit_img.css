@@ -33,7 +33,7 @@
 .fund_pic{
     width: 100%;
 }
-#edit_profile_btn{
+.edit_profile_btn, .remove_profile_btn{
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -46,6 +46,12 @@
     display: flex;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.edit_profile_btn{
+  right: 5px;
+}
+.remove_profile_btn{
+  left: 5px;
+}
 #upload_profile_btn{
     font-weight: 600;
     width: 100%;
@@ -56,6 +62,6 @@
     cursor: pointer;
     font-size: 20px;
 }
-.fa-camera{
+.fa-camera, .fa-trash-alt{
     margin-right: 4px;
   }
