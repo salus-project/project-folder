@@ -5,7 +5,19 @@
         <link rel="stylesheet" href='/css_codes/org_view_event.css'>
     </head>
     <body>
-        <?php require $_SERVER['DOCUMENT_ROOT']."/organization/view_org_header.php" ?>
+        <?php 
+        ob_start();
+        ignore_user_abort();
+
+        require $_SERVER['DOCUMENT_ROOT']."/organization/view_org_header.php" ;
+        if($text_role  == 'visitor'){
+            header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/organization/visitor_event/?event_id=".$_GET['event_id']."&selected_org=".$org_id));
+            ob_end_flush();
+            ob_flush();
+            flush();
+        }
+        
+        ?>
         
         <div id='org_body'>
             
