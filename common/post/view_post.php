@@ -116,7 +116,6 @@
                 </div>
                 <div class='comment_box_container'>
                     <div class='comment_box'>
-
                     </div>
                         <div class='new_comment'>
                             <div class='comment_div'>
