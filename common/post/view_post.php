@@ -153,3 +153,4 @@ show_comment();
     xhttp.send(send_str);
 }
 </script>
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php" ?>
