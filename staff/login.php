@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'dbconfi/confi.php'
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +44,7 @@
                             $_SESSION['gender']=$row['gender'];
                             $_SESSION['district']=$row['district'];
                             $_SESSION['address']=$row['address'];
+                            $_SESSION['role']='staff';
                         }
                             header('location:homepage.php');
                         

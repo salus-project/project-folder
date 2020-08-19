@@ -1,14 +1,12 @@
 <?php  
-    session_start();
-    require 'dbconfi/confi.php';
-    require "header.php";
+    require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
 ?>
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>view event</title>
-        <link rel="stylesheet" href="css_codes/view_member.css">
+        <link rel="stylesheet" href="/staff/css_codes/view_member.css">
     </head>
     <body>
         <?php
@@ -31,7 +29,7 @@
             </div>
             <div class='back_btn_div'>
                 <?php
-                    echo "<form action=member.php method=GET>";
+                    echo "<form action=/staff/member.php method=GET>";
                     echo    "<button type='submit' class='back_button' ><i class='fa fa-arrow-circle-left' style='font-size:20px;color:black;' aria-hidden='true'>Back</i></button>";
                     echo "</form>";
                 ?>

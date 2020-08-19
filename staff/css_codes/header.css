@@ -82,5 +82,7 @@ img.avatar {
 }
 
 body{
-    background-color: whitesmoke;
+  background-color: rgb(242 244 246);
+  color: #6b7c93;
+  font-family: "Open Sans",sans-serif;
 }

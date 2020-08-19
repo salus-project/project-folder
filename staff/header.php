@@ -1,7 +1,11 @@
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/verify_staff.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css_codes/header.css">
+        <link rel="stylesheet" href="/staff/css_codes/header.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -19,11 +23,11 @@
             </div>  
         </div>
         <div class="topnav">
-            <a href="homepage.php">HOME</a>
-            <a href="member.php">MEMBER</a>
-            <a href="event.php">EVENT</a>
-            <a href="post.php">POST</a>
-            <a href="about.php">ABOUT</a>
+            <a href="/staff/homepage.php">HOME</a>
+            <a href="/staff/member.php">MEMBER</a>
+            <a href="/staff/event">EVENT</a>
+            <a href="/staff/post">POST</a>
+            <a href="/staff/about.php">ABOUT</a>
             </div>
         <div>
     </body>

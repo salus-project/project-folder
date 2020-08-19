@@ -1,20 +1,22 @@
 <?php
-    session_start();
+    require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
 ?>
 
 <!DOCTYPE html>
 <html> 
     <head>
         <title>Home Page</title>
-        <link rel="stylesheet" href="css_codes/homepage.css">
+        <link rel="stylesheet" href="/staff/css_codes/homepage.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         
-        <?php require "header.php" ?>
 
         <div class="detail">
             <table class="detail_table" style="width:100%">
+                <tr>
+                    <td colspan=2>Staff Detail</td>
+                </tr>
                 <tr>
                     <td><?php echo "User id" ?></td>
                     <td><?php echo $_SESSION['username']; ?></td>

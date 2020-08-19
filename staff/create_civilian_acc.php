@@ -1,15 +1,14 @@
 <?php
-    session_start();
-    require "header.php";
-    require 'dbconfi/confi.php';
+    require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
+
     $first_name = $last_name = $gender = $nic = $password = $address = $district=$village=$street = $occupation = $phone_number = $email_address = "";
     $first_name_err = $last_name_err = $gender_err = $nic_err = $password_err = $address_err = $district_err = $village_err =$street_err= $occupation_err = $phone_number_err = $email_address_err = ""; 
-    require "create_civilian_acc_php.php"; 
+    require $_SERVER['DOCUMENT_ROOT']."/staff/create_civilian_acc_php.php";
 ?> 
 
 <html> 
 <head>
-    <link rel="stylesheet" href="css_codes/create_civilian_acc.css">
+    <link rel="stylesheet" href="/staff/css_codes/create_civilian_acc.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
