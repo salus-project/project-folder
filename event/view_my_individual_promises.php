@@ -1,6 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $id=$_SESSION['user_nic'];
+    $person=$_SESSION['first_name']." ".$_SESSION['last_name'];
     $event_id = $_GET['event_id'];
     $query="select * from event_".$event_id."_pro_don inner join civilian_detail on civilian_detail.NIC_num = event_".$event_id."_pro_don.to_person where by_person='".$id."';
     select a.id as id,a.don_id as don_id,a.item as item,a.amount as amount,a.pro_don as pro_don,b.to_person as to_person,b.note as note,b.by_org as by_org,b.by_person as by_person from event_".$event_id."_pro_don_content as a inner join event_".$event_id."_pro_don as b on a.don_id =b.id where b.by_person='".$id."';";
@@ -49,6 +50,7 @@
             <?php
                 foreach($person_detail as $row_req){
                     $name=$row_req['first_name']." ".$row_req['last_name'];
+                    $by=$row_req['NIC_num'];
                     $note=$row_req['note'];
                     $promise_array=[];
                     $pending_array=[];
@@ -87,7 +89,7 @@
                                     ".$name_data_row."
                                     <td>".$value."</td>
                                     <td class='not_click'>
-                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$event_id.",\"".$id_arr[$x]."\")'>
+                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$event_id.",\"".$id_arr[$x]."\",\"".$by."\")'>
                                     </td>
                                     ".$note_data_row."
                                 </tr>";
@@ -145,7 +147,8 @@
             
         }
     }
-    function toggleFn(ele,event,id){
+    function toggleFn(ele,event,id,id_n){
+        var person="<?php echo $person ; ?>";
         if (ele.checked){
         var c_status='pending';
         }else{
@@ -160,7 +163,7 @@
         // };
         xhttp.open("POST", "/common/postajax/post_ajax.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("sql="+sql);
+        xhttp.send("sql="+sql+"&person="+person+"&event="+event+"&status="+c_status+"&id_n="+id_n+"&type="+1);
     }
 </script>
 
