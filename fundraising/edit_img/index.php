@@ -38,7 +38,6 @@ ignore_user_abort();
             <input type=hidden name="resize" value="true">
         </form>
         <button class='edit_profile_btn' onclick="this.previousElementSibling.firstElementChild.click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
-        <button class='remove_profile_btn' type='submit'><i class="fas fa-trash-alt"></i>Remove</button>
     </div>
         <?php
         foreach ($imgs as $img) {?>
