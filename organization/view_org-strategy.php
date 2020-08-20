@@ -39,6 +39,9 @@
         public function show_event_link(){
             $this->role->show_event_link();
         }
+        public function show_post_button(){
+            $this->role->show_post_button();
+        }
     }
 
 
@@ -49,6 +52,7 @@
         protected $coleader_text;
         protected $profile_text;
         protected $cover_photo_text;
+        protected $create_post_text;
 
         public function __construct(){
             $this->join_text =  "<div id=membership_btn_container>
@@ -87,9 +91,12 @@
                                         <input type=hidden name='header' value='true'>
                                         <input type=hidden name='resize' value='false'>
                                     </form>";
+            $this->create_post_text="<div id='new_post'>
+                                    </div>";
         }
         abstract function show_membership_button();
         abstract function show_edit_button();
+        abstract function show_post_button();
     }
 
     class Visitor extends Role{
@@ -136,6 +143,9 @@
         }
         public function show_event_link(){
             echo '/organization/visitor_event';
+        }
+        public function show_post_button(){
+            echo '';
         }
         
     }
@@ -185,6 +195,9 @@
         public function show_event_link(){
             echo '/organization/visitor_event';
         }
+        public function show_post_button(){
+            echo '';
+        }
     }
 
     class Co_leader extends Role{
@@ -232,6 +245,9 @@
         }
         public function show_event_link(){
             echo '/organization/event';
+        }
+        public function show_post_button(){
+            echo $this->create_post_text;
         }
     }
 
@@ -285,6 +301,9 @@
         }
         public function show_event_link(){
             echo '/organization/event';
+        }
+        public function show_post_button(){
+            echo $this->create_post_text;
         }
     }
 
