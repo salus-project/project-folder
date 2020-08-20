@@ -660,3 +660,10 @@ input:checked+.slider:before {
         margin: unset;
     }
 }
+.main_footer{
+    background: #e8e8e8;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    vertical-align: middle;
+}
