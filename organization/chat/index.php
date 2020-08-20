@@ -12,32 +12,38 @@ ignore_user_abort();
 	}
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html>
     <head>
         <title>chat</title>
-        <link rel="stylesheet" href='/css_codes/chat_org.css'>
+        <link rel="stylesheet" href='/css_codes/message.css'>
     </head>
     <body>
         <script>
             document.getE
             btnPress(6);
         </script>
-	<div id="container">
-	<h1>Group Disscussion</h1>
+	<div id="container" class="msg_container_grp">
+	<?php
+		echo "<div class='msg_head_cont'>";
+			echo "<div class='Msg_head_detail_grp' >";
+				echo "<div class='Msg_head_name_grp' >Group Discussion</div>";
+			echo "</div>";
+		echo "</div>";
 	
+?>  
 		<div id="feedback">
 		</div>
-		
-		
-		<input type="text" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="Type massage here" />  
-		<input type="hidden" name="name" id="name" value="<?php echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>">
-        <input type="hidden" name="id" id="id" value="<?php echo  $_SESSION['user_nic']; ?>"> 
-		<input type="hidden" name="org_id" id="org_id" value="<?php echo  $org_id; ?>"> 
+		<div class='msg_type_cont'>
+		<div class='input_tag_cont'>
+			<input type="text" class="chat_input_tag" autocomplete="off" spellcheck="false" name="msg_b" id="msg_b" onkeypress="enterKey(event)" placeholder="Type message here" />  
+		</div>
+			<input type="hidden" name="name" id="name" value="<?php echo  $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>">
+        	<input type="hidden" name="id" id="id" value="<?php echo  $_SESSION['user_nic']; ?>"> 
+			<input type="hidden" name="org_id" id="org_id" value="<?php echo  $org_id; ?>"> 
         
-		<button id="post_btn" type="button">Send</button>
-		
-		
+			<button class="post_btn_grp" type="button"><div id="post_btn" class="msg_post_btn" ></div></button>
+</div>
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script>

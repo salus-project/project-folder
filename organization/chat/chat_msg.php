@@ -33,28 +33,28 @@
 					
 			if ($row['sender']==$_SESSION['first_name'] . ' ' . $_SESSION['last_name'])
 			{
-				echo"<div id='msg_box'>";
+				echo"<div class='in_msg_box' id='msg_box'>";
 					echo
 					"<div>
-						<i id='mytime'>{$time}</i> 
-						<br>
-						<div id='mymsg'>{$row['message']}</div>
+						<div id='mymsg'>".$row['message']."</div>
+						<div class='in_time_box'>
+							<i id='mytime'>".$time."</i> 
+						</div>
 					</div>";
 				echo "</div>";
-				echo"<br>";
 			}
 			else
 			{
-				echo"<div id='msg_box'>";
+				echo"<div class='out_msg_box' id='msg_box'>";
 					echo
 					"<div>
-						<b id='sender'>{$row['sender']}</b>
-						<i id='time'>{$time}</i>
-						<br>
-						<span id='msg'>{$row['message']}</span>
+						<div id='sender'>".$row['sender']."</div>
+						<div id='msg'>".$row['message']."</div>
+						<div class='out_time_box'>
+							<i id='time'>{$time}</i>
+						</div>
 					</div>";
 				echo "</div>";
-				echo"<br>";
 			}
 		}
 	mysqli_close($org_db);
