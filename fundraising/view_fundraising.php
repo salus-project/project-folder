@@ -100,6 +100,9 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 </div>';
             }
                 ?>
+                <div class="fund_profile_image">
+                    <img src="http://d-c-a.000webhostapp.com/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+                </div>
                 <div class='dot_div' style="text-align:center">
                 <?php
                     for($x=0 ; $x<count($imgs) ; $x++) {?>
@@ -181,7 +184,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             </table>
             </div>
             <div class="img_cont">
-                <div class='fund_head' colspan=2>Photos</div>
+                <div class='fund_head photo_head' colspan=2>Photos</div>
                 <div class='fund_image_conatainer'>
                     <div class='img_type'>Profile Image</div>
                     <div class="fund_image prim">
