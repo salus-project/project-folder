@@ -15,8 +15,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 <div id="post_title">
     POSTS
 </div>
-<div id=new_post onclick='load_tag_data()'>
-    <form method=post action='http://d-c-a.000webhostapp.com/createpost.php' enctype="multipart/form-data" autocomplete="off">
+<div id='new_post'>
+    <!--form method=post action='http://d-c-a.000webhostapp.com/createpost.php' enctype="multipart/form-data" autocomplete="off">
         <input type=hidden name=location value=<?php echo $_SERVER['HTTP_REFERER'] ?>>
         <input type=hidden name=user_nic value=<?php echo $_SESSION['user_nic'] ?>>
         <textarea id=post_text_area name=post_text_area rows=3 cols=5></textarea>
@@ -26,12 +26,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         <button type=submit id=submit name=submit value=post>POST</button>
         <div for=upload_file id=upload_file class="post_btn" onclick=upload()>Upload photo</div>
         <input type=file name=upload_file accept="image/*" id=hidden_upload_file style="display:none" onchange="loadFile(event)">
-        <!--div id=tag_button class="post_btn" onclick='add_tag()'><i class="fa fa-plus-square-o"></i> Tag</div-->
         <div id="tag_container">
             <input id="tag_input_field" type="text" name="tag" placeholder="Search here" placeholder="Search here" spellcheck="false" aria-autocomplete="none">
             <input type="hidden" name="tag_link">
         </div>
-    </form>
+    </form-->
 </div>
 
 <div id="content">
@@ -39,83 +38,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 </div>
 <?php include $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php" ?>
 <script>
-    var clicked=false;
-    function load_tag_data(){
-        if(!clicked){
-            var tag_content = document.getElementById("tag_content");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    autocomplete(document.getElementById("tag_input_field"), data);
-                }
-                if (this.readyState == 1) {
-                    //tag_content.innerHTML = 'Wait';
-                }
-            };
-            xhttp.open('GET', '/common/post/tag_autocomplete_ajax.php', true);
-            xhttp.send();
-            clicked=true;
-        }
-    }
-    
-    
+    var newPost = new NewPost('individual', '<?php echo $_SESSION['user_nic'] ?>');
     var post = new Post('select civilian_detail.first_name, civilian_detail.last_name, organizations.org_name, fundraisings.name, public_posts.* from (((public_posts LEFT JOIN civilian_detail on public_posts.author = civilian_detail.NIC_num) LEFT JOIN organizations on public_posts.org = organizations.org_id)  LEFT JOIN fundraisings on public_posts.fund = fundraisings.id)');
     post.get_post();
-
-    var choose_file = document.getElementById('hidden_upload_file');
-
-    function upload() {
-        choose_file.click();
-    }
-
-    var loadFile = function(event) {
-        var output = document.getElementById('preview');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src)
-            setHeight();
-        }
-    };
-
-    function setHeight(img) {
-
-        document.getElementById('image_container').style.margin = "10px";
-        //document.getElementById('image_container').style.height = img.height;
-    }
-
-    function add_tag() {
-        //frsrgrsrfvgv
-    }
-
-    function change_tag_topic(topic) {
-        if (topic.value != 'other') {
-            require_tag(topic.value);
-        } else {
-            var tag_content = document.getElementById("tag_content");
-            tag_content.innerHTML = "<input type='text' name='tag_content' class='post_input inner' placeholder='Enter Tag'>" +
-                "<input type='text' name='tag_content' class='post_input inner' placeholder='link'>"
-        }
-    }
-
-    function require_tag(tag_topic) {
-        send_str = "topic=" + tag_topic;
-        console.log(send_str);
-        var tag_content = document.getElementById("tag_content");
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                tag_content.innerHTML = this.responseText;
-            }
-            if (this.readyState == 1) {
-                tag_content.innerHTML = 'Wait';
-            }
-        };
-        xhttp.open('POST', '/publicpost/add_tag.php', true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(send_str);
-    }
 </script>
-<script src="/js/auto_complete.js"></script>
