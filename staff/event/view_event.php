@@ -78,7 +78,7 @@
                 </div>
             <?php }
              echo "<div id=img_edit_btn_container >";
-                echo "<a href='/staff/event/event_edit_img?id=".$_GET['event_id']."'>";
+                echo "<a href='/staff/event/edit_img?id=".$_GET['event_id']."'>";
                 echo "<button id='edit_img_btn' >Edit photos</button>";
                 echo "</a>";
                 echo"</div>";
@@ -88,4 +88,3 @@
         </div>
     </body>
 </html>
-
