@@ -54,14 +54,20 @@ ignore_user_abort();
                     <input type=hidden name="header" value="true">
                 </form>
                 <button class='edit_profile_btn' onclick="this.previousElementSibling.firstElementChild.click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
-                <button class='remove_profile_btn' type='submit'><i class="fas fa-trash-alt"></i>Remove</button>
+                <form method='post' action="http://d-c-a.000webhostapp.com/Fundraising/secondary/upload_fundraising.php" enctype="multipart/form-data">
+                    <input type='hidden' name="img" value='<?php echo $img ?>'>
+                    <input type='hidden' name="fund_id" value="<?php echo $_GET['id'] ?>">
+                    <button class='remove_profile_btn' type='submit' name='delete' value='1'><i class="fas fa-trash-alt"></i>Remove</button>
+                </form>
+                
             </div>
         <?php }
         ?>
     <div class='new_photo_container'>
         <form method='post' action="http://d-c-a.000webhostapp.com/Fundraising/secondary/upload_fundraising.php" enctype="multipart/form-data">
             <input type=file name=upload_file accept="image/jpeg" style="display:none" onchange="this.parentElement.submit()">
-            <input type=hidden name="fund_id" value="<?php echo $_GET['id'] ?>">
+            <input type='hidden' name="fund_id" value="<?php echo $_GET['id'] ?>">
+            <input type='hidden' name="upload" value="1">
         </form>
         <button id='upload_profile_btn' onclick="this.previousElementSibling.firstElementChild.click()"><i class="fa fa-camera" aria-hidden="true"></i>Upload new photo</button>
     </div>
