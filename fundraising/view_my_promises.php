@@ -1,7 +1,8 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $id=$_SESSION['user_nic'];
-    $query="select p.*,f.*,f.id AS  fundraising_pro_donid from fundraising_pro_don f inner join fundraisings p on f.for_fund = p.id where by_person='".$id."';
+    $person=$_SESSION['first_name']." ".$_SESSION['last_name'];
+    $query="select p.*,f.*,f.id AS  fundraising_pro_donid,p.id AS fun_id from fundraising_pro_don f inner join fundraisings p on f.for_fund = p.id where by_person='".$id."';
     select a.id as id,a.don_id as don_id,a.item as item,a.amount as amount,a.pro_don as pro_don,b.by_org as by_org,b.by_person as by_person,b.for_fund as for_fund,b.note as note from fundraising_pro_don_content as a inner join fundraising_pro_don as b on b.id = a.don_id where b.by_person='".$id."';";
 
     if(mysqli_multi_query($con,$query)){
@@ -47,6 +48,8 @@
             <?php
                 foreach($fundraising_detail as $row_req){
                     $name=$row_req['name'];
+                    $by=$row_req['by_civilian'];
+                    $fun_id=$row_req['fun_id'];
                     $note=$row_req['note'];
                     $promise_array=[];
                     $pending_array=[];
@@ -73,7 +76,7 @@
                                 ".$name_data."
                             <td>".$value."</td>
                             <td class='not_click'>
-                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$id_arr[$x].")'>
+                            <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$id_arr[$x].",\"".$name."\",\"".$by."\",\"".$fun_id."\")'>
                             </td>
                             ".$note_data."
                         </tr>";
@@ -131,7 +134,8 @@
             
         }
     }
-    function toggleFn(ele,id){
+    function toggleFn(ele,id,fund,id_n,fun_id){
+        var person="<?php echo $person ; ?>";
         if (ele.checked){
         var c_status='pending';
         }else{
@@ -143,10 +147,10 @@
         //     if (this.readyState == 4 && this.status == 200) {
         //         console.log(this.responseText);
         //     }
-        //  };
+        // };
         xhttp.open("POST", "/common/postajax/post_ajax.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("sql="+sql);
+        xhttp.send("sql="+sql+"&person="+person+"&fund="+fund+"&status="+c_status+"&id_n="+id_n+"&fun_id="+fun_id+"&type="+3);
     }
 </script>
 
