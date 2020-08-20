@@ -92,3 +92,74 @@ function response(send_str,element){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(send_str);
 }
+
+class NewPost{
+    constructor(type, id, location=''){
+        this.clicked = false;
+        this.type = type;
+        this.id = id;
+        var container = document.getElementById('new_post');
+        var form = document.createElement('FORM');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', 'http://d-c-a.000webhostapp.com/createpost.php');
+        form.setAttribute('enctype', 'multipart/form-data');
+        form.setAttribute('autocomplete', 'off');
+        form.innerHTML= "<input type='hidden' name='location' value='"+this.location+"'>"+
+                            "<input type='hidden' name='type' value='"+this.type+"'>"+
+                            "<input type='hidden' name='id' value='"+this.id+"'>"+
+                            "<textarea id='post_text_area' name='post_text_area' rows=3 cols=5></textarea>"+
+                            "<div id='image_container'>"+
+                                "<img id='preview' />"+
+                            "</div>"+
+                            "<button type='submit' id='submit' name='submit' value='post'>POST</button>"+
+                            "<div for='upload_file' id='upload_file' class='post_btn'>Upload photo</div>"+
+                            "<input type='file' name='upload_file' accept='image/*' id='hidden_upload_file' style='display:none'>"+
+                            "<div id='tag_container'>"+
+                                "<input id='tag_input_field' type='text' name='tag' placeholder='Search here' placeholder='Search here' spellcheck='false' aria-autocomplete='none'>"+
+                                "<input type='hidden' name='tag_link'>"+
+                            "</div>";
+        container.appendChild(form);
+        container.addEventListener('click',this.load_tag_data);
+        document.getElementById('upload_file').onclick=this.upload;
+        document.getElementById('hidden_upload_file').onchange=this.loadFile;
+    }
+
+    load_tag_data(){
+        if(!this.clicked){
+            var tag_content = document.getElementById("tag_content");
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    autocomplete(document.getElementById("tag_input_field"), data);
+                }
+                if (this.readyState == 1) {
+                    //tag_content.innerHTML = 'Wait';
+                }
+            };
+            xhttp.open('GET', '/common/post/tag_autocomplete_ajax.php', true);
+            xhttp.send();
+            this.clicked=true;
+        }
+    }
+
+    upload() {
+        document.getElementById('hidden_upload_file').click();
+    }
+
+    loadFile(event) {
+        var output = document.getElementById('preview');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src)
+            this.setHeight();
+        }
+    };
+
+    setHeight(img) {
+
+    document.getElementById('image_container').style.margin = "10px";
+    //document.getElementById('image_container').style.height = img.height;
+    }
+}
