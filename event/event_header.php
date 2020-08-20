@@ -79,7 +79,14 @@
         </script>
         <div id=event_header>
             <div id=title_box>
-                <?php echo $result['name'] ?>
+            <div class=event_header_name_profile>
+                <div class="event_header_profile">
+                    <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $result['event_id'] ?>.jpg" alt="Opps..." class="fund_pic">
+                </div>
+                <div class=event_header_name>
+                    <?php echo $result['name'] ?>
+                </div>
+            </div>
                 <div class='other_menu_container'>
                     <a href="/event/?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='other_menus'>
                         Home

@@ -1,4 +1,7 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
+$id=$result['event_id'];
+$imgs = array_filter(explode(',', $result['img']));
+?>
 <div id='map_container'>
     <div id='map'></div>
 </div>
@@ -39,28 +42,31 @@
     </div>
     <div id=pictures>
         <h3 class='head'>Photos</h3>
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <img src='/common/img/1.jfif' style='width: 100%;' alt="sally lightfoot crab"/>
-            </div>
-            <div class="mySlides fade">
-                <img  src='/common/img/2.jfif' style='width: 100%;' alt="fighting nazca boobies"/>
-            </div>
-            <div class="mySlides fade">
-                <img  src='/common/img/3.jfif' style='width: 100%;' alt="otovalo waterfall"/>
-            </div>
-            <div class="mySlides fade">
-                <img  src='/common/img/4.jfif' style='width: 100%;' alt="pelican"/>
-            </div>
+        <?php	
+            if(count($imgs)>0){
+                echo '<div class="slideshow-container">';
+
+            foreach ($imgs as $img) {?>
+                    <div class="mySlides fade">
+                        <img class='slide_show_img' src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" style="width:100%">
+                    </div>
+            <?php }
+            }else{
+                echo '<div style="width:100%;">
+                    <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+                </div>';
+            }
+                ?>
             <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
             <a class="next" onclick='plusSlides(1)'>&#10095;</a>
             </div>
             <br/>
             <div style='text-align: center;'>
-            <span class="dot" onclick='currentSlide(1)'></span>
-            <span class="dot" onclick='currentSlide(2)'></span>
-            <span class="dot" onclick='currentSlide(3)'></span>
-            <span class="dot" onclick='currentSlide(4)'></span>
+            <?php
+                for($x=0 ; $x<count($imgs) ; $x++) {?>
+                <span class="dot"></span> 
+            <?php }
+            ?>
             </div>
 
     </div>  
