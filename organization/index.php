@@ -15,11 +15,16 @@
         <div id="my_posts">
             OUR POSTS 
         </div>
+        <div >
+            <?php $viewer->show_post_button(); ?>
+        </div>
+        
         <div id="content">
 
         </div>
         <script>
-            var post = new Post("select public_posts.*,organizations.org_name from public_posts inner join organizations on public_posts.org='"+<?php echo $org_id?>+"'=organizations.org_id="+<?php echo $org_id?>);
+            var newPost = new NewPost('organization', '<?php echo $org_id ?>');
+            var post = new Post("select public_posts.*,organizations.org_name from public_posts inner join organizations on public_posts.org=organizations.org_id where public_posts.org="+<?php echo $org_id?>);
             post.get_post();
         </script>
         <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
