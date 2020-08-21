@@ -666,4 +666,8 @@ input:checked+.slider:before {
     line-height: 70px;
     text-align: center;
     vertical-align: middle;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
