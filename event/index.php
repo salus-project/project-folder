@@ -43,32 +43,34 @@ $imgs = array_filter(explode(',', $result['img']));
     <div id=pictures>
         <h3 class='head'>Photos</h3>
         <?php	
-            if(count($imgs)>0){
-                echo '<div class="slideshow-container">';
+        if(count($imgs)>0){
+            echo '<div class="slideshow-container">';
 
             foreach ($imgs as $img) {?>
                     <div class="mySlides fade">
                         <img class='slide_show_img' src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" style="width:100%">
                     </div>
-            <?php }
-            }else{
-                echo '<div style="width:100%;">
-                    <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
-                </div>';
-            }
-                ?>
-            <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
-            <a class="next" onclick='plusSlides(1)'>&#10095;</a>
-            </div>
+        <?php }
+            echo '<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>';
+        
+            ?>
+            
             <br/>
             <div style='text-align: center;'>
             <?php
                 for($x=0 ; $x<count($imgs) ; $x++) {?>
                 <span class="dot"></span> 
             <?php }
-            ?>
-            </div>
-
+            
+            echo '</div>';
+        }else{
+            echo '<div style="width:100%; height:341px;">
+                <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+            </div>';
+        }
+        ?>
     </div>  
 </div>
 
