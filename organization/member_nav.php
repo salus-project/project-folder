@@ -63,10 +63,10 @@
                 }
                 $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $leader_nic . ".jpg";
                 
-                echo    "<tr>
-                            <td>
-                                <a class='side_nav_a' href='/view_profile.php?id=".$leader_nic."'>".
-                                    "<img src='".$profile_path."' alt='oops' class='side_nav_profile'>".
+                echo    "<tr class='role_div'>
+                            <td class='role_name'>
+                                <a class='mem_nav_a' href='/view_profile.php?id=".$leader_nic."'>".
+                                    "<img src='".$profile_path."' alt='oops' class='side_nav_profile role_pic'>".
                                     $leader_name."
                                 </a>
                             </td>
@@ -91,7 +91,7 @@
                                                 <img src='".$profile_path."' alt='oops' class='side_nav_profile'>
                                             </div>
                                             <div class='role_name'>
-                                                <a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$coleader_name."</a>
+                                                <a class='mem_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$coleader_name."</a>
                                             </div>                                           
                                         </div>";
                                     echo "<div class='add_remove_div none'>";
@@ -136,7 +136,7 @@
                                                 <img src='".$profile_path."' alt='oops' class='side_nav_profile'>
                                             </div>
                                             <div class='role_name'>
-                                                <a class='side_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$member_name."</a>
+                                                <a class='mem_nav_a' href='/view_profile.php?id=".$row['NIC_num']."'>".$member_name."</a>
                                             </div>                                           
                                         </div>";                                       
                               echo "</div>";                                    
