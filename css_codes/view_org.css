@@ -1,3 +1,4 @@
+
 .view_org_table{
     margin: auto;
     margin-bottom: 20px;
@@ -56,10 +57,11 @@
 .role{
     position: relative;
     height: 40px;
-    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     z-index: 1;
     display: block;
-    border-bottom: 1px solid #d8e0e7
+    border-bottom: 1px solid #d8e0e7;
 }
 .role_div{
     display: flex;
@@ -67,14 +69,22 @@
     height: 40px;
 }
 .role_pic{
-    width: 40px;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
 }
 .role_name{
     vertical-align: middle;
     width: 100%;
-    line-height: 1;
+    line-height: 40px;
     height: 40px;
     margin-left: 10px;
+}
+.mem_nav_a{
+    font-size: 12px;
+    color: #6b7c93;
+    cursor: pointer;
+    text-decoration: none;
 }
 .add_remove_div{
     position: absolute;
@@ -82,40 +92,45 @@
     right: 0;
     display: flex;
     flex-flow: column;
-    border: 1px solid #d8e0e7;
-    height: 40px;
     z-index: 2;
-    width: 150px;
     background-color: #e5e5f4;
-    display: none;
+    display: none; 
+    width: 155px;
 }
 .add_remove{
-    opacity: 0.6;
+    width: 100%;
 }
-.add_remove:hover{
-    opacity: 1;
-}
-.role:hover .add_remove_div{
-    position: absolute;
-    display: block;
-}
+
 
 .add_remove_but{
     border: none;
     background-color: #e5e5f4;
-    width: 140px;
+    width: 30%;
     text-align: left;
+    cursor: pointer;
+}
+.add_remove_button{
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.add_remove_a{
+    width: 100%;
+    color: #6b7c93;
+    text-decoration: none;
 }
 .add_remove_but:hover{
     cursor: pointer;
 }
 
-
-
 .add_mem_input{
     font-size: 12px;
     border: none;
-    border-right: 1px solid #d8e0e7;   
+    width: 100%;
+    height: 100%;   
 }
 .add_role_btn{
     color: white;
@@ -124,14 +139,32 @@
     font-size: 16px;
     background-color: #2980B9;
     height: 27px;
-    width: 60px;
+    width: 100%;
     font-family: "Open Sans";
+    cursor: pointer;
 }
 .add_role{
-    margin-left: 20px;
-    width: 223px;
+    width: calc(100% - 10px);
+    margin: auto;
     display: flex;
+    flex-wrap: nowrap;
     border: 1px solid #d8e0e7;
-    padding-left: 10px;
     margin-top: 5px;
+}
+.addd_remove_main{
+    width: 70%;
+}
+.add_remove:hover{
+    background: #2980B9;
+    color: white;
+}
+
+.role:hover .add_remove_div{   
+    position: absolute;
+    display: block;
+    z-index: 3;
+}
+
+.add_remove:hover .add_remove_button{
+    color: white;
 }
