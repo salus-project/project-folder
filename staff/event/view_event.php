@@ -61,19 +61,19 @@
         </div>
         <div class="img_cont">
             <div class='fund_head' colspan=2>Photos</div>
-            <!--div class='fund_image_conatainer'>
+            <div class='fund_image_conatainer'>
                 <div class='img_type'>Profile Image</div>
                 <div class="fund_image prim">
-                    <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+                    <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $event_id ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
-            </div-->
+            </div>
             
             <?php
             foreach ($imgs as $img) {?>
                 <div class="fund_image_conatainer">
                 <div class='img_type'>Secondary Images</div>
                     <div class="fund_image seco">
-                        <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
+                        <img src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
                     </div>
                 </div>
             <?php }
