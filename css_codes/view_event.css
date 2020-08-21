@@ -11,6 +11,7 @@ body{
     display: flex;
     padding: 10px;
     height: 115px;
+    overflow: hidden;
 }
 .event_header_profile{
     width: 95px;
