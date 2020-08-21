@@ -1,7 +1,0 @@
-    $servername = "remotemysql.com";
-    $username = "kfm2yvoF5R";
-    $password = "4vkzHfeBh6";
-
-    $databse_name = "kfm2yvoF5R";
-
-https://remotemysql.com/phpmyadmin/sql.php?server=1&db=kfm2yvoF5R&table=disaster_events&pos=0
