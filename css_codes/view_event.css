@@ -1,8 +1,3 @@
-body{
-    background-color: rgb(242 244 246);
-    font-family: Open Sans,sans-serif;
-    color:#6b7c93;
-}
 .event_header_name_profile{
     position: absolute;
     width: calc(100% - 200px);
@@ -11,7 +6,6 @@ body{
     display: flex;
     padding: 10px;
     height: 115px;
-    overflow: hidden;
 }
 .event_header_profile{
     width: 95px;

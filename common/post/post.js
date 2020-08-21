@@ -115,16 +115,16 @@ class NewPost{
                             "<div for='upload_file' id='upload_file' class='post_btn'>Upload photo</div>"+
                             "<input type='file' name='upload_file' accept='image/*' id='hidden_upload_file' style='display:none'>"+
                             "<div id='tag_container'>"+
-                                "<input id='tag_input_field' type='text' name='tag' placeholder='Search here' placeholder='Search here' spellcheck='false' aria-autocomplete='none'>"+
                                 "<input type='hidden' name='tag_link'>"+
                             "</div>";
         container.appendChild(form);
-        container.addEventListener('click',this.load_tag_data);
+        //container.addEventListener('click',this.load_tag_data);
+        autocomplete_ready(document.getElementById("tag_container"), 'all', container);
         document.getElementById('upload_file').onclick=this.upload;
         document.getElementById('hidden_upload_file').onchange=this.loadFile;
     }
 
-    load_tag_data(){
+    /*load_tag_data(){
         if(!this.clicked){
             var tag_content = document.getElementById("tag_content");
 
@@ -142,7 +142,7 @@ class NewPost{
             xhttp.send();
             this.clicked=true;
         }
-    }
+    }*/
 
     upload() {
         document.getElementById('hidden_upload_file').click();

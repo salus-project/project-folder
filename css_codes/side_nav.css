@@ -1,6 +1,3 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-}
 @media screen and (min-width: 480px) {
     .sticker {
         position: fixed; 
@@ -97,7 +94,6 @@
     height: 25px;
     vertical-align: middle;
     border-radius: 50%;
-    float: left;
     margin-right: 10px;
     margin-left: 10px;
     line-height: 25px;
@@ -126,13 +122,11 @@ a.side_nav_a:hover{
     color: green;
     height: 25px;
 }
-}
 .user_row{
     height: 25px;
     display: table-row-group;
     border: none;
     width: 100%;
-}
 }
 .user_row:hover{
     background-color: rgba(0, 0, 0, .05);

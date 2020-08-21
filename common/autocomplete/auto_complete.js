@@ -1,4 +1,4 @@
-function autocomplete_ready(ele, type, touch_ele = null, link = '') {
+function autocomplete_ready(ele, type, touch_ele = null, click_action = '', action_link='') {
     ele.style.position = 'relative';
     var clicked = false;
     var inp_ele = document.createElement('INPUT');
@@ -10,26 +10,34 @@ function autocomplete_ready(ele, type, touch_ele = null, link = '') {
     if (touch_ele == null) {
         touch_ele = inp_ele;
     } else if (touch_ele === 'ready') {
-        load_data(inp_ele, type, link);
-    } else {
-
-
-
+        load_data(inp_ele, type, click_action, action_link);
+    } else if (touch_ele === 'inp') {
         touch_ele.addEventListener('click', function() {
             if (!clicked) {
-                load_data(inp_ele, type, link);
-
+                load_data(inp_ele, type, click_action);
+                clicked = true;
+            }
+        });
+    } else {
+        touch_ele.addEventListener('click', function() {
+            if (!clicked) {
+                load_data(inp_ele, type, click_action);
+                clicked = true;
             }
         });
     }
 }
 
-function load_data(inp_ele, type, link) {
+function autocomplete_ready_input(inp_ele, type, click_action = '', action_link=''){
+    load_data(inp_ele, type, click_action, action_link)
+}
+
+function load_data(inp_ele, type, click_action, action_link) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-            autocomplete(inp_ele, data, link);
+            autocomplete(inp_ele, data, click_action, action_link);
         }
         if (this.readyState == 1) {
             //tag_content.innerHTML = 'Wait';
@@ -40,7 +48,8 @@ function load_data(inp_ele, type, link) {
     clicked = true;
 }
 
-function autocomplete(inp, inp_arr, link) {
+function autocomplete(inp, inp_arr, click_action, action_link) {
+    console.log('click action '+ click_action);
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
@@ -78,18 +87,25 @@ function autocomplete(inp, inp_arr, link) {
                     html += "<strong>" + tem[j][1].substr(0, val.length) + "</strong>";
                     html += tem[j][1].substr(val.length);
                     /*insert a input field that will hold the current array item's value:*/
-                    html += "<input type='hidden' value='" + arr[i]['showname'] + "'><input type='hidden' value='" + arr[i]['link'] + "'><input type='hidden' value='" + arr[i]['value'] + "'>";
+                    html += "<input type='hidden' value='" + arr[i]['showname'] + "'><input type='hidden' value='" + arr[i]['link'] + "'><input type='hidden' value='" + arr[i]['id'] + "'>";
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     b.innerHTML = html;
                     b.addEventListener("click", function(e) {
                         /*insert the value for the autocomplete text field:*/
-                        if (link === '') {
+                        if (click_action === '') {
                             inp.value = this.getElementsByTagName("input")[0].value;
-                            inp.nextElementSibling.value = this.getElementsByTagName("input")[1].value;
-                        } else if (link === 'click') {
-                            window.location.href = this.getElementsByTagName("input")[1].value;
+                            inp.previousElementSibling.value = this.getElementsByTagName("input")[1].value;
+                        }else if (click_action === 'set_id') {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            inp.previousElementSibling.value = this.getElementsByTagName("input")[2].value;
+                        } else if (click_action === 'click') {
+                            if(action_link === ''){
+                                window.location.href = this.getElementsByTagName("input")[1].value;
+                            }else{
+                                window.location.href = action_link + this.getElementsByTagName("input")[2].value;
+                            }
                         } else {
-                            window.location.href = link + this.getElementsByTagName("input")[2].value;
+                            window.location.href = click_action + this.getElementsByTagName("input")[2].value;
                         }
                         /*close the list of autocompleted values,
                         (or any other open lists of autocompleted values:*/

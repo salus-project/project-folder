@@ -44,6 +44,14 @@ input {
     outline: none;
 }
 
+.all_a,
+a.all_a:visited,
+a.all_a:active {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 .sticky {
     position: fixed;
     left: 0px;
@@ -214,12 +222,19 @@ x {
     width: 100%
 }
 
-.all_a,
-a.all_a:visited,
-a.all_a:active {
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
+/*----------------footer setting---------------------*/
+.main_footer{
+    background: #e8e8e8;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    vertical-align: middle;
+    width: calc(100% - 300px);
+    transition: width 1.5s;
+}
+
+.full_footer {
+    width: 100%
 }
 
 .menu_icon:hover {
@@ -659,15 +674,4 @@ input:checked+.slider:before {
     .menubar_icons{
         margin: unset;
     }
-}
-.main_footer{
-    background: #e8e8e8;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
 }

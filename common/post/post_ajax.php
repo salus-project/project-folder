@@ -25,13 +25,13 @@
                                         . $this->author .
                                     "</b></a>";
                                     if(!$this->detail_arr['tag']==''){
-                                        echo " <i class='fa fa-toggle-right'></i> ".$this->detail_arr['tag'];
+                                        echo " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='".$this->detail_arr['tag_link']."'>".$this->detail_arr['tag']."</a>";
                                     }
                                     echo "</div>
                                     <div class='post_date'> Date: {$this->detail_arr['date']}</div>
                                 </div>
                                 <div class='view_post_div'>
-                                    <a href='/common/post/view_post.php?post_index=".$this->detail_arr['post_index']."' class='vie_post_a'><button class='view_post_but'>View</button></a>
+                                    <a href='/publicpost/view_post.php?post_index=".$this->detail_arr['post_index']."' class='vie_post_a'><button class='view_post_but'>View</button></a>
                                 </div>";
                             echo"</div>
                         </div>";

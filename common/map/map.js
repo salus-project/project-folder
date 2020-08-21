@@ -91,7 +91,7 @@ class AreaStyle{
 }
 
 class EventGeo{
-    constructor(id='map', x=0,y=0,zoom=12){
+    constructor(id='map', x=6.9,y=80,zoom=12){
         document.getElementById(id).style.zIndex=1;
         this.map = L.map(id).setView([x, y],zoom);
         L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=fN8T3G0qqLvrBTjTZJfJ'/*, {
@@ -142,7 +142,9 @@ class EventGeo{
         }).addTo(this.map);
         this.place.bindPopup(msg);
         if(center){
-            this.map.fitBounds(this.place.getBounds());
+            try{
+                this.map.fitBounds(this.place.getBounds());
+            }catch(err){} 
         }
         this.last_place_circle=this.place;
         this.places.push(this.place);
@@ -199,7 +201,9 @@ class EventGeo{
     }
     fit_screen(){
         this.map.invalidateSize();
-        this.map.fitBounds(this.place.getBounds());
+        try{
+            this.map.fitBounds(this.place.getBounds());
+        }catch(err){} 
     }
 }
 
