@@ -7,7 +7,7 @@
     while($row=$civilian->fetch_assoc()){
         if($row['NIC_num']!=$_SESSION['user_nic']){
             
-            $profile_path = "http://eme-service.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
+            $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
 
             echo    "<tr class='user_row'>
                         <td class='user_name'>

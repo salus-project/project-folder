@@ -41,7 +41,8 @@
 </div>
                     <div id='header_search_box_cont'>
                         <div id='header_search_box'>
-                            <div id='search_icon'><i class="fa fa-search" aria-hidden="true"></i></div></div>
+                            <div id='search_icon'><i class="fa fa-search" aria-hidden="true"></i></div>
+                        </div>
                     </div>
 
                     <div class='dropdown_cont'><div  class="menubar_buttons dropdown_btn" onclick='show_dropdown(this)'><div class="menu_icon_tooltip">

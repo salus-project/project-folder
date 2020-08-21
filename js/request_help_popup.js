@@ -27,31 +27,24 @@ function OnChangeCheckbox(checkbox, textbox) {
     var district = document.getElementById("req_district").value;
     var village = document.getElementById("village").value;
     var street = document.getElementById("street").value;
-
     var lat =document.getElementById('lat').value;
     var lng=document.getElementById('lng').value;
-
     const request = new XMLHttpRequest();
-
     request.onload = () => {
         console.log(request.responseText);
     };
     var requestData = `event_id=` + event_id + `&district=` + district + `&village=` + village + `&street=` + street + `&requests=` + requests +  `&lat=` + lat + `&lng=` + lng + `&submit_button=` + 'submit';
     requestData = (requestData.split(" ")).join("+");
-
     request.open('post', '/event/request_help.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(requestData);
-
     help_status = 'requested';
-
     var html2 = "<button id='help_request_option' disabled>Help Requested</button>" +
         "<div id=changeRequest>" +
         "<button class=drop_dwn name=method value=cancel onclick=cancel_request()>Cancel Request</button><br>" +
         "<button class=drop_dwn name=method value=option onclick=request_option()>Request Option</button>" +
         "</div>";
     help_btn.innerHTML = html2;
-
     document.getElementById('popup_div').classList.remove('active_pop');
     overlay.classList.remove('active_pop');
 };*/

@@ -1,4 +1,8 @@
-<?php  
+<?php
+    if(!isset($_GET['event_id'])){
+        require $_SERVER['DOCUMENT_ROOT']."/event/all_event.php";
+        exit();
+    }
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
 <!DOCTYPE html>
@@ -17,9 +21,6 @@
         <link rel="stylesheet" href="/css_codes/view_event.css">
         <link rel="stylesheet" href="/css_codes/style.css">
         <link rel="stylesheet" href="/css_codes/help_request_popup.css">
-        <script type="text/javascript" src="/js/request_help_popup.js"></script>
-        <script type="text/javascript" src="/js/volunteer_application.js"></script>
-        <script defer src='/js/view_event.js'></script>
     </head>
     <body>
 
@@ -38,6 +39,11 @@
                 $sql_result = mysqli_store_result($con);
                 $result = mysqli_fetch_assoc($sql_result);
                 mysqli_free_result($sql_result);
+            }
+
+            if($result['status']=='closed'){
+                require $_SERVER['DOCUMENT_ROOT']."/event/closed_event.php";
+                exit();
             }
             
             $status=explode(" ",$result['user_'.$_SESSION['user_nic']]);
@@ -76,7 +82,11 @@
             var event_name = '<?php echo $result['name'] ?>';
             var areaGeoJson = JSON.parse('<?php echo $result['geoJson'] ?>');
             var location_arr = <?php echo json_encode($location_arr) ?>;
+            
         </script>
+        <script type="text/javascript" src="/js/request_help_popup.js"></script>
+        <script type="text/javascript" src="/js/volunteer_application.js"></script>
+        <script defer src='/js/view_event.js'></script>
         <div id=event_header>
             <div id=title_box>
             <div class=event_header_name_profile>

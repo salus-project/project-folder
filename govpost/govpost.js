@@ -7,11 +7,15 @@ function create_post(arr,user_nic=''){
                                 "<div class='author post_a'>"+
                                     "<b>"+arr['heading']+"</b>";
                                     if(!arr['event']==''){
-                                        html+= " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='"+arr['event']+"'>"+arr['event_name']+"</a>";
+                                        html+= " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='/event?event_id="+arr['event']+"'>"+arr['event_name']+"</a>";
                                     }
-                        if(user_nic!==''){
+                        if(user_nic!=='' && user_nic!=='staff'){
                             var stt="<div class='view_post_div'>"+
-                                "<a href='/common/post/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
+                                "<a href='/govpost/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
+                            "</div>";
+                        }else if(user_nic==='staff'){
+                            var stt="<div class='view_post_div'>"+
+                                "<a href='/staff/govpost/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
                             "</div>";
                         }else{
                             var stt="";
@@ -23,10 +27,10 @@ function create_post(arr,user_nic=''){
                     "</div>"+
                     "<div><div class='post_content'>" +arr['content'] + "</div></div>";
                     if(!arr['img']==''){
-                        html+= "<div class=post_image_container><img class=post_image src='"+arr['img']+"'/></div>";
+                        html+= "<div class=post_image_container><img class=post_image src='http://d-c-a.000webhostapp.com/"+arr['img']+"'/></div>";
                     }
-                    var likes = arr['likes'].split(' ');
-                    if(user_nic!==''){
+                    var likes = (arr['likes'] || '').split(' ');
+                    if(user_nic!=='' && user_nic!=='staff'){
                         html+=  "<div class='like_bar'>"+
                                     "<div class='likes'>"+
                                         "<span class='like_count'>"+
@@ -64,6 +68,34 @@ function create_post(arr,user_nic=''){
                                             "<input type='text' class='comment_input' placeholder='Enter your comment..'>"+
                                         "</div>"+
                                         "<div class='tooltip send_icon' onclick='comment(this)'>"+
+                                            "<span class='send_btn'><i class='fa fa-send'></i></span>"+
+                                            "<span class='tooltiptext'>SEND</span>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>";
+                    }else if(user_nic==='staff'){
+                        html+=  "<div class='like_bar'>"+
+                                    "<div class='likes'>"+
+                                        "<span class='like_count'>"+
+                                            likes.length + " likes"+
+                                        "</span>"+
+                                    "</div>"+
+                                    "<div class='buttons_container'>";
+                            html+=      "<div class='button_div'>"+
+                                            "<button class='button_con  but_1_2' onclick='show_comment(this)'>"+
+                                                "<i class='far fa-comment-alt'></i><b> "+
+                                                    +arr['comments'] + " comments</b>"+
+                                            "</button>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='comment_box_container'>"+
+                                    "<div class='comment_box'></div>"+
+                                    "<div class='new_comment'>"+
+                                        "<div class='comment_div'>"+
+                                            "<input type='text' class='comment_input' placeholder='Enter a government comment..'>"+
+                                        "</div>"+
+                                        "<div class='tooltip send_icon' onclick='comment(this, \"staff\")'>"+
                                             "<span class='send_btn'><i class='fa fa-send'></i></span>"+
                                             "<span class='tooltiptext'>SEND</span>"+
                                         "</div>"+
@@ -152,12 +184,17 @@ function show_comment(element){
     var send = "view_cmt=true&post_index=".concat(post_index);
     response(send,cmt_btn.querySelector('.comment_box'));
 }
-function comment(element){
+function comment(element, sender=''){
     var comment = element.parentElement.querySelector('.comment_input').value;
     if(comment!==''){
         var parent = element.parentElement.parentElement.parentElement;
         var post_index = parent.querySelector('.post_index').value;
         send = "comment=true&post_index=".concat(post_index,"&content=",comment);
+        if(sender!==''){
+            send+='&sender=gov';
+        }else{
+            send+='&sender';
+        }
         response(send);
         send = "view_cmt=true&post_index=".concat(post_index);
         response(send,element.parentElement.previousElementSibling);
@@ -174,7 +211,7 @@ function response(send_str,element){
             }
         }
     };
-    xhttp.open('POST', '/common/post/post_event_ajax.php',true);
+    xhttp.open('POST', '/govpost/govpost_action_ajax.php',true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(send_str);
 }
