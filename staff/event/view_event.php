@@ -39,8 +39,18 @@
                     echo "<form action=/staff/event/close_event.php method=GET>";
                     echo    "<button type='submit' name=close class='close_button' value=".$event_id."><i class='fa fa-window-close' style='font-size:20px;color:black;' aria-hidden='true'>Close</i></button>";
                     echo "</form>";
+                    echo "<form action=/staff/event/delete_event.php method=GET>";
+                    echo    "<input type='hidden' name=del value='1'>";
+                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:black;' aria-hidden='true'>Delete</i></button>";
+                    echo "</form>";
+                }else{
+                    echo "<form action=/staff/event/delete_event.php method=GET>";
+                    echo    "<input type='hidden' name=del value='0'>";
+                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:black;' aria-hidden='true'>Delete</i></button>";
+                    echo "</form>";
                 }
             ?>
+            
             </div>
         </div>
 
