@@ -1,7 +1,7 @@
 <?php  
     require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
 ?>
-<link rel="stylesheet" href='/staff/css_codes/view_event.css'>
+<link rel="stylesheet" href='/staff/css_codes/edit_img.css'>
 <?php
     $id = intval($_GET['id']);
     $query = "select * from disaster_events where event_id=" . $id;
@@ -20,9 +20,24 @@
 ?>
 <div class='fund_head' colspan=2><?php echo $event_name ?></div>
 <div class="img_cont">
+<div class='fund_image_conatainer'>
+        <div class='img_type'>Profile Image</div>
+        <div class="fund_image prim">
+            <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+        </div>
+        <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data">
+            <input type=file name=upload_file accept="image/jpeg" style="display:none" onchange="this.parentElement.submit()">
+            <input type=hidden name="directory" value="Event/">
+            <input type=hidden name="filename" value="<?php echo $id ?>">
+            <input type=hidden name="header" value="true">
+            <input type=hidden name="resize" value="true">
+        </form>
+        <button class='edit_profile_btn' onclick="this.previousElementSibling.firstElementChild.click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
+    </div>
         <?php
         foreach ($imgs as $img) {?>
             <div class="fund_image_conatainer">
+            <div class='img_type'>Secondary Image</div>
                 <div class="fund_image seco">
                     <img src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
