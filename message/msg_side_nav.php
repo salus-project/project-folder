@@ -1,5 +1,5 @@
-
 <?php
+$notification_DB=NotificationDb::getConnection();
 $sql="SELECT * FROM user_message_".$_SESSION['user_nic']." WHERE id IN ( SELECT MAX(id) FROM user_message_".$_SESSION['user_nic']." GROUP BY _from,_to);";
 $result=array_reverse($notification_DB->query($sql)->fetch_all(MYSQLI_ASSOC));
 //echo $sql;

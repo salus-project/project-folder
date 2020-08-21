@@ -34,6 +34,6 @@
         }else{
             echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
         }
-        header('location:/staff/event/view_event.php?event_id='.$id);
+        header('location:/staff/event/area?event_id='.$id);
     }
 ?>

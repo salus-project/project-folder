@@ -78,6 +78,8 @@
             
             if($query1_run && $query2_run){
                 $table_query = 'create table org_'.$org_id." (msg_id int(11) auto_increment primary key, NIC_num varchar(12), sender varchar(60), message text, date date,time time(6))";
+                $Orgcon = OrgDb::getConnection();
+                $Orgcon->query($table_query);
                 
                 $size = ob_get_length();
                 header("Content-Encoding: none");

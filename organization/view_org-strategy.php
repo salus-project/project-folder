@@ -216,8 +216,8 @@
             echo '';
         }
         public function show_member_option($nic){
-            echo "<div class='add_remove rem'><a href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
-                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to co_leader</button></a></div>";
+            echo "<div class='add_remove rem'><a class='add_remove_a' href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Remove</button></a></div>
+                <div class='add_remove pro'><a class='add_remove_a' href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Promote to co_leader</button></a></div>";
         }
         public function change_profile_option(){
             echo $this->profile_text;
@@ -229,7 +229,7 @@
             echo '';
         }
         public function show_member_input(){
-            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>
@@ -264,16 +264,14 @@
             echo $this->edit_text;
         }
         public function show_coleader_option($nic){
-            echo "<div class='add_remove_div none'>
-            <div class='add_remove rem'><a href='/organization/member_operation.php?type=coleader_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
-            <div class='add_remove pro'><a href='/organization/member_operation.php?type=coleader_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to leader</button></a></div>
-            <div class='add_remove pro'><a href='/organization/member_operation.php?type=coleader_depromote_to_member&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>De-promote to member</button></a></div>
-            </div>";
+            echo "<div class='add_remove rem'><a class='add_remove_a' href='/organization/member_operation.php?type=coleader_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Remove</button></a></div>
+            <div class='add_remove pro'><a class='add_remove_a' href='/organization/member_operation.php?type=coleader_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Promote to leader</button></a></div>
+            <div class='add_remove pro'><a class='add_remove_a' href='/organization/member_operation.php?type=coleader_depromote_to_member&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>De-promote to member</button></a></div>";
         }
         public function show_member_option($nic){
-            echo  "<div class='add_remove rem'><a href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Remove</button></a></div>
-                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to co_leader</button></a></div>
-                <div class='add_remove pro'><a href='/organization/member_operation.php?type=member_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_but'>Promote to leader</button></a></div>";
+            echo  "<div class='add_remove rem'><a class='add_remove_a' href='/organization/member_operation.php?type=member_remove&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Remove</button></a></div>
+                <div class='add_remove pro'><a class='add_remove_a' href='/organization/member_operation.php?type=member_promote_to_coleader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Promote to co_leader</button></a></div>
+                <div class='add_remove pro'><a class='add_remove_a' href='/organization/member_operation.php?type=member_promote_to_leader&org_id=".$_GET['selected_org']."&nic=".$nic."'><button class='add_remove_button'>Promote to leader</button></a></div>";
         }
         public function change_profile_option(){
             echo $this->profile_text;
@@ -282,10 +280,10 @@
             echo $this->cover_photo_text;
         }
         public function show_coleader_input(){
-            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter coleader NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter coleader NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_member_input(){
-            echo "<div class='add_role'><form method='get' action='/organization/member_operation.php'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/><button class='add_role_btn' type='submit'>Add</button><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></form></div>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>

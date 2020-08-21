@@ -7,6 +7,10 @@
     <head>
         <title>view event</title>
         <link rel="stylesheet" href="/staff/css_codes/view_event.css">
+        <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <script src="/common/map/map.js"></script>
     </head>
     <body>
     <script>
@@ -39,6 +43,29 @@
             ?>
             </div>
         </div>
+
+        <div id='map_container'>
+            <div id='map'></div>
+        </div>
+        <style>
+            #map{
+                margin:auto;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }#map_container{
+                width: 100%;
+                height: 400px;
+            }
+        </style>
+        <script>
+            var myGeo = new EventGeo('map_container');
+            myGeo.markPlace(JSON.parse('<?php  echo $result['geoJson'] ?>'), 'danger', 'Affected area',  true);
+
+        </script>
+        <link href="/css_codes/slideshow.css" rel="stylesheet">
+
+
         <div class='event_body'> 
         <div class='detail_body'>
             <div class='table_container'>

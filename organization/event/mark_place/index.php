@@ -6,6 +6,7 @@
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         <link rel="stylesheet" href="/css_codes/organization_event_mark_area.css">
         <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
+        <script src="/common/map/map.js"></script>
         <style>
             #map_container{
                 box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
@@ -53,7 +54,6 @@
                 line-height: 1;
                 vertical-align: middle;
                 cursor:pointer;
-}
             }
             #content_container{
                 min-height: 150px;
@@ -95,9 +95,15 @@
             var event_name = '';
             var areaGeoJson = JSON.parse('{"type":"FeatureCollection","features":[{"type":"Feature","id":"bd4c90e7-4de3-495f-901f-b235c9b593b2","geometry":{"type":"Polygon","coordinates":[[[80.18088086,9.82667697],[80.14513104,9.82539604],[80.12108116,9.8177104],[80.08013136,9.8081031],[80.04763152,9.81578896],[80.01578168,9.81578896],[79.98198185,9.80874359],[79.95403199,9.79657396],[79.94363205,9.79337135],[79.93843207,9.7831228],[79.92218215,9.77735785],[79.9124322,9.77735785],[79.89683228,9.76646823],[79.88318235,9.76198416],[79.86498244,9.7600624],[79.8136327,9.71842152],[79.78308285,9.68638655],[79.7720329,9.67485321],[79.76553294,9.66524179],[79.76488294,9.65306694],[79.76163296,9.60884928],[79.76358295,9.59218606],[79.76878292,9.58257229],[79.85068251,9.56654873],[79.85978246,9.57039445],[79.99108181,9.59667239],[80.00343175,9.60564488],[80.00668173,9.62038488],[80.00668173,9.63127925],[80.01968166,9.64794055],[80.03918157,9.64537733],[80.04633153,9.64858135],[80.06193145,9.64153245],[80.10288125,9.61397626],[80.1321311,9.60628576],[80.20038076,9.5806495],[80.2127307,9.58513599],[80.19518079,9.59218606],[80.18673083,9.64601813],[80.24718053,9.61974403],[80.29138031,9.59346788],[80.32258015,9.57488108],[80.40187975,9.63063842],[80.36417994,9.66396025],[80.31738018,9.71521816],[80.28228035,9.76838995],[80.25043051,9.82475558],[80.2133807,9.83628373],[80.18088086,9.82667697]]]},"properties":{"name":"jaffna"}}]}');
             var location_arr = [];
+            
+            /*var myGeo = new EventGeo();
+            myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
+
+            for(var place of location_arr){
+                create_place(place);
+            }*/
         </script>
         <div id='map_container'>
-                <?php require $_SERVER['DOCUMENT_ROOT']."/common/map/map.html"; ?>
         </div>
         
         <div id='form'>
@@ -136,6 +142,16 @@
             
         </div>
         <script>
+            var event_name = '';
+            var areaGeoJson = JSON.parse('{"type":"FeatureCollection","features":[{"type":"Feature","id":"bd4c90e7-4de3-495f-901f-b235c9b593b2","geometry":{"type":"Polygon","coordinates":[[[80.18088086,9.82667697],[80.14513104,9.82539604],[80.12108116,9.8177104],[80.08013136,9.8081031],[80.04763152,9.81578896],[80.01578168,9.81578896],[79.98198185,9.80874359],[79.95403199,9.79657396],[79.94363205,9.79337135],[79.93843207,9.7831228],[79.92218215,9.77735785],[79.9124322,9.77735785],[79.89683228,9.76646823],[79.88318235,9.76198416],[79.86498244,9.7600624],[79.8136327,9.71842152],[79.78308285,9.68638655],[79.7720329,9.67485321],[79.76553294,9.66524179],[79.76488294,9.65306694],[79.76163296,9.60884928],[79.76358295,9.59218606],[79.76878292,9.58257229],[79.85068251,9.56654873],[79.85978246,9.57039445],[79.99108181,9.59667239],[80.00343175,9.60564488],[80.00668173,9.62038488],[80.00668173,9.63127925],[80.01968166,9.64794055],[80.03918157,9.64537733],[80.04633153,9.64858135],[80.06193145,9.64153245],[80.10288125,9.61397626],[80.1321311,9.60628576],[80.20038076,9.5806495],[80.2127307,9.58513599],[80.19518079,9.59218606],[80.18673083,9.64601813],[80.24718053,9.61974403],[80.29138031,9.59346788],[80.32258015,9.57488108],[80.40187975,9.63063842],[80.36417994,9.66396025],[80.31738018,9.71521816],[80.28228035,9.76838995],[80.25043051,9.82475558],[80.2133807,9.83628373],[80.18088086,9.82667697]]]},"properties":{"name":"jaffna"}}]}');
+            var location_arr = [];
+
+            var myGeo = new EventGeo('map_container');
+            myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
+
+            for(var place of location_arr){
+                create_place(place);
+            }
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position)=>{
@@ -155,6 +171,7 @@
                         myGeo.bound_map(bounds);
                         
                         set_location_input(position.coords.latitude, position.coords.longitude);
+                        update_preview();
                     });
                 } else { 
                     x.innerHTML = "Geolocation is not supported by this browser.";
@@ -201,12 +218,19 @@
             function preview(element){
                 if(element.classList.contains('preview')){
                     element.classList.remove('preview');
-                    myGeo.remove_last_marker();
+                    myGeo.addMarkerLayer({lat:document.getElementById('lat').value, lng:document.getElementById('lng').value});
                 }else{
                     var e = document.getElementById("select_type");
-                    myGeo.remove_last_marker();
-                    myGeo.addMarker(document.getElementById('lat').value, document.getElementById('lng').value,e.options[e.selectedIndex].value,"marked by you");
+                    myGeo.addMarkerLayer({lat: document.getElementById('lat').value, lng: document.getElementById('lng').value}, e.options[e.selectedIndex].value,"marked by you");
                     element.classList.add('preview');
+                }
+            }
+
+            function update_preview(){
+                var btn = document.getElementById('preview_btn');
+                if(btn.classList.contains('preview')){
+                    var e = document.getElementById("select_type");
+                    myGeo.addMarkerLayer({lat: document.getElementById('lat').value, lng: document.getElementById('lng').value}, e.options[e.selectedIndex].value,"marked by you");
                 }
             }
 
@@ -257,6 +281,7 @@
                     }
                     }
                     h.click();
+                    update_preview();
                 });
                 b.appendChild(c);
             }

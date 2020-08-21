@@ -1,4 +1,8 @@
 <?php
+    if(!(isset($_GET['selected_org']) || isset($_GET['org_id']))){
+        require $_SERVER['DOCUMENT_ROOT']."/organization/all_org.php";
+        exit();
+    }
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     
     if(!isset($_GET['selected_org'])){

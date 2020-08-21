@@ -3,4 +3,4 @@
         session_unset();
         session_destroy();
         $_SESSION = [];
-        header('location: /anonymous');
+        header('location:/anonymous');

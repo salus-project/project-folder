@@ -116,4 +116,3 @@ ignore_user_abort();
 			}
 		</script>
 	<?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
-

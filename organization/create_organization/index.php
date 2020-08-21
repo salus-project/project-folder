@@ -57,7 +57,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <label class="create_org_label">Leader NIC</label>
                 <div>
                     <div ng-class="{'has-error': createOrgForm.leader_nic.$invalid}">
-                        <input class="create_org_input" type='text' name='leader_nic' placeholder='Leader NIC num' value='<?php echo $others_value ?>' pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic" required>
+                        <input type='hidden'>
+                        <input class="create_org_input" type='text' name='leader_nic' placeholder='Leader NIC num' value='<?php echo $others_value ?>' pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="leaderNic" onload="autocomplete_ready_input(this, 'users' 'set_id')" required>
                     </div>
                     <span class='error'><?php echo '' ?></span>
                     <span class='error' data-ng-show="createOrgForm.leader_nic.$invalid && createOrgForm.leader_nic.$touched"><i class='fas fa-exclamation-circle'></i> Invalid NiC Format</span>

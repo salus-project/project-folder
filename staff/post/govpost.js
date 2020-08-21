@@ -7,7 +7,7 @@ function create_post(arr,user_nic=''){
                                 "<div class='author post_a'>"+
                                     "<b>"+arr['heading']+"</b>";
                                     if(!arr['event']==''){
-                                        html+= " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='"+arr['event']+"'>"+arr['event_name']+"</a>";
+                                        html+= " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='/event?event_id="+arr['event']+"'>"+arr['event_name']+"</a>";
                                     }
                         if(user_nic!==''){
                             var stt="<div class='view_post_div'>"+
@@ -23,9 +23,9 @@ function create_post(arr,user_nic=''){
                     "</div>"+
                     "<div><div class='post_content'>" +arr['content'] + "</div></div>";
                     if(!arr['img']==''){
-                        html+= "<div class=post_image_container><img class=post_image src='"+arr['img']+"'/></div>";
+                        html+= "<div class=post_image_container><img class=post_image src='http://d-c-a.000webhostapp.com/"+arr['img']+"'/></div>";
                     }
-                    var likes = arr['likes'].split(' ');
+                    var likes = (arr['likes']||'').split(' ');
                     if(user_nic!==''){
                         html+=  "<div class='like_bar'>"+
                                     "<div class='likes'>"+
@@ -76,7 +76,7 @@ function create_post(arr,user_nic=''){
 
 
 class Post{
-    constructor(user_nic){
+    constructor(user_nic, event_id=null){
         this.user_nic=user_nic;
         this.first = true;
         this.offset=0;

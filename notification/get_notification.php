@@ -5,7 +5,7 @@
     $notification_DB = NotificationDb::getConnection();
 
     $user_nic=$_SESSION['user_nic'];
-    $sql="SELECT * FROM user_notif_ic_$user_nic ORDER BY Notification_id ASC";
+    $sql="SELECT * FROM user_notif_ic_$user_nic ORDER BY Notification_id DESC";
     $data=mysqli_query($notification_DB,$sql);
 
     date_default_timezone_set("Asia/Colombo");
