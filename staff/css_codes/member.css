@@ -24,11 +24,9 @@
     border-collapse: collapse;
     margin: 0 auto;
     background-color: white;
-    width: 450px;
-
 }
   
-.civilian_table th, td {
+.civilian_table th,.civilian_table td {
     border: 1px solid #d8e0e7;
     color:  #6b7c93;
     position: relative;
@@ -42,24 +40,23 @@
 }
 
 .civilian_table td:last-child{
-    width: 200px;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
 }
  
 .civi_detail{
-    width: 450px;
-    position: absolute;
+    display: table;
     margin: auto;
-    top: 170px;
-    left: 0;
-    right: 0;
+    margin-top: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .civilian_name{
     background: transparent;
     position: absolute;
-    width: 530px;
-    left: 20px;
+    width: calc(100% + 171px);
+    left: 0;
     top: 0;
     border: none;
     height: 40px;
@@ -70,5 +67,9 @@
     cursor: pointer;
     outline: none;
     z-index: 1;
+}
+
+.nic_row{
+    width:150px;
 }
 

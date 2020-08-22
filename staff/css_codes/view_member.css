@@ -46,6 +46,7 @@
     outline: none;
     border: none;
     width: 50px;
+    cursor: pointer;
 }
 
 .mem_det_head{

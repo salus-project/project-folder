@@ -2,11 +2,9 @@
     border-collapse: collapse;
     margin: 0 auto;
     background-color: white;
-    width: 550px;
-
 }
 
-.event_table th, td {
+.event_table th, .event_table td {
     border: 1px solid #d8e0e7;
     color:  #6b7c93;
     position: relative;
@@ -20,16 +18,15 @@
     background-color: #0c7dff47;
 }
 
-
+.event_table th:last-child, .event_table td:last-child {
+    width: 100px;
+    text-align: center;
+}
 .event_detail{
-    width: 550px;
-    position: absolute;
+    display: table;
     margin: auto;
-    top: 170px;
-    left: 0;
-    right: 0;
+    margin-top: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .new_event{
@@ -54,7 +51,7 @@
 .event_name{
     background: transparent;
     position: absolute;
-    width: 520px;
+    width: 100%;
     left: 30px;
     top: 0;
     border: none;
