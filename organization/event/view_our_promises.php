@@ -104,7 +104,7 @@
 					$data="";
 					
 
-					$link_='/event/help/help/?event_id='.$event_id.'&to='.$person.'&by='.$org_id.'';
+					$link_='/event/help/?event_id='.$event_id.'&to='.$person.'&by='.$org_id;
                     for ($x = 0; $x <$count_arr; $x++) {
 						$data=$data.$ability[$x]."<br>";
 						if ($x==0){
@@ -112,8 +112,13 @@
 																		<input disabled class='".$person."' type='checkbox' >
 																		<span class='checkmark'></span>
 																		</label></td>";
-                            $name_data_row="<td rowspan=".$count_arr.">".$name[$key]."</td>";
-							$note_data_row="<td rowspan=".$count_arr.">".$note[$key]."</td>";
+							$name_data_row="<td rowspan=".$count_arr.">".$name[$key]."</td>";
+							if($note[$key]==''){
+								$row_note="No notes";
+							}else{
+								$row_note=$note[$key];
+							}
+							$note_data_row="<td rowspan=".$count_arr.">".$row_note."</td>";
 							$edit_btn="<td rowspan=".$count_arr.">
 							<a href=".$link_."><button class= 'our_pro_btn edit_pro'  type='button' ><i class='fas fa-edit'> Edit</i></button></a>
 							</td>";
