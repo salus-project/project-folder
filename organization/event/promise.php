@@ -149,7 +149,7 @@
                         echo "<b>No other promises</b>";
                     }
                     else{
-                        echo "<td onclick='other_promises(this)' data-id='".$key."' requests='".implode("<br>",$value[2])."' address='".$value[0]."' name='".$value[1]."'>";
+                        echo "<td onclick='other_promises(this)' data-id='".$key."' requests='".implode("++",$value[2])."' address='".$value[0]."' name='".$value[1]."'>";
 
                         foreach($value[6] as $orgn){
                             echo $orgn."<br>";
@@ -157,8 +157,9 @@
                         foreach($value[8] as $pers){
                             echo $pers."<br>";
                         }
-
+                        echo "<br><span class='view_all_promise' >view all</span>";
                     }
+                   
                     echo "</td>";
                     $note=$value[4];
                     $id=$value[3];
@@ -356,7 +357,7 @@
             <input type="hidden" name="array2" value=<?php echo serialize($id_s); ?> ><br>
         </form>
 
-        <form id="other" action="view_all_promises.php" method=post>
+        <form id="other" action="view_all_promises.php" method=POST>
             <input type="hidden" name="org_id" value=<?php echo $org_id; ?> ><br>
             <input type="hidden" name="event_id" value=<?php echo $event_id; ?> ><br>
             <input type="hidden" name="nic" id="nic" ><br>
