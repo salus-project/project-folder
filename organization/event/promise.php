@@ -24,7 +24,7 @@
     $string = $_GET['selected'];
     $str_arr = explode (",", $string);
     $newarray = "'".implode("', '", $str_arr)."'";
-    $query="SELECT a.NIC_num AS nic, a.district AS district, a.village AS village, a.street AS street, b.item AS r_item, b.amount AS r_amount, c.id AS id_, c.by_org AS org, c.by_person AS person, c.note AS note, d.first_name AS first, d.last_name AS last, c.id AS ids, e.org_name as org_name, f.first_name as by_first, f.last_name as by_last FROM $event_name1 AS a INNER JOIN $event_name4 AS b ON (a.NIC_num = b.requester) LEFT OUTER JOIN $event_name2 AS c ON (a.NIC_num = c.to_person) INNER JOIN civilian_detail AS d ON (a.NIC_num = d.NIC_num) LEFT OUTER JOIN organizations AS e ON (c.by_org = e.org_id) LEFT OUTER JOIN civilian_detail AS f ON (c.by_person = f.NIC_num) WHERE a.NIC_num IN ($newarray)";
+    $query="SELECT a.NIC_num AS nic, a.district AS district, a.village AS village, a.street AS street, b.item AS r_item, b.amount AS r_amount, c.id AS id_, c.by_org AS org, c.by_person AS person, c.note AS note, d.first_name AS first, d.last_name AS last, c.id AS ids, e.org_name as org_name, f.first_name as by_first, f.last_name as by_last FROM $event_name1 AS a LEFT OUTER JOIN $event_name4 AS b ON (a.NIC_num = b.requester) LEFT OUTER JOIN $event_name2 AS c ON (a.NIC_num = c.to_person) INNER JOIN civilian_detail AS d ON (a.NIC_num = d.NIC_num) LEFT OUTER JOIN organizations AS e ON (c.by_org = e.org_id) LEFT OUTER JOIN civilian_detail AS f ON (c.by_person = f.NIC_num) WHERE a.NIC_num IN ($newarray)";
     $result=$con->query($query);
     if($result->num_rows>0){
         while($row=$result->fetch_assoc()){
@@ -75,6 +75,7 @@
             }   
         }
     }
+   
 ?>
 
 <!DOCTYPE html>
@@ -134,8 +135,12 @@
                     echo"<td>".$value[0]."</td>";
                 
                     echo"<td>";
-                        foreach($value[2] as $items){
-                            echo $items."<br>";
+                        if ($value[2]==[':']){
+                            echo "Not specified anything <br>";
+                        }else{
+                            foreach($value[2] as $items){
+                                echo $items."<br>";
+                            }
                         }
                     echo "</td>";
                     
@@ -166,33 +171,36 @@
                         $result1=$con->query($query1);
                         if($result1->num_rows>0){
                             while($row1=$result1->fetch_assoc()){
-                            array_push($id_a[$key],$row1['id']);
-                            if($row1['pro_don']=="promise"){
-                                $checcked = '';
-                                $div_class = 'btn-warning off';                            }
-                            elseif($row1['pro_don']=="pending"){
-                                $checcked = "checked";
-                                $div_class = 'btn-success';
+                            if($row1['pro_don']!="donated"){
+                                array_push($id_a[$key],$row1['id']); 
+                                if($row1['pro_don']=="promise"){
+                                    $checcked = '';
+                                    $div_class = 'btn-warning off'; 
+                                }
+                                elseif($row1['pro_don']=="pending"){
+                                    $checcked = "checked";
+                                    $div_class = 'btn-success';
+                                }
+                                echo "<div class='input_sub_container'>";
+                                echo "      <input type='text' class='text_input' value='".$row1['item']."'>";
+                                echo "      <input type='text' class='text_input'  value='".$row1['amount']."'>";
+                                echo "      <div class='status_div'>";
+                                echo "          <div class='toggle btn  {$div_class}' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>";
+                                echo "            <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' {$checcked} onchange='checkbox_change(this)' {$checcked}>";
+                                echo "            <div class='toggle-group'>";
+                                echo "                <label class='btn btn-success toggle-on' style='line-height: 20px;'>";
+                                echo "                    Helped";
+                                echo "                </label>";
+                                echo "                <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>";
+                                echo "                    Not helped";
+                                echo "                </label>";
+                                echo "                <span class='toggle-handle btn btn-default'></span>";
+                                echo "            </div>";
+                                echo "        </div>";
+                                echo "    </div>";
+                                echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                                echo "</div>";  
                             }
-                            echo "<div class='input_sub_container'>";
-                            echo "      <input type='text' class='text_input' value='".$row1['item']."'>";
-                            echo "      <input type='text' class='text_input'  value='".$row1['amount']."'>";
-                            echo "      <div class='status_div'>";
-                            echo "          <div class='toggle btn  {$div_class}' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>";
-                            echo "            <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' {$checcked} onchange='checkbox_change(this)' {$checcked}>";
-                            echo "            <div class='toggle-group'>";
-                            echo "                <label class='btn btn-success toggle-on' style='line-height: 20px;'>";
-                            echo "                    Helped";
-                            echo "                </label>";
-                            echo "                <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>";
-                            echo "                    Not helped";
-                            echo "                </label>";
-                            echo "                <span class='toggle-handle btn btn-default'></span>";
-                            echo "            </div>";
-                            echo "        </div>";
-                            echo "    </div>";
-                            echo "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
-                            echo "</div>";  
                         }
                     }
                 }
@@ -201,7 +209,7 @@
                     echo "      <input type='text' class='text_input' placeholder='amount'>";
                     echo "      <div class='status_div'>";
                     echo "          <div class='toggle btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>";
-                    echo "              <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)' {$checcked}>";
+                    echo "              <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)'>";
                     echo "              <div class='toggle-group'>";
                     echo "                  <label class='btn btn-success toggle-on' style='line-height: 20px;'>";
                     echo "                      Helped";
