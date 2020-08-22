@@ -28,8 +28,7 @@
             <a class='menu_bar_btn menu_bar_btn_3'  href="/staff/event">EVENT</a>
             <a class='menu_bar_btn menu_bar_btn_4'  href="/staff/post">POST</a>
             <a class='menu_bar_btn menu_bar_btn_5'  href="/staff/about.php">ABOUT</a>
-            </div>
-        <div>
+        </div>
     </body>
 
 <script>

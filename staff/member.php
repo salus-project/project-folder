@@ -19,22 +19,25 @@
     </script>
 
     <div class="new_member"><a class="tag" href="create_civilian_acc.php"><i class="fa fa-user-plus" aria-hidden="true" style="font-size:25px;color:black;">  Add new member</i></a></div>
-    <div>
+
     
-    <form action='/staff/view_member.php' method='get'>
+    
     <div class="civi_detail">
+    <form action='/staff/view_member.php' method='get'>
     <table class="civilian_table">
         <tr>
             <th> Full name</th>
             <th> NIC number</th>
+            <th> </th>
         </tr>
         <?php
             while($row=$result->fetch_assoc()){
-                echo "<tr><td><button type=submit class=civilian_name name=nic value=". $row['NIC_num'] .">" . $row['first_name']." " .$row['last_name'] ."</button></td><td>" . $row['NIC_num'] . "</td></tr>";
+                echo "<tr><td>" . $row['first_name']." " .$row['last_name'] ."<button type=submit class=civilian_name name=nic value=". $row['NIC_num'] ."></button></td><td class='nic_row'>" . $row['NIC_num'] . "</td><td href='/staff/delete_member.php'><i class='fa fa-trash' style='font-size:16px;color:#6b7c93;' aria-hidden='true'>  Delete</i></td></tr>";
             }
         ?>
     </table>
-    </div>
     </form>
+    </div>
+    
 </body>
 </html>

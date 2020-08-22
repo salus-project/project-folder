@@ -33,8 +33,10 @@
             </div>
             <div class='back_btn_div'>
                 <?php
-                    echo "<form action=/staff/member.php method=GET>";
-                    echo    "<button type='submit' class='back_button' ><i class='fa fa-arrow-circle-left' style='font-size:20px;color:black;' aria-hidden='true'>Back</i></button>";
+                    echo "<form action=/staff/delete_member.php method=GET>";
+                    echo "<input type='hidden' name='nic' value='". $_GET['nic']."'>";
+                    echo    "<button type='submit' class='back_button' ><i class='fa fa-trash' style='font-size:20px;color:black;' aria-hidden='true'>Delete</i>
+                    </button>";
                     echo "</form>";
                 ?>
             </div>
