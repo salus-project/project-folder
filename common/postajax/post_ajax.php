@@ -73,9 +73,9 @@ if ($type==1){
     }
     
 }
- echo $to;
- echo $mssg;
- echo $link;
+//  echo $to;
+//  echo $mssg;
+//  echo $link;
 
 require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
 $sender = new Notification_sender($to,$mssg,$link,true);
