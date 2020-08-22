@@ -1,5 +1,8 @@
 <?php 
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+
+$person=$_SESSION['first_name']." ".$_SESSION['last_name'];
+
 $query="select * from fundraisings where id=".$_GET['view_fun'].";
     select * from civilian_detail where NIC_num=(
         select by_civilian from fundraisings where id=".$_GET['view_fun']."
@@ -65,6 +68,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         $id=$_GET['view_fun'];
         $imgs = array_filter(explode(',', $fundraising['img']));
     }
+    $fund_name=$fundraising['name'];
 ?>
 
         <title>view fundraising event</title>
@@ -271,7 +275,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                             ".$name_data_row."
                             <td>".$value."</td>
                             <td class='not_click'>
-                            <div onclick='confirmFn(this,".$id_arr[$x].")'><input type='checkbox' id='checkbox' disabled data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='this.checked = !this.checked' ></div>
+                            <div onclick='confirmFn(this,".$id_arr[$x].",\"".$by."\")'><input type='checkbox' id='checkbox' disabled data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='this.checked = !this.checked' ></div>
                             </td>
                             ".$note_data_row."
                         </tr>";
@@ -357,7 +361,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             var post = new Post("select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id="+<?php echo $_GET['view_fun'] ?>);
             post.get_post();
             
-            function confirmFn(ele,id) {
+            function confirmFn(ele,id,id_n) {
                 swal({
                     title: "Are you sure?",
                     text: "Once confirmed, you will not be able to change this!",
@@ -367,7 +371,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 })
                     .then((willDelete) => {
                     if (willDelete) {
-                        toggleFn(id);
+                        toggleFn(id,id_n);
                         ele.outerHTML='<div class="toggle btn btn-success" data-toggle="toggle" disabled="disabled" style="width: 100px; height: 15px;"><input type="checkbox" id="checkbox" checked="" disabled="" data-toggle="toggle" data-on="Helped" data-off="Not helped" data-width="100" data-height="15" data-offstyle="warning" data-onstyle="success" onchange="this.checked = !this.checked"><div class="toggle-group"><label class="btn btn-success toggle-on" style="line-height: 20px;">Helped</label><label class="btn btn-warning active toggle-off" style="line-height: 20px;">Not helped</label><span class="toggle-handle btn btn-default"></span></div></div>';
                     } 
                 });
@@ -375,7 +379,9 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             
            
 
-            function toggleFn(id){
+            function toggleFn(id,id_n){
+                var person="<?php echo $person ; ?>";
+                var fund="<?php echo $fund_name ; ?>";
                 var sql="UPDATE `fundraising_pro_don_content` SET `pro_don` = 'donated' WHERE `id` = "+id+"";;
                 var xhttp = new XMLHttpRequest();
                 // xhttp.onreadystatechange = function() {
@@ -385,7 +391,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 //  };
                 xhttp.open("POST", "/common/postajax/post_ajax.php", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("sql="+sql);
+                xhttp.send("sql="+sql+"&person="+person+"&fund="+fund+"&id_n="+id_n+"&type="+4);
             }
         </script>     
         <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
