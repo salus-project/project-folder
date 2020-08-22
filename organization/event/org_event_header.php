@@ -26,6 +26,7 @@
         <?php
             $query="select * from disaster_events where event_id =" . $_GET['event_id'];
             $result=($con->query($query))->fetch_assoc();
+            $event_name=$result['name'];
         ?>
         <div id=event_header>
             <div id=title_box>
