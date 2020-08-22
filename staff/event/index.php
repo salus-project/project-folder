@@ -31,7 +31,7 @@
                         </tr>
                         <?php
                             while($row=$result->fetch_assoc()){
-                                echo "<tr><td><button type=submit class=event_name name=event_id value=". $row['event_id'] .">" . $row['name'] . "</button></td><td>" . $row['status'] . "</td></tr>";
+                                echo "<tr><td>" . $row['name'] . "<button type=submit class=event_name name=event_id value=". $row['event_id'] ."></button></td><td>" . $row['status'] . "</td></tr>";
                             }
                         ?>
                     </table>
