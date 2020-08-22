@@ -1,13 +1,12 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    
     $org_id= $_POST['org_id'];
     $event_id=$_POST['event_id'];
     $event_name1="event_".$event_id."_pro_don";
     $event_name2="event_".$event_id."_pro_don_content";
-
-    // echo $_POST["requests"];
-    // echo $_POST["name"];
-    // echo $_POST["address"];
+    $_GET['org_id']=$org_id;
+    $_GET['event_id']=$event_id;
+    require $_SERVER['DOCUMENT_ROOT']."/organization/event/org_event_header.php";
 
     $arr=[];
     $our=[];
@@ -39,17 +38,47 @@
             }
         }
     }
-    // var_dump($arr);
-
-    echo "<table id='promise_table'>";
-        echo "<tr><td>Name</td><td>".$_POST['name']."</td></tr>";
-        echo "<tr><td>Address</td><td>".$_POST['address']."</td></tr>";
-        echo "<tr><td>Requested items</td><td>".$_POST['requests']."</td></tr>";
+?>
+<link rel="stylesheet" href='/css_codes/org_event_view_all_promises.css'>
+<?php
+    echo "<table id='promise_table' >";
+        echo "<tr><td class='promise_table_td' >Name</th><td class='promise_table_td'>".$_POST['name']."</th></tr>";
+        echo "<tr><td class='promise_table_td' >Address</td><td class='promise_table_td'>".$_POST['address']."</td></tr>";
+        if ($_POST['requests'] == ":"){
+            echo "<tr><td class='promise_table_td'>Requested items</td><td class='promise_table_td'>Not specified anything </td></tr>";
+        }else{
+            $reqs=explode("++",$_POST['requests']);
+            echo "<tr><td class='promise_table_td' rowspan=".count($reqs).">Requested items</td>";
+            for ($x = 0; $x <count($reqs); $x++) {
+                $item_amount=explode(':',$reqs[$x]);
+                if($x==0){
+                    echo"<td class='promise_table_td'>".$item_amount[0]." ".$item_amount[1]."</td></tr>";
+                }else{
+                    echo"<tr><td class='promise_table_td'>".$item_amount[0]." ".$item_amount[1]."</td></tr>";
+                }
+            }
+        }
+        
         if (!empty($our)){
-            echo "<tr><td>Our promises</td><td>".implode("<br>",$our)."</td></tr>";
+            echo "<tr><td class='promise_table_td' rowspan=".count($our).">Our promises</td>";
+            for ($x = 0; $x <count($our); $x++) {
+                if($x==0){
+                    echo"<td class='promise_table_td'>".$our[$x]."</td></tr>";
+                }else{
+                    echo"<tr><td class='promise_table_td'>".$our[$x]."</td></tr>";
+                }
+            }
         }
         foreach ($arr as $key => $value){
-            echo "<tr><td>".$value[0]."</td><td>".implode("<br>",array_slice($value,1))."</td></tr>";
+            $other=array_slice($value,1);
+            echo "<tr><td class='promise_table_td' rowspan=".count($other).">$value[0]</td>";
+            for ($x = 0; $x <count($other); $x++) {
+                if($x==0){
+                    echo"<td class='promise_table_td'>".$other[$x]."</td></tr>";
+                }else{
+                    echo"<tr><td class='promise_table_td'>".$other[$x]."</td></tr>";
+                }
+            }
         }
     echo "</table>";
     include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php";
