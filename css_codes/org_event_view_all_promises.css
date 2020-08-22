@@ -1,0 +1,8 @@
+#promise_table{
+    border:1px solid black;
+    border-collapse:collapse
+}
+.promise_table_td{
+    border:1px solid black;
+    border-collapse:collapse
+}
