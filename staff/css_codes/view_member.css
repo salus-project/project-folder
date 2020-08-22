@@ -1,55 +1,55 @@
 .detail_table {
-    border-collapse: collapse;
-    background-color: white;
+  border-collapse: collapse;
+  background-color: white;
 
 }
-  
+
 .detail_table th, td {
-  border: 1px solid #d8e0e7;
-  color:  #6b7c93;
-  padding: 10px;
-  font-family: "Open Sans",sans-serif;
+border: 1px solid #d8e0e7;
+color:  #6b7c93;
+padding: 10px;
+font-family: "Open Sans",sans-serif;
 }
- 
- 
+
+
 .detail{
-  width: 450px;
-  margin: auto;
-  margin-top: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+width: 450px;
+margin: auto;
+margin-top: 30px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 
 }
 
 #event_header{
-  display: flex;
-  height:50px;
-  background-color: white;
+display: flex;
+height:50px;
+background-color: white;
 }
 #title_box{
-  display:flex;
-  margin-top:10px;
-  margin-left: 10px;
-  font-size: 30px;
+display:flex;
+margin-top:10px;
+margin-left: 10px;
+font-size: 30px;
 }
 
 .back_btn_div{
-  align-content: flex-end;
-  border-radius: 5px;
-  margin: auto;
-  padding: 2px;
-  display: flex;
-  margin-right: 20px;}
+align-content: flex-end;
+border-radius: 5px;
+margin: auto;
+padding: 2px;
+display: flex;
+margin-right: 20px;}
 
 .back_button{
-    background:none;
-    outline: none;
-    border: none;
-    width: 50px;
-    cursor: pointer;
+  background:none;
+  outline: none;
+  border: none;
+  width: 50px;
+  cursor: pointer;
 }
 
 .mem_det_head{
-  background-color: #0c7dff47;
-  font-size: 16px;
+background-color: #0c7dff47;
+font-size: 16px;
 }

@@ -53,6 +53,7 @@
 
     <div id="content">
     </div>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
     <script>
         autocomplete_ready(document.getElementById("tag_container"), 'events', document.getElementById("new_post"), 'set_id');
         var post = new Post('staff');

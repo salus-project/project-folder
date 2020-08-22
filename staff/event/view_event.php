@@ -125,3 +125,4 @@
         </div>
     </body>
 </html>
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>

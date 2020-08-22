@@ -95,3 +95,21 @@ body{
 .active{
   background-color:#3e4d52;
 }
+.main_footer{
+  background: #e8e8e8;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  transition: width 1.5s;
+}
+.sub_body{
+  min-height: calc(100vh - 110px);
+  transition-duration: 1.5s;
+  max-height: 100%;
+  -webkit-overflow-scrolling: touch;
+  font-family: Open Sans,sans-serif;
+  color: #6b7c93;
+  width: 100%;
+}

@@ -97,8 +97,6 @@
     </div>
 </div>
 
-
-
 <div id='form'>
     <form method='post' action='/staff/event/area/submit.php'>
         <input type='hidden' name='event_id' value='<?php echo $_GET['event_id'] ?>'>
@@ -108,12 +106,12 @@
             <button type='button' class='sub_btn' onclick="submit_form()">Submit</button>
             <button type='button' class='sub_btn' id='preview_btn' onclick="javascript:history.go(-1)">Cancel</button>
         </div>
-    </form>
-    
+    </form>  
 </div>
-<script>
-    
 
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
+
+<script>
     function submit_form(){
         editor.save(true)
         document.getElementById('form').firstElementChild.submit();

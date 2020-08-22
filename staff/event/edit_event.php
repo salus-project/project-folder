@@ -12,97 +12,90 @@
     $old_district = explode(",", $result['affected_districts']);
 ?>   
 
-<!DOCTYPE html> 
-<html>
-    <head>
-        <link rel="stylesheet" href="/staff/css_codes/create_event.css">
-    </head>
+<link rel="stylesheet" href="/staff/css_codes/create_event.css">
 
-    <body>
-    <script>
-        btnPress(3);
-    </script>
+<script>
+    btnPress(3);
+</script>
 
-        <form action="edit_event_php.php" method="POST">
+<form action="edit_event_php.php" method="POST">
+    <div class="create_event_form_box">
+        <div class="head_create_event_form"> 
+            <div class="head_edit_prof_form_det">Edit event</div>
+        </div>
+        <div class="body_create_event_form">
 
-        <div class="create_event_form_box">
-            <div class="head_create_event_form"> 
-                <div class="head_edit_prof_form_det">Edit event</div>
+            <div class="create_event_grp">
+                <label class="create_event_label">Name</label>
+                <input name = "name" type="text" class="create_event_input_box" value="<?php echo $name ?>" required>
             </div>
-            <div class="body_create_event_form">
 
-                <div class="create_event_grp">
-                    <label class="create_event_label">Name</label>
-                    <input name = "name" type="text" class="create_event_input_box" value="<?php echo $name ?>" required>
-                </div>
+            <div class="create_event_grp">
+                <label class="create_event_label">Type</label>
+                <input name = "type" type="text" class="create_event_input_box" value="<?php echo $type ?>" required>
+            </div>
 
-                <div class="create_event_grp">
-                    <label class="create_event_label">Type</label>
-                    <input name = "type" type="text" class="create_event_input_box" value="<?php echo $type ?>" required>
-                </div>
-
-                <div class="create_event_grp">
-                    <label class="create_event_label" name="service_area" >Afftected area</label>
-                    <div class="dropdown">
-                        <button type="button" onclick="show_menu()"  class="dropbtn">select district/s</button>
-                            <div id="myDropdown" class="dropdown-content drp">
-                            <?php
-                                $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
-                                'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
-                                'Ratnapura','Tricomalee','Vavuniya');
-                                foreach($district_arr as $dis){
-                                    echo "<a class='drp' data-value='$dis' onclick=select_option(this)>";
-                                    echo "<label class=\"container drp\">$dis";
-                                    if ($old_district!=''){
-                                        if(in_array($dis, $old_district)){
-                                            echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" checked=\"checked\">
-                                                <span class=\"checkmark drp\"></span>
-                                        </label>
-                                        </a>";}
-                
-                                        else{echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
+            <div class="create_event_grp">
+                <label class="create_event_label" name="service_area" >Afftected area</label>
+                <div class="dropdown">
+                    <button type="button" onclick="show_menu()"  class="dropbtn">select district/s</button>
+                        <div id="myDropdown" class="dropdown-content drp">
+                        <?php
+                            $district_arr = array('Ampara','Anurashapura','Badulla','Batticaloa','Colombo','Galle','Gampha','Hambatota','Jaffna','Kaltura','Kandy',
+                            'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
+                            'Ratnapura','Tricomalee','Vavuniya');
+                            foreach($district_arr as $dis){
+                                echo "<a class='drp' data-value='$dis' onclick=select_option(this)>";
+                                echo "<label class=\"container drp\">$dis";
+                                if ($old_district!=''){
+                                    if(in_array($dis, $old_district)){
+                                        echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" checked=\"checked\">
                                             <span class=\"checkmark drp\"></span>
                                     </label>
-                                    </a>";
-                
-                                        }}
+                                    </a>";}
+            
                                     else{echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
                                         <span class=\"checkmark drp\"></span>
                                 </label>
                                 </a>";
-                
-                                    }
+            
+                                    }}
+                                else{echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
+                                    <span class=\"checkmark drp\"></span>
+                            </label>
+                            </a>";
+            
                                 }
-                            ?>
-                        </div>
+                            }
+                        ?>
                     </div>
                 </div>
-
-                <div class="create_event_grp">
-                    <label class="create_event_label"> Start date </label>                
-                    <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date ?>" /><br>
-                </div>
-
-                <div class="create_event_grp">
-                    <label class="create_event_label">Details</label>
-                    <textarea name ="detail" type="text" class="create_event_textarea"  required><?php echo $detail ?></textarea>
-                </div>
-
             </div>
 
-            <div class="foot_create_event_form">
-                <input type="hidden" name="event_id" value="<?php echo $id?>">
-                <button name="update_button" type="submit"  value="Submit"  class="create_event_submit_button submitt">Update</button>
-                <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button name="cancel_button" type="button"  value="Cancel"  class="create_event_submit_button">Cancel</button></a>
+            <div class="create_event_grp">
+                <label class="create_event_label"> Start date </label>                
+                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date ?>" /><br>
             </div>
 
-        </div> 
-        </form>
-    </body>
-</html>
+            <div class="create_event_grp">
+                <label class="create_event_label">Details</label>
+                <textarea name ="detail" type="text" class="create_event_textarea"  required><?php echo $detail ?></textarea>
+            </div>
+
+        </div>
+
+        <div class="foot_create_event_form">
+            <input type="hidden" name="event_id" value="<?php echo $id?>">
+            <button name="update_button" type="submit"  value="Submit"  class="create_event_submit_button submitt">Update</button>
+            <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button name="cancel_button" type="button"  value="Cancel"  class="create_event_submit_button">Cancel</button></a>
+        </div>
+
+    </div> 
+</form>
+
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
 
 <script>
-
     function show_menu() {
         document.getElementById("myDropdown").classList.toggle("show");
     }

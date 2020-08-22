@@ -6,15 +6,12 @@
     require $_SERVER['DOCUMENT_ROOT']."/staff/create_civilian_acc_php.php";
 ?> 
 
-<html> 
-<head>
-    <link rel="stylesheet" href="/staff/css_codes/create_civilian_acc.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-</head>
-<body>
-    <script>
-        btnPress(2);
-    </script>
+<link rel="stylesheet" href="/staff/css_codes/create_civilian_acc.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script>
+    btnPress(2);
+</script>
 
     <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' ng-app="" name="CreateCivilianAccForm" id='CreateCivilianAccForm' novalidate ng-init="Nic='<?php echo $nic?>';firstName='<?php echo $first_name?>';lastName='<?php echo $last_name?>';userPhone='<?php echo $phone_number?>';userMail='<?php echo $email_address?>';">
         <div class="create_civ_form_box">
@@ -161,10 +158,8 @@
             
         </div> 
     </form>
-   
-</body>
-</html>
 
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
 <script>
 
     var module = angular.module("CreateCivilianAccForm", []);
