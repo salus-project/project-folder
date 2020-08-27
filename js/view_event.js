@@ -1,6 +1,6 @@
 const loader = "<div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>";
-const safe_btn = "";
-const not_sage_btn = "";
+const safe_btn_html = "";
+const not_sage_btn_html = "";
 switch(safe_status){
     case 'not_set':
         var html1 = "<button id='mark' onclick='markFun()'>Mark</button>\n"+
