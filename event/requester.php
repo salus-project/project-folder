@@ -81,14 +81,14 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
                 <div class='requester_button butn'>Help</div>
                 <div id='dropdown_org_container' class='dropdown_org_container'>
                     <?php
-                        if($status!='applied'&& count($orgs)==0){?>
+                        if($status!='applied' && count($orgs)==0){?>
                             <div class='org_drop'>
                                 Create an organization or join as Volunteer to help
                             </div>
                 <?php   }else{
-                            if($status!='applied'){?>
+                            if($status=='applied'){?>
                                 <a href="/event/help?event_id=<?php echo $event_id ?>&to=<?php echo $nic ?>&by=<?php echo $_SESSION['user_nic'] ?>">
-                                    <div class="org_drop">
+                                    <div class="org_drop behalf_you">
                                         Behalf of Yourself
                                     </div>
                                 </a>

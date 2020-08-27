@@ -10,7 +10,6 @@
     <head>
         <title>Event</title>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
         <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
