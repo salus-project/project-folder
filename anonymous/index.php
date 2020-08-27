@@ -16,3 +16,4 @@
     var post = new Post('<?php echo isset($_SESSION['user_nic'])?$_SESSION['user_nic']:'' ?>');
     post.get_post();
 </script>
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>

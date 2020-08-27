@@ -38,7 +38,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="/css_codes/ano_header.css">
+        
         <link rel="shortcut icon" href="/common/logo.jpg" type="image/x-icon" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
@@ -48,6 +48,7 @@
         <script src='/js/font_awesome.js' defer></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="/css_codes/ano_header.css">
     </head>
 
     <body>
@@ -93,4 +94,4 @@
             
         </script>
         <div id='main_body'>
-            <div id='sub_body' class='sub_body <?php echo (($_SESSION['side_nav']=='1')?'':'full_sub_body'); ?>'>
+            <div id='sub_body' class='sub_body'>

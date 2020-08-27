@@ -1,6 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/anonymous/ano_header.php";
-    ?>
+?>
+
 <link rel="stylesheet" href="/css_codes/organizations.css">
 <div id="org_body">
     <form method='get' action='/organization'>
@@ -64,3 +65,4 @@
         </table>
     </form>
 </div>
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>

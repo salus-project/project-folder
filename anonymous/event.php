@@ -2,26 +2,19 @@
     require $_SERVER['DOCUMENT_ROOT']."/anonymous/ano_header.php";
     //require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Event</title>
 
-        <link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-        <script src="/common/map/map.js"></script>
+<title>Event</title>
+<link href="/common/map/vector_editor.css?t=1593079387" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="/common/map/map.js"></script>
+<link rel="stylesheet" href="/css_codes/view_event.css">
+<link rel="stylesheet" href="/css_codes/style.css">
+<link href="/css_codes/slideshow.css" rel="stylesheet">
 
-        
-        <link rel="stylesheet" href="/css_codes/view_event.css">
-        <link rel="stylesheet" href="/css_codes/style.css">
-        <link href="/css_codes/slideshow.css" rel="stylesheet">
-
-    </head>
-    <body>
-        <script>
-            btnPress(4);
-        </script>
+<script>
+    btnPress(4);
+</script>
         <?php
             $query="select * from disaster_events where event_id =" . $_GET['event_id'].";
             select * from event_".$_GET['event_id']."_locations;";
@@ -120,5 +113,4 @@
 <div id='overlay'>
 </div>
 
-    </body>
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
