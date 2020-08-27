@@ -1,3 +1,6 @@
+const loader = "<div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>";
+const safe_btn = "";
+const not_sage_btn = "";
 switch(safe_status){
     case 'not_set':
         var html1 = "<button id='mark' onclick='markFun()'>Mark</button>\n"+
@@ -27,8 +30,9 @@ switch(help_status){
     case 'requested':
         var html2 =     "<button id='help_request_option' disabled>Help Requested</button>" +
                         "<div id=changeRequest>"+
-                            "<button class=drop_dwn name=method value=cancel onclick=cancel_request()>Cancel Request</button><br>"+
-                            "<button class=drop_dwn name=method value=option onclick=request_option()>Request Option</button>"+
+                            "<button class='drop_dwn' name=method value=option onclick='request_option()'>Request Option</button><br>"+
+                            "<button class='drop_dwn' onclick='find_volunteers()'>Find Volunteers</button><br>"+
+                            "<button class='drop_dwn' onclick='cancel_request()'>Cancel Request</button>"+
                         "</div>";
         break;
 }
@@ -42,8 +46,10 @@ switch(volunteer_status){
     case 'applied':
         var html3 =     "<button id='volunteer_option' name=event_id disabled>Volunteer Option</button>"+
                         "<div id=changeVolunteer>"+
-                            "<button class='drop_dwn' name=method value=cancel onclick='volunteer_btn_click(\"cancel\")'>leave volunteer</button><br>"+
-                            "<button class='drop_dwn'name=method value=option onclick='volunteer_btn_click(\"option\")'>Volunteer Option</button>"+
+                            "<button class='drop_dwn'name=method value=option onclick='volunteer_btn_click(\"option\")'>Volunteer Option</button><br>"+
+                            "<button class='drop_dwn' onclick='find_requesters()'>Find Requester</button><br>"+
+                            "<button class='drop_dwn' name=method value=cancel onclick='volunteer_btn_click(\"cancel\")'>leave volunteer</button>"+
+                            
                         "</div>";
         break;
 }
@@ -166,7 +172,7 @@ function open_popup(url, c_function=null){
             }
         }
         if(this.readyState == 1){
-            popup.innerHTML =  "<div class='popup_loader'></div>";
+            popup.innerHTML =  loader;
             popup.style.display = "flex";
         }
     };
@@ -222,4 +228,14 @@ function volunteer_btn_click(method){
     open_popup(url);
 }
 
-////////////////////////help request popup /////////////////////////////////////////
+////////////////////////find volunteer /////////////////////////////////////////
+
+function find_volunteers(){
+    const url = "/event/find_match.php?event_id="+event_id+"&type=1";
+    open_popup(url);
+}
+
+function find_requesters(){
+    const url = "/event/find_match.php?event_id="+event_id+"&type=2";
+    open_popup(url);
+}
