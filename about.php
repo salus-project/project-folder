@@ -82,4 +82,3 @@ Taking responsibility for the implementation of the National Disaster Management
             <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
     </body>
 </html>
-
