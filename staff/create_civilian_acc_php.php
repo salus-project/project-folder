@@ -23,14 +23,13 @@ if (isset($_POST['submit'])){
         $query="ALTER TABLE disaster_events ADD COLUMN `user_".$nic."` varchar(50) NOT NULL DEFAULT 'not_set not_requested not_applied'";
         $query_run= mysqli_query($con,$query);
 
-        $query1 = "CREATE TABLE `user_".$nic."` (Notification_id INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,Date date, Time time,Content text)"; 
+        $query1 = "CREATE TABLE `user_".$nic."` (Notification_id INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,Date date, Time time,Content text, link varchar(100), status varchar(10) default 'unseen';"; 
         $query1_run= mysqli_query($notification_DB,$query1);
 
         echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
         header('location:member.php');
     }else{
         echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
-
     }
 }
 ?>
