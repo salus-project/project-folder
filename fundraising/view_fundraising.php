@@ -99,7 +99,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             <?php }
             echo '</div>';
             }else{
-                echo '<div style="width:100%;">
+                echo '<div style="width:100%;max-height: 350px;overflow: hidden;">
                     <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
                 </div>';
             }
