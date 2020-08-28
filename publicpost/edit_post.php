@@ -1,29 +1,52 @@
 <link rel="stylesheet" href="/css_codes/publ.css">
 <style>
-.post_content{
-    margin: 10px 20px 10px 20px;
-}
-.posts{
-    width: 700px;
-    min-height:400px;
-}
-.posts:hover{
-    transform: scale(1);
-}
-#post_text_area:active{
-    margin:0 20px 0 20px;
-    border: 2px solid #d8e0e7;
-}
-#post_text_area{
-    border: 2px solid #d8e0e7; 
-}
-.img_edit{
-    position: relative;
-}
-.post_btn{
-    margin-left: 550px;
-    margin-top: 10px;
-}
+    .post_content{
+        margin: 10px 20px 10px 20px;
+    }
+    .posts{
+        width: 700px;
+        min-height:400px;
+    }
+    .posts:hover{
+        transform: scale(1);
+    }
+    #post_text_area:active{
+        margin:0 20px 0 20px;
+        border: 2px solid #d8e0e7;
+    }
+    #post_text_rea{
+        border: 2px solid #d8e0e7; 
+    }
+    .img_edit{
+        position: relative;
+    }
+    .edit_post_btn{
+        border: 1px solid #ccc;
+        height: 30px;
+        width: 150px;
+        border-radius: 12px;
+        line-height: 1;
+        padding: 6px 8px 7px;
+        text-align: center;
+        font-size: 14px;
+        margin: 5px 0;
+        cursor: pointer;
+        color: #6b7c93;
+        background: white;
+    }
+    #tag_container {
+        display: block;
+    }
+
+    element.style {
+    }
+    .posts {
+        width: 700px;
+        min-height: 400px;
+    }
+    .posts {
+        display: table;
+    }
 </style> 
   
 <?php
@@ -58,24 +81,35 @@
                     <div class='profile'>
                         <div class='author'>
                             <a class='post_a' href='".$author_link."'><b>". $author ."</b></a>";
-                                if(!$view_result['tag']==''){
-                                    echo " <i class='fa fa-toggle-right'></i> ".$view_result['tag'];
-                                }
                         echo "</div>
                         <div class='post_date'> Date: {$view_result['date']}</div>
                     </div>";
                 echo"</div>
             </div>";
-                echo"<div>
+            echo"<form action='http://d-c-a.000webhostapp.com/createpost.php' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+                <div>
                     <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>". $view_result['content']."</textarea></div>
-                </div>";
+                </div>
+                <div id='tag_container' style='position: relative;margin: 0 35px 10px 35px;border: 1px solid #d8e0e7;'>";
+                    $tag='';
+                    if(!$view_result['tag']==''){
+                        $tag=$view_result['tag'];
+                    }
+                    echo "<input type='hidden' name='tag_link'>
+                    <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."'>
+                </div>
+                <button type='button' class='edit_post_btn' style='float: right; display: inline-block;'>Save changes</button>
+            </form>";
+            ?>
+            
+        <?php
                 if(!$view_result['img']==''){
                 echo "<div class='img_edit'>";
                     echo "<div id=image_container>  
                             <img id='preview'/ src='".$view_result['img']."'/>
                         </div>
-                        <div for=upload_file id='change_img_btn' class='post_btn' onclick='document.getElementById(\"change_img\").click()'>Change photo</div>
-                        <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                        <div for=upload_file id='change_img_btn' class='edit_post_btn' onclick='document.getElementById(\"change_img\").click()' style='display: inline-block;'><i class='fa fa-camera' aria-hidden='true'></i>Change photo</div>
+                        <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
                             <input type='file' name='upload_file' accept='image/jpeg' id='change_img' style='display:none' onchange='this.parentElement.submit()'>
                             <input type='hidden' name='directory' value='public_posts/'>
                             <input type='hidden' name='filename' value='".explode('.jpg',(explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]))[0]."'>
@@ -83,7 +117,7 @@
                             <input type='hidden' name='resize' value='false'>
                         </form>
                         
-                        <div id='remove_img' class='post_btn' onclick='document.getElementById(\"remove_img_form\").submit()'>Remove photo</div>
+                        <div id='remove_img' class='edit_post_btn' onclick='document.getElementById(\"remove_img_form\").submit()' style='float: right; display: inline-block;'><i class='fas fa-trash-alt' aria-hidden='true'></i>Remove photo</div>
                         <form method='post' action='http://d-c-a.000webhostapp.com/post_remove_img.php' id='remove_img_form'>
                             <input type='hidden' name='file' value='".explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]."'>
                             <input type='hidden' name='post_id' value='".$view_result['post_index']."'>
@@ -95,6 +129,8 @@
 
 ?>
 <script>
+    autocomplete_ready(document.getElementById("tag_input_field"), 'all', 'ready');
+
     var choose_file = document.getElementById('hidden_upload_file');
     function upload(){
         choose_file.click();
