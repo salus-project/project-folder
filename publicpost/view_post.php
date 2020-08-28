@@ -71,11 +71,37 @@
                             echo "</div>
                             <div class='post_date'> Date: {$view_result['date']}</div>
                         </div>";
-                        if($view_result['author']==$_SESSION['user_nic']){
-                            echo "<div class='view_post_div'>
-                                <a href='/publicpost/edit_post.php?post_index=".$post_index."' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
-                            </div>";
+                        $type=$view_result['type'];
+                        switch ($type) {
+                            case "individual":
+                                if($view_result['author']==$_SESSION['user_nic']){
+                                    echo "<div class='view_post_div'>
+                                        <a href='/publicpost/edit_post.php?post_index=".$post_index."' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
+                                    </div>";
+                                }
+                            break;
+                            case "organization":
+                                $org_id=$view_result['org'];
+                                $query1="SELECT * FROM `org_members` WHERE (role='leader' OR role='coleader') AND org_id=".$org_id." AND NIC_num='".$_SESSION['user_nic']."'";
+                                $view_result1=mysqli_query($con,$query1);
+                                if(mysqli_num_rows($view_result1)>0){
+                                    echo "<div class='view_post_div'>
+                                        <a href='/publicpost/edit_post.php?post_index=".$post_index."' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
+                                    </div>";
+                                }
+                            break;
+                            case "fundraising":
+                                $fund_id=$view_result['fund'];
+                                $query2="SELECT * FROM `fundraisings` WHERE id=".$fund_id." AND by_civilian='".$_SESSION['user_nic']."'";
+                                $view_result2=mysqli_query($con,$query2);
+                                if(mysqli_num_rows($view_result2)>0){
+                                    echo "<div class='view_post_div'>
+                                        <a href='/publicpost/edit_post.php?post_index=".$post_index."' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
+                                    </div>";
+                                }
+                            break;
                         }
+                        
                 echo"</div>
                 </div>";
             echo"<div>
