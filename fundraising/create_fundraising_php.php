@@ -10,7 +10,7 @@
     $org=$_POST['organization']?$_POST['organization']:"";
     $for_opt=$_POST['purp'];
     $by=$_SESSION['user_nic'];
- 
+  
     /*$district=$_POST['district']?$_POST['district']:[];
     for($x=0 ; $x < count($district) ; $x++){
         filt_inp($district[$x]);
@@ -21,7 +21,7 @@
     if($org==""){
         $org_id= "NULL"; 
     }
-    else{
+    else{ 
         $org_id=$_POST['organization'];
     }
     $isOk=1;
@@ -41,7 +41,7 @@
         $nameErr='Only letters and white space allowed';
         $isOk=0;
     } 
-    if ($for_event==0){
+    if ($for_event=='NULL' && $for_any=='NULL'){
         $isOk=0;
         $noSelEveErr="Select an event";
     }
@@ -54,9 +54,12 @@
 
     if($isOk==1){
 
-        $query1="INSERT INTO `fundraisings` (`name`, `by_civilian`, `by_org`, `for_event`, `for_any`, `service_area`, `description`) VALUES ('$fundraising_name', '$by',$org_id, $for_event, '$for_any', '$district','$description');";
+        $query1="INSERT INTO `fundraisings` (`name`, `by_civilian`, `by_org`, `for_event`, `for_any`, `service_area`, `description`) VALUES ('$fundraising_name', '$by',$org_id, $for_event, '$for_any', '$district','$description')";
+        $query_run1=mysqli_query($con,$query1);
+        $last_id2=$con->insert_id;
 
         $querry_arr=array();
+        $query2="";
         for($x=0 ; $x < count($item) ; $x++){
             if(!empty($item[$x])){
                 $item1=filt_inp(ready_input($item[$x]));
@@ -65,18 +68,17 @@
                         $amount1=0; 
                         
                 }
-                array_push($querry_arr, "('(select last_insert_id())','".$item1."','$amount1')");
+                array_push($querry_arr, "('$last_id2','".$item1."','$amount1')");
             }
         }
-        $query1.= "INSERT INTO `fundraisings_expects`(`fund_id`, `item`, `amount`) VALUES ". implode(",", $querry_arr).";";
+        $query2.= "INSERT INTO `fundraisings_expects`(`fund_id`, `item`, `amount`) VALUES ". implode(",", $querry_arr).";";
         
-        $query_run=mysqli_multi_query($con,$query1);
+        $query_run2=mysqli_multi_query($con,$query2);
 
-
-        if($query_run){
+        if($query_run1 && $query_run2){
 
             echo '<script type="text/javascript">alert("Successfully created")</script>';
-            header("Location:/fundraising");
+            header("Location:/fundraising/view_fundraising.php?view_fun=".$last_id2);
 
         }else{
             echo '<script type="text/javascript">alert("Error")</script>';

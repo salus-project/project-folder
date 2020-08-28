@@ -1,5 +1,5 @@
 <?php
-ob_start();
+ob_start(); 
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 $for_opt = "00";
 $fundraising_name = $org_name = $for_event = $for_any = $service_area = $description = $org_id = "";
