@@ -72,9 +72,7 @@
                         </div>
                         <div class='comment_box_container'>
                             <div class='comment_box'>
-                            comment1<br>
-                            comment2<br>
-                            commemnt
+                                <div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                             </div>
                                 <div class='new_comment'>
                                     <div class='comment_div'>

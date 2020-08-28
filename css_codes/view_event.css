@@ -151,9 +151,11 @@ input:checked + .slider:before{
     border-left: 2px solid white;
 }
 #mark,#request_help,#volunteer{
-    height:34px;
-    width:200px;
-    font-size: 18px;
+    height: 35px;
+    width: 160px;
+    font-size: 16px;
+    background: white;
+    text-align: left;
 }
 .table_con{
     height: 185px;

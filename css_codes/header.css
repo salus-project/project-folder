@@ -5,6 +5,7 @@ body {
     color: #6b7c93;
     margin:0;
     box-sizing: border-box;
+    min-height: calc(100vh + 70px);
 }
 img{
     width: 100%;
@@ -674,4 +675,17 @@ input:checked+.slider:before {
     .menubar_icons{
         margin: unset;
     }
+}
+.header_indicator{
+    position: absolute;
+    font-size: 10px;
+    top: 0;
+    right: 5px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 2px;
+    color: white;
+}
+.empty_indicator{
+    display: none;
 }

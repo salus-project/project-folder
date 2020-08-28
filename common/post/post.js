@@ -33,7 +33,7 @@ class Post{
                 }
             }
             if(this.readyState == 1){
-                obj.body.innerHTML += "<div class='page_loader' id='page_loader'></div>";
+                obj.body.innerHTML += "<div class='lds-ellipsis' id='page_loader'><div></div><div></div><div></div><div></div></div>";
                 obj.first = false;
             }
         };
@@ -72,10 +72,8 @@ function comment(element){
         var parent = element.parentElement.parentElement.parentElement;
         var post_index = parent.querySelector('.post_index').value;
         send = "comment=true&post_index=".concat(post_index,"&content=",comment);
-        response(send);
-        send = "view_cmt=true&post_index=".concat(post_index);
-        response(send,element.parentElement.previousElementSibling);
-        element.parentElement.firstElementChild.value = '';
+        response(send, element.parentElement.previousElementSibling);
+        element.parentElement.querySelector('.comment_input').value = '';
     }
 }
 
@@ -116,10 +114,11 @@ class NewPost{
                             "<input type='file' name='upload_file' accept='image/*' id='hidden_upload_file' style='display:none'>"+
                             "<div id='tag_container'>"+
                                 "<input type='hidden' name='tag_link'>"+
+                                "<input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none'>"+
                             "</div>";
         container.appendChild(form);
         //container.addEventListener('click',this.load_tag_data);
-        autocomplete_ready(document.getElementById("tag_container"), 'all', container);
+        autocomplete_ready(document.getElementById("tag_input_field"), 'all', container);
         document.getElementById('upload_file').onclick=this.upload;
         document.getElementById('hidden_upload_file').onchange=this.loadFile;
     }

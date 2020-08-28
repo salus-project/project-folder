@@ -1,12 +1,9 @@
-function autocomplete_ready(ele, type, touch_ele = null, click_action = '', action_link='') {
-    ele.style.position = 'relative';
+function autocomplete_ready(inp_ele, type, touch_ele = null, click_action = '', action_link='') {
+    inp_ele.parentElement.style.position = 'relative';
     var clicked = false;
-    var inp_ele = document.createElement('INPUT');
     inp_ele.setAttribute('class', 'autocomplete_text_inp');
     inp_ele.setAttribute('spellcheck', 'false');
     inp_ele.setAttribute('autocomplete', 'off');
-    inp_ele.setAttribute('placeholder', 'Search here');
-    ele.appendChild(inp_ele);
     if (touch_ele == null) {
         touch_ele = inp_ele;
     } else if (touch_ele === 'ready') {
@@ -49,7 +46,6 @@ function load_data(inp_ele, type, click_action, action_link) {
 }
 
 function autocomplete(inp, inp_arr, click_action, action_link) {
-    console.log('click action '+ click_action);
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;

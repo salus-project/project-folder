@@ -11,9 +11,7 @@ body {
     width: 9px;
     
   }
-  input:-internal-autofill-selected {
-    background-color: white;
-  }
+  
   /* Track */
   div::-webkit-scrollbar-track {
     box-shadow: inset 0 0 4px grey;
@@ -137,7 +135,15 @@ a {
 
 #main_body {
     display: flex;
-    flex-flow: column;
+}
+
+.sub_body {
+    width: calc(100% - 300px);
+    transition: width 1.5s;
+}
+
+.full_sub_body {
+    width: 100%
 }
 
 .menu_icon:hover {
@@ -244,7 +250,7 @@ a {
 }
 
 .font_aws{
-    display: inline-block;
+display: inline-block;
 }
 .log_in{
     display: inline-block;
@@ -280,32 +286,7 @@ a {
     color: white;
     font-size: 16px;
 }
-body{
-    background-color: rgb(242 244 246);
-    color: #6b7c93;
-    font-family: "Open Sans",sans-serif;
-  }
-  .active{
-    background-color:#3e4d52;
-  }
-  .main_footer{
-    background: #e8e8e8;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-    vertical-align: middle;
-    width: 100%;
-    transition: width 1.5s;
-  }
-  .sub_body{
-    min-height: calc(100vh - 110px);
-    transition-duration: 1.5s;
-    max-height: 100%;
-    -webkit-overflow-scrolling: touch;
-    font-family: Open Sans,sans-serif;
-    color: #6b7c93;
-    width: 100%;
-  }
+
 /* Event.css*/
 .event_table_con, .org_table_con , .notif_table_con{
     overflow-x: hidden;
