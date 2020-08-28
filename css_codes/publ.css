@@ -46,6 +46,7 @@ body {
 #post_text_area {
     width: 97%;
     height: 60px;
+    font-size:16px;
     margin: 8px;
     resize: none;
     outline: none;
