@@ -12,20 +12,20 @@
   margin-top: 16px;
   margin-bottom: 16px;
   max-height: 350px;
-  overflow: hidden;
   min-height: 500px;
 }
 .fund_profile_image{
   height: 250px;
-  width: 250px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid rgb(242 244 246);
-  position: absolute;
-  left: 50%;
-  bottom: -40px;
-  /* margin: auto; */
-  transform: translate(-50%, -50%) scale(1);
+    width: 250px;
+    border-radius: 50%;
+    border: 5px solid rgb(242 244 246);
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    transform: translate(-50%, -50%) scale(1);
+    background: white;
+    text-align: center;
+    overflow: hidden;
 }
 /* Slideshow container */
 .slideshow-container {
