@@ -37,6 +37,7 @@
 ?>
 <!DOCTYPE html>
 <html>
+
     <head>
         
         <link rel="shortcut icon" href="/common/logo.jpg" type="image/x-icon" /> 
@@ -73,25 +74,44 @@
                     <div class='menubar_button_container menubar_buttons_cont'><div class="menubar_buttons" onclick='showevent(this)'><div class="menu_icon_tooltip"><i class='far fa-calendar-alt menu_icon menu_bar_btn_4'></i><span class="menu_icon_tooltiptext">Events</span></div></div><div id=event_container></div></div>
                     <div class='menubar_button_container menubar_buttons_cont'><div type="submit" class="menubar_buttons" name='menubar_buttons'  value=6 onclick='show_org(this)'><div class="menu_icon_tooltip"><i class='fas fa-users menu_icon menu_bar_btn_6'></i><span class="menu_icon_tooltiptext">Organization</span></div></div><div id=menubar_org_container></div></div>
                 </div>
-                <div class="log_in">
-                    <form class="ano_form_box" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                        <div class="enter_nic">
-                            <input name = "nic_num" type="text" class="ano_input_box" placeholder="Enter your NIC number" required/>
-                        </div>
-                        <div class="enter_password">
-                        <input name="password" type="password" class="ano_input_box" placeholder="Enter your password" required/> 
-                        </div>
-                        <input name="ano_login_button" type="submit" class="ano_login_button" value="Login"/>
-                        <!-- <a href="https://www.google.com">Don't have an account yet</a> -->
-                        <input type='hidden' name='location' value='<?php echo isset($_GET["location"])?$_GET["location"]:''; ?>'>
-                    </form>
-                </div>
+                <button class='ano_login_button' onclick="document.getElementById('id01').style.display='block'">Login</button> 
             </div>
         </div>
 
+        <div id="id01" class="modal"> 
+            <form class="modal-content animate" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
+                <div class="imgcontainer"> 
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span> 
+                    <!-- <img src= 
+            "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png" alt="Avatar" class="avatar">  -->
+                </div> 
+
+                <div class="pop_container"> 
+                    <label><b>Username</b></label> 
+                    <input type="text" class="login_username" placeholder="Enter Username" name="nic_num" required> 
+
+                    <label><b>Password</b></label> 
+                    <input type="password" class="login_password" placeholder="Enter Password" name="password" required> 
+
+                    <button class="popup_btn" type="submit">Login</button> 
+                </div> 
+
+                <div class="pop_container" style="background-color:#f1f1f1"> 
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn popup_btn">Cancel</button> 
+                    <span class="psw"><a href="/anonymous/forgot_password/forgot_password.php">Forgot password?</a></span> 
+                </div> 
+            </form> 
+        </div> 
+
+
         <script src="/js/ano_header.js"></script>
         <script>
-            
+            var modal = document.getElementById('id01'); 
+            window.onclick = function(event) { 
+                if (event.target == modal) { 
+                    modal.style.display = "none"; 
+                } 
+            } 
         </script>
         <div id='main_body'>
             <div id='sub_body' class='sub_body'>
