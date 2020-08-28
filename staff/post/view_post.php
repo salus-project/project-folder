@@ -39,9 +39,9 @@ echo "<div class='posts'>
                         echo " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='/event?event_id=".$arr['event']."'>".$arr['event_name']."</a>";
                     }
                     echo "<div class='view_post_div'>
-                    <a href='' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
+                        <a href='/staff/post/edit_post.php?post_index=".$arr['post_index']."' class='vie_post_a'><button class='view_post_but'>Edit</button></a>
+                    </div>
                 </div>
-        </div>
                 <div class='post_date'> Date: ".$arr['date']."</div>
             </div>
         </div>
