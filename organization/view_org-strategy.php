@@ -92,7 +92,10 @@
                                         <input type=hidden name='resize' value='false'>
                                     </form>";
             $this->create_post_text="<div id='new_post'>
-                                    </div>";
+                                    </div>
+                                    <script>
+            var newPost = new NewPost('organization', '".$_GET['selected_org'] ."');
+            </script>";
         }
         abstract function show_membership_button();
         abstract function show_edit_button();
