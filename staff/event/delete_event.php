@@ -39,9 +39,9 @@
     }
 
     $query_run= mysqli_multi_query($con,$query);
-    echo $query;
-    /*if($query_run){
+    
+    if($query_run){
         header('location:/staff/event/');
-    }*/  
+    } 
 ?>
 
