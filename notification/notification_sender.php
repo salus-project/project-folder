@@ -8,6 +8,8 @@
         public $content = null;
         public $link = null;
         public $to = null;
+        public $email = null;
+
 
         public function __construct($content,$link){
             $this->date = date("Y-m-d");
@@ -15,8 +17,9 @@
             $this->content = $content;
             $this->link = $link;
         }
-        public function set_to($to){
+        public function set_to($to,$email){
             $this->to = $to;
+            $this->email = $email;
         }
     }
 
@@ -32,6 +35,15 @@
                 echo $notification->to . " Failed<br/>";
             }
         }
+        public function send_mail(Notification $notification){
+            $to_email = $notification->email;
+            $subject = 'DCA updates';
+            $message = $notification->content;
+            $headers = 'From: kanthankanthan111@gmail.com';
+            if(mail($to_email,$subject,$message,$headers)){
+                echo "mail sent";
+            }
+        }
     }
 
     class Notification_sender{
@@ -42,17 +54,18 @@
 
         public function __construct($to,$content,$link,$mail){
             $this->prototype_notification = new Notification($content,$link);
+            $this->mail=$mail;
             if($to=="all"){
                 $this->set_all_users();
             }else{
                 $this->set_to_some($to);
             }
-            $this->mail=$mail;
+            
         }
 
-        public function add_users($user_nic){
+        public function add_users($user_nic,$email=null){
             $notification = clone $this->prototype_notification;
-            $notification->set_to($user_nic);
+            $notification->set_to($user_nic,$email);
             $this->_notifications[] = $notification;
         }
 
@@ -71,14 +84,31 @@
 
         private function set_to_some($user_list_str){
             $to = explode(",", $user_list_str);
-            foreach ($to as $user) {
-                $this->add_users($user);
+            if ($this->mail){
+                global $con;
+                while($con->more_results()){
+                    $con->next_result();
+                    $con->use_result();
+                }
+                $sql="SELECT NIC_num,email FROM `civilian_detail` WHERE NIC_num in ('".implode('\',\'',$to)."') ;";
+                $result=$con->query($sql)->fetch_all();
+                for($x=0; $x < count($result); $x++ ){
+                    $this->add_users($result[$x][0],$result[$x][1]);
+                }
+            }
+            else{
+                foreach ($to as $user) {
+                    $this->add_users($user);
+                }
             }
         }
 
         public function send(){
             $sender = new Notification_DB_Query();
             array_walk($this->_notifications, array($sender, "send"));
+            if ($this->mail){
+                array_walk($this->_notifications, array($sender, "send_mail"));
+            }
         }
     }
 
