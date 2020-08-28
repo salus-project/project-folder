@@ -1,6 +1,20 @@
 const loader = "<div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>";
-const safe_btn_html = "";
-const not_sage_btn_html = "";
+const safe_btn_html = "<div class='toggle btn btn-success off' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
+                            "<input type='checkbox' data-toggle='toggle' onchange='markingFun(this)'>"+
+                            "<div class='toggle-group'>"+
+                                "<label class='btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
+                                "<label class='btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
+                                "<span class='toggle-handle btn btn-default'></span>"+
+                            "</div>"+
+                        "</div>";
+const not_save_btn_html = "<div class='toggle btn btn-danger' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
+                                "<input type='checkbox' onchange='markingFun(this)' checked=''>"+
+                                "<div class='toggle-group'>"+
+                                    "<label class='btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
+                                    "<label class='btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
+                                    "<span class='toggle-handle btn btn-default'></span>"+
+                                "</div>"+
+                            "</div>";
 switch(safe_status){
     case 'not_set':
         var html1 = "<button id='mark' onclick='markFun()'>Mark</button>\n"+
@@ -9,14 +23,10 @@ switch(safe_status){
                     '</div>';
         break;
     case 'safe':
-        var html1 = '<div id="safe_btn">\n'+
-                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="160" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()">\n'+
-                    '</div>';
+        var html1 = safe_btn_html;
         break;
     case 'not_safe' :
-        var html1 = '<div id="safe_btn">\n'+
-                    '   <input type="checkbox" data-toggle="toggle" data-on="Not Safe" data-off="Safe" data-width="160" data-height="34" data-offstyle="success" data-onstyle="danger" onchange="markingFun()" checked>\n'+
-                    '</div>';
+        var html1 = not_save_btn_html;
         break;
 }
 var safe_btn = document.getElementById('safe_btn_container');
@@ -53,6 +63,12 @@ switch(volunteer_status){
                         "</div>";
         break;
 }
+
+/*             safe checkbox function                   */
+function safe_checkbox_change(element){
+    element.firstElementChild.click();
+}
+/*             /safe checkbox function                  */
 var volunteer_btn = document.getElementById('volunteer_btn');
 volunteer_btn.innerHTML = html3;
 
@@ -65,8 +81,13 @@ function markFun(){
     status='safe';
     update();
 }
-function markingFun(){
-    var checkbox = safe_btn.querySelector('input');
+function markingFun(element){
+    element.parentElement.classList.toggle('btn-danger');
+    element.parentElement.classList.toggle('off');
+    element.parentElement.classList.toggle('btn-success');
+    element.toggleAttribute("checked");
+    
+    var checkbox = safe_btn.getElementsByTagName('input')[0];
     if(checkbox.checked){
         status='not_safe';
         update();
@@ -135,10 +156,6 @@ function help_option(element){
 const close_help_popup = document.querySelectorAll('#close_request_popup');
 const overlay = document.getElementById('overlay');
 
-function request_help(){
-    open_popup("/event/request_help_popup.php?event_id="+event_id, init_request_map);
-}
-
 close_help_popup.forEach(button => {
     button.addEventListener('click',()=>{
         const request_help = button.closest('.div1')
@@ -183,8 +200,11 @@ function open_popup(url, c_function=null){
     overlay.classList.add('active_pop');
 }
 function close_popup(request_help){
-    if(request_help == null) return
-    request_help.classList.remove('active_pop');
+    if(request_help == null){
+        document.getElementById('popup_div').classList.remove('active_pop');
+    }else{
+        request_help.classList.remove('active_pop');
+    }
     overlay.classList.remove('active_pop');
 }
 
@@ -205,7 +225,7 @@ function cancel_request(){
         }*/
     };
 
-    const requestData = `event_id=`+ event_id + `&cancel_button=button&status=`+safe_status+' '+help_status+' '+volunteer_status;
+    const requestData = `event_id=`+ event_id + `&cancel_button=button&status=`+safe_status+' not_requeted '+volunteer_status;
 
     request.open('post', '/event/request_help.php');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -216,8 +236,12 @@ function cancel_request(){
     help_btn.innerHTML = html2;
 }
 
+function request_help(){
+    open_popup("/event/request_help_popup.php?event_id="+event_id, init_request_map);
+}
+
 function request_option(){
-    open_popup("/event/request_help_popup.php?event_id="+event_id);
+    open_popup("/event/request_help_popup.php?event_id="+event_id, init_request_map);
     var req_submit_btn = document.getElementById('req_submit_btn');
 }
 

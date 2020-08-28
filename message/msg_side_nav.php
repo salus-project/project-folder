@@ -20,7 +20,8 @@ $result=array_reverse($con->query($sql)->fetch_all(MYSQLI_ASSOC));
 $result_nic=array_column($result,"NIC_num");
 echo "<div class='Msg_page_container' >";
 echo "<div class='Msg_nav_container' >";
-echo "<div id='Msg_search_container' class='Msg_search_container' >";
+echo "<div id='Msg_search_container' class='Msg_search_container' >
+        <input id='message_inp' type='text' placeholder='Search here'>";
 echo "</div>";
 echo "<div class='msg_nav_s_cont'>";
 for ($x = 0; $x < sizeof($nic_arr); $x++) {
@@ -62,5 +63,5 @@ echo "</div>";
 
 ?> 
 <script>
-        autocomplete_ready(document.getElementById("Msg_search_container"), 'users', 'ready', '/message/?to_person=');
+        autocomplete_ready(document.getElementById("message_inp"), 'users', 'ready', '/message/?to_person=');
 </script>

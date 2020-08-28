@@ -36,12 +36,31 @@
                     <div class='menubar_button_container menubar_buttons_cont'><div class="menubar_buttons" onclick='showevent(this)'><div class="menu_icon_tooltip"><i class='far fa-calendar-alt menu_icon menu_bar_btn_4'></i><span class="menu_icon_tooltiptext">Events</span></div></div><div id=event_container></div></div>
                     <div class='menubar_button_container menubar_buttons_cont'><div type="submit" class="menubar_buttons" name='menubar_buttons'  value=6 onclick='show_org(this)'><div class="menu_icon_tooltip"><i class='fas fa-users menu_icon menu_bar_btn_6'></i><span class="menu_icon_tooltiptext">Organization</span></div></div><div id=menubar_org_container></div></div>
                     <a href="/fundraising" class="menubar_buttons_cont"><div class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-hand-holding-heart menu_icon menu_bar_btn_7'></i><span class="menu_icon_tooltiptext">Fundraising</span></div></div></a>
-                    <a href="/message" class="menubar_buttons_cont"> <div type="submit" class="menubar_buttons" ><div class="menu_icon_tooltip"><i class='fas fa-comments menu_icon menu_bar_btn_8'></i><span class="menu_icon_tooltiptext">Chat</span></div></div> </a>
-                    <div class='menubar_button_container menubar_buttons_cont' ><div class="menubar_buttons"  onclick="show_notification(this)"><div class="menu_icon_tooltip"><i class='fas fa-bell menu_icon menu_bar_btn_5'></i><span class="menu_icon_tooltiptext">Notification</span></div></div><div id=notification_container></div></div>
+                    <a href="/message" class="menubar_buttons_cont">
+                        <div type="submit" class="menubar_buttons" >
+                            <div class="menu_icon_tooltip">
+                                <i class='fas fa-comments menu_icon menu_bar_btn_8'></i>
+                                <span class="menu_icon_tooltiptext">Chat</span>
+                                <span class='header_indicator_8 header_indicator empty_indicator'></span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class='menubar_button_container menubar_buttons_cont' >
+                        <div class="menubar_buttons"  onclick="show_notification(this)">
+                            <div class="menu_icon_tooltip">
+                                <i class='fas fa-bell menu_icon menu_bar_btn_5'></i>
+                                <span class="menu_icon_tooltiptext">Notification</span>
+                                <span class='header_indicator_5 header_indicator empty_indicator'></span>
+                            </div>
+                        </div>
+                        <div id=notification_container>
+                        </div>
+                    </div>
 </div>
                     <div id='header_search_box_cont'>
                         <div id='header_search_box'>
                             <div id='search_icon'><i class="fa fa-search" aria-hidden="true"></i></div>
+                            <input id='header_search_box_inp' type='text' placeholder='Search here'>
                         </div>
                     </div>
 
@@ -67,7 +86,7 @@
                             </a>
                             <div class='header_horizontal_line'></div>
                             <div class="header_dropdown_item header_dropdown_toggle">
-                                <div class="toggle_btn_text" > Toggle Button </div>
+                                <div class="toggle_btn_text" > Show/Hide User Detail </div>
                                 <div class="dropdown_toggle_btn" >
                                     <label class="switch">
                                         <input type="checkbox" id='dropdown_toggle_checkbox' <?php echo ($_SESSION['side_nav']=='1')?'checked':''; ?>>
@@ -81,7 +100,7 @@
                             </div>
                             <div class='header_subline'></div>
                             <div class="header_dropdown_item " > 
-                                <a href=""  class="logout_btn" >About</a>
+                                <a href="/about.php"  class="logout_btn" >About</a>
                             </div>
                             <div class='header_subline'></div>
                             <div class="header_dropdown_item ">
@@ -97,7 +116,7 @@
 
         <script src="/js/header.js"></script>
         <script>
-            autocomplete_ready(document.getElementById("header_search_box"), 'all', 'ready', 'click');
+            autocomplete_ready(document.getElementById("header_search_box_inp"), 'all', 'ready', 'click');
         </script>
         <div id='main_body'>
 	        <div id='sub_body' class='sub_body <?php echo (($_SESSION['side_nav']=='1')?'':'full_sub_body'); ?>'>

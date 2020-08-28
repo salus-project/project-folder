@@ -23,6 +23,7 @@ window.addEventListener('load', function() {
 });
 
 var btn_num;
+
 // function btnPress(btn){
 //     btn_num =btn;
 //     var buttons = document.getElementsByClassName('menubar_buttons');
@@ -102,6 +103,17 @@ function notification_click(status, id) {
     }
 }
 
+function notification_mark_all(){
+    send_str = "all_allow=true";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/notification/mark.php', true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(send_str);
+
+    overlay_obj.state='closed';
+    overlay_obj.notifyAllObservers();
+}
+
 ///////////////////////// popup observer deesign patten //////////////////////////////////////////////////////////////
 
 class Overlay {
@@ -161,3 +173,82 @@ function hide_dropdown() {
     $('#dropdown_container').removeClass('dropdown_container_active');
     $('#main_overlay').toggleClass('show_main_overlay');
 }
+
+/////////////////////header new notification and new message
+
+class HeaderIndicator{
+    constructor(){
+        this.old_notification=0;
+        this.new_notification=0;
+        this.old_message=0;
+        this.new_message=0;
+        this.noti_ele = document.getElementsByClassName('header_indicator_5')[0];
+        this.message_ele = document.getElementsByClassName('header_indicator_8')[0];
+        this.xhttp = new XMLHttpRequest();
+        this.noti_sound=null;
+        this.message_sound=null;
+        this.initiated=false;
+        var obj = this;
+        setInterval(function(){obj.get_information(obj)}, 5000);
+        window.addEventListener('click', function(){
+            if(!obj.initiated){
+                obj.noti_sound = new Audio('https://notificationsounds.com/soundfiles/f76a89f0cb91bc419542ce9fa43902dc/file-sounds-1154-done-for-you.mp3');
+                obj.message_sound = new Audio('https://notificationsounds.com/soundfiles/8ebda540cbcc4d7336496819a46a1b68/file-sounds-1153-piece-of-cake.mp3');
+                obj.initiated=true;
+            }
+            
+        })
+    }
+    get_information(obje){
+        obje.xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                obje.new_notification=data.notification;
+                obje.new_message=data.message;
+                obje.new_information_action()
+            }
+        };
+        obje.xhttp.open("GET", "/common/header_information_ajax.php?header=1", true);
+        obje.xhttp.send();
+    }
+    new_information_action(){
+        if(this.new_notification!==this.old_notification){
+            this.new_notification_action();
+            this.old_notification=this.new_notification;
+        }
+        if(this.new_message!==this.old_message){
+            this.new_message_action();
+            this.old_message=this.new_message;
+        }
+    }
+    new_notification_action(){
+        if(this.new_notification==0){
+            this.noti_ele.innerHTML='';
+            this.noti_ele.classList.add('empty_indicator');
+        }else{
+            this.noti_ele.classList.remove('empty_indicator');
+            this.noti_ele.innerHTML=this.new_notification;
+        }if(this.new_notification>this.old_notification){
+            if(this.noti_sound!==null){
+                this.noti_sound.play();
+            }
+        }
+    }
+    new_message_action(){
+        if(this.new_message==0){
+            this.message_ele.innerHTML='';
+            this.message_ele.classList.add('empty_indicator');
+        }else{
+            this.message_ele.classList.remove('empty_indicator');
+            this.message_ele.innerHTML=this.new_message;
+        }if(this.new_message>this.old_message){
+            if(this.message_sound!==null){
+                this.message_sound.play();
+            }
+        }
+    }
+}
+
+var indicator = new HeaderIndicator();
+document.getElementsByTagName('div')[0].click()
+//indicator.init();

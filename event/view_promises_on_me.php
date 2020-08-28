@@ -1,5 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
 
     $id=$_SESSION['user_nic'];
     $person=$_SESSION['first_name']." ".$_SESSION['last_name'];
@@ -21,17 +21,12 @@
         mysqli_free_result($result);
     }
     ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
         <title>view promises on me</title>
         <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
-    </head>
-    <body>
+
         <script>
             btnPress(4);
         </script>
@@ -204,4 +199,4 @@
 
     }
     </script>
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

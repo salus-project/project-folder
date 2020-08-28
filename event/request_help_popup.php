@@ -141,7 +141,7 @@
     </div>
     <div class="submit_cancel_btn_container">
         <button name="submit_button" type="submit"  value="Request"  class="req_submit_button" id=req_submit_btn onclick="submit_request(this.parentElement.parentElement)">Request</button>
-        <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' id=close_request_popup name='cancel_button' class=req_submit_button >Cancel</button></a>
+        <button type='button' id=close_request_popup name='cancel_button' class=req_submit_button onclick='close_popup()'>Cancel</button>
     </div>
 
 <?php echo "<input id='del_details' type='hidden' value='' name='del_details'>" ; ?>

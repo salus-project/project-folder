@@ -82,7 +82,8 @@
         $data1=join(" ",$status);
         $pri_query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = ".$event_id.";
             UPDATE `event_".$event_id."_help_requested` SET `now` = 'no' WHERE `event_".$event_id."_help_requested`.`NIC_num` = '".$_SESSION['user_nic']."';";
-
+        mysqli_query($con,$pri_query);
+        echo $pri_query;
         
     }
 ?>

@@ -21,8 +21,7 @@
                 <table id='notif_header_table'>";
                 echo "<div class=view_all>NOTIFICATION</div><button class='notif_setting_btn' type=button><i class='fa fa-cog'  aria-hidden='true'></i></button>";
                 echo "<div class='hidden_notif_div'>
-                        <a href='/notification/mark.php'><button type=button class='notif_name view_all_btn' name=event_id>Mark All As Read</button></a>
-                        <a href=''><button type=button class='notif_view_all view_all_btn' name=event_id>View All</button></a>
+                        <button type=button class='notif_name view_all_btn' name='event_id' onclick='notification_mark_all()'>Mark All As Read</button>
                     </div>";
                 
         while($row=$data->fetch_assoc()) {

@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         <script src="/common/map/map.js"></script>
-        
+        <!--script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
         <link rel="stylesheet" href="/css_codes/view_event.css">
         <link rel="stylesheet" href="/css_codes/style.css">

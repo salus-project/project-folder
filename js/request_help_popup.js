@@ -87,7 +87,7 @@ function init_request_map(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position)=>{
             set_location_input(position.coords.latitude, position.coords.longitude);
-            fill_address_click();
+            address_to_cord_click()
         });
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";

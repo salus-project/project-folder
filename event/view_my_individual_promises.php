@@ -1,5 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
     $id=$_SESSION['user_nic'];
     $person=$_SESSION['first_name']." ".$_SESSION['last_name'];
     $event_id = $_GET['event_id'];
@@ -166,5 +166,4 @@
         xhttp.send("sql="+sql+"&person="+person+"&event="+event+"&status="+c_status+"&id_n="+id_n+"&type="+1);
     }
 </script>
-
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

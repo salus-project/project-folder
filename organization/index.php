@@ -23,7 +23,6 @@
 
         </div>
         <script>
-            var newPost = new NewPost('organization', '<?php echo $org_id ?>');
             var post = new Post("select public_posts.*,organizations.org_name from public_posts inner join organizations on public_posts.org=organizations.org_id where public_posts.org="+<?php echo $org_id?>);
             post.get_post();
         </script>

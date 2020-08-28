@@ -347,7 +347,10 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             <?php
                 if($fundraising['by_civilian']==$_SESSION['user_nic']){
                     echo "<div id='new_post'>
-                    </div>";
+                    </div>
+                    <script>
+                        var newPost = new NewPost('fundraising', '".$_GET['view_fun'] ."');
+                    </script>";
                 }
                          
             ?>          
@@ -357,7 +360,6 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         </div>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
-            var newPost = new NewPost('fundraising', '<?php echo $_GET['view_fun'] ?>');
             var post = new Post("select fundraisings.name,public_posts.* from fundraisings inner join public_posts on fundraisings.id=public_posts.fund where fundraisings.id="+<?php echo $_GET['view_fun'] ?>);
             post.get_post();
             

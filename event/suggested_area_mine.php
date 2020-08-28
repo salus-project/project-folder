@@ -66,7 +66,6 @@
         <div id='my_suggest_map' style='width:100%;height:100%'></div>
     </div>
 </div>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
 <script>
     var myGeo = new EventGeo('my_suggest_map');
     myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
@@ -82,3 +81,4 @@
         create_place(JSON.parse(ele.dataset.areadata),true);
     }
 </script>
+<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

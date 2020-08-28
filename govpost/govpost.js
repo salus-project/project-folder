@@ -67,7 +67,7 @@ function create_post(arr,user_nic=''){
                                         "<div class='comment_div'>"+
                                             "<input type='text' class='comment_input' placeholder='Enter your comment..'>"+
                                         "</div>"+
-                                        "<div class='tooltip send_icon' onclick='comment(this)'>"+
+                                        "<div class='tooltip send_icon' onclick='comment(this, \""+user_nic+"\")'>"+
                                             "<span class='send_btn'><i class='fa fa-send'></i></span>"+
                                             "<span class='tooltiptext'>SEND</span>"+
                                         "</div>"+
@@ -190,15 +190,13 @@ function comment(element, sender=''){
         var parent = element.parentElement.parentElement.parentElement;
         var post_index = parent.querySelector('.post_index').value;
         send = "comment=true&post_index=".concat(post_index,"&content=",comment);
-        if(sender!==''){
+        if(sender==='staff'){
             send+='&sender=gov';
         }else{
-            send+='&sender';
+            send+='&sender='+sender;
         }
-        response(send);
-        send = "view_cmt=true&post_index=".concat(post_index);
-        response(send,element.parentElement.previousElementSibling);
-        element.parentElement.firstElementChild.value = '';
+        response(send, element.parentElement.previousElementSibling);
+        element.parentElement.querySelector('.comment_input').value='';
     }
 }
 

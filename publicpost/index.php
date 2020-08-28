@@ -36,6 +36,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 <div id="content">
 
 </div>
+ 
 <?php include $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php" ?>
 <script>
     var newPost = new NewPost('individual', '<?php echo $_SESSION['user_nic'] ?>');

@@ -119,7 +119,7 @@
     <br>
     <div class="submit_cancel_btn_container">
         <button name="update_button" type="submit"  value="Submit"  class="submit_button">Submit</button>
-        <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' id=close_request_popup name='cancel_button' class=submit_button>Cancel</button></a>
+        <button type='button' id=close_request_popup name='cancel_button' class=submit_button onclick='close_popup()'>Cancel</button>
 
     </div>
 </div>
