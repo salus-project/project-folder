@@ -1,4 +1,3 @@
-
 <?php
 if (isset($_POST['submit'])){
     $password = $_POST["password"];
@@ -23,8 +22,11 @@ if (isset($_POST['submit'])){
         $query="ALTER TABLE disaster_events ADD COLUMN `user_".$nic."` varchar(50) NOT NULL DEFAULT 'not_set not_requested not_applied'";
         $query_run= mysqli_query($con,$query);
 
-        $query1 = "CREATE TABLE `user_".$nic."` (Notification_id INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,Date date, Time time,Content text, link varchar(100), status varchar(10) default 'unseen';"; 
-        $query1_run= mysqli_query($notification_DB,$query1);
+        $query1="";
+        $query1.= "create table `user_notif_ic_".$nic."` (Notification_id INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY not null,Date date, Time time,Content text, link varchar(100), status varchar(10) default 'unseen');"; 
+        $query1.="create table `user_message_".$nic."` (id int(5) AUTO_INCREMENT primary key, _from varchar(12) default null, _to varchar(12) default null, time datetime, content text, status tinyint(1) default 0);";
+        $notification_DB = NotificationDb::getConnection();
+        $query1_run= mysqli_multi_query($notification_DB,$query1);
 
         echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
         header('location:member.php');
@@ -33,3 +35,4 @@ if (isset($_POST['submit'])){
     }
 }
 ?>
+

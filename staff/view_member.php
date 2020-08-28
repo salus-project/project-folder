@@ -16,7 +16,7 @@
     $gender=$result['gender'];
     $district=$result['district'];
     $village=$result['village'];
-    $street=$result['street'];
+    $street=$result['street']; 
     $address=$result['address'];
     $Occupation=$result['Occupation'];
     $email=$result['email'];
