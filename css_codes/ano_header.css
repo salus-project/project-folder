@@ -11,7 +11,9 @@ body {
     width: 9px;
     
   }
-  
+  input:-internal-autofill-selected {
+    background-color: white;
+  }
   /* Track */
   div::-webkit-scrollbar-track {
     box-shadow: inset 0 0 4px grey;
@@ -135,15 +137,7 @@ a {
 
 #main_body {
     display: flex;
-}
-
-.sub_body {
-    width: calc(100% - 300px);
-    transition: width 1.5s;
-}
-
-.full_sub_body {
-    width: 100%
+    flex-flow: column;
 }
 
 .menu_icon:hover {
@@ -250,15 +244,15 @@ a {
 }
 
 .font_aws{
-display: inline-block;
+    display: inline-block;
 }
-.log_in{
+/* .log_in{
     display: inline-block;
     position: absolute;
     right: 10px;
     bottom: 5px;
 
-}
+} */
 .enter_nic,.enter_password{
     display: inline-block;
     padding: 4px;
@@ -281,12 +275,36 @@ display: inline-block;
     border-radius: 5px;
     height: 34px;
     width: 80px;
-    margin-right: 2px;
+    float: right;
+    margin-right: 10px;
     background-color: #4c5fd7;
     color: white;
     font-size: 16px;
 }
-
+body{
+    background-color: rgb(242 244 246);
+    color: #6b7c93;
+    font-family: "Open Sans",sans-serif;
+  }
+  
+  .main_footer{
+    background: #e8e8e8;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    transition: width 1.5s;
+  }
+  .sub_body{
+    min-height: calc(100vh - 110px);
+    transition-duration: 1.5s;
+    max-height: 100%;
+    -webkit-overflow-scrolling: touch;
+    font-family: Open Sans,sans-serif;
+    color: #6b7c93;
+    width: 100%;
+  }
 /* Event.css*/
 .event_table_con, .org_table_con , .notif_table_con{
     overflow-x: hidden;
@@ -574,3 +592,137 @@ input:checked+.slider:before {
         opacity: 1;
     }
 }
+
+/* log in popup */
+
+    
+    /*assign full width inputs*/ 
+    .login_username, 
+    .login_password { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+    } 
+    
+    /*set a style for the buttons*/ 
+    .popup_btn { 
+        background-color:#4c5fd7;
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+    } 
+    
+    /* set a hover effect for the button*/ 
+    .popup_btn:hover { 
+        opacity: 0.8; 
+    } 
+    
+    /*set extra style for the cancel button*/ 
+    .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+    } 
+    
+    /*centre the display image inside the container*/ 
+    .imgcontainer { 
+        text-align: center; 
+        margin: 24px 0 12px 0; 
+        position: relative; 
+    } 
+    
+    /*set image properties*/ 
+    img.avatar { 
+        width: 40%; 
+        border-radius: 50%; 
+    } 
+    
+    /*set padding to the container*/ 
+    .pop_container { 
+        padding: 16px; 
+    } 
+      
+    /*set the forgot password text*/ 
+    span.psw { 
+        float: right; 
+        padding-top: 16px; 
+    } 
+    
+    /*set the Modal background*/ 
+    .modal { 
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgb(0, 0, 0); 
+        background-color: rgba(0, 0, 0, 0.4); 
+        padding-top: 60px; 
+    } 
+    
+    /*style the model content box*/ 
+    .modal-content { 
+        background-color: #fefefe; 
+        margin: 5% auto 15% auto; 
+        border: 1px solid #888; 
+        width: 550px;
+    } 
+    
+    /*style the close button*/ 
+    .close { 
+        position: absolute; 
+        right: 25px; 
+        top: 0; 
+        color: #000; 
+        font-size: 35px; 
+        font-weight: bold; 
+    } 
+      
+    .close:hover, 
+    .close:focus { 
+        color: red; 
+        cursor: pointer; 
+    } 
+    
+    /* add zoom animation*/ 
+    .animate { 
+        -webkit-animation: animatezoom 0.6s; 
+        animation: animatezoom 0.6s 
+    } 
+      
+    @-webkit-keyframes animatezoom { 
+        from { 
+            -webkit-transform: scale(0) 
+        } 
+        to { 
+            -webkit-transform: scale(1) 
+        } 
+    } 
+      
+    @keyframes animatezoom { 
+        from { 
+            transform: scale(0) 
+        } 
+        to { 
+            transform: scale(1) 
+        } 
+    } 
+      
+    @media screen and (max-width: 300px) { 
+        span.psw { 
+            display: block; 
+            float: none; 
+        } 
+        .cancelbtn { 
+            width: 100%; 
+        } 
+    } 
