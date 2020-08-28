@@ -81,12 +81,12 @@ $type=$_GET['type'];
         $result2=$con->query($sql2)->fetch_all();
         $nic_arr=array_column($result2,0);
 
-        echo "<tr class='find_first_head'>";
-            echo "<th colspan=3>Request details</th>";
+        echo "<tr>";
+            echo "<th class='find_first_head' colspan=3>Request details</th>";
         echo "</tr>";
-        echo "<tr class='find_second_head'>";
-            echo "<th colspan=2>Person name</th>";
-            echo "<th colspan=1>Requests</th>";
+        echo "<tr>";
+            echo "<th class='find_second_head' colspan=2>Person name</th>";
+            echo "<th class='find_second_head' colspan=1>Requests</th>";
         echo "</tr>";
 
     }
