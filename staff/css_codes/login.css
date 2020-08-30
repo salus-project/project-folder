@@ -4,43 +4,52 @@ body {
   background-color: rgb(242 244 246);
   color: #6b7c93;
 }
-.login_form {
-  display: block;
-  margin: 0 auto;
-  width: 450px;
-  border: 1px solid #90969a;
-  box-shadow: whitesmoke;
-  margin-top: 7%;
-  border-radius: 5px;
-  background-color: white;
+.form_div {
+  position: relative;
+  margin: auto;
+  padding: 55px;
+  width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 60px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+
+}
+label{
+  font-weight: 600;
+}
+.fa, .fas {
+  font-weight: 900;
+  font-size: 13px;
+  margin: 0 12px 0 8px;
 }
 .login_form_head{
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.2;
   text-align: center;
-  font-weight: 700;
-  font-size: 25px;
-  padding-top: 18px;}
+  padding-bottom: 33px;
+}
 
 .login_form_input[type=text], .login_form_input[type=password] {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 5px 0 12px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  outline: none;
-  border-radius: 5px;
 }
 
 .login_form_submit_btn {
-  background-color: #183153;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 5px;
-  outline: none;
+  background-color: #4c5fd7;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
 }
 
 .login_form_submit_btn:hover {
