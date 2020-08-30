@@ -52,8 +52,8 @@
     }
 
     function change(nic){
-        document.getElementsByClassName('forgot_body')[0].innerHTML='<div class="user_nic">User name<br><input class="user_password_label" value="'+nic+'" disabled></div>'
-                                    +'<b>New password</b><br> <input type="password" class="user_password" placeholder="Enter Password" name="password" required>'
+        document.getElementsByClassName('forgot_body')[0].innerHTML='<div class="user_nic"><i class="fa fa-user" aria-hidden="true"></i>User name<br><input class="user_password_label" value="'+nic+'" disabled></div>'
+                                    +'<i class="fa fa-lock" aria-hidden="true"></i><b>New password</b><br> <input type="password" class="user_password" placeholder="Enter Password" name="password" required>'
                                     +'<button type="button" onclick="login()" class="login_btn" >Log in</button> ';
 
     }
@@ -65,12 +65,12 @@
                 if(this.responseText=="true"){
                     document.getElementsByClassName('forgot_body')[0].innerHTML=' <form class="submit_form" action="/anonymous/forgot_password/login_submit.php" method="post">'
                                     +'<input type="hidden" name="nic" value="'+nic+'">'
-                                    +'<b>Change password</b><br><input type="password" class="new_password" placeholder="Enter new Password" name="password" required>'
+                                    +'<i class="fa fa-lock" aria-hidden="true"></i><b>Change password</b><br><input type="password" class="new_password" placeholder="Enter new Password" name="password" required>'
                                     +'<button type="submit"  class="submit_btn" >Save</button> </form>';
 
                 }
                 else{
-                    document.getElementsByClassName('forgot_body')[0].innerHTML='<div class="user_nic">User name<br><input class="user_password_label" value="'+nic+'" disabled></div>'
+                    document.getElementsByClassName('forgot_body')[0].innerHTML='<div class="user_nic"><i class="fa fa-user" aria-hidden="true"></i>User name<br><input class="user_password_label" value="'+nic+'" disabled></div>'
                                     +'<input type="hidden" class="nic_input" value="'+nic+'">'
                                     +'<input type="password" class="user_password" placeholder="Enter Password" name="password" required>'
                                     +'<span class="error_msg" >Invalid password </span>'
