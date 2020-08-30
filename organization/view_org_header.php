@@ -96,13 +96,46 @@
                 $viewer->show_title_button();
             ?>
         </div>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             const selected_org = "<?php echo $_GET['selected_org'] ?>";
             const link = "<?php $viewer->show_event_link(); ?>";
+
+            function confirmFn() {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once you leave, you can join only as a member!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                            document.getElementById("org_leave_form").submit();
+                        } 
+                });
+            }
+            function delOrgFn(orgId) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once you deleted, you can not recover it!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = '/organization/del_org.php?org_id='+orgId;
+                        } 
+                });
+            }
+
         </script>
-        <script src='/js/view_org.js'></script>
+        <script src='/js/view_org.js' ></script>
         <div id='org_main_body'>
             <div id='org_side_nav'>
                 <?php include($_SERVER['DOCUMENT_ROOT']."/organization/member_nav.php");?>
             </div>
             <div id='org_sub_body'>
+
+        
