@@ -149,7 +149,7 @@ $district = explode(",", $district);
                             'Ratnapura', 'Tricomalee', 'Vavuniya'
                         );
                         foreach ($district_arr as $dis) {
-                            echo "<a class='drp' data-value='$dis' onclick='select_option(this)'>";
+                            echo "<a class='drp' data-value='$dis' onclick='{this.firstElementChild.firstElementChild.toggleAttribute(\"checked\")}'>";
                             echo "<label class=\"container drp\">$dis";
                             if ($district != '') {
                                 if (in_array($dis, $district)) {
@@ -228,9 +228,6 @@ $district = explode(",", $district);
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    function select_option(element) {
-        element.checked = true;
-    }
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
         if (!(event.target.matches('.dropbtn') || event.target.matches('.drp'))) {

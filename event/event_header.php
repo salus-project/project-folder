@@ -39,7 +39,10 @@
                 $result = mysqli_fetch_assoc($sql_result);
                 mysqli_free_result($sql_result);
             }
-
+            if(!isset($result['status'])){
+                require $_SERVER['DOCUMENT_ROOT']."/event/all_event.php";
+                exit();
+            }
             if($result['status']=='closed'){
                 require $_SERVER['DOCUMENT_ROOT']."/event/closed_event.php";
                 exit();

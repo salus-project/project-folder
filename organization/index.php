@@ -27,5 +27,3 @@
             post.get_post();
         </script>
         <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
-    </body>
-</html>

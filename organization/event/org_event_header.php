@@ -24,10 +24,34 @@
             
         </div>
         <?php
-            $query="select * from disaster_events where event_id =" . $_GET['event_id'];
-            $result=($con->query($query))->fetch_assoc();
+            $query="select * from disaster_events where event_id =" . $_GET['event_id'].";
+                    select * from event_".$_GET['event_id']."_locations;";
+            $result;
+            if(mysqli_multi_query($con, $query)){
+                $sql_result = mysqli_store_result($con);
+                $result = mysqli_fetch_assoc($sql_result);
+                mysqli_free_result($sql_result);
+            }
+            if(!isset($result['status']) || $result['status']=='closed'){
+                header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/organization/visitor_event/?event_id=".$_GET['event_id']."&selected_org=".$org_id));
+                ob_end_flush();
+                ob_flush();
+                flush();
+            }
+            
+            mysqli_next_result($con);
+            $sql_result = mysqli_store_result($con);
+            $location_arr = mysqli_fetch_all($sql_result,MYSQLI_ASSOC);
+            mysqli_free_result($sql_result);
+            
             $event_name=$result['name'];
         ?>
+        <script>
+            var event_name = '<?php echo $result['name'] ?>';
+            var areaGeoJson = JSON.parse('<?php echo $result['geoJson'] ?>');
+            var location_arr = <?php echo json_encode($location_arr) ?>;
+            
+        </script>
         <div id=event_header>
             <div id=title_box>
                 <?php echo $result['name'] ?>

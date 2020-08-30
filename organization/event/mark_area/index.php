@@ -1,6 +1,4 @@
-<?php //require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php"; ?>
-<!DOCTYPE html>
-<html>
+<?php require $_SERVER['DOCUMENT_ROOT']."/organization/event/org_event_header.php" ?>
     <head>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -153,9 +151,6 @@
             
         </div>
         <script>
-            var event_name = '';
-            var areaGeoJson = JSON.parse('{"type":"FeatureCollection","features":[{"type":"Feature","id":"bd4c90e7-4de3-495f-901f-b235c9b593b2","geometry":{"type":"Polygon","coordinates":[[[80.18088086,9.82667697],[80.14513104,9.82539604],[80.12108116,9.8177104],[80.08013136,9.8081031],[80.04763152,9.81578896],[80.01578168,9.81578896],[79.98198185,9.80874359],[79.95403199,9.79657396],[79.94363205,9.79337135],[79.93843207,9.7831228],[79.92218215,9.77735785],[79.9124322,9.77735785],[79.89683228,9.76646823],[79.88318235,9.76198416],[79.86498244,9.7600624],[79.8136327,9.71842152],[79.78308285,9.68638655],[79.7720329,9.67485321],[79.76553294,9.66524179],[79.76488294,9.65306694],[79.76163296,9.60884928],[79.76358295,9.59218606],[79.76878292,9.58257229],[79.85068251,9.56654873],[79.85978246,9.57039445],[79.99108181,9.59667239],[80.00343175,9.60564488],[80.00668173,9.62038488],[80.00668173,9.63127925],[80.01968166,9.64794055],[80.03918157,9.64537733],[80.04633153,9.64858135],[80.06193145,9.64153245],[80.10288125,9.61397626],[80.1321311,9.60628576],[80.20038076,9.5806495],[80.2127307,9.58513599],[80.19518079,9.59218606],[80.18673083,9.64601813],[80.24718053,9.61974403],[80.29138031,9.59346788],[80.32258015,9.57488108],[80.40187975,9.63063842],[80.36417994,9.66396025],[80.31738018,9.71521816],[80.28228035,9.76838995],[80.25043051,9.82475558],[80.2133807,9.83628373],[80.18088086,9.82667697]]]},"properties":{"name":"jaffna"}}]}');
-            var location_arr = [];
 
             var myGeo = new EventGeo('circle_map');
             myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
@@ -164,124 +159,6 @@
                 create_place(place);
             }
 
-            /*var myGeo = new EventGeo();
-            myGeo.markPlace(areaGeoJson, 'danger', 'Affected area',  true);
-
-            for(var place of location_arr){
-                create_place(place);
-            }
-
-            /*class AreaStyle{
-                constructor(){
-                    
-                }
-                create(area){
-                    switch (area) {
-                        case 'danger':
-                            this.fillColor='red';
-                            this.color='red';
-                            this.weight = 3;
-                            this.opacity = 0.3;
-                            this.fillOpacity = 0.08;
-                            break;
-                        case 'suggested':
-                            this.fillColor='organge';
-                            this.color='orange';
-                            this.weight = 3;
-                            this.opacity = 0.3;
-                            this.fillOpacity = 0.08;
-                            break;
-                    }
-                    return {"fillColor":this.fillColor,
-                        "color":this.color,
-                        "weight": this.weight,
-                        "opacity": this.opacity,
-                        "fillOpacity": this.fillOpacity}
-                }
-            }
-            
-            class EventGeo{
-                constructor(x=0,y=0,zoom=12){
-                    this.map = L.map('map').setView([x, y],zoom);
-                    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=fN8T3G0qqLvrBTjTZJfJ'/*, {
-                        attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-                        
-                    }*//*).addTo(this.map);
-                    this.customMarker = L.icon({
-                        iconUrl:'/common/markers/marker1.png',
-                        iconSize:[38,40],
-                        iconAnchor:[19,40]
-                    });
-                    this.areaObj = new AreaStyle();
-                    this.markerLayer=null;
-                    this.markers = [];
-                    this.places = [];
-                }
-                addMarker(x,y,msg){
-                    this.marker = L.marker([x, y],{icon:this.customMarker, draggable:false}).addTo(this.map);
-                    this.marker.bindPopup(msg);
-                    this.markers.push(this.marker);
-                }
-                addMarkerLayer(xy,msg){
-                    if(this.markerLayer!==null){
-                        this.map.removeLayer(this.markerLayer);
-                    }
-                    this.markerLayer = L.marker(xy,{icon:this.customMarker, draggable:false});
-                    this.map.addLayer(this.markerLayer);
-                    this.markerLayer.bindPopup(msg);
-                }
-                markPlace(geoJson, msg, area, center){
-                    this.place = L.geoJSON(geoJson,{
-                        style: this.areaObj.create(area)
-                    }).addTo(this.map);
-                    this.place.bindPopup(msg);
-                    if(center){
-                        this.map.fitBounds(this.place.getBounds());
-                    }
-                    this.places.push(this.place);
-                }
-                draw_circle(x, y, rad, msg, center=false){
-                    this.circle = L.circle([x, y], {
-                        color: 'orange',
-                        fillColor: 'orange',
-                        fillOpacity: 0.3,
-                        weight: 0.1,
-                        radius: rad
-                    }).addTo(this.map);
-                    this.circle.bindPopup(msg);
-                    if(center){
-                        this.map.fitBounds(this.circle.getBounds());
-                    }
-                }
-                bound_map(bounds){
-                    this.map.fitBounds(bounds);
-                }
-                add_event(event,fun){
-                    this.map.on(event, fun);
-                    for(var place of this.places){
-                        place.on(event, fun);
-                        place.unbindPopup();
-                    }
-                }
-                remove_event(event,fun){
-                    this.map.off(event, fun);
-                    for(var place of this.places){
-                        place.off(event, fun);
-                        place.unbindPopup();
-                    }
-                    if(this.markerLayer!==null){
-                        this.map.removeLayer(this.markerLayer);
-                    }
-                }
-                fit_screen(){
-                    this.map.fitBounds(this.place.getBounds());
-                }
-            }
-            var myGeo = new EventGeo();
-            myGeo.markPlace({"type":"FeatureCollection","features":[{"type":"Feature","id":"bd4c90e7-4de3-495f-901f-b235c9b593b2","geometry":{"type":"Polygon","coordinates":[[[80.18088086,9.82667697],[80.14513104,9.82539604],[80.12108116,9.8177104],[80.08013136,9.8081031],[80.04763152,9.81578896],[80.01578168,9.81578896],[79.98198185,9.80874359],[79.95403199,9.79657396],[79.94363205,9.79337135],[79.93843207,9.7831228],[79.92218215,9.77735785],[79.9124322,9.77735785],[79.89683228,9.76646823],[79.88318235,9.76198416],[79.86498244,9.7600624],[79.8136327,9.71842152],[79.78308285,9.68638655],[79.7720329,9.67485321],[79.76553294,9.66524179],[79.76488294,9.65306694],[79.76163296,9.60884928],[79.76358295,9.59218606],[79.76878292,9.58257229],[79.85068251,9.56654873],[79.85978246,9.57039445],[79.99108181,9.59667239],[80.00343175,9.60564488],[80.00668173,9.62038488],[80.00668173,9.63127925],[80.01968166,9.64794055],[80.03918157,9.64537733],[80.04633153,9.64858135],[80.06193145,9.64153245],[80.10288125,9.61397626],[80.1321311,9.60628576],[80.20038076,9.5806495],[80.2127307,9.58513599],[80.19518079,9.59218606],[80.18673083,9.64601813],[80.24718053,9.61974403],[80.29138031,9.59346788],[80.32258015,9.57488108],[80.40187975,9.63063842],[80.36417994,9.66396025],[80.31738018,9.71521816],[80.28228035,9.76838995],[80.25043051,9.82475558],[80.2133807,9.83628373],[80.18088086,9.82667697]]]},"properties":{"name":"jaffna"}}]}, 'Jaffna', 'danger', true);
-            myGeo.addMarker(9.662778, 80.009127, 'place1');
-            myGeo.addMarker(9.664764, 80.010809, 'place2');*/
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position)=>{
                     set_location_input(position.coords.latitude, position.coords.longitude);
@@ -289,11 +166,6 @@
             } else { 
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
-            
-            
-
-            
-            //myGeo.draw_circle(9.662778, 80.009127,500,"marked by someone");
 
             function locate_current(){
                 if (navigator.geolocation) {
@@ -527,5 +399,4 @@
             then close all select boxes:*/
             document.addEventListener("click", closeAllSelect);
         </script>
-    </body>
-</html>
+        <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>

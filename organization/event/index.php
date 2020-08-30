@@ -32,8 +32,7 @@
 
                     $districts = array_unique(array_column($all_requested,'district'));
                     echo "<div class='request_people_div'>";
-                    echo "<div class='dis_con_div'>";
-                        
+                        echo "<div class='dis_con_div'>";
                         echo    "<table class='dis_container'>";
                                     foreach($districts as $row_dis){
                                         echo "<tr><td class='dis_table_data'><span class='arrow dis_data' onclick='select_con(this)'><i class='fa fa-caret-down' aria-hidden='true'></i><input type='checkbox' class='help_check'>". $row_dis . "</span><div class='village_div'>";
@@ -42,7 +41,7 @@
                                     }
                         echo    "</table>";
                         echo "</div>";
-echo "</div>";
+                    echo "</div>";
 
                     function innerDis($selected_dis,$all_requested){
                         $dis_requested = array_filter(array_map(function($item) use($selected_dis) {return dis_filter($item,$selected_dis);},$all_requested));
@@ -98,10 +97,9 @@ echo "</div>";
                     
                 ?>
                 <button id="promise_buttton" onclick="promise()">Promise to help</button>
-                </div>
+            </div>
         </div>
         <div id=social_events>
-            
             <div id=affected>
                 <div class='org_event_requests' colspan=2>
                     Affected people detail
@@ -163,6 +161,4 @@ echo "</div>";
                 document.getElementById("overlay").classList.remove("active_overlay");
             }
         </script>
-        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
-    </body>
-</html>
+        <?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>

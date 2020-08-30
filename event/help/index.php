@@ -7,8 +7,8 @@
     $event_id = $_GET['event_id'];
     $by=$_GET['by'];
     $by_person=$_SESSION['user_nic'];
-    $query = "select role FROM `org_members` WHERE org_id=".$by." and NIC_num='".$by_person."' and (role='leader' or role='coleader') ;select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."';
-    select * from event_".$event_id."_requests WHERE requester='".$to."';";
+    $query = "select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."';
+            select * from event_".$event_id."_requests WHERE requester='".$to."';";
     
     if($by=="your_self"){
         $query.="select id, note from event_".$event_id."_pro_don where by_person='".$by_person."' and to_person='".$to."';
@@ -17,7 +17,8 @@
     }else{
         $query.="SELECT id, note from event_".$event_id."_pro_don where by_org='".$by."' and to_person='".$to."';         
         select * from event_".$event_id."_pro_don_content where don_id=(
-            select id from event_".$event_id."_pro_don where by_org='".$by."' and to_person='".$to."')";
+            select id from event_".$event_id."_pro_don where by_org='".$by."' and to_person='".$to."');
+            select role FROM `org_members` WHERE org_id=".$by." and NIC_num='".$by_person."' and (role='leader' or role='coleader');";
     }
 ?>
 
@@ -37,17 +38,6 @@
             echo '<input type="hidden" name="event_id" value= '.$event_id.'>';
             echo '<input type="hidden" name="to" value= '.$to.'>';
             echo '<input type="hidden" name="by" value= '.$by.'>';
-            
-            $result = mysqli_store_result($con);
-            if($result->num_rows ==0){
-
-                header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/event/all_event.php"));
-                ob_end_flush();
-                ob_flush();
-                flush();
-            }
-            mysqli_free_result($result);
-
 
             mysqli_next_result($con);
             $result = mysqli_store_result($con);
@@ -88,6 +78,19 @@
             $old_content = mysqli_fetch_all($result,MYSQLI_ASSOC);
             mysqli_free_result($result);
             
+            if($by!='your_self'){
+                mysqli_next_result($con);
+                $result = mysqli_store_result($con);
+                if($result->num_rows ==0){
+
+                    header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/event/all_event.php"));
+                    ob_end_flush();
+                    ob_flush();
+                    flush();
+                }
+                mysqli_free_result($result);
+            }
+
             $add_element =  "<div class='input_sub_container'>
                                 <div class='item_amount_div'>
                                     <div class='item_div'>
@@ -311,6 +314,8 @@
                 echo "<input id='del_detail' type='hidden' name='del' value=''>";
             echo '</form>';
         echo '</div>';
+        }else{
+            echo $query;
         }
         
     ?>

@@ -87,7 +87,7 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
                             </div>
                 <?php   }else{
                             if($status=='applied'){?>
-                                <a href="/event/help?event_id=<?php echo $event_id ?>&to=<?php echo $nic ?>&by=<?php echo $_SESSION['user_nic'] ?>">
+                                <a href="/event/help?event_id=<?php echo $event_id ?>&to=<?php echo $nic ?>&by=your_self">
                                     <div class="org_drop behalf_you">
                                         Behalf of Yourself
                                     </div>

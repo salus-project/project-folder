@@ -21,7 +21,7 @@
         <div class='top'>
             <div class='cont'>
                 <div class='org_search'>
-                    <div>Search for: </div><div class='search'><input placeholder='Organization name' class='search_input' type=text></div>
+                    <div>Search for: </div><div class='search'><input id='search_org' placeholder='Enter Organization name' class='search_input' type=text></div>
                 </div>
                 <div id='create_org'>
                     <thead>
@@ -98,4 +98,7 @@
             </div>
     </form>
 </div>
+<script>
+    autocomplete_ready(document.getElementById("search_org"), 'orgs', 'ready', 'click');
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

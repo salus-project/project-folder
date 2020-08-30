@@ -2,7 +2,8 @@
     ob_start();
     ignore_user_abort();
     
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +24,17 @@
             $result=$con->query($query);
             if(mysqli_num_rows($result)>0){
                 $query1="DELETE FROM org_members where org_id=".$org_id." and  NIC_num='".$nic."';";
-                $msss=" leave from ";
+                $msss=" left from ";
+                if(($result->fetch_assoc())['role']=='leader'){
+                    echo "update org_members, (select id from org_members where id in (select id from org_members where org_id=".$org_id." order by case when role = 'coleader' then '1' when role = 'member' then '2' else role end asc limit 1) ) as discounted set role='leader' where org_members.id = discoounted.id;";
+                }
             }else{
                 $query1="INSERT INTO org_members (org_id, NIC_num, role) VALUES ('$org_id', '$nic', 'member')";
                 $msss=" joined with ";
             }   
 
             $sql="select NIC_num from org_members where org_id=".$org_id." and NIC_num <> '".$nic."';SELECT org_name FROM `organizations` where org_id=".$org_id.";" ;
-            if(mysqli_multi_query($con,$sql.$query1)){
+            /*if(mysqli_multi_query($con,$sql.$query1)){
                 $size = ob_get_length();
                 header("Content-Encoding: none");
                 header("Content-Length: {$size}");
@@ -61,7 +65,7 @@
                 require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
                 $sender = new Notification_sender($to,$mssg,$link,true);
                 $sender->send();
-            }
+            }*/
         ?>
     </body>
 </html>

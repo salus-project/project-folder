@@ -55,20 +55,25 @@
         protected $create_post_text;
 
         public function __construct(){
-            $this->join_text =  "<div id=membership_btn_container>
+            $this->join_text =  "<div id='membership_btn_container' class='header_btn_container'>
                                     <form action=org_join_leave.php method=get>
-                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-handshake-o' aria-hidden='true'></i>Join</button>
+                                        <button id=membership_btn class='header_btn' type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-handshake-o' aria-hidden='true'></i>Join</button>
                                     </form>
                                 </div>";
-            $this->leave_text = "<div id=membership_btn_container>
+            $this->leave_text = "<div id='membership_btn_container' class='header_btn_container'>
                                     <form action=org_join_leave.php method=get>
-                                        <button id=membership_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-share-square-o' aria-hidden='true'></i></i>Leave</button>
+                                        <button id=membership_btn class='header_btn' type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-share-square-o' aria-hidden='true'></i></i>Leave</button>
                                     </form>
                                 </div>";
-            $this->edit_text= "<div id=edit_btn_container >
+            $this->edit_text= "<div id='edit_btn_container' class='header_btn_container'>
                                     <form action=edit_org.php method=get>
-                                        <button id=edit_btn type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
+                                        <button id='edit_btn' class='header_btn' type='submit' name=org_id value=".$_GET['selected_org']."><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>
                                     </form>
+                                </div>
+                                <div id=del_btn_container class='header_btn_container'>
+                                    <a href='/organization/del_org.php?org_id=".$_GET['selected_org']."'>
+                                        <button id='delete_btn' class='header_btn'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Dismiss</button>
+                                    </a>
                                 </div>";
             $this->member_text= "";
             $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\"upload_org_profile_btn\").click()'>

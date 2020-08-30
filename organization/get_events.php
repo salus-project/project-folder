@@ -2,7 +2,7 @@
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
     if($_SERVER['REQUEST_METHOD']=='GET' && isset($_GET['events'])){
-        $query = 'select event_id, name from disaster_events';
+        $query = "select event_id, name from disaster_events where status='active' order by event_id desc;";
         $result = $con->query($query);
         if($result){
             while($raw = $result->fetch_assoc()){
