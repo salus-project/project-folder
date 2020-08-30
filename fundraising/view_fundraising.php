@@ -58,7 +58,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
         mysqli_next_result($con);
         $result = mysqli_store_result($con);
         $content_detail = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        mysqli_free_result($result);
+        mysqli_free_result($result); 
 
         mysqli_next_result($con);
         $result = mysqli_store_result($con);
@@ -86,7 +86,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             btnPress(7);
         </script>
         <div id="fund_title">
-            <?php echo '<center>'.$fundraising['name'].'</center>' ?>
+            <?php echo '<center>'.$fundraising['name'].'</center>';?>
         </div>
         <div class='main_slide_show'>
         <?php	
@@ -182,6 +182,10 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                     echo "<a href='/fundraising/edit_fundraising.php?edit_btn=".$_GET['view_fun']."'>";
                     echo "<button id='edit_btn' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>Edit</button>";
                     echo "</a>";
+
+                    echo "<a href='/fundraising/delete_fundraising.php?name=".$fundraising['name']."&delete=".$_GET['view_fun']."'>";
+                    echo "<button id='edit_btn' ><i class='fa fa-trash' aria-hidden='true'></i> Delete</button>";
+                    echo "</a></div>";
                 }
 ?>
 </td></tr>

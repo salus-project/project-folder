@@ -4,7 +4,7 @@ ob_start();
     $nameErr =$purpErr=$noSelEveErr="";    
     $fundraising_name=$org_name=$for_event=$for_any=$service_area=$description=$org_id="";
     $item=$amount=[];
-    $district="";
+    
     require $_SERVER['DOCUMENT_ROOT'].'/fundraising/edit_fundraising_php.php';
 
     $fund_id=intval($_GET['edit_btn']);
@@ -46,6 +46,7 @@ ob_start();
     }
     $fund_id=$fundraising['id'];
     $fundraising_name=$fundraising['name'];
+    $district=$fundraising['service_area'];
     $description=$fundraising['description'];
     $org_id=$fundraising['by_org'];
     $for_event=$fundraising['for_event'];
@@ -225,7 +226,7 @@ ob_start();
                                 'Kegalle','Kilinochchi','Kurunegala','Mannar','Matale','Mathara','Moneragala','Mullaitivu','Nuwara-Eliya','Polonnaruwa','Puttalam',
                                 'Ratnapura','Tricomalee','Vavuniya');
                                 foreach($district_arr as $dis){
-                                    echo "<a class='drp' data-value='$dis' onclick='select_option(this)'>";
+                                    echo "<a class='drp' data-value='$dis' onclick='{this.firstElementChild.firstElementChild.toggleAttribute(\"checked\")}'>";
                                     echo "<label class=\"container drp\">$dis";
                                     if ($district!=''){
                                         if(in_array($dis, $district)){
@@ -298,9 +299,7 @@ ob_start();
         function show_menu() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
-        function select_option(element) {
-            element.checked=true;
-        }
+        
         // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
         if (!(event.target.matches('.dropbtn') || event.target.matches('.drp'))) {

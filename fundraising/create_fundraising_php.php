@@ -11,12 +11,15 @@
     $for_opt=$_POST['purp'];
     $by=$_SESSION['user_nic'];
   
-    /*$district=$_POST['district']?$_POST['district']:[];
+    if (isset($_POST['district'])){
+        $district=$_POST['district'];
+    }else{
+        $district=[];
+    }
     for($x=0 ; $x < count($district) ; $x++){
         filt_inp($district[$x]);
     }
-    $district= implode(",", $district);*/
-    $district="";
+    $district= implode(",", $district);
  
     if($org==""){
         $org_id= "NULL"; 
@@ -75,7 +78,7 @@
         
         $query_run2=mysqli_multi_query($con,$query2);
 
-        if($query_run1 && $query_run2){
+        if($query_run1){
 
             echo '<script type="text/javascript">alert("Successfully created")</script>';
             header("Location:/fundraising/view_fundraising.php?view_fun=".$last_id2);

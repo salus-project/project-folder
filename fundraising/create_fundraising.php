@@ -19,9 +19,7 @@ if (mysqli_multi_query($con, $query)) {
     mysqli_free_result($result);
 }
 $district = explode(",", $district);
-
 ?>
-
 <title>Create new fundraising event</title>
 <link rel="stylesheet" href="/css_codes/create_fundraising.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -146,8 +144,7 @@ $district = explode(",", $district);
                         $district_arr = array(
                             'Ampara', 'Anurashapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampha', 'Hambatota', 'Jaffna', 'Kaltura', 'Kandy',
                             'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Mathara', 'Moneragala', 'Mullaitivu', 'Nuwara-Eliya', 'Polonnaruwa', 'Puttalam',
-                            'Ratnapura', 'Tricomalee', 'Vavuniya'
-                        );
+                            'Ratnapura', 'Tricomalee', 'Vavuniya');
                         foreach ($district_arr as $dis) {
                             echo "<a class='drp' data-value='$dis' onclick='{this.firstElementChild.firstElementChild.toggleAttribute(\"checked\")}'>";
                             echo "<label class=\"container drp\">$dis";

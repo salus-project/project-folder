@@ -9,12 +9,11 @@
     $description=$_POST['description'];
     $by=$_SESSION['user_nic']; 
 
-    /*$district=$_POST['district']?$_POST['district']:[];
+    $district=$_POST['district']?$_POST['district']:[];
     for($x=0 ; $x < count($district) ; $x++){
         filt_inp($district[$x]);
     }
-    $district= implode(",", $district);*/
-    $district="";
+    $district= implode(",", $district);
 
     if($_POST['organization']==""){
         $org_id= "NULL";
@@ -40,9 +39,7 @@
             $isOk=0;
         } 
     }
-    echo $fundraising_name;
-    $for_opt=$_POST['purp'];
-    if ($for_event==0){
+    if ($for_event=='NULL' && $for_any=='NULL'){
         $isOk=0;
         $noSelEveErr="Select an event";
     }
