@@ -90,10 +90,10 @@
                     <span class="login_head">
                         Account Login
                     </span> 
-                    <label><b>Username</b></label> 
+                    <i class="fa fa-user" aria-hidden="true"></i><label><b>Username</b></label> 
                     <input type="text" class="login_username" placeholder="Enter User Name" name="nic_num" required> 
 
-                    <label><b>Password</b></label> 
+                    <i class="fa fa-lock" aria-hidden="true"></i><label><b>Password</b></label> 
                     <input type="password" class="login_password" placeholder="Enter Password" name="password" required> 
 
                     <button class="popup_btn" type="submit">Login</button> 
