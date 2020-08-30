@@ -398,6 +398,8 @@ input:required.ng-touched.ng-empty {
 
 .dropdown-content.drp.show {
     width: 150px;
+    height: 160px;
+    overflow: auto;
 }
 
 .dropdown a:hover {
@@ -418,7 +420,7 @@ input:required.ng-touched.ng-empty {
     padding-left: 40px;
     cursor: pointer;
     font-size: 16px;
-    padding-top: 5px;
+    padding-top: 4px;
     margin-bottom: 10px;
     color: black;
     font-family: "Open Sans";
@@ -460,7 +462,7 @@ input:required.ng-touched.ng-empty {
     display: block;
     position: absolute;
     top: 2px;
-    left: 9px;
+    left: 18px;
     width: 6px;
     height: 14px;
     border: solid #0079bf;
@@ -486,7 +488,6 @@ input:required.ng-touched.ng-empty {
     margin-right: 10px;
     margin-left: 10px;
     color: #393939;
-    margin-top: 5px;
 }
 
 
