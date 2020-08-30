@@ -242,7 +242,11 @@ a {
     background-color: black;
     margin: 4px 0;
 }
-
+.fa, .fas {
+    font-weight: 900;
+    font-size: 13px;
+    margin: 0 12px 0 8px;
+  }
 .font_aws{
     display: inline-block;
 }
