@@ -5,23 +5,23 @@
 
 <title>Login page</title>
 <link rel="stylesheet" href="css_codes/login.css">
-   
-<form class="login_form" action="login.php" method="post">
-    <div class="login_form_head">
-        Login Here
-    </div>
-    <div class="imgcontainer">
-        <img src="Profiles/login_img.png" alt="Avatar" class="avatar">
-    </div>
-    <div class="container">
-        <label >USERNAME </label>
-        <input name = "username" type="text" class="login_form_input" placeholder="USER NAME" required/>
-            
-        <label >PASSWORD </label>
-        <input name="password" type="password" class="login_form_input" placeholder="PASSWORD" required/>     
-        <button name="login" type="submit" class="login_form_submit_btn" value="LOGIN"/>LOGIN</button>
-    </div>
-</form>
+<script src='/js/font_awesome.js' defer></script>
+<div class='form_div'>
+    <form class="login_form" action="login.php" method="post">
+        <div class="login_form_head">
+            Staff Login
+        </div>
+        
+        <div class="container">
+            <i class="fa fa-user" aria-hidden="true"></i><label >USERNAME </label>
+            <input name = "username" type="text" class="login_form_input" placeholder="USER NAME" required/>
+                
+            <i class="fa fa-lock" aria-hidden="true"></i><label >PASSWORD </label>
+            <input name="password" type="password" class="login_form_input" placeholder="PASSWORD" required/>     
+            <button name="login" type="submit" class="login_form_submit_btn" value="LOGIN"/>LOGIN</button>
+        </div>
+    </form>
+</div>
 
 <?php
     if($_SERVER["REQUEST_METHOD"]=="POST"){
