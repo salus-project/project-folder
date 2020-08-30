@@ -322,6 +322,6 @@
 </body>
 </html>
 <script>
-    var add_element = "<?php echo str_replace(array("\n","\r","\r\n"),'',$add_element) ?>";+++
+    var add_element = "<?php echo str_replace(array("\n","\r","\r\n"),'',$add_element) ?>";
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

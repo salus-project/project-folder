@@ -70,7 +70,12 @@
                 }
             }
         }
-        $sql="SELECT org_name FROM `organizations` WHERE org_id=$by;";
+
+        if($by=='your_self'){
+            $sql="";
+        }else{
+            $sql="SELECT org_name FROM `organizations` WHERE org_id=$by;";
+        }
         if(mysqli_multi_query($con,$sql.$pri_query)){
             $size = ob_get_length();
             header("Content-Encoding: none");
