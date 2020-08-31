@@ -34,6 +34,11 @@
         color: #6b7c93;
         background: white;
     }
+    .del_btn{
+        position: absolute;
+        top: 238px;
+        left: 25px;
+    }
     #tag_container {
         display: block;
     }
@@ -81,7 +86,7 @@
                     </div>
                 </div>
             </div>";
-            echo"<form action='http://d-c-a.000webhostapp.com/createpost.php' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+            echo"<form action='http://d-c-a.000webhostapp.com/govpost.php' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
                 <div>
                     <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>".$arr['content'] ."</textarea></div>
                 </div>
@@ -94,7 +99,12 @@
                     <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."'>
                 </div>
                 <button type='button' class='edit_post_btn' style='float: right; display: inline-block;'>Save changes</button>
+            </form>
+            <form action='http://d-c-a.000webhostapp.com/govpost.php' method='post'>
+                <input type='hidden' name='post_index' value='".$post_index."'>
+                <button type='submit' class='edit_post_btn del_btn' name='delete' value='1'>Delete Post</button>
             </form>";
+
             ?>
             
         <?php
