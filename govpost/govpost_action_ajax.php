@@ -1,5 +1,6 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    session_start();
 
     if(isset($_POST['like'])){
         $query="select likes from goveposts where post_index='".$_POST['post_index']."'";

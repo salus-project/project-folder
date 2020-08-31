@@ -37,9 +37,6 @@
     #tag_container {
         display: block;
     }
-
-    element.style {
-    }
     .posts {
         width: 700px;
         min-height: 400px;
@@ -86,7 +83,8 @@
                     </div>";
                 echo"</div>
             </div>";
-            echo"<form action='http://d-c-a.000webhostapp.com/createpost.php' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+            echo"<form action='http://d-c-a.000webhostapp.com/createpost.php' method='post' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+                <input type='hidden' name='post_index' value='".$view_result['post_index']."'>
                 <div>
                     <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>". $view_result['content']."</textarea></div>
                 </div>
@@ -95,10 +93,14 @@
                     if(!$view_result['tag']==''){
                         $tag=$view_result['tag'];
                     }
-                    echo "<input type='hidden' name='tag_link'>
-                    <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."'>
+                    echo "<input type='hidden' name='tag_link' value='".$view_result['tag_link']."'>
+                    <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."' oninput='tag_inp(this)'>
                 </div>
-                <button type='button' class='edit_post_btn' style='float: right; display: inline-block;'>Save changes</button>
+                <button type='submit' class='edit_post_btn' style='float: right; display: inline-block;' name='update' value='1'>Save changes</button>
+            </form>
+            <form action='http://d-c-a.000webhostapp.com/createpost.php' method='post'>
+                <input type='hidden' name='post_index' value='".$view_result['post_index']."'>
+                <button type='submit' class='edit_post_btn' style='float: right; display: inline-block;' name='delete' value='1'>Delete Post</button>
             </form>";
             ?>
             
@@ -148,6 +150,11 @@
         
         document.getElementById('image_container').style.margin = "10px";
         //document.getElementById('image_container').style.height = img.height;
+    }
+    function tag_inp(ele){
+        if(ele.value===''){
+            ele.previousElementSibling.value='';
+        }
     }
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php" ?>

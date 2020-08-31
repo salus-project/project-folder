@@ -17,7 +17,7 @@
 <div id="content">
 </div>
 <script>
-    var post = new Post('<?php echo $_SESSION['user_nic'] ?>');
+    var post = new GovPost('<?php echo $_SESSION['user_nic'] ?>');
     post.get_post();
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

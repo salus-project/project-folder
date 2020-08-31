@@ -107,8 +107,8 @@ function create_post(arr,user_nic=''){
 }
 
 
-class Post{
-    constructor(user_nic){
+class GovPost{
+    constructor(user_nic,event=null){
         this.user_nic=user_nic;
         this.first = true;
         this.offset=0;
@@ -119,6 +119,7 @@ class Post{
         window.addEventListener("scroll", (e) => {
             this.loadpage();
         });
+        this.event=event;
     }
     loadpage(){
         if (document.body.scrollTop > document.body.scrollHeight - window.innerHeight -100 || document.documentElement.scrollTop > document.body.scrollHeight - window.innerHeight -100) {
@@ -129,6 +130,9 @@ class Post{
     }
     get_post(){
         this.send_str='offset='+this.offset;
+        if(this.event!==null){
+            this.send_str+='&event='+this.event;
+        }
 
         var obj = this;
         this.xhttp.onreadystatechange = function(){
@@ -168,7 +172,7 @@ function like(element){
     var post_index = parent.querySelector('.post_index').value;
     var send = "like=true&post_index=".concat(post_index);
     response(send);
-    element.outerHTML = " <button class='button_con  but_1_2' style='color:#4c5fd7'><i class='fas fa-thumbs-up' style='color:#4c5fd7' aria-hidden='true'></i><b> liked</b></button>";
+    element.outerHTML = " <button class='button_con  but_1_2' onclick='unlike(this)' style='color:#4c5fd7'><i class='fas fa-thumbs-up' style='color:#4c5fd7' aria-hidden='true'></i><b> liked</b></button>";
 }
 function unlike(element){
     var parent = element.parentElement.parentElement.parentElement.parentElement;
