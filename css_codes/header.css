@@ -673,7 +673,7 @@ input:checked+.slider:before {
         display: none;
     }
     .menubar_icons{
-        margin: unset;
+        margin: auto;
     }
 }
 .header_indicator{
