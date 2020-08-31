@@ -1,5 +1,6 @@
 <?php 
 ob_start();
+ignore_user_abort();
 require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 $nameErr=$phoneErr=''; 
 require $_SERVER['DOCUMENT_ROOT'].'/organization/edit_org_php.php';
@@ -12,6 +13,19 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/edit_org_php.php';
     $email=$result['email'];
     $phone_num=$result['phone_num'];
     $discription=$result['discription']; 
+
+    $sql_="SELECT id FROM `org_members` WHERE org_id=".$org_id." and NIC_num='".$_SESSION['user_nic']."' and (role='leader' or role='coleader')";
+    $result_=$con->query($sql_);
+    if (mysqli_num_rows($result_)==0){
+        header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/organization/all_org.php"));
+        ob_end_flush();
+        ob_flush();
+        flush();
+    }
+
+
+
+
 ?>
 <title>create new organization </title>
 <link rel='stylesheet' href='/css_codes/create_org.css'>
