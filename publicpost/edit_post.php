@@ -34,6 +34,14 @@
         color: #6b7c93;
         background: white;
     }
+    .edit_post_btn:hover{
+        background:#0c7dff47;
+    }
+    .del_btn{
+        position: absolute;
+        top: 238px;
+        left: 25px;
+    }
     #tag_container {
         display: block;
     }
@@ -96,11 +104,11 @@
                     echo "<input type='hidden' name='tag_link' value='".$view_result['tag_link']."'>
                     <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."' oninput='tag_inp(this)'>
                 </div>
-                <button type='submit' class='edit_post_btn' style='float: right; display: inline-block;' name='update' value='1'>Save changes</button>
+                <button type='submit' class='edit_post_btn save_btn' style='float: right; display: inline-block;' name='update' value='1'>Save changes</button>
             </form>
             <form action='http://d-c-a.000webhostapp.com/createpost.php' method='post'>
                 <input type='hidden' name='post_index' value='".$view_result['post_index']."'>
-                <button type='submit' class='edit_post_btn' style='float: right; display: inline-block;' name='delete' value='1'>Delete Post</button>
+                <button type='submit' class='edit_post_btn del_btn' name='delete' value='1'>Delete Post</button>
             </form>";
             ?>
             
