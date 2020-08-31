@@ -19,7 +19,11 @@
                     <?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?>
                 </div>
                 <div><img src="/staff/Profiles/login_img.png" alt="Avatar" class="avatar"></div>
-                <div  class="logout_anchor" ><a href="login.php"><i class="fa fa-sign-out" style="font-size:18px;color:white;" aria-hidden="true"> Log out</i></a></div>
+                <div  class="logout_anchor" >
+                <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
+                    <button class="logbtn" name="logout" value=1><i class="fa fa-sign-out" style="font-size:18px;color:white;" aria-hidden="true"> Log out</i></button>
+                </form>
+            </div>
             </div>  
         </div>
         <div class="topnav">
@@ -30,7 +34,13 @@
         </div>
         <div class='main_body'>
             <div class='sub_body'>
-
+        <?php
+            if(isset($_POST['logout'])){ 
+                session_unset();
+                session_destroy();
+                header('location:/staff/login.php');
+            }
+        ?>
 <script>
     var btn_num;
 
