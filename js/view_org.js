@@ -19,3 +19,34 @@ function getEvents(container){
 function view_event(event_id){
     window.location.href = link+'?event_id='+event_id+'&selected_org='+selected_org;
 }
+
+function confirmFn() {
+    swal({
+        title: "Are you sure?",
+        text: "Once you leave, you can join only as a member!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+        if (willDelete) {
+                document.getElementById("org_leave_form").submit();
+            } 
+    });
+}
+function delOrgFn(orgId) {
+    swal({
+        title: "Are you sure?",
+        text: "Once you deleted, you can not recover it!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location.href = '/organization/del_org.php?org_id='+orgId;
+            } 
+    });
+}
+
+    
