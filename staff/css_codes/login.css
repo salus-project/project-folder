@@ -4,6 +4,10 @@ body {
   background-color: rgb(242 244 246);
   color: #6b7c93;
 }
+button,input,textarea{
+  outline: none;
+  border: none;
+}
 .form_div {
   position: relative;
   margin: auto;
