@@ -28,7 +28,7 @@
         
         $username=$_POST['username'];
         $password=$_POST['password'];
-        $query="select * from officer_detail where user_name='$username' AND password='$password'";
+        $query="select * from staff_detail where user_name='$username' AND password='$password'";
     
         $result=$con->query($query);
         if($result->num_rows>0){
