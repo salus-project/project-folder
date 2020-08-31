@@ -242,7 +242,7 @@ a {
     background-color: black;
     margin: 4px 0;
 }
-.fa, .fas {
+.fa-lock, .fa-user {
     font-weight: 900;
     font-size: 13px;
     margin: 0 12px 0 8px;
@@ -284,6 +284,7 @@ a {
     background-color: #4c5fd7;
     color: white;
     font-size: 16px;
+    cursor: pointer;
 }
 body{
     background-color: rgb(242 244 246);
