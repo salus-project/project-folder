@@ -35,10 +35,10 @@
     from fundraisings WHERE by_civilian ='".$nic."');";
 
     //delete fundraising pro don and contents
-    $query.="delete from fundraising_pro_don_content where don_id in(select id 
-    from fundraising_pro_don WHERE by_person ='".$nic."' or select id 
+    $query.="delete from fundraising_pro_don_content where don_id in((select id 
+    from fundraising_pro_don WHERE by_person ='".$nic."'),(select id 
     from fundraising_pro_don WHERE for_fund in (select id 
-    from fundraisings WHERE by_civilian ='".$nic."'));";
+    from fundraisings WHERE by_civilian ='".$nic."')));";
     $query.="delete from fundraising_pro_don where by_person = '".$nic."';";
 
     //delete fundraising and expects
@@ -59,14 +59,14 @@
     $notification_DB = NotificationDb::getConnection();
     $query_noti_run= mysqli_multi_query($notification_DB,$query_noti);
 
-    //echo $query;
-    //echo $query_noti;
+    echo $query;
+    echo $query_noti;
     if($query_run  && $query_noti_run){
         echo '<script type="text/javascript"> alert ("Data deleted") </script>';
-        header('location:member.php');
     }
     else{
         echo '<script type="text/javascript"> alert ("Data not deleted") </script>';
     }
+    header('location:member.php');
 ?>
 
