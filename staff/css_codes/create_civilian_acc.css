@@ -6,7 +6,6 @@
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin: 0 auto;
     font-weight: 400;
-    font-family: "Open Sans";
     color: #393939;
     font-size: 16px;
     margin-bottom: 300px;
@@ -48,10 +47,10 @@
     background-color: #0c7dff47;  
     padding: 0px;
     height: 60px;
-    font-family: "Open Sans";
     color: #393939;
     font-size: 25px;
     outline: none;
+    font-family: Open sans, sans-serif;
 }
 
 .submitt{
@@ -70,11 +69,10 @@
   margin-bottom: 10px;
   width: 300px;
   height: 25px;
-  font-family: "Open Sans";
   color: #393939;
   border: 1px solid #2980B9;
   clear: both;
-  font-size: 17px;
+  font-size: 15px;
   float: right;
   padding-left: 7px;
   min-width: 150px;
@@ -88,7 +86,6 @@
 }
 
 .edit_prof_select{
-    font-family: "Open Sans",sans-serif;
     color: #393939;
     border: 1px solid #2980B9;
     margin-top: 12px;
@@ -109,18 +106,16 @@
     margin-bottom: 10px;
     width: 300px;
     height: 60px;
-    font-family: "Open Sans";
     color: #393939;
     border: 1px solid #2980B9;
     clear: both;
-    font-size: 17px;
+    font-size: 15px;
     float: right;
     padding-left: 7px;
     min-width: 150px;
 }
 
 .error{
-    font-family: "Open Sans",sans-serif;
     font-size: 12px;
     color: red;
     display: block;
@@ -132,9 +127,8 @@
 .custom-select {
   margin-top: 0px;
   margin-bottom: 10px;
-  width: 260px;
+  width: 280px;
   position: relative;
-  font-family: "Open Sans";
   }
   
   .custom-select select {
@@ -178,6 +172,9 @@
     user-select: none;
     border-radius: 5px;
   }
+  .select-items div {
+    width: 108px;
+  }
   
   /*style items (options):*/
   .select-items {
@@ -187,8 +184,10 @@
     left: 0;
     right: 0;
     z-index: 99;
-    margin-left: 195px;
-    width: 115px;  }
+    border: none;
+    margin-left: 185px;
+    width: 130px;
+   }
   
   /*hide the items when the select box is closed:*/
   .select-hide {
@@ -197,6 +196,8 @@
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+    width: 110px;
+    border: none;
   }
 
 /*               Angular Form validation                     */

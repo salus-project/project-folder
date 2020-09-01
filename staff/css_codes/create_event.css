@@ -6,8 +6,7 @@
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin: 0 auto;
     font-weight: 400;
-    font-family: "Open Sans";
-    color: #6b7c93;
+        color: #6b7c93;
     font-size: 16px;
     margin-bottom: 300px;
 }
@@ -51,10 +50,10 @@
     background-color: #0c7dff47;
     padding: 0px;
     height: 60px;
-    font-family: "Open Sans";
-    color: #393939;
+        color: #393939;
     font-size: 25px;
     outline: none;
+    font-family: Open sans, sans-serif;
 }
 
 .submitt{
@@ -73,14 +72,14 @@
   width: 300px;
   outline: none;
   height: 25px;
-  font-family: "Open Sans";
-  color: #6b7c93;
+    color: #6b7c93;
   border: 1px solid #2980B9;
   clear: both;
-  font-size: 18px;
+  font-size: 16px;
   float: right;
   padding-left: 7px;
   min-width: 150px;
+  font-family: Open sans, sans-serif;
 }
 
 .create_event_label{
@@ -91,18 +90,18 @@
 }
 
 .create_event_textarea{
-    font-family: "Open Sans";
-    color: #6b7c93;
+      color: #6b7c93;
     border: 1px solid #2980B9;
     outline: none;
     resize: none;
     width: 304px;
-    font-size: 18px;
+    font-size: 16px;
     height: 60px;
     border-radius: 5px;
     background: none;
     padding: 5px 0px 0px 5px;
     min-width: 150px;
+    font-family: Open sans, sans-serif;
 }
 
 .error{
@@ -120,8 +119,7 @@
   margin-bottom: 10px;
   width: 260px;
   position: relative;
-  font-family: "Open Sans";
-  }
+ }
   
   .custom-select select {
     display: none; /*hide original SELECT element:*/
@@ -198,8 +196,8 @@
     margin-left: 0px;
     padding-left: 10px;
     margin-top: 0px;
-    font-family: "Open Sans";
     text-align: left;
+    font-family: Open sans, sans-serif;
 }
 .dropdown {
     position: relative;
@@ -218,7 +216,6 @@
     color: #6b7c93;
     text-decoration: none;
     display: block;
-    font-family: "Open san"sans-serif;
 }
 
 .dropdown a:hover {
@@ -231,17 +228,18 @@
 
 /* The container */
 .container {
-    display: block;
-    position: relative;
-    padding-left: 40px;
-    cursor: pointer;
-    font-size: 16px;
-    padding-top: 8px;
-    margin-bottom: 10px;
-    color: black;
-    font-family: "Open Sans";
-    -ms-user-select: none;
-    user-select: none;
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  color: black;
+  font-family: "Open Sans";
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide the browser's default checkbox */
@@ -275,7 +273,6 @@
     top: 2px;
     left: 9px;
     margin-left: 8px;
-    margin-top: 5px;
     width: 6px;
     height: 14px;
     border: solid #0079bf;
@@ -299,7 +296,7 @@
     margin-right: 10px;
     margin-left: 10px;
     color: #393939;
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 /*-------------------------------------------------*/

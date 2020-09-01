@@ -1,7 +1,7 @@
 #event_header{
-  display: flex;
-  height:50px;
-  background-color: white;
+  padding: 5px;
+    display: flex;
+    background-color: white;
 }
 #title_box{
   display:flex;
@@ -9,11 +9,35 @@
   margin-left: 10px;
   font-size: 30px;
 }
+.btn_tab{
+  width: 150px;
+    display: block;
+    margin: 0px;
+    right: 0;
+    position: absolute;
+}
+.btn_tab td{
+  cursor: pointer;
+    padding: 4px;
+    width: 140px;
+    background: whitesmoke;
+}
+.event_header_profile {
+  width: 95px;
+  height: 95px;
+  border: 2px solid #6b7c93;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
 .edit_button,.close_button{
-  background:none;
+  background: none;
   outline: none;
   border: none;
-  width: 50px;
+  width: 100%;
+  color: #6b7c93;
+  font-size: 16px;
+  cursor: pointer;
 }
 .detail_body{
 width: 50%;
