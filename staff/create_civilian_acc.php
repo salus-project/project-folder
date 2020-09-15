@@ -1,8 +1,8 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
 
-    $first_name = $last_name = $gender = $nic = $password = $address = $district=$village=$street = $occupation = $phone_number = $email_address = "";
-    $first_name_err = $last_name_err = $gender_err = $nic_err = $password_err = $address_err = $district_err = $village_err =$street_err= $occupation_err = $phone_number_err = $email_address_err = ""; 
+    $first_name = $last_name = $gender = $nic = $address = $district=$village=$street = $occupation = $phone_number = $email_address = "";
+    $first_name_err = $last_name_err = $gender_err = $nic_err = $address_err = $district_err = $village_err =$street_err= $occupation_err = $phone_number_err = $email_address_err = ""; 
     require $_SERVER['DOCUMENT_ROOT']."/staff/create_civilian_acc_php.php";
 ?> 
 
@@ -29,17 +29,6 @@
                         <input class="create_civ_input_box" type='text' name='nic' placeholder='Enter NIC number' value='' pattern="[0-9]{9}V|[0-9]{9}v|[0-9]{11}" ng-model="Nic" required>
                     </div>
                     <span class='error' data-ng-show="CreateCivilianAccForm.nic.$invalid && CreateCivilianAccForm.nic.$touched"><i class='fas fa-exclamation-circle'></i> Invalid NIC Format</span>
-                </div>
-            </div>
-
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Password </label>
-                <div>
-                    <div ng-class="{'has-error': (CreateCivilianAccForm.password.$invalid && CreateCivilianAccForm.password.$touched)}">
-                        <input name="password" type="password" class="create_civ_input_box" placeholder='Enter password' ng-model="password" required/>
-                    </div>
-                    <span class="error"> <?php echo $password_err; ?></span>
-                    <span class='error' data-ng-show="CreateCivilianAccForm.password.$invalid && CreateCivilianAccForm.password.$touched"><i class='fas fa-exclamation-circle'></i> Please fill password</span>
                 </div>
             </div>
 
