@@ -11,6 +11,7 @@
     font-size: 16px;
     margin-top: 50px;
     margin-bottom: 300px;
+    position: relative;
 }
 
 #form_sub_body {
@@ -388,3 +389,50 @@ input:required.ng-touched.ng-empty {
     border: 2px solid #b93a29;
     background-color: #b93a294d;
 }
+
+/*              /angular validation                        */
+
+/*               form loader            */
+
+#form_loader{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff8a;
+    display: none;
+}
+
+.lds-default {
+    display: block;
+    /* position: relative; */
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*            /form loader              */
+
+/*            coleader, member          */
+
+.remove_marker{
+    cursor: pointer;
+    float: right;
+    margin: auto;
+    margin-right: 20px;
+}
+
+/*           /coleader, member          */
+
+/*           froms                     */
+
+#coleaderForm, #memberForm, #add_profile_cont, #add_cover_cont{
+    display: none;
+}
+
+/*           /forms                    */
