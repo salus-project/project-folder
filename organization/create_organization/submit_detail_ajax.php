@@ -7,7 +7,7 @@
     $err=array();           //Defining error message values
     $output=array();
     $org_name=$leader=$district=$email=$phone_num=$description='';    //Definig variables and initiate them to empty values
-
+    $org_id=null;
     if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submit_button'])){
         $isOk=1;
         if(empty($_POST['org_name'])){
@@ -55,10 +55,10 @@
             }
             elseif (isset($_POST['leader_nic'])) {
                 $leader=filt_inp($_POST['leader_nic']);
-                if(!preg_match("/^[a-zA-Z ]*$/",$leader)){
+                /*if(!preg_match("/^[a-zA-Z ]*$/",$leader)){
                     $err['leader']='Invalid leader detail';
                     $isOk=0;
-                }
+                }*/
             }else{
                 $err['leader']='Please provide the leader detail';
             }
@@ -82,6 +82,20 @@
                 $Orgcon = OrgDb::getConnection();
                 $Orgcon->query($table_query);
 
+                ob_end_flush();
+                ob_flush();
+                flush();
+
+                $leader_nic=$_SESSION['user_nic'];  
+                require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+                if($leader !=$leader_nic){
+                    $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+                    $mssg= $name." add you as a leder of ".$org_name;
+                    $link="/organization/?selected_org=".$org_id;
+                    $sender = new Notification_sender($leader,$mssg,$link,true);
+                    $sender->send();
+                }
+
             }else{
                 $output['status']='failed';
                 $output['errors']=$err;
@@ -92,20 +106,6 @@
             $output['errors']=$err;
         }
         echo json_encode($output);
-
-        ob_end_flush();
-        ob_flush();
-        flush();
-
-        $leader_nic=$_SESSION['user_nic'];  
-        require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
-        if($leader !=$leader_nic){
-            $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
-            $mssg= $name." add you as a leder of ".$org_name;
-            $link="/organization/?selected_org=".$org_id;
-            $sender = new Notification_sender($leader,$mssg,$link,true);
-            $sender->send();
-        }
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_coleaders'])){
         $coleaders = $_POST['coleaders'];
@@ -134,7 +134,7 @@
         $mssg= $name." add you as a co-leder of ".$org_name;
         $link="/organization/?selected_org=".$org_id;
         $coleaders_= array_diff($coleaders,[$user_nic]);
-        $sender = new Notification_sender($coleaders_,$mssg,$link,true);
+        $sender = new Notification_sender(implode(', ', $coleaders_), $mssg,$link,true);
         $sender->send();
         
 
@@ -165,7 +165,7 @@
         $mssg= $name." add you as a member of ".$org_name;
         $link="/organization/?selected_org=".$org_id;
         $members_= array_diff($members,[$user_nic]);
-        $sender = new Notification_sender($members_,$mssg,$link,true);
+        $sender = new Notification_sender(implode(', ', $members_), $mssg,$link,true);
         $sender->send();
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_profile'])){
