@@ -2,7 +2,7 @@
     width: 578px;
     padding: 0px;
     background-color: #ffffff;
-    z-index: 4;
+    z-index: 2;
     box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0 auto;
     font-weight: 400;
@@ -12,6 +12,7 @@
     margin-top: 50px;
     margin-bottom: 300px;
     position: relative;
+    
 }
 
 #form_sub_body {
@@ -59,6 +60,7 @@
     padding: 0px;
     color: #393939;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .submitt {
@@ -365,8 +367,10 @@
     left: 0;
     right: 0;
     z-index: 99;
-    margin-left: 100px;
+    margin-left: 140px;
     width: 160px;
+    height: 175px;
+    overflow: auto;
 }
 
 
@@ -436,3 +440,35 @@ input:required.ng-touched.ng-empty {
 }
 
 /*           /forms                    */
+
+.leader_name{
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    min-width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #2980B9;
+    color: #393939;
+}
+
+.coleader_btn_container,.member_btn_container{
+    display: flex;
+}
+
+#profile_image_container{
+    height: 300px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #6b7c93;
+}
+.post_btn{
+    background: blue;
+    width: 120px;
+    height: 30px;
+    color: white;
+    line-height: 0.7;
+    margin: 10px 5px 10px 450px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
