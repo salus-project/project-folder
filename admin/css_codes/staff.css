@@ -1,3 +1,18 @@
+.new_staff{
+    position: absolute;
+    border: none;
+    right: 10px;
+    padding: 10px;
+    width: 190px;
+    font-family: Open-sans;
+    outline: none;
+    background: #0c7dff47;
+    top: 120px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
 .create_civ_form_box{
     width: 500px;
     padding: 0px;
@@ -119,13 +134,7 @@
     min-width: 150px;
 }
 
-.error{
-    font-family: "Open Sans",sans-serif;
-    font-size: 12px;
-    color: red;
-    display: block;
-    padding: 0px 0 4px 2px;
-}
+
 
 
 /*        Custom dropdown                */
@@ -172,7 +181,7 @@
     position: relative;
     color: #ffffff;
     padding: 8px 10px;
-    border: 1px solid transparent;
+    border: none;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
@@ -197,11 +206,41 @@
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+    width: 95px;
+    border:none;
   }
 
-/*               Angular Form validation                     */
-
-input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
-    border: 2px solid #b93a29;
-    background-color: #b93a294d;
+  .nic_row{
+    width:150px;
 }
+.staff_detail{
+    display: table;
+    margin: auto;
+    margin-top: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.staff_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: white;
+}
+  
+.staff_table th,.staff_table td {
+    border: 1px solid #d8e0e7;
+    color:  #6b7c93;
+    position: relative;
+    padding: 10px;
+    font-family: "Open Sans",sans-serif;
+}
+.staff_table th{
+    font-size: 16px;
+    text-align: center;
+    background-color: #0c7dff47;
+}
+
+.staff_table td:last-child{
+    width: 100px;
+    text-align: center;
+}
+ 

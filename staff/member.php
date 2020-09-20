@@ -33,7 +33,7 @@
                     echo "<tr><td>" . $row['first_name']." " .$row['last_name'] ."<button type=submit class=civilian_name name=nic value=". $row['NIC_num'] ."></button></td><td class='nic_row'>" . $row['NIC_num'] . "</td><td><a href='/staff/delete_member.php?nic=".$row['NIC_num']."'><i class='fa fa-trash' style='font-size:16px;color:#6b7c93;' aria-hidden='true'>  Delete</i></a></td></tr>";
                 }
             ?>
-        </table>
+        </table> 
     </form>
 </div>
 

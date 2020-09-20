@@ -26,11 +26,9 @@
         $subject = 'DCA account recovery';
         $message = 'Your account password reset to '.$password;
         $headers = 'From: kanthankanthan111@gmail.com';
-        set_error_handler(function() { /* ignore errors */ });
-            if(mail($to_email,$subject,$message,$headers)){
-            }
-        restore_error_handler();
+        if(mail($to_email,$subject,$message,$headers)){
         echo "mail sent";
+        }
     }else{
         echo "error";
     }

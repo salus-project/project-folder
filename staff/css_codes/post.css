@@ -15,8 +15,8 @@
 
 body {
     background-color: rgb(242 244 246);
-    font-family: "Open Sans", sans-serif;
-        color: #6b7c93;
+    font-family: Open Sans, sans-serif;
+    color: #6b7c93;
 }
 
 #content {
@@ -50,8 +50,8 @@ body {
     resize: none;
     outline: none;
     border: 1px solid #d8e0e7;
-    font-family: "Open Sans", sans-serif;
-        color: #6b7c93;
+    font-family: Open Sans, sans-serif;
+    color: #6b7c93;
 }
 
 #submit {
@@ -64,8 +64,8 @@ body {
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-        vertical-align: middle;
+    font-family: Open Sans, sans-serif;
+    vertical-align: middle;
 }
 
 .post_btn {
@@ -96,7 +96,8 @@ body {
     height: 35px;
     font-weight: 500;
     font-size: 14px;
-    font-family: "Open Sans", sans-serif;}
+    font-family: Open Sans, sans-serif;
+}
 
 #preview {
     width: 90%;
@@ -115,8 +116,8 @@ body {
     height: 35px;
     font-weight: 500;
     font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-        color: #6b7c93;
+    font-family: Open Sans, sans-serif;
+    color: #6b7c93;
 }
 
 .autocomplete-items {

@@ -64,7 +64,6 @@
     $arr=$con->query($query)->fetch_assoc();
 
    /* if($view_result['author']  != $_SESSION['user_nic']){
-
         header("location:".(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] :"/publicpost/"));
         ob_end_flush();
         ob_flush();

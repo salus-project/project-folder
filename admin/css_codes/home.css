@@ -1,0 +1,25 @@
+.admin_detail_table {
+    border-collapse: collapse;
+    background-color: white;
+width: 100%;
+}
+.admin_detail_table th,.admin_detail_table td {
+  border: 1px solid #d8e0e7;
+  color:  #6b7c93;
+  padding: 10px;
+  font-family: "Open Sans",sans-serif;
+}
+.admin_detail{
+    width: 450px;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.admin_det_head{
+  background-color: #0c7dff47;
+  font-size: 16px;
+}
+.admin_det_data{
+  color: #6b7c93;
+}

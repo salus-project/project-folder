@@ -27,50 +27,31 @@
         ?>
         
         <div id=event_header>
-            <div class="event_header_profile">
-                <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $result['event_id'] ?>.jpg" alt="Opps..." class="fund_pic">
-            </div>
             <div id=title_box>
                 <?php echo $result['name'] ?>
             </div>
-            <table class="btn_tab">
+            <div class='edit_close_btn_div'>
             <?php
-                echo "<tr>";
-                echo "<td>";
                 echo "<form action=/staff/event/edit_event.php method=GET>";
-                echo    "<button type='submit' name=event_id class='close_button' value=".$event_id."><i class='fa fa-pencil-square-o' style='font-size:20px;color:#6b7c93;' aria-hidden='true'></i> Edit</button>";
+                echo    "<button type='submit' name=event_id class='edit_button' value=".$event_id."><i class='fa fa-pencil-square-o' style='font-size:20px;color:black;' aria-hidden='true'>Edit</i></button>";
                 echo "</form>";
-                echo "</td>";
-                echo "</tr>";
                 if($event_status==="active"){
-                    echo "<tr>";
-                    echo "<td>";
                     echo "<form action=/staff/event/close_event.php method=GET>";
-                    echo    "<button type='submit' name=close class='close_button' value=".$event_id."><i class='fa fa-window-close' style='font-size:20px;color:#6b7c93;' aria-hidden='true'></i> Close</button>";
+                    echo    "<button type='submit' name=close class='close_button' value=".$event_id."><i class='fa fa-window-close' style='font-size:20px;color:black;' aria-hidden='true'>Close</i></button>";
                     echo "</form>";
-                    echo "</td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td>";
                     echo "<form action=/staff/event/delete_event.php method=GET>";
                     echo    "<input type='hidden' name=del value='1'>";
-                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:#6b7c93;' aria-hidden='true'></i> Delete</button>";
+                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:black;' aria-hidden='true'>Delete</i></button>";
                     echo "</form>";
-                    echo "</td>";
-                    echo "</tr>";
                 }else{
-                    echo "<tr>";
-                    echo "<td>";
                     echo "<form action=/staff/event/delete_event.php method=GET>";
                     echo    "<input type='hidden' name=del value='0'>";
-                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:#6b7c93;' aria-hidden='true'></i> Delete</button>";
+                    echo    "<button type='submit' name=delete class='close_button' value=".$event_id."><i class='fa fa-trash' style='font-size:20px;color:black;' aria-hidden='true'>Delete</i></button>";
                     echo "</form>";
-                    echo "</td>";
-                    echo "</tr>";
                 }
             ?>
             
-            </table>
+            </div>
         </div>
 
         <div id='map_container'>
@@ -107,7 +88,7 @@
                     <?php
                         foreach($result as $x=>$y){
                             if((ucfirst($x)!="GeoJson" and ucfirst($x)!="Event_id") and (ucfirst($x)=="Name" or ucfirst($x)=="Type" 
-                            or ucfirst($x)=="Affected_districts" or ucfirst($x)=="Start_date" or ucfirst($x)=="End_date" or ucfirst($x)=="Status" or ucfirst($x)=="Detail" or ucfirst($x)=="Affected_no") ){
+                            or ucfirst($x)=="Affected_districts" or ucfirst($x)=="Start_date" or ucfirst($x)=="End_date" or ucfirst($x)=="Status" or ucfirst($x)=="Detail") ){
                                 echo "<tr><td>" . ucfirst($x) . "</td><td >" . ucfirst($y) . "</td></tr>";
                             }
                         }

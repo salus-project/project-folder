@@ -79,29 +79,28 @@
         </div>
 
         <div id="id01" class="modal"> 
-        
-            <div class="modal-content animate">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span> 
-                    
-            <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
+            <form class="modal-content animate" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
+                <div class="imgcontainer"> 
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span> 
+                    <!-- <img src= 
+            "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png" alt="Avatar" class="avatar">  -->
+                </div> 
 
+                <div class="pop_container"> 
+                    <label><b>Username</b></label> 
+                    <input type="text" class="login_username" placeholder="Enter Username" name="nic_num" required> 
 
-                <div class="pop_container">
-                    <span class="login_head">
-                        Account Login
-                    </span> 
-                    <i class="fa fa-user" aria-hidden="true"></i><label><b>Username</b></label> 
-                    <input type="text" class="login_username" placeholder="Enter User Name" name="nic_num" required> 
-
-                    <i class="fa fa-lock" aria-hidden="true"></i><label><b>Password</b></label> 
+                    <label><b>Password</b></label> 
                     <input type="password" class="login_password" placeholder="Enter Password" name="password" required> 
 
                     <button class="popup_btn" type="submit">Login</button> 
-                </div>  
-                <span class="psw"><a class='for_pass' href="/anonymous/forgot_password/forgot_password.php">Forgot password?</a></span> 
+                </div> 
 
+                <div class="pop_container" style="background-color:#f1f1f1"> 
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn popup_btn">Cancel</button> 
+                    <span class="psw"><a href="/anonymous/forgot_password/forgot_password.php">Forgot password?</a></span> 
+                </div> 
             </form> 
-                </div>
         </div> 
 
 
