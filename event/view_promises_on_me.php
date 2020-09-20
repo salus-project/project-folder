@@ -153,9 +153,6 @@
             </table>
         </div>
     </div>
-    <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
-
-    </body>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>

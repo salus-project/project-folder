@@ -255,7 +255,6 @@ a {
     position: absolute;
     right: 10px;
     bottom: 5px;
-
 } */
 .enter_nic,.enter_password{
     display: inline-block;
@@ -279,12 +278,12 @@ a {
     border-radius: 5px;
     height: 34px;
     width: 80px;
-    float: right;
     margin-right: 10px;
     background-color: #4c5fd7;
     color: white;
     font-size: 16px;
     cursor: pointer;
+    float: right;
 }
 body{
     background-color: rgb(242 244 246);
@@ -724,4 +723,4 @@ input:checked+.slider:before {
         .cancelbtn { 
             width: 100%; 
         } 
-    } 
+    }

@@ -68,7 +68,7 @@
     display: flex;   
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#org_edit_cover_but:hover, #org_edit_profile_btn:hover,#edit_btn:hover, #membership_btn:hover{
+#org_edit_cover_but:hover, #org_edit_profile_btn:hover, .header_btn:hover{
     background-color: #c1d0dd;
 }
 .fa.fa-share-square-o, .fa.fa-pencil-square-o, .fa.fa-handshake-o{
@@ -120,10 +120,10 @@
     height: 150px;
 }
 
-#edit_btn_container, #membership_btn_container{
+.header_btn_container{
     margin: 16px 16px 1px 16px;
 }
-#edit_btn, #membership_btn{
+.header_btn{
     background-color: #d8e0e7;
     border-radius: 12px;
     border: none;

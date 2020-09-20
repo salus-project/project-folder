@@ -22,6 +22,8 @@ $imgs = array_filter(explode(',', $result['img']));
     }
 </script>
 <link href="/css_codes/slideshow.css" rel="stylesheet">
+<link rel="stylesheet" href="/css_codes/publ.css">
+<script src="/govpost/govpost.js"></script>
 <div id=event_body>
     <div id='table_caontainer'>
         <div class='head' colspan=2>
@@ -138,6 +140,12 @@ $imgs = array_filter(explode(',', $result['img']));
 </div>
 <div id=news_field>
     Goverment posts and announcements about this event
+    <div id="content">
+    </div>
+    <script>
+        var post = new GovPost('<?php echo $_SESSION['user_nic'] ?>', <?php echo $_GET['event_id'] ?>);
+        post.get_post();
+    </script>
 </div>
 <div class='popup_div popup' id='popup_div'>
 </div>

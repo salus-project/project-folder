@@ -21,4 +21,3 @@
        header('location:/fundraising/');
     }
 ?>
-

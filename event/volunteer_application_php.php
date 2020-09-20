@@ -66,38 +66,48 @@
         $data1=join(" ",$status);
         $pri_query.="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$data1."' WHERE `disaster_events`.`event_id` = $event_id";
         
-    }
+        $sql="SELECT NIC_num FROM `event_".$event_id."_help_requested`;";
+        if(mysqli_multi_query($con,$sql.$pri_query)){
+            $sql_res=mysqli_store_result($con);
+            $result1=$sql_res->fetch_all();
+            mysqli_free_result($sql_res);
 
-    $sql="SELECT NIC_num FROM `event_".$event_id."_help_requested`;";
-    if(mysqli_multi_query($con,$sql.$pri_query)){
-        $sql_res=mysqli_store_result($con);
-        $result1=$sql_res->fetch_all();
-        mysqli_free_result($sql_res);
+            $size = ob_get_length();
+            header("Content-Encoding: none");
+            header("Content-Length: {$size}");
+            header("location:".$_SERVER['HTTP_REFERER']);
+            header("Connection: close");
 
-        $size = ob_get_length();
-        header("Content-Encoding: none");
-        header("Content-Length: {$size}");
-        header("location:".$_SERVER['HTTP_REFERER']);
-        header("Connection: close");
+            header("location:".$_SERVER['HTTP_REFERER']);
 
-        header("location:".$_SERVER['HTTP_REFERER']);
+            ob_end_flush();
+            ob_flush();
+            flush();
 
-        ob_end_flush();
-        ob_flush();
-        flush();
-
-        if ($type != "" and $_POST['entry_update_id']==0){
-            $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
-            $to=implode(",",array_column($result1,0));
-            $mssg=$name." is ready to help";
-            $link="/event/volunteer.php?event_id=".$event_id."&nic=".$user_nic;
-            require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
-            $sender = new Notification_sender($to,$mssg,$link,true);
-            $sender->send();
+            if ($type != "" and $_POST['entry_update_id']==0){
+                $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+                $to=implode(",",array_column($result1,0));
+                $mssg=$name." is ready to help";
+                $link="/event/volunteer.php?event_id=".$event_id."&nic=".$user_nic;
+                require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+                $sender = new Notification_sender($to,$mssg,$link,true);
+                $sender->send();
+            }
+        
         }
-       
-    }
-    else{
-        echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
+        else{
+            echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
+        }
+    }elseif(isset($_POST['cancel'])){
+        $event_id=$_POST['event_id'];
+        $status=$_POST['status'];
+
+        $pri_query="UPDATE `disaster_events` SET `user_".$_SESSION['user_nic']."` = '".$status."' WHERE `disaster_events`.`event_id` = ".$event_id.";
+            UPDATE `event_".$event_id."_volunteers` SET `now` = 'no' WHERE `NIC_num` = '".$_SESSION['user_nic']."';";
+        if(mysqli_multi_query($con,$pri_query)){
+            echo 'sucess';
+        }else{
+            echo "unsucess";
+        }
     }
 ?>
