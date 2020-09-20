@@ -55,7 +55,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                     <input type='radio' name="leader" id="leader" value='you' <?php echo $rad_you ?> onclick='leaderFun()'>
                     <label class="create_org_label" for="leader">You</label>
                 </div>
-                <div >
+                <div>
                     <input type='radio' name="leader" id='other_leader' value='others' <?php echo $rad_others; ?> onclick='leaderFun()'>
                     <label class="create_org_label" for="other_leader">Others</label>
                 </div>
@@ -66,9 +66,9 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                     <div>
 
                     </div>
-                    <div >
+                    <div class="leader_name">
                         <input type='hidden' name='leader_nic' onchange='leader_value(this)' ng-model="leaderNic">
-                        <input class="create_org_input" id='leader_name_inp' type='text' placeholder='Leader' ng-model="leaderNic" required>
+                        <input class="create_org_input" id='leader_name_inp' type='text' placeholder='Leader name' ng-model="leaderNic" required>
                     </div>
                     <span class='error'><?php echo '' ?></span>
                     <span class='error' data-ng-show="createOrgForm.leader_nic.$invalid && createOrgForm.leader_nic.$touched"><i class='fas fa-exclamation-circle'></i> Invalid NiC Format</span>
@@ -146,8 +146,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             </div-->
             </div>
             <div class="create_org_btn_container">
-                <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' name='cancel_button' class="create_org_cancel_btn">Cancel</button></a>
-                <button type='button' name='submit_button' class="create_org_submit_btn submitt" id='submitBtn'>Submit</button>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' name='cancel_button' class="create_org_cancel_btn submitt">Cancel</button></a>
+                <button type='button' name='submit_button' class="create_org_submit_btn" id='submitBtn'>Submit</button>
             </div>
         
             
@@ -172,8 +172,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 </div>
             </div>
             <div class="coleader_btn_container">
-                <button type='button' class="create_org_cancel_btn">Skip</button></a>
-                <button type='button' class="create_org_submit_btn submitt" onclick="submit_coleader()">Next</button>
+                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_submit_btn" onclick="submit_coleader()">Next</button>
             </div>
         </div>
 
@@ -190,8 +190,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 </div>
             </div>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn">Skip</button></a>
-                <button type='button' class="create_org_submit_btn submitt" onclick="submit_member()">Next</button>
+                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_submit_btn" onclick="submit_member()">Next</button>
             </div>
         </div>
 
@@ -205,8 +205,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <input type='file' name='upload_file' accept='image/*' id='profile_file' style='display:none'>
             </form>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn">Skip</button></a>
-                <button type='button' class="create_org_submit_btn submitt" onclick="add_profile()">Next</button>
+                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_submit_btn" onclick="add_profile()">Next</button>
             </div>
         </div>
 
@@ -220,8 +220,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <input type='file' name='upload_file' accept='image/*' id='cover_file' style='display:none'>
             </form>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn">Skip</button></a>
-                <button type='button' class="create_org_submit_btn submitt" onclick="add_cover()">Finish</button>
+                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_submit_btn" onclick="add_cover()">Finish</button>
             </div>
         </div>
 </div>
