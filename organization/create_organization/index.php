@@ -167,12 +167,12 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             </form>
 
             <div class="coleader_input_cont">
-                <div>
+                <div class='add_new_coleader'>
                     <input type="text" placeholder="Add new co-leader" id="new_coleader_input">
                 </div>
             </div>
             <div class="coleader_btn_container">
-                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_skip_btn submitt" onclick="finish_creation()">Skip</button></a>
                 <button type='button' class="create_org_submit_btn" onclick="submit_coleader()">Next</button>
             </div>
         </div>
@@ -185,12 +185,12 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 </div>
             </form>
             <div class="member_input_cont">
-                <div>
+                <div class='add_new_coleader'>
                     <input type="text" placeholder="Add new member" id="new_member_input">
                 </div>
             </div>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_skip_btn submitt" onclick='finish_creation()'>Skip</button></a>
                 <button type='button' class="create_org_submit_btn" onclick="submit_member()">Next</button>
             </div>
         </div>
@@ -205,7 +205,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <input type='file' name='upload_file' accept='image/*' id='profile_file' style='display:none'>
             </form>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_skip_btn submitt" onclick='finish_creation()'>Skip</button></a>
                 <button type='button' class="create_org_submit_btn" onclick="add_profile()">Next</button>
             </div>
         </div>
@@ -220,7 +220,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <input type='file' name='upload_file' accept='image/*' id='cover_file' style='display:none'>
             </form>
             <div class="member_btn_container">
-                <button type='button' class="create_org_cancel_btn submitt">Skip</button></a>
+                <button type='button' class="create_org_skip_btn submitt" onclick='finish_creation()'>Skip</button></a>
                 <button type='button' class="create_org_submit_btn" onclick="add_cover()">Finish</button>
             </div>
         </div>
@@ -231,12 +231,13 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
     var leader_inp = document.getElementById('leader_name_inp')
     autocomplete_ready(leader_inp, 'users', 'ready', leader_value);
     var org_id = null;
+    var leader = null;
 
     function leader_value(name, nic){
         leader_inp.value = '';
         leader_inp.setAttribute('placeholder', 'change leader');
         leader_inp.previousElementSibling.value = nic;
-        leader_inp.parentElement.previousElementSibling.innerHTML = '<div><div class="autocomplete_img_cont"><img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;"></div> <strong>'+name+'</strong></div>';
+        leader_inp.parentElement.previousElementSibling.innerHTML = '<div class="new_leader"><div class="autocomplete_img_cont"><img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;"></div> <strong>'+name+'</strong></div>';
     }
 
     //setup before functions
@@ -262,10 +263,10 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             if(this.readyState == 4 && this.status == 200){
                 if(this.responseText==='1'){
                     input.classList.add('ng-invalid');
-                    input.nextElementSibling.innerHTML='Name already exit.';
+                    input.nextElementSibling.outerHTML='<div class="name_exist">Name already exist.</div>';
                 }else{
                     input.classList.remove('ng-invalid');
-                    input.nextElementSibling.innerHTML='Name available.';
+                    input.nextElementSibling.innerHTML='<div class="name_available">Name available.</div>';
                 }
             }
             if(this.readyState == 1){
@@ -292,6 +293,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                         document.getElementById('createOrgForm').style.display='none';
                         document.getElementById('coleaderForm').style.display='block';
                         org_id = response.org_id;
+                        leader = response.leader;
                     }
                 }
                 if(this.readyState == 1){
@@ -317,19 +319,23 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
 
     var coleaders = [];
     function add_new_coleader(name, nic){
-        coleaders.push(nic);
-        var cont=document.getElementById('coleader_container');
-        cont.innerHTML+='<div>'+
-                            '<div class="autocomplete_img_cont">'+
-                                '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
-                            '</div>'+
-                            '<strong>'+name+'</strong>'+
-                            '<input type="hidden" name="coleaders[]" value="'+nic+'">'+
-                            '<div class="remove_marker" onclick="remove_coleader(this)">'+
-                                'X'+
-                            '</div>'+
-                        '</div>';
-        coleader_inp.value='';
+        if(!coleaders.includes(nic) && nic!==leader){
+            coleaders.push(nic);
+            var cont=document.getElementById('coleader_container');
+            cont.innerHTML+='<div class="new_coleader">'+
+                                '<div class="autocomplete_img_cont">'+
+                                    '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
+                                '</div>'+
+                                '<strong>'+name+'</strong>'+
+                                '<input type="hidden" name="coleaders[]" value="'+nic+'">'+
+                                '<div class="remove_marker" onclick="remove_coleader(this)">'+
+                                    'X'+
+                                '</div>'+
+                            '</div>';
+            coleader_inp.value='';
+        }else{
+            alert('Co leader already exit');
+        }
     }
 
     function remove_coleader(ele){
@@ -373,19 +379,23 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
 
     var members = [];
     function add_new_member(name, nic){
-        members.push(nic);
-        var cont=document.getElementById('member_container');
-        cont.innerHTML+='<div>'+
-                            '<div class="autocomplete_img_cont">'+
-                                '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
-                            '</div>'+
-                            '<strong>'+name+'</strong>'+
-                            '<input type="hidden" name="members[]" value="'+nic+'">'+
-                            '<div class="remove_marker" onclick="remove_member(this)">'+
-                                'X'+
-                            '</div>'+
-                        '</div>';
-        member_inp.value='';
+        if(!members.includes(nic) && !coleaders.includes(nic) && nic!==leader){
+            members.push(nic);
+            var cont=document.getElementById('member_container');
+            cont.innerHTML+='<div class="new_coleader">'+
+                                '<div class="autocomplete_img_cont">'+
+                                    '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
+                                '</div>'+
+                                '<strong>'+name+'</strong>'+
+                                '<input type="hidden" name="members[]" value="'+nic+'">'+
+                                '<div class="remove_marker" onclick="remove_member(this)">'+
+                                    'X'+
+                                '</div>'+
+                            '</div>';
+            member_inp.value='';
+        }else{
+            alert('Member already exit');
+        }
     }
 
     function remove_member(ele){
@@ -502,6 +512,13 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 }
             }
         });
+        finish_creation();
+    }
+
+    function finish_creation(){
+        if(org_id!==null){
+            window.location.href='/organization?org_id='+org_id;
+        }
     }
 
     /*              /upload cover             */

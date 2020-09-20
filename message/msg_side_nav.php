@@ -25,6 +25,11 @@ echo "</div>";
 echo "<div class='msg_nav_s_cont'>";
 for ($x = 0; $x < sizeof($nic_arr); $x++) {
     $index=array_search($nic_arr[$x],$result_nic);
+    if($index===false){
+        $del_query = "delete from user_message_".$_SESSION['user_nic']." where _from = '".$nic_arr[$x]."' or _to = '".$nic_arr[$x]."';";
+        $notification_DB->query($del_query);
+        continue;
+    }
     $name_=$result[$index]["first_name"];
     $last_msg=$detail[$x]["content"];
     $icon="";

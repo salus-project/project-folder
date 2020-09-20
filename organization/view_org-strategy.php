@@ -235,7 +235,7 @@
             echo '';
         }
         public function show_member_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter member name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>
@@ -286,10 +286,10 @@
             echo $this->cover_photo_text;
         }
         public function show_coleader_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter coleader NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter coleader name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_member_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter member name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>

@@ -60,7 +60,7 @@
                 $err['leader']='Please provide the leader detail';
             }
         }
-        $output=array();
+        //$output=array();
         if($isOk==1){ 
             $query1_run=false; $query2_run=false;
             $query1="INSERT INTO organizations (org_name, district, email, phone_num, discription) VALUES ('$org_name', '$district','$email',$phone_num,'$description');";
@@ -69,6 +69,7 @@
             $output['org_id']=$org_id;
 
             $query2="INSERT INTO org_members (org_id, NIC_num, role) VALUES ('$org_id', '$leader', 'leader')";
+            $output['leader']=$leader;
 
             $query2_run=$con->query($query2);
             
@@ -77,24 +78,6 @@
                 $table_query = 'create table org_'.$org_id." (msg_id int(11) auto_increment primary key, NIC_num varchar(12), sender varchar(60), message text, date date,time time(6))";
                 $Orgcon = OrgDb::getConnection();
                 $Orgcon->query($table_query);
-
-                /*$nic=$_SESSION['user_nic'];    
-                $members= \array_diff($members,[$nic]);
-                $coleaders= \array_diff($coleaders,[$nic]);
-
-                $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
-                $mssg=$name." added you to the organization ".$org_name." as ";
-                $link="/organization/?selected_org=".$org_id;
-                
-                require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
-                if($leader !=$nic){
-                    $sender = new Notification_sender($leader,$mssg."leader",$link,true);
-                    $sender->send();
-                }
-                $sender = new Notification_sender(implode(",",$coleaders),$mssg."co-leader",$link,true);
-                $sender->send();
-                $sender = new Notification_sender(implode(",",$members),$mssg."member",$link,true);
-                $sender->send();*/
 
             }else{
                 $output['status']='failed';
@@ -106,15 +89,37 @@
             $output['errors']=$err;
         }
         echo json_encode($output);
-        // $output=["status"=>"ok", "org_id"=>"500"];
-        // echo json_encode($output);
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_coleaders'])){
-        $output=["status"=>"ok"];
+        $coleaders = $_POST['coleaders'];
+        $co_leader_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
+        $co_leader_subquery = [];
+        $org_id = $_POST['org_id'];
+        foreach($coleaders as $coleader){
+            array_push($co_leader_subquery, "($org_id, '$coleader', 'coleader')");
+        }
+        $co_leader_query.=(implode(', ', $co_leader_subquery));
+        if($con->query($co_leader_query)){
+            $output['status']='ok';
+        }else{
+            $output['status']='failed';
+        }
         echo json_encode($output);
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_members'])){
-        $output=["status"=>"ok"];
+        $members = $_POST['members'];
+        $member_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
+        $member_subquery = [];
+        $org_id = $_POST['org_id'];
+        foreach($members as $member){
+            array_push($member_subquery, "($org_id, '$member', 'member')");
+        }
+        $member_query.=(implode(', ', $member_subquery));
+        if($con->query($member_query)){
+            $output['status']='ok';
+        }else{
+            $output['status']='failed';
+        }
         echo json_encode($output);
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_profile'])){

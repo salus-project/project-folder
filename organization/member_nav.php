@@ -161,4 +161,8 @@
         $(".role").click(function(){
             $(".add_div",this).toggle();
         });
+        var inps = document.getElementsByClassName('add_mem_input');
+        for(ele of inps){
+            autocomplete_ready(ele, 'users', ele, 'set_id');
+        }
     </script>

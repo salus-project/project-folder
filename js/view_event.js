@@ -58,7 +58,7 @@ switch(volunteer_status){
                         "<div id=changeVolunteer>"+
                             "<button class='drop_dwn'name=method value=option onclick='volunteer_btn_click(\"option\")'>Volunteer Option</button><br>"+
                             "<button class='drop_dwn' onclick='find_requesters()'>Find Requester</button><br>"+
-                            "<button class='drop_dwn' name=method value=cancel onclick='volunteer_btn_click(\"cancel\")'>leave volunteer</button>"+
+                            "<button class='drop_dwn' name=method value=cancel onclick='leave_volunteer()'>leave volunteer</button>"+
                             
                         "</div>";
         break;
@@ -250,6 +250,24 @@ function request_option(){
 function volunteer_btn_click(method){
     const url = "/event/volunteer_application.php?event_id="+event_id+"&method="+method;
     open_popup(url);
+}
+
+function leave_volunteer(){
+    const request = new XMLHttpRequest();
+
+    request.onload = () => {
+        console.log(request.responseText);
+    };
+
+    const requestData = `event_id=`+ event_id + `&cancel=1&status=`+safe_status+' ' + help_status + ' not_applied';
+
+    request.open('post', '/event/volunteer_application_php.php');
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(requestData);
+
+    volunteer_status = 'not_applied';
+    var html = "<button id='volunteer' name='method' value='apply' onclick='volunteer_btn_click(\"apply\")'>Help others</button>";
+    volunteer_btn.innerHTML = html;
 }
 
 ////////////////////////find volunteer /////////////////////////////////////////
