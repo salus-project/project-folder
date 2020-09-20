@@ -300,7 +300,6 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                     document.getElementById('form_loader').style.display='block';
                 }
             };
-
             const requestData = 'org_name='+$('input[name$="org_name"]:first').val()+
                                 '&leader='+$('input[name$="leader"]:checked').val()+
                                 '&leader_nic='+$('input[name$="leader_nic"]:first').val()+
@@ -350,6 +349,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
         var formData = new FormData(document.getElementById('coleader_form'));
         formData.append('add_coleaders', '1');
         formData.append('org_id', org_id);
+        var org_name=document.getElementById('org_name_inp').value;
+        formData.append('org_name', org_name);
         $.ajax({
             url: '/organization/create_organization/submit_detail_ajax.php',
             data: formData,
@@ -410,6 +411,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
         var formData = new FormData(document.getElementById('member_form'));
         formData.append('add_members', '1');
         formData.append('org_id', org_id);
+        var org_name=document.getElementById('org_name_inp').value;
+        formData.append('org_name', org_name);
         $.ajax({
             url: '/organization/create_organization/submit_detail_ajax.php',
             data: formData,

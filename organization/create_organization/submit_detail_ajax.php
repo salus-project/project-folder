@@ -1,4 +1,7 @@
 <?php
+    ob_start();
+    ignore_user_abort();    
+
     require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     session_start();
     $err=array();           //Defining error message values
@@ -90,6 +93,20 @@
         }
         echo json_encode($output);
 
+        ob_end_flush();
+        ob_flush();
+        flush();
+
+        $leader_nic=$_SESSION['user_nic'];  
+        require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+        if($leader !=$leader_nic){
+            $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+            $mssg= $name." add you as a leder of ".$org_name;
+            $link="/organization/?selected_org=".$org_id;
+            $sender = new Notification_sender($leader,$mssg,$link,true);
+            $sender->send();
+        }
+
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_coleaders'])){
         $coleaders = $_POST['coleaders'];
         $co_leader_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
@@ -106,6 +123,21 @@
         }
         echo json_encode($output);
 
+        ob_end_flush();
+        ob_flush();
+        flush();
+
+        $user_nic=$_SESSION['user_nic']; 
+        $org_name = $_POST['org_name']; 
+        require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+        $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+        $mssg= $name." add you as a co-leder of ".$org_name;
+        $link="/organization/?selected_org=".$org_id;
+        $coleaders_= array_diff($coleaders,[$user_nic]);
+        $sender = new Notification_sender($coleaders_,$mssg,$link,true);
+        $sender->send();
+        
+
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_members'])){
         $members = $_POST['members'];
         $member_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
@@ -121,6 +153,20 @@
             $output['status']='failed';
         }
         echo json_encode($output);
+        
+        ob_end_flush();
+        ob_flush();
+        flush();
+
+        $user_nic=$_SESSION['user_nic'];  
+        $org_name = $_POST['org_name']; 
+        require $_SERVER['DOCUMENT_ROOT']."/notification/notification_sender.php";
+        $name= $_SESSION['first_name']." ".$_SESSION['last_name'];
+        $mssg= $name." add you as a member of ".$org_name;
+        $link="/organization/?selected_org=".$org_id;
+        $members_= array_diff($members,[$user_nic]);
+        $sender = new Notification_sender($members_,$mssg,$link,true);
+        $sender->send();
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_profile'])){
         if(isset($_FILES['upload_file']) && $_FILES['upload_file']['size']>0){
