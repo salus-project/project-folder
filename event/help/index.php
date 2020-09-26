@@ -133,19 +133,19 @@
                     echo '<div class="request_detail">';
                     echo '<table class="table1">';
                     echo '<tr>';
-                        echo '<td> District (current) :</td>';
+                        echo '<td> District (current) </td>';
                         echo '<td>'. $old_district.'</td>';
                     echo '</tr>';
                     echo '<tr>';
-                        echo '<td>Village :</td>';
+                        echo '<td>Village </td>';
                         echo '<td>'. $old_village .'</td>';
                     echo '</tr>';
                     echo '<tr>';
-                        echo '<td>Street :</td>';
+                        echo '<td>Street </td>';
                         echo '<td>'.$old_street .'<br></td>';
                     echo '</tr>';
                     echo '<tr id="request_tr">';
-                        echo '<td> Requests :</td>';
+                        echo '<td> Requests </td>';
                             $request='';
                             foreach($event_requests as $row_req){
                                $request.=$row_req['item'].":".$row_req['amount']."<br>";
@@ -179,8 +179,8 @@
                             }
                         echo '<div class="request_detail">';
                         echo "<table class=\"table1\">";
-                        echo "<tr><td>your promises :</td> <td>".$your_promise."</td></tr>";
-                        echo "<tr><td>your note :</td><td> ".($old_note?: "No notes")."</td></tr>";
+                        echo "<tr><td>your promises </td> <td>".$your_promise."</td></tr>";
+                        echo "<tr><td>your note </td><td> ".($old_note?: "No notes")."</td></tr>";
                         echo "</table>";
                         echo '</div>';
                         echo '<div class="edit_button_container">';
@@ -299,7 +299,7 @@
                             echo '</div>';
                             echo '<div class="promise_td">';
                             echo '<div class="for_label" >';
-                                        echo '<label id="note_label">Note:</label>';
+                                        echo '<label id="note_label">Note</label>';
                                         echo '</div>';
                                         echo '<textarea col=30 rows=1 id="note" name="note"></textarea>';
                             echo '</div>';
