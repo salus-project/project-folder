@@ -1,24 +1,24 @@
 function autocomplete_ready(inp_ele, type, touch_ele = null, click_action = '', action_link='') {
     inp_ele.parentElement.style.position = 'relative';
     var clicked = false;
-    inp_ele.setAttribute('class', 'autocomplete_text_inp');
+    inp_ele.classList.add('autocomplete_text_inp');
     inp_ele.setAttribute('spellcheck', 'false');
     inp_ele.setAttribute('autocomplete', 'off');
     if (touch_ele == null) {
         touch_ele = inp_ele;
-    } else if (touch_ele === 'ready') {
+    } if (touch_ele === 'ready') {
         load_data(inp_ele, type, click_action, action_link);
     } else if (touch_ele === 'inp') {
-        touch_ele.addEventListener('click', function() {
+        inp_ele.addEventListener('click', function() {
             if (!clicked) {
-                load_data(inp_ele, type, click_action);
+                load_data(inp_ele, type, click_action,action_link);
                 clicked = true;
             }
         });
     } else {
         touch_ele.addEventListener('click', function() {
             if (!clicked) {
-                load_data(inp_ele, type, click_action);
+                load_data(inp_ele, type, click_action, action_link);
                 clicked = true;
             }
         });
@@ -88,10 +88,12 @@ function autocomplete(inp, inp_arr, click_action, action_link) {
                     b.innerHTML = html;
                     b.addEventListener("click", function(e) {
                         /*insert the value for the autocomplete text field:*/
-                        if (click_action === '') {
+                        if (typeof click_action ==='function') {
+                            click_action(this.getElementsByTagName("input")[0].value, this.getElementsByTagName("input")[2].value);
+                        } else if (click_action === '') {
                             inp.value = this.getElementsByTagName("input")[0].value;
                             inp.previousElementSibling.value = this.getElementsByTagName("input")[1].value;
-                        }else if (click_action === 'set_id') {
+                        } else if (click_action === 'set_id') {
                             inp.value = this.getElementsByTagName("input")[0].value;
                             inp.previousElementSibling.value = this.getElementsByTagName("input")[2].value;
                         } else if (click_action === 'click') {

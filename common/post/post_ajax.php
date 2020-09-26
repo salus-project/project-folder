@@ -37,7 +37,7 @@
                         </div>";
                         echo"<div><div class='post_content'>" . $this->detail_arr['content'] . "</div></div>";
                         if(!$this->detail_arr['img']==''){
-                            echo "<div class=post_image_container><img class=post_image src='".$this->detail_arr['img']."'/></div>";
+                            echo "<div class=post_image_container><img class=post_image src='/common/documents/public_posts/".$this->detail_arr['img'].".jpg'/></div>";
                         }
                         $likes = array_filter(explode(" ",$this->detail_arr['likes']));
             echo        "<div class='like_bar'>
@@ -95,7 +95,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['first_name']. " ".$detail_arr['last_name'];
             $this->author_link = "/view_profile.php?id=".$detail_arr['author'];
-            $this->profile_url = "http://d-c-a.000webhostapp.com/Profiles/resized/".$detail_arr['author'].".jpg";
+            $this->profile_url = "/common/documents/Profiles/resized/".$detail_arr['author'].".jpg";
         }
     }
 

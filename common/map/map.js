@@ -92,7 +92,8 @@ class AreaStyle{
 
 class EventGeo{
     constructor(id='map', x=6.9,y=80,zoom=12){
-        document.getElementById(id).style.zIndex=1;
+        var container = document.getElementById(id);
+        container.style.zIndex=1;
         this.map = L.map(id).setView([x, y],zoom);
         L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=fN8T3G0qqLvrBTjTZJfJ'/*, {
             attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
@@ -116,6 +117,10 @@ class EventGeo{
         } else { 
             alert("Geolocation is not supported by this browser.");
         }
+
+        container.addEventListener('resize', function(){
+            this.map.invalidateSize();
+        });
     }
     addMarker(x,y,icon_txt,msg){
         this.marker = L.marker([x, y],{icon:this.markerIcon.create_icon(icon_txt), draggable:false}).addTo(this.map);

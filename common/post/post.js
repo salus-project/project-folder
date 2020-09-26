@@ -99,7 +99,7 @@ class NewPost{
         var container = document.getElementById('new_post');
         var form = document.createElement('FORM');
         form.setAttribute('method', 'post');
-        form.setAttribute('action', 'http://d-c-a.000webhostapp.com/createpost.php');
+        form.setAttribute('action', '/common/documents/createpost.php');
         form.setAttribute('enctype', 'multipart/form-data');
         form.setAttribute('autocomplete', 'off');
         form.innerHTML= "<input type='hidden' name='location' value='"+this.location+"'>"+
@@ -123,26 +123,6 @@ class NewPost{
         document.getElementById('hidden_upload_file').onchange=this.loadFile;
     }
 
-    /*load_tag_data(){
-        if(!this.clicked){
-            var tag_content = document.getElementById("tag_content");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    autocomplete(document.getElementById("tag_input_field"), data);
-                }
-                if (this.readyState == 1) {
-                    //tag_content.innerHTML = 'Wait';
-                }
-            };
-            xhttp.open('GET', '/common/post/tag_autocomplete_ajax.php', true);
-            xhttp.send();
-            this.clicked=true;
-        }
-    }*/
-
     upload() {
         document.getElementById('hidden_upload_file').click();
     }
@@ -152,13 +132,7 @@ class NewPost{
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function() {
             URL.revokeObjectURL(output.src)
-            this.setHeight();
+            document.getElementById('image_container').style.margin = "10px";
         }
     };
-
-    setHeight(img) {
-
-    document.getElementById('image_container').style.margin = "10px";
-    //document.getElementById('image_container').style.height = img.height;
-    }
 }
