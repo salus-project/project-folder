@@ -1,5 +1,6 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
+    require $_SERVER['DOCUMENT_ROOT']."/staff/event/create_event_php.php";
 ?>   
 
 <link rel="stylesheet" href="/staff/css_codes/create_event.css">
@@ -8,7 +9,7 @@
     btnPress(3);
 </script>
 
-<form action="create_event_php.php" method="POST">
+<form action="create_event.php" method="POST">
     <div class="create_event_form_box">
         <div class="head_create_event_form"> 
             <div class="head_edit_prof_form_det">Create new event</div>
@@ -17,12 +18,15 @@
 
             <div class="create_event_grp">
                 <label class="create_event_label">Name</label>
-                <input name = "name" type="text" class="create_event_input_box" placeholder="Enter event name" required>
+                <div>
+                <input name = "name" type="text" class="create_event_input_box" placeholder="Enter event name" value="<?php echo $name;?>" required>
+                <br><span class="error"> <?php echo $nameErr;?></span>
+                </div>
             </div>
 
             <div class="create_event_grp">
                 <label class="create_event_label">Type</label>
-                <input name = "type" type="text" class="create_event_input_box" placeholder="Enter event type" required>
+                <input name = "type" type="text" class="create_event_input_box" placeholder="Enter event type" value="<?php echo $type;?>" required>
             </div>
 
             <div class="create_event_grp">
@@ -37,7 +41,11 @@
                             foreach($district_arr as $dis){
                                 echo "<a class='drp' data-value='$dis' onclick='select_option(this)'>";
                                 echo "<label class=\"container drp\">$dis";
-                                echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" >
+                                echo "<input type=\"checkbox\" class=\"drp\" name=\"district[]\" value=\"$dis\" ";
+                                if(in_array($dis,$values)){
+                                    echo "checked";
+                                }
+                                echo " >
                                         <span class=\"checkmark drp\"></span>
                                         </label>
                                         </a>";
@@ -50,13 +58,13 @@
 
             <div class="create_event_grp">
                 <label class="create_event_label"> Start date </label>                
-                <input name = "start_date" type="date" class="create_event_input_box" /><br>
+                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date;?>" /><br>
             </div>
             
 
             <div class="create_event_grp">
                 <label class="create_event_label">Details</label>
-                <textarea name ="detail" type="text" class="create_event_textarea" placeholder="Enter event details" required></textarea>
+                <textarea name ="detail" type="text" class="create_event_textarea" placeholder="Enter event details" required><?php echo $detail;?></textarea>
             </div>
 
         </div>
