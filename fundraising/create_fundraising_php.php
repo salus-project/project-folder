@@ -1,14 +1,14 @@
 <?php
-    $nameErr =$purpErr=$noSelEveErr="";
+    $nameErr =$purpErr=$noSelEveErr=$noPurpEveErr="";
     if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['submitBtn'])){
     $fundraising_name=filt_inp($_POST['fundraising_name']);
-    $for_event=$_POST['for_event']?$_POST['for_event']:'NULL';
-    $for_any=$_POST['other_purpose']?$_POST['other_purpose']:'NULL';
-    $item = array_filter($_POST['item']);
-    $amount = $_POST['amount'];
+    $for_event=$_POST['for_event']? filt_inp($_POST['for_event']):'';
+    $for_any=$_POST['other_purpose']? filt_inp($_POST['other_purpose']):'';
+    $item = array_filter(array_filter($_POST['item'],"filt_inp"));
+    $amount =array_filter($_POST['amount'],"filt_inp");
     $description=filt_inp($_POST['description']);
-    $org=$_POST['organization']?$_POST['organization']:"";
-    $for_opt=$_POST['purp'];
+    $org=$_POST['organization']?filt_inp($_POST['organization']):"";
+    $for_opt=filt_inp($_POST['purp']);
     $by=$_SESSION['user_nic'];
   
     if (isset($_POST['district'])){
@@ -25,7 +25,7 @@
         $org_id= "NULL"; 
     }
     else{ 
-        $org_id=$_POST['organization'];
+        $org_id=filt_inp($_POST['organization']);
     }
     $isOk=1;
     if(empty($_POST['fundraising_name'])){
@@ -44,15 +44,25 @@
         $nameErr='Only letters and white space allowed';
         $isOk=0;
     } 
-    if ($for_event=='NULL' && $for_any=='NULL'){
+    if ($for_event=='' && $for_any==''){
         $isOk=0;
         $noSelEveErr="Select an event";
     }
     if($for_opt==1){
         $for_any='NULL';
+        if ($for_event==''){
+            $isOk=0;   
+            $noSelEveErr="Select an event";
+            $for_any='';
+        }
     }
     elseif ($for_opt==2){
-        $for_event='NULL';   
+        $for_event='NULL'; 
+        if ($for_any==''){
+            $isOk=0;   
+            $noPurpEveErr="Give a purpose";
+            $for_event=''; 
+        }
     }
 
     if($isOk==1){
@@ -92,7 +102,7 @@
     }
 
     else{
-        echo "try again";
+        echo "<div class='try_again'>Try again</div>";
     }
 
    

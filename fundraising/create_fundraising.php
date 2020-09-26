@@ -51,6 +51,7 @@ $district = explode(",", $district);
                 <label class="create_fund_label" for='organization'>Select organization</label>
                 <div class="custom-select" style="width:200px;line-height=1">
                     <select class="create_fund_select" name="organization" id="org_id">
+                        <option value=''>Select One</option>
                         <option value=''>Not organization based</option>
                         <?php
                         foreach ($org_result as $row) {
@@ -90,7 +91,7 @@ $district = explode(",", $district);
                         <div id="for_event" style='<?php echo $for_event_style; ?>'>
                             <div class="custom-select" style="width:200px;">
                                 <select class="create_fund_select" name="for_event">
-                                    <option value='0'>Select Event</option>
+                                    <option value=''>Select Event</option>
                                     <?php
                                     foreach ($event_name_result as $row) {
                                         echo "<option value='" . $row["event_id"] . "'";
@@ -111,6 +112,7 @@ $district = explode(",", $district);
                         <input type="radio" name="purpose" id='other_purpose_opt' value='' <?php echo $other_purp ?> onclick='purposeFun()'>
                         <label class="create_fund_label" for="other_purpose_opt">Other purpose</label>
                         <input class="create_fund_input" type='text' name='other_purpose' id='other_purpose' style='<?php echo $for_any_style; ?>' value='<?php echo $for_any; ?>'>
+                        <span class='error'><?php echo $noPurpEveErr ?></span>
                     </div>
                 </div>
 
