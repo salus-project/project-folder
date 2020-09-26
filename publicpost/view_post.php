@@ -5,25 +5,23 @@
     <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
     <script src="/common/post/post.js"></script>
     <style>
-    .post_content{
-        margin: 10px 20px 10px 20px;
-    }
-    .posts{
-        width: 700px;
-        min-height:400px;
-    }
-    .posts:hover{
-        transform: scale(1);
-    }
-    .comment_box_container {
-        display: inline-block;
-    }
-    .comment_box_active{
-        display:inline-block;
-    }
-    .but_2{
-        cursor: auto;
-    }
+        .post_content{
+            margin: 10px 20px 10px 20px;
+        }
+        .posts{
+            max-width: 700px;
+            min-height:400px;
+        }
+        .posts:hover{
+            transform: scale(1);
+        }
+        .comment_box_container {
+            display: inline-block;
+        }
+        .comment_box_active{
+            display:inline-block;
+        }
+    
     </style>    
 
     <?php
