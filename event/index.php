@@ -43,7 +43,7 @@ $imgs = array_filter(explode(',', $result['img']));
         </div>
     </div>
     <div id=pictures>
-        <h3 class='head'>Photos</h3>
+        <div class='head'>Photos</div>
         <?php	
         if(count($imgs)>0){
             echo '<div class="slideshow-container">';
@@ -121,7 +121,7 @@ $imgs = array_filter(explode(',', $result['img']));
     </div>
     <div id=organizations>
         <div class='head' colspan=2>
-            Organizations on action
+            Active Organizations
         </div>
         <div class='table_con'>
             <table id=view_event_table>
@@ -138,8 +138,11 @@ $imgs = array_filter(explode(',', $result['img']));
         </div>
     </div>
 </div>
-<div id=news_field>
-    Goverment posts and announcements about this event
+<div id='news_field'>
+    <div class='head' style='width:550px;margin:auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
+        Goverment posts and announcements
+    </div>
+    
     <div id="content">
     </div>
     <script>

@@ -59,19 +59,19 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
             </div>
             <table class="requester_detail_table">
                 <tr>
-                    <td class='request_col1'>District(current):</td>
+                    <td class='request_col1'>District(current)</td>
                     <td class='request_col2'><?php echo $requester_detail['district']; ?></td>
                 </tr>
                 <tr>
-                    <td class='request_col1'>Village:</td>
+                    <td class='request_col1'>Village</td>
                     <td class='request_col2'><?php echo $requester_detail['village']; ?></td>
                 </tr>
                 <tr>
-                    <td class='request_col1'>Street:</td>
+                    <td class='request_col1'>Street</td>
                     <td class='request_col2'><?php echo $requester_detail['street']; ?></td>
                 </tr>
                 <tr>
-                    <td class='request_col1'>Requests:</td>
+                    <td class='request_col1'>Requests</td>
                     <td class='request_col2'><?php echo $content; ?></td>
                 </tr>
             </table>
