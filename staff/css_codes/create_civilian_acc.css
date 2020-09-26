@@ -35,7 +35,8 @@
 }
 
 .body_create_civ_form{
-    padding: 15px;
+  padding: 15px;
+  padding-top: 0px;
 }
 
 .foot_create_civ_form{
@@ -52,6 +53,7 @@
     color: #393939;
     font-size: 25px;
     outline: none;
+    cursor: pointer;
 }
 
 .submitt{
@@ -64,24 +66,24 @@
 }
 
 .create_civ_input_box{
-    outline: none;
-  border-radius: 5px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width: 300px;
-  height: 25px;
-  font-family: "Open Sans";
-  color: #393939;
-  border: 1px solid #2980B9;
-  clear: both;
-  font-size: 17px;
-  float: right;
-  padding-left: 7px;
-  min-width: 150px;
+  outline: none;
+    border-radius: 5px;
+    margin-bottom: 3px;    
+    margin-top: 10px;
+    width: 300px;
+    height: 25px;
+    font-family: "Open Sans";
+    color: #393939;
+    border: 1px solid #2980B9;
+    clear: both;
+    font-size: 17px;
+    float: right;
+    padding-left: 7px;
+    min-width: 150px;
 }
 
 .create_civ_form_label{
-  padding-top: 5px;
+  padding-top: 15px;
     min-width: 150px;
     font-size: 18px;
     color: #393939
@@ -101,22 +103,22 @@
 }
 
 .create_civ_textarea{
-    resize: none;
-    outline: none;
-    height: 60px;
-    border-radius: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    width: 300px;
-    height: 60px;
-    font-family: "Open Sans";
-    color: #393939;
-    border: 1px solid #2980B9;
-    clear: both;
-    font-size: 17px;
-    float: right;
-    padding-left: 7px;
-    min-width: 150px;
+  resize: none;
+  outline: none;
+  height: 60px;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  width: 300px;
+  height: 60px;
+  font-family: "Open Sans";
+  color: #393939;
+  border: 1px solid #2980B9;
+  clear: both;
+  font-size: 17px;
+  float: right;
+  padding-left: 7px;
+  min-width: 150px;
 }
 
 .error{
@@ -130,12 +132,13 @@
 
 /*        Custom dropdown                */
 .custom-select {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width: 260px;
-  position: relative;
-  font-family: "Open Sans";
-  }
+    margin-top: 0px;
+    margin-top: 10px;
+    width: 260px;
+    position: relative;
+    font-family: "Open Sans";
+
+}
   
   .custom-select select {
     display: none; /*hide original SELECT element:*/
@@ -177,6 +180,7 @@
     cursor: pointer;
     user-select: none;
     border-radius: 5px;
+    
   }
   
   /*style items (options):*/
@@ -187,8 +191,11 @@
     left: 0;
     right: 0;
     z-index: 99;
-    margin-left: 195px;
-    width: 115px;  }
+    margin-left: 160px;
+    width: 152px;
+    overflow: auto;
+    max-height: 175px; 
+  }
   
   /*hide the items when the select box is closed:*/
   .select-hide {
@@ -197,11 +204,13 @@
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+    width: 130px;
+    
   }
 
 /*               Angular Form validation                     */
 
 input.ng-touched.ng-invalid,input:required.ng-touched.ng-empty{
     border: 2px solid #b93a29;
-    background-color: #b93a294d;
+    background-color: #b93a294d !important;
 }

@@ -124,3 +124,31 @@ body{
   color: #6b7c93;
   width: 100%;
 }
+
+/* width */
+div::-webkit-scrollbar {
+  width: 9px;
+  height: calc(100% - 40px);
+}
+
+/* Track */
+div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px grey;
+  border-radius: 10px;
+}
+ 
+/* Handle */
+div::-webkit-scrollbar-thumb {
+  background: rgb(209, 207, 207); 
+  border-radius: 10px;
+  border: 1px solid #bbb;
+}
+
+/* Handle on hover */
+div::-webkit-scrollbar-thumb:hover {
+  background: rgb(201, 198, 198); 
+}
+
+button{
+  cursor: pointer;
+}
