@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css_codes/login.css">
 <script src='/js/font_awesome.js' defer></script>
 <div class='form_div'>
-    <form class="login_form" action="login.php" method="post">
+    <form class="login_form" action="/staff/login.php" method="post">
         <div class="login_form_head">
             Staff Login
         </div>
@@ -25,7 +25,6 @@
 
 <?php
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        
         $username=$_POST['username'];
         $password=$_POST['password'];
         $query="select * from staff_detail where user_name='$username' AND password='$password'";

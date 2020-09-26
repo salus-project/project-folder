@@ -16,10 +16,10 @@
 <div class="title">
     <div id='cover'>
         <?php
-            $cover_path = "http://d-c-a.000webhostapp.com/Covers/" . $_SESSION['user_nic'] . ".jpg";
+            $cover_path = "/common/documents/Covers/" . $_SESSION['user_nic'] . ".jpg";
             $cover_path_header = get_headers($cover_path);
             if($cover_path_header[0] != 'HTTP/1.1 200 OK'){
-                $cover_path = "http://d-c-a.000webhostapp.com/Covers/default.jpg";
+                $cover_path = "/common/documents/Covers/default.jpg";
             }
         ?>
         <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
@@ -27,15 +27,15 @@
         <div id='profile_edit'>
             <div class="profile_container">
                 <?php
-                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $_SESSION['user_nic'] . ".jpg";
+                    $profile_path = "/common/documents/Profiles/" . $_SESSION['user_nic'] . ".jpg";
                     $profile_path_header = get_headers($profile_path);
                     if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
+                        $profile_path = "/common/documents/Profiles/default.jpg";
                     }
                 ?>
                 <img src="<?php echo $profile_path;?>" alt="Opps..." class="my_profile_pic">
             </div>
-            <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
+            <form method='post' action="/common/documents/upload.php" enctype="multipart/form-data" id=upload_profile_form>
                 <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
                 <input type=hidden name="directory" value="Profiles/">
                 <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
@@ -49,7 +49,7 @@
         <div id='name_container'>
             <span id='name'><?php echo $query_result['first_name'] . " " . $query_result['last_name']; ?></span>
         </div>
-        <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
+        <form method='post' action="/common/documents/upload.php" enctype="multipart/form-data" id=upload_cover_form>
             <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
             <input type=hidden name="directory" value="Covers/">
             <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">

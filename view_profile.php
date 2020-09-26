@@ -27,22 +27,14 @@ while($row=$viewer->fetch_assoc()){
 <div class="title">
     <div id='cover'>
         <?php
-        $cover_path = "http://d-c-a.000webhostapp.com/Covers/" . $viewer_nic . ".jpg";
-        $cover_path_header = get_headers($cover_path);
-        if($cover_path_header[0] != 'HTTP/1.1 200 OK'){
-            $cover_path = "http://d-c-a.000webhostapp.com/Covers/default.jpg";
-        }
+        $cover_path = "/common/documents/Covers/" . $viewer_nic . ".jpg";
         ?>
         <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
     
         <div id='profile_edit'>
             <div class="profile_container">
                 <?php
-                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/" . $viewer_nic . ".jpg";
-                    $profile_path_header = get_headers($profile_path);
-                    if($profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $profile_path = "http://d-c-a.000webhostapp.com/Profiles/default.jpg";
-                    }
+                    $profile_path = "/common/documents/Profiles/" . $viewer_nic . ".jpg";
                 ?>
                 <img src="<?php echo $profile_path;?>" alt="Opps..." class="my_profile_pic">
             </div>

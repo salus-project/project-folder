@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/css_codes/publ.css">
+<script src='/common/autocomplete/auto_complete.js'></script>
+<link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
 <style>
     .post_content{
         margin: 10px 20px 10px 20px;
@@ -42,9 +44,6 @@
     #tag_container {
         display: block;
     }
-
-    element.style {
-    }
     .posts {
         width: 700px;
         min-height: 400px;
@@ -70,36 +69,21 @@
         flush();
     }*/
 
-    echo "<div class='posts'>
-            <input type='hidden' name='post_index' class='post_index' value='".$post_index."'>
-            <div>  
-                <div class='post_title'>
-                    <div class='profile'>
-                        <div class='author post_a'>
-                            <b>".$arr['heading']."</b>";
-                            if(!$arr['event']==''){
-                                echo " <i class='fa fa-toggle-right'></i> for <a class='post_a' href='/event?event_id=".$arr['event']."'>".$arr['event_name']."</a>";
-                            }
-                        echo "</div>
-                        <div class='post_date'> Date: ".$arr['date']."</div>
+    echo "<div class='posts'>";
+            echo"<form action='/common/documents/govpost.php' method='post' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+                    <input type='hidden' name='post_index' class='post_index' value='".$post_index."'>
+                    <div class='post_heading'> heading:</div>
+                    <input type='text' name='heading' id='heading' value='".$arr['heading']."'>
+                    <div class='post_content'> Content:</div>
+                    <textarea id='post_text_area' name='content' rows=3 cols=5>".$arr['content'] ."</textarea>
+                    <div class='post_content'> Event:</div>
+                    <div>
+                        <input type='hidden' name='event' value='".$arr['event']."'>
+                        <input id='tag_input_field' type='text' placeholder='Tag an event' spellcheck='false' aria-autocomplete='none' value='".$arr['event_name']."'>
                     </div>
-                </div>
-            </div>";
-            echo"<form action='http://d-c-a.000webhostapp.com/govpost.php' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
-                <div>
-                    <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>".$arr['content'] ."</textarea></div>
-                </div>
-                <div id='tag_container' style='position: relative;margin: 0 35px 10px 35px;border: 1px solid #d8e0e7;'>";
-                    $tag='';
-                    if(!$arr['event']==''){
-                        $tag=$arr['event_name'];
-                    }
-                    echo "<input type='hidden' name='tag_link'>
-                    <input id='tag_input_field' type='text' name='tag' placeholder='Add Tag' spellcheck='false' aria-autocomplete='none' value='".$tag."'>
-                </div>
-                <button type='button' class='edit_post_btn' style='float: right; display: inline-block;'>Save changes</button>
+                <button type='submit' class='edit_post_btn' style='float: right; display: inline-block;' name='update' value='1'>Save changes</button>
             </form>
-            <form action='http://d-c-a.000webhostapp.com/govpost.php' method='post'>
+            <form action='/common/documents/govpost.php' method='post'>
                 <input type='hidden' name='post_index' value='".$post_index."'>
                 <button type='submit' class='edit_post_btn del_btn' name='delete' value='1'>Delete Post</button>
             </form>";
@@ -110,10 +94,10 @@
                 if(!$arr['img']==''){
                 echo "<div class='img_edit'>";
                     echo "<div id=image_container>  
-                            <img id='preview'/ src='http://d-c-a.000webhostapp.com/".$arr['img']."'/>
+                            <img id='preview'/ src='/common/documents/gov_posts/".$arr['img'].".jpg'/>
                         </div>
                         <div for=upload_file id='change_img_btn' class='edit_post_btn' onclick='document.getElementById(\"change_img\").click()' style='display: inline-block;'><i class='fa fa-camera' aria-hidden='true'></i>Change photo</div>
-                        <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
+                        <form method='post' action='/common/documents/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
                             <input type='file' name='upload_file' accept='image/jpeg' id='change_img' style='display:none' onchange='this.parentElement.submit()'>
                             <input type='hidden' name='directory' value='government_posts/'>
                             <input type='hidden' name='filename' value='".$arr['img']."'>
@@ -122,7 +106,7 @@
                         </form>
                         
                         <div id='remove_img' class='edit_post_btn' onclick='document.getElementById(\"remove_img_form\").submit()' style='float: right; display: inline-block;'><i class='fas fa-trash-alt' aria-hidden='true'></i>Remove photo</div>
-                        <form method='post' action='http://d-c-a.000webhostapp.com/post_remove_img.php' id='remove_img_form'>
+                        <form method='post' action='/common/documents/post_remove_img.php' id='remove_img_form'>
                             <input type='hidden' name='file' value='".$arr['img']."'>
                             <input type='hidden' name='post_id' value='".$arr['post_index']."'>
                             <input type='hidden' name='remove' value='1'>
@@ -133,7 +117,7 @@
 
 ?>
 <script>
-    autocomplete_ready(document.getElementById("tag_input_field"), 'all', 'ready');
+    autocomplete_ready(document.getElementById("tag_input_field"),  'events', 'ready', 'set_id');
 
     var choose_file = document.getElementById('hidden_upload_file');
     function upload(){

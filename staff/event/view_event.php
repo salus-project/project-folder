@@ -101,7 +101,7 @@
             <div class='fund_image_conatainer'>
                 <div class='img_type'>Profile Image</div>
                 <div class="fund_image prim">
-                    <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $event_id ?>.jpg" alt="Opps..." class="fund_pic">
+                    <img src="/common/documents/Event/<?php echo $event_id ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
             </div>
             
@@ -110,7 +110,7 @@
                 <div class="fund_image_conatainer">
                 <div class='img_type'>Secondary Images</div>
                     <div class="fund_image seco">
-                        <img src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
+                        <img src="/common/documents/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
                     </div>
                 </div>
             <?php }

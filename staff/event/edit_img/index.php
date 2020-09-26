@@ -23,9 +23,9 @@
     <div class='fund_image_conatainer'>
         <div class='img_type'>Profile Image</div>
         <div class="fund_image prim">
-            <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+            <img src="/common/documents/Event/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
         </div>
-        <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data">
+        <form method='post' action="/common/documents/upload.php" enctype="multipart/form-data">
             <input type=file name=upload_file accept="image/jpeg" style="display:none" onchange="this.parentElement.submit()">
             <input type=hidden name="directory" value="Event/">
             <input type=hidden name="filename" value="<?php echo $id ?>">
@@ -39,16 +39,16 @@
             <div class="fund_image_conatainer">
             <div class='img_type'>Secondary Image</div>
                 <div class="fund_image seco">
-                    <img src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
+                    <img src="/common/documents/Event/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
-                <form method='post' action="http://d-c-a.000webhostapp.com/upload.php" enctype="multipart/form-data">
+                <form method='post' action="/common/documents/upload.php" enctype="multipart/form-data">
                     <input type=file name=upload_file accept="image/jpeg" style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Event/secondary/">
                     <input type=hidden name="filename" value="<?php echo $img ?>">
                     <input type=hidden name="header" value="true">
                 </form>
                 <button class='edit_profile_btn' onclick="this.previousElementSibling.firstElementChild.click()"><i class="fa fa-camera" aria-hidden="true"></i>Change</button>
-                <form method='post' action="http://d-c-a.000webhostapp.com/Event/secondary/upload_event.php" enctype="multipart/form-data">
+                <form method='post' action="/common/documents/Event/secondary/upload_event.php" enctype="multipart/form-data">
                     <input type='hidden' name="img" value="<?php echo $img ?>">
                     <input type='hidden' name="event_id" value="<?php echo $_GET['id'] ?>">
                     <input type='hidden'  value='1'>
@@ -59,7 +59,7 @@
     <?php }
     ?>
     <div class='new_photo_container'>
-        <form method='post' action="http://d-c-a.000webhostapp.com/Event/secondary/upload_event.php" enctype="multipart/form-data">
+        <form method='post' action="/common/documents/Event/secondary/upload_event.php" enctype="multipart/form-data">
             <input type=file name=upload_file accept="image/jpeg" style="display:none" onchange="this.parentElement.submit()">
             <input type=hidden name="event_id" value="<?php echo $_GET['id'] ?>">
             <input type=hidden name="upload" value='true'>

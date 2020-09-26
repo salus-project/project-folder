@@ -29,13 +29,16 @@
     </div>
 
     <div id='new_post'>
-        <form method=post action='http://d-c-a.000webhostapp.com/govpost.php' enctype="multipart/form-data" autocomplete="off">
-            <input type='hidden' name='location' value='<?php echo $_SERVER['HTTP_REFERER'] ?>'>
-            <input type='hidden' name='user_nic' value='<?php echo $_SESSION['user_nic'] ?>'>
+        <form method=post action='/common/documents/govpost.php' enctype="multipart/form-data" autocomplete="off">
             <div class='post_heading'> heading:</div>
             <input type='text' name='heading' id='heading'>
             <div class='post_content'> Content:</div>
             <textarea id='post_text_area' name='content' rows=3 cols=5></textarea>
+            <div class='post_content'> Event:</div>
+            <div>
+                <input type="hidden" name="event">
+                <input id='tag_input_field' type='text' placeholder='Tag an event' spellcheck='false' aria-autocomplete='none'>
+            </div>
             <div id='image_container'>
                 <img id='preview' />
             </div>
@@ -43,9 +46,6 @@
             <div for=upload_file id=upload_file class="post_btn" onclick=upload()>Upload photo</div>
             <input type=file name=upload_file accept="image/*" id=hidden_upload_file style="display:none" onchange="loadFile(event)">
             <!--div id=tag_button class="post_btn" onclick='add_tag()'><i class="fa fa-plus-square-o"></i> Tag</div-->
-            <div id="tag_container">
-                <input type="hidden" name="event">
-            </div>
         </form>
     </div>
 
@@ -55,8 +55,8 @@
     </div>
     <?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>
     <script>
-        autocomplete_ready(document.getElementById("tag_container"), 'events', document.getElementById("new_post"), 'set_id');
-        var post = new Post('staff');
+        autocomplete_ready(document.getElementById("tag_input_field"), 'events', 'ready', 'set_id');
+        var post = new GovPost('staff');
         post.get_post();
 
         function upload(){

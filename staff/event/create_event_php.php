@@ -29,11 +29,10 @@
             $sub_query.="CREATE TABLE `event_".$id."_requests`(id int(11) NOT NULL AUTO_INCREMENT,requester varchar(12) NOT NULL,item varchar(20),amount varchar(20),PRIMARY KEY (id),FOREIGN KEY(requester) REFERENCES event_".$id."_help_requested(NIC_num));"; 
             $sub_query.="CREATE TABLE `event_".$id."_pro_don_content`(id int(11) NOT NULL AUTO_INCREMENT,don_id int(10) NOT NULL,item varchar(20),amount varchar(20),pro_don varchar(10),PRIMARY KEY (id),FOREIGN KEY(don_id) REFERENCES event_".$id."_pro_don(id));"; 
         }
-        if(mysqli_multi_query($con, $sub_query)){
-            echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
-        }else{
-            echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';
-        }
+        mysqli_multi_query($con, $sub_query);
+        copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Event/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Event/'.$id.'.jpg');
+        copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Event/resized/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Event/resized/'.$id.'.jpg');
+        
         header('location:/staff/event/area?event_id='.$id);
     }
 ?>

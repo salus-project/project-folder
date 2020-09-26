@@ -1,16 +1,17 @@
 <?php
 if (isset($_POST['submit'])){
+    $nic = strtoupper(rtrim($_POST["nic"]));
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
-    $gender = $_POST["gender"];
-    $nic = rtrim($_POST["nic"]);
-    $address = $_POST["address"]; 
-    $district = $_POST["district"];
-    $village = $_POST["village"]; 
-    $street = $_POST["street"]; 
-    $occupation = $_POST["occupation"];
-    $phone_number = $_POST["phone_number"];
     $email_address = $_POST["email_address"];
+    $gender = ($_POST["gender"]!='')?"'".$_POST["gender"]."'":"NULL";
+    $address = ($_POST["address"]!='')?"'".$_POST["address"]."'":"NULL";
+    $district = ($_POST["district"]!='')?"'".$_POST["district"]."'":"NULL";
+    $village = ($_POST["village"]!='')?"'".$_POST["village"]."'":"NULL";
+    $street = ($_POST["street"]!='')?"'".$_POST["street"]."'":"NULL";
+    $occupation = ($_POST["occupation"]!='')?"'".$_POST["occupation"]."'":"NULL";
+    $phone_number = ($_POST["phone_number"]!='')?"'".$_POST["phone_number"]."'":"NULL";
+
 
     $nic_check='SELECT NIC_num FROM `civilian_detail` WHERE NIC_num="'.$nic.'"';
     $result_=$con->query($nic_check);
@@ -34,8 +35,10 @@ if (isset($_POST['submit'])){
             $password= generate_string($permitted_chars) ;
 
             $sql = "INSERT INTO civilian_detail (password, first_name, last_name, gender, NIC_num, address, district,village,street, Occupation, phone_num, email)
-            VALUES ('$password', '$first_name', '$last_name', '$gender', '$nic', '$address', '$district', '$village','$street','$occupation', '$phone_number', '$email_address')";
+            VALUES ('$password', '$first_name', '$last_name', $gender, '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
             $query_run= mysqli_query($con,$sql);
+
+            echo $sql;
 
             if($query_run ){
                 
@@ -57,7 +60,10 @@ if (isset($_POST['submit'])){
                     }
                 restore_error_handler();
 
-                echo '<script type="text/javascript"> alert ("Data Uploaded") </script>';
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Profiles/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Profiles/'.$nic.'.jpg');
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Profiles/resized/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Profiles/resized/'.$nic.'.jpg');
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Covers/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Covers/'.$nic.'.jpg');
+
                 header('location:member.php');
             }else{
                 echo '<script type="text/javascript"> alert ("Data not Uploaded") </script>';

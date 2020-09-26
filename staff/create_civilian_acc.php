@@ -52,6 +52,15 @@
                 </div>
             </div>
 
+            <div class="create_civ_grp">
+                <label class="create_civ_form_label">Email </label>
+                <div>
+                    <div ng-class="{'has-error': CreateCivilianAccForm.email_address.$invalid}">
+                        <input name = "email_address" type="email" class="create_civ_input_box" placeholder="Enter email address" ng-model="userMail" required/>
+                    </div>
+                    <span class='error' data-ng-show="CreateCivilianAccForm.email_address.$error.email && CreateCivilianAccForm.email_address.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Email</span>
+                </div>
+            </div>
             
             <div class="create_civ_grp">
                 <label class="create_civ_form_label"> Gender </label>
@@ -121,20 +130,10 @@
             </div>
 
             <div class="create_civ_grp">
-                <label class="create_civ_form_label">Email </label>
-                <div>
-                    <div ng-class="{'has-error': CreateCivilianAccForm.email_address.$invalid}">
-                        <input name = "email_address" type="email" class="create_civ_input_box" placeholder="Enter email address" ng-model="userMail" required>
-                    </div>
-                    <span class='error' data-ng-show="CreateCivilianAccForm.email_address.$error.email && CreateCivilianAccForm.email_address.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Email</span>
-                </div>
-            </div>
-
-            <div class="create_civ_grp">
                 <label class="create_civ_form_label">Phone Number </label>
                 <div>
                     <div ng-class="{'has-error': (CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched)}">
-                        <input name = "phone_number" type="tel" class="create_civ_input_box" placeholder="Enter phone number" pattern="[0-9]{9}|[0-9]{10}" ng-model="userPhone" required/>
+                        <input name = "phone_number" type="tel" class="create_civ_input_box" placeholder="Enter phone number" pattern="[0-9]{9}|[0-9]{10}" ng-model="userPhone"/>
                     </div>
                     <span class='error' data-ng-show="CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Number Format</span>
                 </div>
