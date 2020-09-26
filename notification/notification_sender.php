@@ -30,9 +30,9 @@
             global $notification_DB;
             $query = "insert into user_notif_ic_" . $notification->to . " (Date, Time, Content, link) values ('" . $notification->date . "', '" . $notification->time . "', '" . $notification->content . "', '" . $notification->link . "');";
             if($notification_DB->query($query)){
-                echo $notification->to . " success<br/>";
+                //echo $notification->to . " success<br/>";
             }else{
-                echo $notification->to . " Failed<br/>";
+                //echo $notification->to . " Failed<br/>";
             }
         }
         public function send_mail(Notification $notification){
@@ -40,9 +40,9 @@
             $subject = 'DCA updates';
             $message = $notification->content;
             $headers = 'From: kanthankanthan111@gmail.com';
-            if(mail($to_email,$subject,$message,$headers)){
-                echo "mail sent";
-            }
+            /*if(mail($to_email,$subject,$message,$headers)){
+                //echo "mail sent";
+            }*/
         }
     }
 

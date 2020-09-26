@@ -34,13 +34,13 @@
 							echo '<div class="slideshow-container">';		
 							foreach ($imgs as $img) {
 								echo '<div class="mySlides fade">
-									<img class="slide_show_img" src="http://d-c-a.000webhostapp.com/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
+									<img class="slide_show_img" src="/common/documents/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
 								</div>';
 							}
 							echo '</div>';
 						}else{
 						echo '<div style="width:100%;">
-							<img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+							<img style="width:100%;" src="/common/documents/Covers/default.jpg">
 						</div>';
 						}					
 					echo'</div>';
@@ -76,13 +76,13 @@
 						echo '<div class="slideshow-container">';
 						foreach ($imgs as $img) {
 							echo '<div class="mySlides fade">
-								<img class="slide_show_img" src="http://d-c-a.000webhostapp.com/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
+								<img class="slide_show_img" src="/common/documents/Fundraising/secondary/'.$img.'.jpg" style="width:100%;">
 							</div>';
 						}
 						echo '</div>';
 					}else{
 					echo '<div style="width:100%;">
-						<img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+						<img style="width:100%;" src="/common/documents/Covers/default.jpg">
 					</div>';
 					}						
 				echo '</div>';

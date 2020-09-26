@@ -45,7 +45,7 @@ echo "<div class='posts'>
     </div>
     <div><div class='post_content'>".$arr['content'] ."</div></div>";
     if(!$arr['img']==''){
-        echo "<div class=post_image_container><img class=post_image src='http://d-c-a.000webhostapp.com/".$arr['img']."'/></div>";
+        echo "<div class=post_image_container><img class=post_image src='/common/documents/gov_posts/".$arr['img'].".jpg'/></div>";
     }
     $likes = explode(" ",$arr['likes']);
         echo  "<div class='like_bar'>

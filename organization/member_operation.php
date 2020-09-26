@@ -1,6 +1,9 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
+
+    ob_start();
+    ignore_user_abort();
         
     $org_id=$_GET['org_id'];
     $type=$_GET['type'];
@@ -57,11 +60,10 @@
         }
     }
 
-    if(mysqli_multi_query($con, $query)){
-        echo '<script type="text/javascript"> alert ("Data updated") </script>';
-    }
-    else{
-        echo '<script type="text/javascript"> alert ("Data not updated") </script>';
-    }
+    mysqli_multi_query($con, $query);
+
     header("location:".$_SERVER['HTTP_REFERER']);
+    ob_end_flush();
+    ob_flush();
+    flush();
 ?>

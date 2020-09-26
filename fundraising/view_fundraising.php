@@ -94,18 +94,18 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
             echo '<div class="slideshow-container">';        
                 foreach ($imgs as $img) {?>
                     <div class="mySlides fade">
-                        <img class='slide_show_img' src="http://d-c-a.000webhostapp.com/Fundraising/secondary/<?php echo $img ?>.jpg" style="width:100%">
+                        <img class='slide_show_img' src="/common/documents/Fundraising/secondary/<?php echo $img ?>.jpg" style="width:100%">
                     </div>
             <?php }
             echo '</div>';
             }else{
                 echo '<div style="width:100%;max-height: 350px;overflow: hidden;">
-                    <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+                    <img style="width:100%;" src="/common/documents/Covers/default.jpg">
                 </div>';
             }
                 ?>
                 <div class="fund_profile_image">
-                    <img src="http://d-c-a.000webhostapp.com/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+                    <img src="/common/documents/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
                 <div class='dot_div' style="text-align:center">
                 <?php
@@ -196,7 +196,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                 <div class='fund_image_conatainer'>
                     <div class='img_type'>Profile Image</div>
                     <div class="fund_image prim">
-                        <img src="http://d-c-a.000webhostapp.com/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
+                        <img src="/common/documents/Fundraising/<?php echo $id ?>.jpg" alt="Opps..." class="fund_pic">
                     </div>
                 </div>
                 
@@ -205,7 +205,7 @@ $query="select * from fundraisings where id=".$_GET['view_fun'].";
                     <div class="fund_image_conatainer">
                     <div class='img_type'>Secondary Images</div>
                         <div class="fund_image seco">
-                            <img src="http://d-c-a.000webhostapp.com/Fundraising/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
+                            <img src="/common/documents/Fundraising/secondary/<?php echo $img ?>.jpg" alt="Opps..." class="fund_pic">
                         </div>
                     </div>
                 <?php }

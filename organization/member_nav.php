@@ -61,7 +61,7 @@
                 if($leader_nic==$_SESSION['user_nic']){
                     $leader_name='You';
                 }
-                $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $leader_nic . ".jpg";
+                $profile_path = "/common/documents/Profiles/resized/" . $leader_nic . ".jpg";
                 
                 echo    "<tr class='role_div'>
                             <td class='role_name'>
@@ -81,7 +81,7 @@
                         $coleader_name=$row['first_name']." ".$row['last_name'];
                     }
 
-                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
+                    $profile_path = "/common/documents/Profiles/resized/" . $row['NIC_num'] . ".jpg";
 
                     echo    "<tr>
                                 <td>
@@ -121,7 +121,7 @@
                     }else{
                         $member_name=$row['first_name']." ".$row['last_name'];
                     }
-                    $profile_path = "http://d-c-a.000webhostapp.com/Profiles/resized/" . $row['NIC_num'] . ".jpg";
+                    $profile_path = "/common/documents/Profiles/resized/" . $row['NIC_num'] . ".jpg";
                     
                     echo    "<tr>
                                 <td>";

@@ -1,18 +1,18 @@
 const loader = "<div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>";
-const safe_btn_html = "<div class='toggle btn btn-success off' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
+const safe_btn_html = "<div class='toggle event_btn btn-success off' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
                             "<input type='checkbox' data-toggle='toggle' onchange='markingFun(this)'>"+
                             "<div class='toggle-group'>"+
-                                "<label class='btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
-                                "<label class='btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
-                                "<span class='toggle-handle btn btn-default'></span>"+
+                                "<label class='event_btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
+                                "<label class='event_btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
+                                "<span class='toggle-handle event_btn btn-default'></span>"+
                             "</div>"+
                         "</div>";
-const not_save_btn_html = "<div class='toggle btn btn-danger' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
+const not_save_btn_html = "<div class='toggle event_btn btn-danger' data-toggle='toggle' style='width: 160px; height: 34px;' onclick='safe_checkbox_change(this)'>"+
                                 "<input type='checkbox' onchange='markingFun(this)' checked=''>"+
                                 "<div class='toggle-group'>"+
-                                    "<label class='btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
-                                    "<label class='btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
-                                    "<span class='toggle-handle btn btn-default'></span>"+
+                                    "<label class='event_btn btn-danger toggle-on' style='line-height: 20px;'>Not Safe</label>"+
+                                    "<label class='event_btn btn-success active toggle-off' style='line-height: 20px;'>Safe</label>"+
+                                    "<span class='toggle-handle event_btn btn-default'></span>"+
                                 "</div>"+
                             "</div>";
 switch(safe_status){

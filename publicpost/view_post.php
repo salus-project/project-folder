@@ -53,7 +53,7 @@
             $view_result=mysqli_query($con,$view_query)->fetch_assoc();
             $author = $view_result['first_name']. " ".$view_result['last_name'];
             $author_link = "/view_profile.php?id=".$view_result['author'];
-            $profile_url = "http://d-c-a.000webhostapp.com/Profiles/resized/".$view_result['author'].".jpg";
+            $profile_url = "/common/documents/Profiles/resized/".$view_result['author'].".jpg";
         }
         echo "<div class='posts'>
                 <input type='hidden' class='post_index' value='".$post_index."'>
@@ -108,7 +108,7 @@
                     <div class='post_content'>" . $view_result['content'] . "</div>
                 </div>";
                 if(!$view_result['img']==''){
-                    echo "<div class=post_image_container><img class=post_image src='".$view_result['img']."'/></div>";
+                    echo "<div class=post_image_container><img class=post_image src='/common/documents/public_posts/".$view_result['img'].".jpg'/></div>";
                 }
                 $likes = array_filter(explode(" ",$view_result['likes']));
         echo    "<div class='like_bar'>

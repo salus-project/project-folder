@@ -613,4 +613,3 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
     
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
-<?php ob_end_flush();

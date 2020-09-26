@@ -78,6 +78,9 @@
         
         $query_run2=mysqli_multi_query($con,$query2);
 
+        copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Fundraising/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Fundraising/'.$last_id2.'.jpg');
+        copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Fundraising/resized/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Fundraising/resized/'.$last_id2.'.jpg');
+
         if($query_run1){
 
             echo '<script type="text/javascript">alert("Successfully created")</script>';

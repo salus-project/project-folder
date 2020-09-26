@@ -8,7 +8,7 @@
 	if ($to_person != "")	{
 		$sql="SELECT first_name,last_name,last_seen FROM civilian_detail WHERE NIC_num='$to_person';";
 		$result=$con->query($sql)->fetch_all(MYSQLI_ASSOC);
-		$image_tag="<img class='msg_head_img_tag' src='http://d-c-a.000webhostapp.com/Profiles/resized/".$to_person.".jpg'>";
+		$image_tag="<img class='msg_head_img_tag' src='/common/documents/Profiles/resized/".$to_person.".jpg'>";
 		$full_name_=$result[0]['first_name']." ".$result[0]['last_name'];
 	}
 	

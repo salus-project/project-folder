@@ -49,7 +49,7 @@ for ($x = 0; $x < sizeof($nic_arr); $x++) {
     <a class='<?php echo $nic_arr[$x] ?>' href='/message/?to_person=<?php echo $nic_arr[$x] ?>' >
     <div class='Msg_nav' >
         <div class='Msg_nav_image' >
-            <img src="http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $nic_arr[$x] ?>.jpg">
+            <img src="/common/documents/Profiles/resized/<?php echo $nic_arr[$x] ?>.jpg">
         </div>
         <div class='Msg_nav_detail' >
             <div class='Msg_nav_name' > <?php echo $name_?></div>

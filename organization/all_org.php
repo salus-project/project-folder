@@ -41,7 +41,7 @@
                         echo "<tr><td class='table_td org_list'>
                             <div class='org_main'>
                                 <div class='org_logo_container'>";
-                                    $org_profile_path =" http://d-c-a.000webhostapp.com/Organization/Profiles/" . $my_org['org_id'] . ".jpg";
+                                    $org_profile_path =" /common/documents/Organization/Profiles/" . $my_org['org_id'] . ".jpg";
                                     echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">
@@ -71,7 +71,7 @@
                         echo "<tr><td class='table_td org_list'>
                             <div class='org_main'>
                                 <div class='org_logo_container'>";
-                                    $org_profile_path =" http://d-c-a.000webhostapp.com/Organization/Profiles/" . $org[1] . ".jpg";
+                                    $org_profile_path =" /common/documents/Organization/Profiles/" . $org[1] . ".jpg";
                                     echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">

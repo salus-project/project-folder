@@ -95,6 +95,9 @@
                     $sender = new Notification_sender($leader,$mssg,$link,true);
                     $sender->send();
                 }
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Profiles/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Profiles/'.$org_id.'.jpg');
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Profiles/resized/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Profiles/resized/'.$org_id.'.jpg');
+                copy($_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Covers/default.jpg', $_SERVER['DOCUMENT_ROOT'] . '/common/documents/Organization/Covers/'.$org_id.'.jpg');
 
             }else{
                 $output['status']='failed';
@@ -134,7 +137,7 @@
         $mssg= $name." add you as a co-leder of ".$org_name;
         $link="/organization/?selected_org=".$org_id;
         $coleaders_= array_diff($coleaders,[$user_nic]);
-        $sender = new Notification_sender(implode(', ', $coleaders_), $mssg,$link,true);
+        $sender = new Notification_sender(implode(',', $coleaders_), $mssg,$link,true);
         $sender->send();
         
 
@@ -165,7 +168,7 @@
         $mssg= $name." add you as a member of ".$org_name;
         $link="/organization/?selected_org=".$org_id;
         $members_= array_diff($members,[$user_nic]);
-        $sender = new Notification_sender(implode(', ', $members_), $mssg,$link,true);
+        $sender = new Notification_sender(implode(',', $members_), $mssg,$link,true);
         $sender->send();
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_profile'])){

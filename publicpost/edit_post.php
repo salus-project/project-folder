@@ -57,7 +57,7 @@
 <?php
     ob_start();
     ignore_user_abort();
-
+    clearstatcache();
     require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
     $post_index=$_GET['post_index'];
     $view_query="select public_posts.*,civilian_detail.first_name,civilian_detail.last_name from public_posts inner join civilian_detail on public_posts.author=civilian_detail.NIC_num where public_posts.post_index=".$post_index;
@@ -74,7 +74,7 @@
 
     $author = $view_result['first_name']. " ".$view_result['last_name'];
     $author_link = "/view_profile.php?id=".$view_result['author'];
-    $profile_url = "http://d-c-a.000webhostapp.com/Profiles/resized/".$view_result['author'].".jpg";
+    $profile_url = "/common/documents/Profiles/resized/".$view_result['author'].".jpg";
     
     echo "<div class='posts'>
             <input type='hidden' name='post_index' class='post_index' value='".$post_index."'>
@@ -91,7 +91,7 @@
                     </div>";
                 echo"</div>
             </div>";
-            echo"<form action='http://d-c-a.000webhostapp.com/createpost.php' method='post' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
+            echo"<form action='/common/documents/createpost.php' method='post' style='display: inline-block;width: 100%;border: 1px solid #d8e0e7;padding: 5px;margin-top: 5px;'>
                 <input type='hidden' name='post_index' value='".$view_result['post_index']."'>
                 <div>
                     <div class='post_content'><textarea id=post_text_area name=post_text_area rows=3 cols=5>". $view_result['content']."</textarea></div>
@@ -106,7 +106,7 @@
                 </div>
                 <button type='submit' class='edit_post_btn save_btn' style='float: right; display: inline-block;' name='update' value='1'>Save changes</button>
             </form>
-            <form action='http://d-c-a.000webhostapp.com/createpost.php' method='post'>
+            <form action='/common/documents/createpost.php' method='post'>
                 <input type='hidden' name='post_index' value='".$view_result['post_index']."'>
                 <button type='submit' class='edit_post_btn del_btn' name='delete' value='1'>Delete Post</button>
             </form>";
@@ -116,20 +116,21 @@
                 if(!$view_result['img']==''){
                 echo "<div class='img_edit'>";
                     echo "<div id=image_container>  
-                            <img id='preview'/ src='".$view_result['img']."'/>
+                            <img id='preview'/ src='/common/documents/public_posts/".$view_result['img'].".jpg'/>
+                            
                         </div>
                         <div for=upload_file id='change_img_btn' class='edit_post_btn' onclick='document.getElementById(\"change_img\").click()' style='display: inline-block;'><i class='fa fa-camera' aria-hidden='true'></i>Change photo</div>
-                        <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
+                        <form method='post' action='/common/documents/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
                             <input type='file' name='upload_file' accept='image/jpeg' id='change_img' style='display:none' onchange='this.parentElement.submit()'>
                             <input type='hidden' name='directory' value='public_posts/'>
-                            <input type='hidden' name='filename' value='".explode('.jpg',(explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]))[0]."'>
+                            <input type='hidden' name='filename' value='".$view_result['img']."'>
                             <input type='hidden' name='header' value='true'>
                             <input type='hidden' name='resize' value='false'>
                         </form>
                         
                         <div id='remove_img' class='edit_post_btn' onclick='document.getElementById(\"remove_img_form\").submit()' style='float: right; display: inline-block;'><i class='fas fa-trash-alt' aria-hidden='true'></i>Remove photo</div>
-                        <form method='post' action='http://d-c-a.000webhostapp.com/post_remove_img.php' id='remove_img_form'>
-                            <input type='hidden' name='file' value='".explode('http://d-c-a.000webhostapp.com/public_posts/',$view_result['img'])[1]."'>
+                        <form method='post' action='/common/documents/post_remove_img.php' id='remove_img_form'>
+                            <input type='hidden' name='file' value='".$view_result['img']."'>
                             <input type='hidden' name='post_id' value='".$view_result['post_index']."'>
                             <input type='hidden' name='remove' value='1'>
                         </form>

@@ -73,7 +73,7 @@
                         <div id=dropdown_container class='dropdown_container'>
                             <a href="/home_page.php"  class="header_dropdown_item username">
                                 <div class='header_dropdown_profile dropdown_profile_image'>
-                                    <img src='http://d-c-a.000webhostapp.com/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
+                                    <img src='/common/documents/Profiles/resized/<?php echo $_SESSION['user_nic']?>.jpg' />
                                 </div>
                                 <div class='header_dropdown_profile'>
                                     <div >

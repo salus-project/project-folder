@@ -15,7 +15,7 @@ function create_post(arr,user_nic=''){
                             "</div>";
                         }else if(user_nic==='staff'){
                             var stt="<div class='view_post_div'>"+
-                                "<a href='/staff/govpost/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
+                                "<a href='/staff/post/view_post.php?post_index="+arr['post_index']+"' class='vie_post_a'><button class='view_post_but'>View</button></a>"+
                             "</div>";
                         }else{
                             var stt="";
@@ -27,7 +27,7 @@ function create_post(arr,user_nic=''){
                     "</div>"+
                     "<div><div class='post_content'>" +arr['content'] + "</div></div>";
                     if(!arr['img']==''){
-                        html+= "<div class=post_image_container><img class=post_image src='http://d-c-a.000webhostapp.com/"+arr['img']+"'/></div>";
+                        html+= "<div class=post_image_container><img class=post_image src='/common/documents/gov_posts/"+arr['img']+".jpg'/></div>";
                     }
                     var likes = (arr['likes'] || '').split(' ');
                     if(user_nic!=='' && user_nic!=='staff'){

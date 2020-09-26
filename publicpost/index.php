@@ -16,7 +16,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
     POSTS
 </div>
 <div id='new_post'>
-    <!--form method=post action='http://d-c-a.000webhostapp.com/createpost.php' enctype="multipart/form-data" autocomplete="off">
+    <!--form method=post action='/common/documents/createpost.php' enctype="multipart/form-data" autocomplete="off">
         <input type=hidden name=location value=<?php echo $_SERVER['HTTP_REFERER'] ?>>
         <input type=hidden name=user_nic value=<?php echo $_SESSION['user_nic'] ?>>
         <textarea id=post_text_area name=post_text_area rows=3 cols=5></textarea>
