@@ -1,7 +1,7 @@
-.popup_div {
-    position: fixed;
-    top: 50%;
-    left: 50%;
+.popup_div ,.popup{
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
     border-radius: 0px;
     padding: 0px;
     transform: translate(-50%, -50%) scale(0);
@@ -15,6 +15,9 @@
     overflow: auto;
 }
 
+#tools {
+    z-index: 2 !important;
+}
 .popup_div.active_pop {
     transform: translate(-50%, -50%) scale(1);
     max-height: 90vh;

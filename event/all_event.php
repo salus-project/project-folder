@@ -15,7 +15,7 @@
                 echo "<tr><td class='table_td event_list'>
                 <div class='event_main'>
                     <div class='event_logo_container'>";
-                        $event_profile_path =" http://d-c-a.000webhostapp.com/Event/Profiles/" . $row_dis['event_id'] . ".jpg";
+                        $event_profile_path =" /common/documents/Event/Profiles/" . $row_dis['event_id'] . ".jpg";
                         echo '<img src="<?php echo $event_profile_path;?>" alt="Opps..." class="event_logo_pic">
                     </div>
                     <div class="event_name_des">

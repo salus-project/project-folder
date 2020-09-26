@@ -13,7 +13,7 @@
 
 <script>
     btnPress(2);
-    var post = new Post('<?php echo isset($_SESSION['user_nic'])?$_SESSION['user_nic']:'' ?>');
+    var post = new GovPost('<?php echo isset($_SESSION['user_nic'])?$_SESSION['user_nic']:'' ?>');
     post.get_post();
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/staff/footer.php" ?>

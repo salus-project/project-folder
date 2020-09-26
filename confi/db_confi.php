@@ -1,5 +1,8 @@
 <?php
     //error_reporting(0);
+
+    ob_start();
+    ignore_user_abort();
     class ConnectDb
     {
         private static $instance = null;
@@ -109,6 +112,8 @@
         OrgDb::close_con();
 
         ob_end_flush();
+        ob_flush();
+        flush();
     }
     register_shutdown_function('shutdown');
 

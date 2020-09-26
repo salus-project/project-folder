@@ -1,11 +1,18 @@
 <script>
     var event_name = '<?php echo $result['name'] ?>';
     var areaGeoJson = JSON.parse('<?php echo $result['geoJson'] ?>');
-</script>
+</script> 
 
-<div id=event_header>
+<div id=closed_event_header>
     <div id=title_box>
-        <?php echo $result['name'] ?>
+        <div class=event_header_name_profile>
+            <div class="event_header_profile">
+                <img src="/common/documents/Event/<?php echo $result['event_id'] ?>.jpg" alt="Opps..." class="fund_pic">
+            </div>
+            <div class=event_header_name>
+                <?php echo $result['name'] ?>
+            </div>
+        </div>
     </div>
 </div>
     <div id='map_container'>
@@ -37,6 +44,7 @@
                     echo "<tr><td class='view_event_td'>" . ucfirst('End date') . "</td><td id=column2>" . ucfirst($result['end_date']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Status') . "</td><td id=column2>" . ucfirst($result['status']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Deaths and damages') . "</td><td id=column2>" . ucfirst($result['detail']) . "</td></tr>";
+                    echo "<tr><td class='view_event_td'>" . ucfirst('Unsafe people') . "</td><td id=column2>" . ucfirst($result['affected_no']) . "</td></tr>";
                 ?>
                 </table>
             </div>

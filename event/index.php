@@ -35,9 +35,9 @@ $imgs = array_filter(explode(',', $result['img']));
                     echo "<tr><td class='view_event_td'>" . ucfirst('Name') . "</td><td id=column2>" . ucfirst($result['name']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Affected districts') . "</td><td id=column2>" . ucfirst($result['affected_districts']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Start date') . "</td><td id=column2>" . ucfirst($result['start_date']) . "</td></tr>";
-                    echo "<tr><td class='view_event_td'>" . ucfirst('End date') . "</td><td id=column2>" . ucfirst($result['end_date']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Status') . "</td><td id=column2>" . ucfirst($result['status']) . "</td></tr>";
                     echo "<tr><td class='view_event_td'>" . ucfirst('Deaths and damages') . "</td><td id=column2>" . ucfirst($result['detail']) . "</td></tr>";
+                    echo "<tr><td class='view_event_td'>" . ucfirst('Unsafe people') . "</td><td id=column2>" . ucfirst($result['affected_no']) . "</td></tr>";
                 ?>
             </table>
         </div>
@@ -50,7 +50,7 @@ $imgs = array_filter(explode(',', $result['img']));
 
             foreach ($imgs as $img) {?>
                     <div class="mySlides fade">
-                        <img class='slide_show_img' src="http://d-c-a.000webhostapp.com/Event/secondary/<?php echo $img ?>.jpg" style="width:100%">
+                        <img class='slide_show_img' src="/common/documents/Event/secondary/<?php echo $img ?>.jpg" style="width:100%">
                     </div>
         <?php }
             echo '<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -60,7 +60,7 @@ $imgs = array_filter(explode(',', $result['img']));
             ?>
             
             <br/>
-            <div style='text-align: center;'>
+            <div style='text-align: center;position: absolute;bottom: 5px;left: 350px;'>
             <?php
                 for($x=0 ; $x<count($imgs) ; $x++) {?>
                 <span class="dot"></span> 
@@ -69,7 +69,7 @@ $imgs = array_filter(explode(',', $result['img']));
             echo '</div>';
         }else{
             echo '<div style="width:100%; height:341px;">
-                <img style="width:100%;" src="http://d-c-a.000webhostapp.com/Covers/default.jpg">
+                <img style="width:100%;" src="/common/documents/Covers/default.jpg">
             </div>';
         }
         ?>
@@ -147,9 +147,6 @@ $imgs = array_filter(explode(',', $result['img']));
         post.get_post();
     </script>
 </div>
-<div class='popup_div popup' id='popup_div'>
-</div>
-<div id='overlay'>
-</div>
+
 <script type="text/javascript" src="/js/slide_show.js"></script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

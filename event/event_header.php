@@ -93,7 +93,7 @@
             <div id=title_box>
             <div class=event_header_name_profile>
                 <div class="event_header_profile">
-                    <img src="http://d-c-a.000webhostapp.com/Event/<?php echo $result['event_id'] ?>.jpg" alt="Opps..." class="fund_pic">
+                    <img src="/common/documents/Event/<?php echo $result['event_id'] ?>.jpg" alt="Opps..." class="fund_pic">
                 </div>
                 <div class=event_header_name>
                     <?php echo $result['name'] ?>
@@ -154,3 +154,7 @@
             var organization = <?php echo $js_organization ?>;
             var district_in_nic = '<?php echo isset($_SESSION['district'])?$_SESSION['district']:'' ?>';
         </script>
+        <div class='popup_div popup' id='popup_div'>
+        </div>
+        <div id='overlay'>
+        </div>
