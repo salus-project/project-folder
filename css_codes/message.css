@@ -178,6 +178,7 @@
 .Msg_head_detail,.Msg_head_detail_grp{
 	display: inline-block;
     margin-left: 15px;
+    cursor: default;
 }
 .Msg_head_detail_grp{
     width: 100%;

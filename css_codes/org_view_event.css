@@ -290,6 +290,7 @@ td.org_view_event_td, #column2{
     font-family: "Open sans",sans-serif;
     font-weight: bold;
     color: #6b7c93;
+    cursor: pointer;
 }
 .org_event_area_select_div{
     float:left;
@@ -305,7 +306,11 @@ td.org_view_event_td, #column2{
     color: white;
     font-weight: bold;
     line-height: 25px;
-    float: left;
+    float: left;  
+}
+
+.org_event_area_select_opt:hover{
+    cursor: pointer;
 }
 .promise_header{
     height: 40px;

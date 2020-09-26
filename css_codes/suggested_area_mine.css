@@ -1,6 +1,6 @@
 .table_suggested_area {
   border-collapse: collapse;
-  width: 500px;
+  max-width: 500px;
   margin: auto;
   margin-bottom: 5px;
   border-collapse: collapse;
@@ -35,7 +35,12 @@
 .my_suggest_del, .my_suggest_del:hover{
   color: #6b7c93;
 }
-
+.table_suggested_area_tr{
+  cursor: pointer;
+}
+.table_suggested_area_tr:hover{
+  background-color: #f2f2f2;
+}
 .my_suggest_cont{
   display: flex;
   flex-flow: row;

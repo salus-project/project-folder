@@ -48,6 +48,7 @@ td{
     background-color: #0c7dff47;
     height: 50px;
     padding: 0px;
+    cursor: pointer;
 }
 .edit_button,.submit_button{
     border-right: 1px solid white;
@@ -110,6 +111,7 @@ td{
 .request_detail_head{
     padding: 10px;
     height: 50px;
+    color: #6b7c93;
     font-size: 18px;
     text-align: center;
     font-weight: 600;
