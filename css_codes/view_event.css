@@ -333,9 +333,7 @@ input:checked + .slider:before{
     border: 1px solid transparent;
     border-radius: 4px;
 }
-.event_btn.active, .event_btn.active:hover{
-    /*background-color: transparent;*/
-}
+
 .other_menus, .dropdown-toggle{
     width: 110px;
     text-align: center;

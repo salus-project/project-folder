@@ -13,7 +13,11 @@
       background-color:#00ffbf;
     }
     .our_suggest_cont{
-      display: inline-block;
+      display: flex;
+      flex-flow: row;
+      width: 100%;
+      margin: 5px;
+      background: rgb(242 244 246);
     }
     .our_suggest_table_cont{
       display: inline-block;
@@ -21,4 +25,5 @@
     }
     .our_suggest_map_cont{
       display: inline-block;
+      width:50%;
     }

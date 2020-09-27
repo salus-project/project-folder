@@ -101,12 +101,14 @@ body {
 }
 
 #preview {
-    width: 90%;
+    width: 100%;
 }
 
 #image_container {
     text-align: center;
     border: 1px solid #d8e0e7;
+    width: 100%;
+    padding: 10px;
 }
 
 
@@ -485,7 +487,7 @@ a.post_a:active {
 
 #heading {
     width: 97%;
-    height: 30px;
+    height: 60px;
     margin: 8px;
     resize: none;
     outline: none;
@@ -501,4 +503,7 @@ a.post_a:active {
     border: 1px solid #d8e0e7;
     font-family: Open Sans, sans-serif;
     color: #6b7c93;
+}
+.del_btn:hover, .edit_post_btn:hover{
+    background-color: #f2f2f2;
 }

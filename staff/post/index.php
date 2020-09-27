@@ -35,7 +35,7 @@
             <div class='post_content'> Content:</div>
             <textarea id='post_text_area' name='content' rows=3 cols=5></textarea>
             <div class='post_content'> Event:</div>
-            <div>
+            <div style="position: relative;margin:8px;font-size:15px;">
                 <input type="hidden" name="event">
                 <input id='tag_input_field' type='text' placeholder='Tag an event' spellcheck='false' aria-autocomplete='none'>
             </div>

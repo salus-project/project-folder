@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="/css_codes/publ.css">
+<link rel="stylesheet" href="/staff/css_codes/post.css">
 <script src='/common/autocomplete/auto_complete.js'></script>
 <link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
 <style>
-    .post_content{
-        margin: 10px 20px 10px 20px;
+    .post_content, .post_heading{
+        margin: 2px 20px 0px 10px;
     }
     .posts{
         width: 700px;
@@ -38,7 +39,7 @@
     }
     .del_btn{
         position: absolute;
-        top: 238px;
+        top: 317px;
         left: 25px;
     }
     #tag_container {
@@ -50,6 +51,17 @@
     }
     .posts {
         display: table;
+    }
+    #tag_input_field{
+        width: 97%;
+        height: 40px;
+        font-size: 16px;
+        margin: 8px;
+        resize: none;
+        outline: none;
+        border: 1px solid #d8e0e7;
+        font-family: open Sans, sans-serif;
+        color: #6b7c93;
     }
 </style> 
   
@@ -99,7 +111,7 @@
                         <div for=upload_file id='change_img_btn' class='edit_post_btn' onclick='document.getElementById(\"change_img\").click()' style='display: inline-block;'><i class='fa fa-camera' aria-hidden='true'></i>Change photo</div>
                         <form method='post' action='/common/documents/upload.php' enctype='multipart/form-data' id=upload_profile_form style='display: inline-block;'>
                             <input type='file' name='upload_file' accept='image/jpeg' id='change_img' style='display:none' onchange='this.parentElement.submit()'>
-                            <input type='hidden' name='directory' value='government_posts/'>
+                            <input type='hidden' name='directory' value='gov_posts/'>
                             <input type='hidden' name='filename' value='".$arr['img']."'>
                             <input type='hidden' name='header' value='true'>
                             <input type='hidden' name='resize' value='false'>

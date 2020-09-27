@@ -25,6 +25,8 @@
     background: #fff;
     font-family: Open Sans,sans-serif;
     color: #6b7c93;
+    height: calc(100vh - 92px);
+    overflow-y: auto;
 }
 .back_img{
     position: absolute;
@@ -34,8 +36,10 @@
 
 }
 .fixed_side_nav{
-    position:fixed;
-    top:45px;
+    position: fixed;
+    top: 52px;
+    height: calc(100vh - 52px);
+    overflow-y: auto;
 }
 .show_side_nav{
     width:300px;

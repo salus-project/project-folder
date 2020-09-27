@@ -1,0 +1,45 @@
+*something went wrong page*/
+.oops_class{
+    position: relative;
+    margin: auto;
+    
+}
+.oop_icon{
+    color: #6b7c93;
+    font-size: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    text-align: center;
+}
+.oops_top,.oops_bottom,.try_again_div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #6b7c93;
+}
+.oops_top{
+    top: 200px;
+    font-size: 70px;
+}
+.oops_bottom{
+    top: 275px;
+    font-size: 30px;
+}
+.try_again_div{
+    top: 370px;
+    font-size: 70px;
+}
+.try_again_btn{
+    border: none;
+    width: 150px;
+    height: 40px;
+    background-color: #6b7c9375;
+    color: #6b7c93;
+    border-radius: 7px;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}

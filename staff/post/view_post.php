@@ -68,13 +68,13 @@ echo "<div class='posts'>
                         
                     </div>
                 </div>
-                <div class='comment_box_container'>
+                <div class='comment_box_container' onkeydown='{if(event.which==13||event.keyCode==13) this.getElementsByClassName(\"send_icon\")[0].click()}'>
                     <div class='comment_box'></div>
                     <div class='new_comment'>
                         <div class='comment_div'>
                             <input type='text' class='comment_input' placeholder='Enter your comment..'>
                         </div>
-                        <div class='tooltip send_icon' onclick='comment(this)'>
+                        <div class='tooltip send_icon' onclick='comment(this,\"staff\")'>
                             <span class='send_btn'><i class='fa fa-send'></i></span>
                             <span class='tooltiptext'>SEND</span>
                         </div>
