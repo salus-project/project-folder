@@ -28,17 +28,20 @@
     //delete org members
     $query.="delete from org_members where NIC_num = '".$nic."';";
 
-    //deleting rows in public post tables
+    //deleting rows in public post tables,govern post
     $query.="delete from public_post_comments where author = '".$nic."';";
     $query.="delete from public_posts where author = '".$nic."';";
     $query.="delete from public_posts where fund in(select id 
     from fundraisings WHERE by_civilian ='".$nic."');";
 
+     //deleting rows in public post tables
+    $query.="delete from govepost_comments where author = '".$nic."';";
+ 
+
     //delete fundraising pro don and contents
-    $query.="delete from fundraising_pro_don_content where don_id in((select id 
-    from fundraising_pro_don WHERE by_person ='".$nic."'),(select id 
-    from fundraising_pro_don WHERE for_fund in (select id 
-    from fundraisings WHERE by_civilian ='".$nic."')));";
+    $query.="delete from fundraising_pro_don_content where don_id in(select id 
+    from fundraising_pro_don WHERE by_person ='".$nic."' or for_fund in (select id 
+    from fundraisings WHERE by_civilian ='".$nic."'));";
     $query.="delete from fundraising_pro_don where by_person = '".$nic."';";
 
     //delete fundraising and expects
@@ -61,7 +64,6 @@
 
     echo $query;
     echo $query_noti;
-
     if($query_run){
         echo '<script type="text/javascript"> alert ("Data deleted") </script>';
     }
@@ -73,7 +75,7 @@
         $sql2=explode(';',$query_noti);
         foreach ($sql1 as $sqlb){
             $notification_DB->query($sqlb);
-        }
+        }   
     }
     header('location:member.php');
 ?>
