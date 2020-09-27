@@ -346,6 +346,7 @@ td.org_view_event_td, #column2{
     height: 36px;
     width: 80px;
     font-family: "Open Sans";
+    cursor: pointer;
 }
 
 .add_to_all{
@@ -360,6 +361,7 @@ td.org_view_event_td, #column2{
     height: 36px;
     width: 75px;
     font-family: "Open Sans";
+    cursor: pointer;
 }
 
 .note{
@@ -446,4 +448,5 @@ td.org_view_event_td, #column2{
       color: #6b7c93;
       border: none;
       font-size: 25px;
+      cursor: pointer;
   }
