@@ -111,7 +111,7 @@
         echo json_encode($output);
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_coleaders'])){
-        $coleaders = $_POST['coleaders'];
+        $coleaders = isset($_POST['coleaders'])?$_POST['coleaders']:array();
         $co_leader_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
         $co_leader_subquery = [];
         $org_id = $_POST['org_id'];
@@ -142,7 +142,7 @@
         
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_members'])){
-        $members = $_POST['members'];
+        $members = isset($_POST['members'])?$_POST['members']:array();
         $member_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
         $member_subquery = [];
         $org_id = $_POST['org_id'];
@@ -211,6 +211,8 @@
                     $output['status']='error';
                 }
             }
+        }else{
+            $output['status']='ok';
         }
         echo json_encode($output);
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_cover'])){
@@ -249,6 +251,8 @@
                     $output['status']='error';
                 }
             }
+        }else{
+            $output['status']='ok';
         }
         echo json_encode($output);
     }

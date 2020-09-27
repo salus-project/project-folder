@@ -19,7 +19,6 @@ function getEvents(container){
 function view_event(event_id){
     window.location.href = link+'?event_id='+event_id+'&selected_org='+selected_org;
 }
-
 function confirmFn() {
     swal({
         title: "Are you sure?",
@@ -48,5 +47,3 @@ function delOrgFn(orgId) {
             } 
     });
 }
-
-    

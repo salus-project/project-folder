@@ -20,6 +20,8 @@ window.addEventListener('load', function() {
             img.style.visibility = 'visible';
         })
     }*/
+    document.getElementById('wrapper_container').style.opacity='0';
+    setTimeout(function(){ document.getElementById('wrapper_container').remove() }, 500);
 });
 
 var btn_num;

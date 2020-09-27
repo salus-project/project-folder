@@ -34,7 +34,7 @@ safe_btn.innerHTML = html1;
 
 switch(help_status){
     case 'not_requested':
-        var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help()>Request help</button>";
+        var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help() disabled>Request help</button>";
         break;
 
     case 'requested':
@@ -232,7 +232,7 @@ function cancel_request(){
     request.send(requestData);
 
     help_status = 'not_requested';
-    var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help()>Request help</button>";
+    var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help() disabled>Request help</button>";
     help_btn.innerHTML = html2;
 }
 

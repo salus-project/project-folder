@@ -7,12 +7,12 @@
     <head>
         <link rel="stylesheet" href="/css_codes/header.css">
         <link rel='stylesheet' type='text/css' href='/css_codes/side_nav.css'>
-        <link rel="shortcut icon" href="/common/logo.jpg" type="image/x-icon" /> 
+        <link rel="shortcut icon" href="/common/logo.png" type="image/x-icon" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <meta name="description" content="Free Web tutorials">
-        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-        <meta name="author" content="John Doe">
+        <meta name="description" content="Disaster And Crisis Assistance">
+        <meta name="keywords" content="disaster,srilanka,help,emergency,volunteer,flood,strom">
+        <meta name="author" content="Salus Team">
         <script src='/js/font_awesome.js' defer></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -21,13 +21,25 @@
     </head>
 
     <body>
+        <div id="wrapper_container">
+            <div class="wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <span>Loading</span>
+            </div>
+        </div>
             <div id="titlebar">
-                <div class="logo_box">
-                    <div class="logo"><img src="/common/logo.jpg" alt="logo" class="logo"></div>
-                </div>
+                <span id="dcaname">Disaster and Crisis Assistance</span>
             </div>
 
             <div>
+                <div class="logo_box">
+                    <div class="logo"><img src="/common/logo.png" alt="logo" class="logo"></div>
+                </div>
                 <div id="menubar">
                 <div class='menubar_icons'>
                     <!-- <a href="/home_page.php"> <div class="menubar_buttons" id='menu_bar_btn_1'>Home</div> </a> -->

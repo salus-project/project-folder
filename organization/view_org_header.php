@@ -55,13 +55,13 @@
         <div class=org_title>
             <div id='org_cover'>
                 <?php
-                    $org_cover_path = "http://d-c-a.000webhostapp.com/Organization/Covers/" . $org_detail['org_id'] . ".jpg";
+                    $org_cover_path = "/common/documents/Organization/Covers/" . $org_detail['org_id'] . ".jpg";
                 ?>
                 <img id="org_cover_photo" src="<?php echo $org_cover_path;?>" alt="Opps..." class="org_cover_pic">
                 <div id='org_profile_edit'>
                     <div class="org_profile_container">
                         <?php
-                            $org_profile_path = "http://d-c-a.000webhostapp.com/Organization/Profiles/" . $org_detail['org_id'] . ".jpg";
+                            $org_profile_path = "/common/documents/Organization/Profiles/" . $org_detail['org_id'] . ".jpg";
                         ?>
                         <img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_profile_pic">
                     </div>
@@ -96,16 +96,14 @@
                 $viewer->show_title_button();
             ?>
         </div>
-        <script src="/js/sweetalert.js"></script>
         <script>
             const selected_org = "<?php echo $_GET['selected_org'] ?>";
             const link = "<?php $viewer->show_event_link(); ?>";
         </script>
-        <script src='/js/view_org.js' ></script>
+        <script src='/js/view_org.js'></script>
+        <script src='/js/sweetalert.js'></script>
         <div id='org_main_body'>
             <div id='org_side_nav'>
                 <?php include($_SERVER['DOCUMENT_ROOT']."/organization/member_nav.php");?>
             </div>
             <div id='org_sub_body'>
-
-        
