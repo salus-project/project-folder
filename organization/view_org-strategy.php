@@ -77,7 +77,7 @@
             $this->profile_text= "<button id='org_edit_profile_btn' onclick='document.getElementById(\"upload_org_profile_btn\").click()'>
                                         <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
                                     </button>
-                                    <form method='post' action='/common/documents/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                                    <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
                                         <input type=file name=upload_file accept='image/jpeg' id='upload_org_profile_btn' style='display:none' onchange='this.parentElement.submit()'>
                                         <input type=hidden name='directory' value='Organization/Profiles/'>
                                         <input type=hidden name='filename' value='".$_GET['selected_org']."'>
@@ -87,7 +87,7 @@
             $this->cover_photo_text= "<button id='org_edit_cover_but' onclick='document.getElementById(\"org_upload_cover_btn\").click()'>
                                         <i class='fa fa-camera' aria-hidden='true'></i>CHANGE
                                     </button>
-                                    <form method='post' action='/common/documents/upload.php' enctype='multipart/form-data' id=upload_profile_form>
+                                    <form method='post' action='http://d-c-a.000webhostapp.com/upload.php' enctype='multipart/form-data' id=upload_profile_form>
                                         <input type=file name=upload_file accept='image/jpeg' id='org_upload_cover_btn' style='display:none' onchange='this.parentElement.submit()'>
                                         <input type=hidden name='directory' value='Organization/Covers/'>
                                         <input type=hidden name='filename' value='".$_GET['selected_org']."'>
@@ -235,7 +235,7 @@
             echo '';
         }
         public function show_member_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter member name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>
@@ -286,10 +286,10 @@
             echo $this->cover_photo_text;
         }
         public function show_coleader_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter coleader name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter coleader NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_coleader'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_member_input(){
-            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input type='hidden' name='nic_num'/><input class='add_mem_input' placeholder='Enter member name'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
+            echo "<form method='get' action='/organization/member_operation.php'><div class='add_role'><div class='addd_remove_main'><input class='add_mem_input' name='nic_num' placeholder='Enter member NIC'/></div><div class='add_remove_but'><button class='add_role_btn' type='submit'>Add</button></div><input type='hidden' name='type' value='add_member'><input type='hidden' name='org_id' value='".$_GET['selected_org']."'></div></form>";        
         }
         public function show_title_button(){
             echo    "<div id=chat_button_container>
