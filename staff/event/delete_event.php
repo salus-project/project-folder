@@ -41,6 +41,12 @@
     $query_run= mysqli_multi_query($con,$query);
     if($query_run){
         header('location:/staff/event/');
-    } 
+    } else{
+        $sql2=explode(';',$query);
+        foreach ($sql1 as $sqlb){
+            $con->query($sqlb);
+        }
+        header('location:/staff/event/');
+    }
 ?>
 
