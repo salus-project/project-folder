@@ -17,5 +17,4 @@
                     </table>
                 </div>
             </div>
-
-            <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
