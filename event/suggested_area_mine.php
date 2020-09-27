@@ -20,6 +20,7 @@
             <tr>
                 <th class='table_suggested_area_th'>Type</th>
                 <th  class='table_suggested_area_th'>Detail</th>
+                <th  class='table_suggested_area_th'></th>
                 
             </tr>
             <?php
@@ -28,11 +29,13 @@
             if($result->num_rows>0){
                 while($row=$result->fetch_assoc()){
                     echo "<tr class='table_suggested_area_tr' data-areadata='".json_encode($row)."' onclick=add_place_preview(this)>";
-                        echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</th>";
-                        echo "<td  class='table_suggested_area_td'>".$row['detail']."</th>";
-                        echo "<td  class='table_suggested_area_th'><a href='suggested_area_all_delete.php?event_id=".$_GET['event_id']."&location_id=".$row['id']."' class='my_suggest_del'>Delete</a></th>";
+                        echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</td>";
+                        echo "<td  class='table_suggested_area_td'>".$row['detail']."</td>";
+                        echo "<td  class='table_suggested_area_td'><a href='suggested_area_all_delete.php?event_id=".$_GET['event_id']."&location_id=".$row['id']."' class='my_suggest_del'>Delete</a></td>";
                     echo "</tr>";
                 }
+            }else{
+                echo "<td colspan=3 class='table_suggested_area_td'>You did't suggest any area</td>";
             }
             ?>
         </table>
@@ -53,11 +56,13 @@
                         $by_who=$row['org_name'];
                     }
                     echo "<tr class='table_suggested_area_tr' data-areadata='".json_encode($row)."' onclick=add_place_preview(this)>";
-                        echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</th>";
-                        echo "<td  class='table_suggested_area_td'>".$by_who."</th>";
-                        echo "<td  class='table_suggested_area_td'>".$row['detail']."</th>";
+                        echo "<td class='table_suggested_area_td'>".ucfirst(explode("_",$row['type'])[0])." area</td>";
+                        echo "<td  class='table_suggested_area_td'>".$by_who."</td>";
+                        echo "<td  class='table_suggested_area_td'>".$row['detail']."</td>";
                     echo "</tr>";
                 }
+            }else{
+                echo "<td colspan=3 class='table_suggested_area_td'>No one suggested any area</td>";
             }
             ?>
         </table>
