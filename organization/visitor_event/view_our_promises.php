@@ -31,33 +31,32 @@ $org_id= $_GET['org_id'];
 				array_push( $name,$row['first']." ".$row['last']);
 			}
 		}
-	}
+	} 
 ?>
 
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>view our my promises</title>
+		<title>view  promises</title>
+		<link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
         <link rel="stylesheet" href='/css_codes/view_our_promises.css'>
     </head>
     <body>
 		<script>
             btnPress(6);
 		</script>
-		
-		<div id="title">
-            <?php echo "Our Promises" ?>
-        </div>
-        
-		<div id='promise_body'>
-            <table id='promise_table'>
-                <thead>
-                    <th colspan=1>Person name</th>
+		<div class='our_promise_body'>
+			<table class='our_promise_table'>
+				<tr class="first_head">
+					<th colspan=3>Our Promises</th>
+				</tr>
+				<tr class="second_head">
+					<th colspan=1>Person name</th>
                     <th colspan=1>Promises</th>
-                    <th colspan=1>Note</th>
-                </thead>
-
+					<th colspan=1>Note</th>
+				</tr>
+		
                 <?php
                 
                 foreach($persons as $person){
