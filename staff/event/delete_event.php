@@ -49,4 +49,3 @@
         header('location:/staff/event/');
     }
 ?>
-
