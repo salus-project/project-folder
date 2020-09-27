@@ -61,11 +61,19 @@
 
     echo $query;
     echo $query_noti;
-    if($query_run  && $query_noti_run){
+
+    if($query_run){
         echo '<script type="text/javascript"> alert ("Data deleted") </script>';
     }
     else{
-        echo '<script type="text/javascript"> alert ("Data not deleted") </script>';
+        $sql1=explode(';',$query);
+        foreach ($sql1 as $sqla){
+            $con->query($sqla);
+        }
+        $sql2=explode(';',$query_noti);
+        foreach ($sql1 as $sqlb){
+            $notification_DB->query($sqlb);
+        }
     }
     header('location:member.php');
 ?>
