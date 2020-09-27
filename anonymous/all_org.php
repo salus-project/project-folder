@@ -3,6 +3,7 @@
 ?>
 <link rel='stylesheet' type='text/css' href='/common/autocomplete/auto.css'>
 <link rel="stylesheet" href="/css_codes/organizations.css">
+<link rel="stylesheet" href="/css_codes/all_org.css">
 <div id="org_body">
     <form method='get' action='/anonymous/view_org.php'>
         <div class='top'>

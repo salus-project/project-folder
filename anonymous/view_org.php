@@ -16,21 +16,13 @@
 <div class=org_title>
     <div id='org_cover'>
         <?php
-            $org_cover_path = "/common/documents/Covers/" . $org_detail['org_id'] . ".jpg";
-            $org_cover_path_header = get_headers($org_cover_path);
-            if($org_cover_path_header[0] != 'HTTP/1.1 200 OK'){
-                $org_cover_path = "/common/documents/Covers/default.jpg";
-            }
+            $org_cover_path = "/common/documents/Organization/Covers/" . $org_detail['org_id'] . ".jpg";
         ?>
         <img id="org_cover_photo" src="<?php echo $org_cover_path;?>" alt="Opps..." class="org_cover_pic">
         <div id='org_profile_edit'>
             <div class="org_profile_container">
                 <?php
-                    $org_profile_path = "/common/documents/Profiles/" . $org_detail['org_id'] . ".jpg";
-                    $org_profile_path_header = get_headers($org_profile_path);
-                    if($org_profile_path_header[0] != 'HTTP/1.1 200 OK'){
-                        $org_profile_path = "/common/documents/Profiles/default.jpg";
-                    }
+                    $org_profile_path = "/common/documents/Organization/Profiles/" . $org_detail['org_id'] . ".jpg";
                 ?>
                 <img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_profile_pic">
             </div>

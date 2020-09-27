@@ -110,7 +110,7 @@ $imgs = array_filter(explode(',', $result['img']));
                         $full_name=$row_req["first_name"].' '.$row_req["last_name"];
                         echo "<tr>";
                         echo    "<td class='view_event_td'>";
-                        echo                "<a class='person_a' href='/event/volunteer.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
+                        echo         "<a class='person_a' href='/event/volunteer.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
                         echo    "</td>";
                         echo "</tr>";
                     
@@ -121,7 +121,7 @@ $imgs = array_filter(explode(',', $result['img']));
     </div>
     <div id=organizations>
         <div class='head' colspan=2>
-            Organizations on action
+            Active Organizations
         </div>
         <div class='table_con'>
             <table id=view_event_table>

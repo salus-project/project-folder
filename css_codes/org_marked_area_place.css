@@ -10,7 +10,7 @@
   }
   
   .table_marked_ap_tr:hover {
-      background-color:#00ffbf;
+      background: #c9c9c9;
     }
     .our_suggest_cont{
       display: flex;

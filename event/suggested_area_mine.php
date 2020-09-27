@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="/common/map/map.js"></script>
+    <script src="/js/suggested_areas-observer.js"></script>
 </head>
 <body>
 <div class="my_suggest_cont">
@@ -84,6 +85,14 @@
             remove=true;
         }
         create_place(JSON.parse(ele.dataset.areadata),true);
+        table.click_row(ele);
     }
+
+    var table = new Table();
+    var all_rows=document.querySelectorAll('.table_suggested_area_tr');
+    for(var i of all_rows){
+        table.add_observers(new TableRow(i));
+    }
+    
 </script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>

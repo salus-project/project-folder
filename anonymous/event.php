@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/css_codes/view_event.css">
 <link rel="stylesheet" href="/css_codes/style.css">
 <link href="/css_codes/slideshow.css" rel="stylesheet">
+<link rel="stylesheet" href="/css_codes/publ.css">
 
 <script>
     btnPress(4);
@@ -123,8 +124,17 @@
         ?>
         </div>
 </div>
+<script src="/govpost/govpost.js"></script>
 <div id=news_field>
-    Goverment posts and announcements about this event
+    <div class='head' style='width:550px;margin:auto;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
+        Goverment posts and announcements
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        var post = new GovPost('', <?php echo $_GET['event_id'] ?>);
+        post.get_post();
+    </script>
 </div>
 
 <div id='overlay'>

@@ -17,7 +17,7 @@
         $query_run= mysqli_query($con,$query);
         echo $query;
         if($query_run){
-        header('location:/admin/staff.php');
+            header('location:/admin/staff.php');
         }
     }
 ?>

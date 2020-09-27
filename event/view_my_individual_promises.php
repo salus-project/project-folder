@@ -26,7 +26,7 @@
         <title>view my promises</title>
         <link rel="stylesheet" href='/css_codes/view_my_event_individual_promise.css'>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <script src="/js/toggle.js"></script>
         <link href="/css_codes/bootstrap-toggle.css" rel="stylesheet">
     </head>
     <body>
@@ -89,7 +89,7 @@
                                     ".$name_data_row."
                                     <td>".$value."</td>
                                     <td class='not_click'>
-                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$event_id.",\"".$id_arr[$x]."\",\"".$by."\")'>
+                                        <input type='checkbox'".$checked."data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='35' data-offstyle='warning' data-onstyle='success' onchange='toggleFn(this,".$event_id.",\"".$id_arr[$x]."\",\"".$by."\")'>
                                     </td>
                                     ".$note_data_row."
                                 </tr>";

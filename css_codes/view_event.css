@@ -86,7 +86,7 @@ td.view_event_td:hover{
     position: relative;
     min-height: 150px;
     border: 1px solid #d8e0e7;
-    background-color: white;
+    background-color: #dbdbdb;
 }
 #closed_event_header{
     position: relative;

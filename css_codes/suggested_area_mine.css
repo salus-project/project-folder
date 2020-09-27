@@ -5,7 +5,7 @@
   margin-bottom: 5px;
   border-collapse: collapse;
 }
-.table_suggested_area_tr:hover{
+.table_suggested_area_tr:hover td{
   background: #f2f2f2;
 }
 .table_suggested_area_th, .table_suggested_area_td {
@@ -38,7 +38,7 @@
 .table_suggested_area_tr{
   cursor: pointer;
 }
-.table_suggested_area_tr:hover{
+.table_suggested_area tr:hover{
   background-color: #f2f2f2;
 }
 .my_suggest_cont{
@@ -60,4 +60,8 @@
   width: 50%;
   /*width: 600px;
   height: 400px;*/
+}
+.selected_row > td,.selected_row:hover > td, .selected_row .my_suggest_del {
+  background-color: #6b7c93;
+  color:#f2f2f2;
 }
