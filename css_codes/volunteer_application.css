@@ -2,7 +2,7 @@
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
-    border-radius: 0px;
+    border-radius: 0px; 
     padding: 0px;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
@@ -42,6 +42,7 @@
     background-color: #0c7dff47;
     height: 50px;
     border-right: 1px solid white;
+    cursor: pointer;
 }
 
 .head_label {
@@ -80,7 +81,6 @@
 .text_input[type=text] {
     background-color: Transparent;
     background-repeat: no-repeat;
-    cursor: pointer;
     overflow: hidden;
     margin: 0px;
     width: 33%;
@@ -105,6 +105,7 @@
     height: 29px;
     width: 159.5px;
     font-family: "Open Sans", sans-serif;
+    cursor: pointer;
 }
 
 
@@ -113,7 +114,9 @@
 .request_ability_container {
     margin: 13px;
 }
-
+.request_ability_container .req_head_label{
+    font-size: 20px;
+}
 .ability_input_container {
     width: 495.5px;
 }
