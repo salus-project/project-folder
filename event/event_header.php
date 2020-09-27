@@ -108,10 +108,10 @@
                             Promises
                         </button>
                         <div class='drop_dwn_div'>
-                            <a href="view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='drop_dwn_hidden'>
+                            <a href="/event/view_my_individual_promises.php?event_id=<?php echo $_GET['event_id']?>" id="indi_prom_btn" class='drop_dwn_hidden'>
                                 My Promises
                             </a>
-                            <a href="view_promises_on_me.php?event_id=<?php echo $_GET['event_id']?>" id="pro_on_me_btn" class='drop_dwn_hidden'>
+                            <a href="/event/view_promises_on_me.php?event_id=<?php echo $_GET['event_id']?>" id="pro_on_me_btn" class='drop_dwn_hidden'>
                                 Promises on me
                             </a>
                         </div>

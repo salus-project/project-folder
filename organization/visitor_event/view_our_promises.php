@@ -72,7 +72,6 @@ $org_id= $_GET['org_id'];
 
                     echo "<tr onclick='select(this.firstElementChild.firstElementChild)'>
                     
-
                     <td>".$name[$key]."</td><td>".$data."</td><td>".$note[$key]."</td>
                     
                     </tr>";
@@ -83,4 +82,3 @@ $org_id= $_GET['org_id'];
     </body>
 	
 	<?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
-</html>

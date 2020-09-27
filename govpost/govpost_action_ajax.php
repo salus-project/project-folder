@@ -49,6 +49,7 @@
     }
     if(isset($_POST['comment'])){
         date_default_timezone_set('Asia/Colombo');
+        $result=null;
         $date = date("Y-m-d");
         $time = date("h:i:s");
         $query = "insert into govepost_comments (`author`, `date`, `time`, `post_index`, `content`) values ('".$_POST['sender']."', '" . $date . "', '" . $time . "', " . $_POST['post_index'] . " , '" . $_POST['content'] . "');

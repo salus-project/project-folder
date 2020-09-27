@@ -121,7 +121,7 @@ $imgs = array_filter(explode(',', $result['img']));
     </div>
     <div id=organizations>
         <div class='head' colspan=2>
-            Active Organizations
+            Organizations on action
         </div>
         <div class='table_con'>
             <table id=view_event_table>
@@ -138,11 +138,10 @@ $imgs = array_filter(explode(',', $result['img']));
         </div>
     </div>
 </div>
-<div id='news_field'>
-    <div class='head' style='width:550px;margin:auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
+<div id=news_field>
+    <div class='head' style='width:550px;margin:auto;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
         Goverment posts and announcements
     </div>
-    
     <div id="content">
     </div>
     <script>

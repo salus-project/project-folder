@@ -61,7 +61,7 @@
             </div>
             <div class="org_event_area_select_div"  >
                 <select  id="select_type" class="org_event_area_select" name="select_type" onchange="location = this.value;">
-                    <option selected disabled hidden class="org_event_select_first" value="0">Select option:</option>
+                    <option selected disabled hidden class="org_event_select_first" value="0">Areas</option>
                     <option class="org_event_area_select_opt" value="/organization/event/mark_area/?org_id=<?php echo $_GET['selected_org'] ?>&event_id=<?php echo $_GET['event_id'] ?>" >
                         <div id='marka_area_btn_container'>
                             <a class=a_button >Mark Area</a>

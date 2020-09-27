@@ -105,7 +105,7 @@
 
         <span>Place type</span>
         <div class="custom-select" style="width:200px;">
-            <select id="select_type" name="select_type">
+            <select id="select_area_type" name="select_type">
                 <option value="0">Select option:</option>
                 <option value="medical" >Medical Camp</option>
                 <option value="donation">Donation Center</option>
@@ -188,7 +188,7 @@
     
 
     function submit_form(){
-        if(document.getElementById('select_type').selectedIndex!==0){
+        if(document.getElementById('select_area_type').selectedIndex!==0){
                 document.getElementById('form').firstElementChild.submit();
         }else{
             alert('Please select Place type');
@@ -200,7 +200,7 @@
             element.classList.remove('preview');
             myGeo.addMarkerLayer({lat:document.getElementById('lat').value, lng:document.getElementById('lng').value});
         }else{
-            var e = document.getElementById("select_type");
+            var e = document.getElementById("select_area_type");
             myGeo.addMarkerLayer({lat: document.getElementById('lat').value, lng: document.getElementById('lng').value}, e.options[e.selectedIndex].value,"marked by you");
             element.classList.add('preview');
         }
@@ -209,7 +209,7 @@
     function update_preview(){
         var btn = document.getElementById('preview_btn');
         if(btn.classList.contains('preview')){
-            var e = document.getElementById("select_type");
+            var e = document.getElementById("select_area_type");
             myGeo.addMarkerLayer({lat: document.getElementById('lat').value, lng: document.getElementById('lng').value}, e.options[e.selectedIndex].value,"marked by you");
         }
     }

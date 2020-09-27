@@ -61,7 +61,7 @@ function create_post(arr,user_nic=''){
                                         
                                     "</div>"+
                                 "</div>"+
-                                "<div class='comment_box_container'>"+
+                                "<div class='comment_box_container' onkeydown='{if(event.which==13||event.keyCode==13) this.getElementsByClassName(\"send_icon\")[0].click()}'>"+
                                     "<div class='comment_box'></div>"+
                                     "<div class='new_comment'>"+
                                         "<div class='comment_div'>"+
@@ -89,7 +89,7 @@ function create_post(arr,user_nic=''){
                                         "</div>"+
                                     "</div>"+
                                 "</div>"+
-                                "<div class='comment_box_container'>"+
+                                "<div class='comment_box_container' onkeydown='{if(event.which==13||event.keyCode==13) this.getElementsByClassName(\"send_icon\")[0].click()}'>"+
                                     "<div class='comment_box'></div>"+
                                     "<div class='new_comment'>"+
                                         "<div class='comment_div'>"+

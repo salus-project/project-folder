@@ -124,7 +124,7 @@
                     table_ele.classList.toggle('org_event_active');
                 }else{
                     const all_check = table_ele.getElementsByClassName('help_check');
-                    if(element.firstElementChild.checked==true){
+                    if(element.children[1].checked==true){
                         for(var i = 0; i < all_check.length ; i++){
                             all_check[i].checked=true;
                         }

@@ -5,23 +5,22 @@
     <script src="https://kit.fontawesome.com/b17fa3a18c.js" crossorigin="anonymous"></script>
     <script src="/common/post/post.js"></script>
     <style>
-        .post_content{
-            margin: 10px 20px 10px 20px;
-        }
-        .posts{
-            max-width: 700px;
-            min-height:400px;
-        }
-        .posts:hover{
-            transform: scale(1);
-        }
-        .comment_box_container {
-            display: inline-block;
-        }
-        .comment_box_active{
-            display:inline-block;
-        }
-    
+    .post_content{
+        margin: 10px 20px 10px 20px;
+    }
+    .posts{
+        width: 700px;
+        min-height:400px;
+    }
+    .posts:hover{
+        transform: scale(1);
+    }
+    .comment_box_container {
+        display: inline-block;
+    }
+    .comment_box_active{
+        display:inline-block;
+    }
     </style>    
 
     <?php
@@ -138,7 +137,7 @@
                         </div>                           
                     </div>
                 </div>
-                <div class='comment_box_container'>
+                <div class='comment_box_container' onkeydown='{if(event.which==13||event.keyCode==13) this.getElementsByClassName(\"send_icon\")[0].click()}'>
                     <div class='comment_box'>
                     </div>
                         <div class='new_comment'>

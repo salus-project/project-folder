@@ -131,7 +131,7 @@
 
                 <span>Area type</span>
                 <div class="custom-select" style="width:200px;">
-                    <select id="select_type" name="select_type">
+                    <select id="select_area_type" name="select_type">
                         <option value="0">Select option:</option>
                         <option value="suggested" >Affected area</option>
                         <option value="rescue">Rescue area</option>
@@ -277,8 +277,8 @@
             
 
             function submit_form(){
-                console.log(document.getElementById('select_type').selectedIndex);
-                if(document.getElementById('select_type').selectedIndex!==0){
+                console.log(document.getElementById('select_area_type').selectedIndex);
+                if(document.getElementById('select_area_type').selectedIndex!==0){
                     if(document.getElementById('geoJson').checked){
                         editor.save(true)
                     }else{

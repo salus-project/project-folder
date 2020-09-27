@@ -15,7 +15,7 @@
 
         private function __construct()
         {
-            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.php');
+            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.html');
             mysqli_select_db($this->con, $this->name);
         }
 
@@ -46,7 +46,7 @@
 
         private function __construct()
         {
-            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.php');
+            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.html');
             mysqli_select_db($this->con, $this->name);
         }
 
@@ -77,7 +77,7 @@
 
         private function __construct()
         {
-            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.php');
+            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.html');
             mysqli_select_db($this->con, $this->name);
         }
 
