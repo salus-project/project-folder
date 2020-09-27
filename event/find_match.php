@@ -65,7 +65,7 @@ $type=$_GET['type'];
         $sql2="SELECT a.donor,concat(b.first_name,' ',b.last_name) as full_name,a.item FROM `event_".$event_id."_abilities` as a inner join civilian_detail as b on a.donor=b.NIC_num where lower(a.item) in ('".implode('\',\'',$result1)."') order BY a.donor DESC;";
         $result2=$con->query($sql2)->fetch_all();
         $nic_arr=array_column($result2,0);
-
+        $location="/event/volunteer.php?event_id=".$event_id."&nic=";
         echo "<tr>";
             echo "<th class='find_first_head' colspan=3>Volunteer Detail</th>";
         echo "</tr>";
@@ -80,7 +80,8 @@ $type=$_GET['type'];
         $sql2="SELECT a.requester,concat(b.first_name,' ',b.last_name) as full_name,a.item FROM `event_".$event_id."_requests` as a inner join civilian_detail as b on a.requester=b.NIC_num where lower(a.item) in ('".implode('\',\'',$result1)."') order BY a.requester DESC;";
         $result2=$con->query($sql2)->fetch_all();
         $nic_arr=array_column($result2,0);
-
+        $location="/event/requester.php?event_id=".$event_id."&nic=";
+        
         echo "<tr class='find_first_head'>";
             echo "<th colspan=3>Request details</th>";
         echo "</tr>";
@@ -98,7 +99,7 @@ $type=$_GET['type'];
                     echo "<tr><td >".$result2[$key][2]."</td></tr>";
                 }else{
                     array_push($dis_arr,$n_id);
-                    echo "</tbody><tbody><tr><td colspan=2 rowspan=".array_count_values($nic_arr)[$n_id].">".$result2[$key][1]."</td><td>".$result2[$key][2]."</td></tr>";
+                    echo "</tbody><tbody onclick='window.location.href=\"$location$n_id\"'><tr><td colspan=2 rowspan=".array_count_values($nic_arr)[$n_id].">".$result2[$key][1]."</td><td>".$result2[$key][2]."</td></tr>";
                 }
                 
             }

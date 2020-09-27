@@ -1,6 +1,5 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
-
+    require $_SERVER['DOCUMENT_ROOT']."/event/event_header.php";
     $event_id=$_GET['event_id'];
     $nic=$_GET['nic'];
     $query="select * from event_".$event_id."_volunteers where NIC_num='".$nic."';
