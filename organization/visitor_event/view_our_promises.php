@@ -82,5 +82,5 @@ $org_id= $_GET['org_id'];
         </div>
     </body>
 	
-	<?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
+	<?php require $_SERVER['DOCUMENT_ROOT']."/organization/org_footer.php"; ?>
 </html>
