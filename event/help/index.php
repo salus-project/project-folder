@@ -101,17 +101,17 @@
                                     </div>
                                 </div>
                                 <div class='status_div'>
-                                    <div class='toggle btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>
-                                        <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)'>
+                                    <div class='toggle event_btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 30px;' onclick='click_checkbox(this)'>
+                                        <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)' ''>
                                         <input type='hidden' name='mark[]' value='promise'>
                                         <div class='toggle-group'>
-                                            <label class='btn btn-success toggle-on' style='line-height: 20px;'>
+                                            <label class='event_btn btn-success toggle-on' style='line-height: 1;'>
                                                 Helped
                                             </label>
-                                            <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>
+                                            <label class='event_btn btn-warning active toggle-off' style='line-height: 1; background-color: #f0ad4e; border-color: #eea236;'>
                                                 Not helped
                                             </label>
-                                            <span class='toggle-handle btn btn-default'></span>
+                                            <span class='toggle-handle event_btn btn-default'></span>
                                         </div>
                                     </div>
                                 </div>
@@ -212,17 +212,17 @@
                                             </div>
                                         </div>
                                         <div class='status_div'>
-                                            <div class='toggle btn {$div_class}' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>
+                                            <div class='toggle event_btn {$div_class}' data-toggle='toggle' style='width: 100px; height: 30px;' onclick='click_checkbox(this)'>
                                                 <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)' {$checcked}>
                                                 <input type='hidden' name='mark[]' value='{$row_req['pro_don']}'>
                                                 <div class='toggle-group'>
-                                                    <label class='btn btn-success toggle-on' style='line-height: 20px;'>
+                                                    <label class='event_btn btn-success toggle-on' style='line-height: 1;'>
                                                         Helped
                                                     </label>
-                                                    <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>
+                                                    <label class='event_btn btn-warning active toggle-off' style='line-height: 1; background-color: #f0ad4e; border-color: #eea236;'>
                                                         Not helped
                                                     </label>
-                                                    <span class='toggle-handle btn btn-default'></span>
+                                                    <span class='toggle-handle event_btn btn-default'></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +235,7 @@
                             echo $add_element;
                         echo '</div>';
                         echo '<div class="promise_td">';
-                                echo '<div class=for_label" ><label name="note" id="note_label">Note:</label></div><textarea col=50 rows=2 id="note" name="note">';
+                                echo '<div class=for_label" ><label name="note" id="note_label">Note</label></div><textarea col=50 rows=2 id="note" name="note">';
                                     echo $old_note;
                                 echo '</textarea>';
                         echo '</div>';                      
@@ -274,17 +274,17 @@
                                             </div>
                                         </div>
                                         <div class='status_div'>
-                                            <div class='toggle btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 15px;' onclick='click_checkbox(this)'>
+                                            <div class='toggle event_btn btn-waarning off' data-toggle='toggle' style='width: 100px; height: 30px;' onclick='click_checkbox(this)'>
                                                 <input type='checkbox' data-toggle='toggle' data-on='Helped' data-off='Not helped' data-width='100' data-height='15' data-offstyle='warning' data-onstyle='success' onchange='checkbox_change(this)'>
                                                 <input type='hidden' name='mark[]' value='promise'>
                                                 <div class='toggle-group'>
-                                                    <label class='btn btn-success toggle-on' style='line-height: 20px;'>
+                                                    <label class='event_btn btn-success toggle-on' style='line-height: 1;'>
                                                         Helped
                                                     </label>
-                                                    <label class='btn btn-warning active toggle-off' style='line-height: 20px;'>
+                                                    <label class='event_btn btn-warning active toggle-off' style='line-height: 1; background-color: #f0ad4e;border-color: #eea236;'>
                                                         Not helped
                                                     </label>
-                                                    <span class='toggle-handle btn btn-default'></span>
+                                                    <span class='toggle-handle event_btn btn-default'></span>
                                                 </div>
                                             </div>
                                         </div>
