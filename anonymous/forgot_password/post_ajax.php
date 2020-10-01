@@ -19,7 +19,9 @@
         }
 
         $password= generate_string($permitted_chars) ;
-        $sql="UPDATE civilian_detail set password='$password' where NIC_num='$nic'";
+        $hash_passwd= md5($password);
+
+        $sql="UPDATE civilian_detail set password='$hash_passwd' where NIC_num='$nic'";
         $con->query($sql);
 
         $to_email = $result[0];
