@@ -146,6 +146,7 @@ a.side_nav_a:hover{
     white-space: -o-pre-wrap;
     word-wrap: break-word;
     max-width: 250px;
+    min-width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
