@@ -757,7 +757,8 @@ input:checked+.slider:before {
 .toggle_btn_text {
     display: inline-block;
     vertical-align: middle;
-    margin-bottom: 10px;
+    min-width: 250px;
+    color: black;
 }
 
 .dropdown_toggle_btn {
