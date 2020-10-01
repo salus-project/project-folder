@@ -131,7 +131,7 @@
                         <label class="edit_form_label">Current Password </label>
                         <div>
                             <div ng-class="{'has-error': (userDetailEditForm.current_password.$invalid && userDetailEditForm.current_password.$touched)}">
-                                <input name="current_password" type="password" class="edit_prof_input_box" ng-model="currentPassword" required/>
+                                <input name="current_password" type="password" class="edit_prof_input_box" ng-model="currentPassword" autocomplete="false" required/>
                             </div>
                             <span class='error'><?php echo $pswErr ?></span>
                             <span class='error' data-ng-show="userDetailEditForm.current_password.$invalid && userDetailEditForm.current_password.$touched"><i class='fas fa-exclamation-circle'></i> Please fill password</span>
