@@ -73,10 +73,10 @@ if (isset($_POST['nic'])){
         $occupation = ($_POST["occupation"]!='')?"'".filt_inp($_POST["occupation"])."'":"NULL";
         $phone_number = ($_POST["phone_number"]!='')?"'".filt_inp($_POST["phone_number"])."'":"NULL";
 
-        
+        $hash_passwd= md5($password);
         
         $sql = "INSERT INTO civilian_detail (password, first_name, last_name, gender, NIC_num, address, district,village,street, Occupation, phone_num, email)
-        VALUES ('$password', '$first_name', '$last_name', $gender, '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
+        VALUES ('$hash_passwd', '$first_name', '$last_name', $gender, '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
         $query_run= mysqli_query($con,$sql);
 
         echo $sql;
@@ -94,10 +94,11 @@ if (isset($_POST['nic'])){
 
             $to_email = $email_address ;
             $subject = 'Your DCA account was created successfully';
-            $message = 'Your DCA account was just created successfully and your password is '.$password.', change your password by log-in to your DCA account.';
-            $headers = 'From: kanthankanthan111@gmail.com';
+            $message = 'Your DCA account was just created successfully and your password is '.$password.', change your password by log-in to http://d-c-a.000webhostapp.com/';
+            $headers = 'From: dca@gmail.com';
             set_error_handler(function() { /* ignore errors */ });
                 if(mail($to_email,$subject,$message,$headers)){
+                    
                 }
             restore_error_handler();
 
