@@ -483,7 +483,7 @@ x {
 .event_table_con, .org_table_con , .notif_table_con{
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 340px;
+    height: 340px;
     position: relative;
     width: 100%;
     margin: 2px 0;
