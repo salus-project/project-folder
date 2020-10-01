@@ -829,6 +829,7 @@ input:checked+.slider:before {
     color: white;
     height: 15px;
     min-width: 15px;
+    line-height: 10px;
 }
 .empty_indicator{
     display: none;
