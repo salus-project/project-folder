@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['nic'])){
-    echo "Please try again";
+    
     $isOk=1;
     $nic = strtoupper(filt_inp($_POST["nic"]));
     if (!preg_match("/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/",$nic)){
