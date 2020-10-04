@@ -102,6 +102,7 @@ body{
   background-color: rgb(242 244 246);
   color: #6b7c93;
   font-family: "Open Sans",sans-serif;
+  margin: 0px;
 }
 .active{
   background-color:#3e4d52;

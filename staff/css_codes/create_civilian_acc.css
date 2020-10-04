@@ -25,8 +25,7 @@
     background-color: #0c7dff47;
     text-align: center;
     font-size: 25px;
-    height: bold;
-    height: 40px;
+    height: 60px;
     padding: 10px;
 }
 
@@ -168,8 +167,8 @@
   
   /*style the items (options), including the selected item:*/
   .select-items div,.select-selected {
-    width: 289px;
-    height: 11px;
+    width: 300px;
+    height: 25px;
     font-size: 17px;
     line-height: 0.5;
     position: relative;
@@ -192,7 +191,7 @@
     right: 0;
     z-index: 99;
     margin-left: 160px;
-    width: 152px;
+    width: 140px;
     overflow: auto;
     max-height: 175px; 
   }
@@ -204,7 +203,7 @@
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-    width: 130px;
+    
     
   }
 
