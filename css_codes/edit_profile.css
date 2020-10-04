@@ -25,7 +25,7 @@
     margin-top: 25px;
     background-color: #0c7dff47;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     height: bold;
     height: 60px;
     padding: 10px;
@@ -45,13 +45,14 @@
 
 .edit_form_submit_button {
     border: none;
-    width: 249.8px;
+    width: 250px;
     background-color: #0c7dff47;
     padding: 0px;
     height: 60px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans";
     color: #393939;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .submitt {
@@ -73,7 +74,7 @@
     color: #393939;
     border: 1px solid #2980B9;
     clear: both;
-    font-size: 15px;
+    font-size: 16px;
     float: right;
     padding-left: 7px;
     min-width: 150px;
@@ -82,7 +83,7 @@
 .edit_form_label {
     padding-top: 5px;
     min-width: 150px;
-    font-size: 16px;
+    font-size: 17px;
     color: #393939
 }
 
@@ -154,7 +155,7 @@
 
 .select-items div,
 .select-selected {
-    width: 300px;
+    width: 115px;
     height: 25px;
     font-size: 14px;
     line-height: 0.5;
@@ -167,7 +168,9 @@
     user-select: none;
     border-radius: 5px;
 }
-
+.select-selected{
+    width: 300px;
+}
 
 /*style items (options):*/
 
@@ -180,6 +183,8 @@
     z-index: 99;
     margin-left: 185px;
     width: 115px;
+    overflow: auto;
+    max-height: 227px;
 }
 
 
