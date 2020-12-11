@@ -60,7 +60,7 @@ $imgs = array_filter(explode(',', $result['img']));
             ?>
             
             <br/>
-            <div style='text-align: center;position: absolute;bottom: 5px;left: 350px;'>
+            <div style='text-align: center;position: absolute;bottom: 5px;left: 50%;'>
             <?php
                 for($x=0 ; $x<count($imgs) ; $x++) {?>
                 <span class="dot"></span> 
@@ -89,7 +89,10 @@ $imgs = array_filter(explode(',', $result['img']));
                         $full_name=$row_req["first_name"].' '.$row_req["last_name"];
                         echo "<tr>";
                         echo    "<td class='view_event_td'>";
-                        echo         "<a class='person_a' href='/event/requester.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
+                        echo         "<a class='person_a' href='/event/requester.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>
+                                        <img src='/common/documents/Profiles/resized/" .  $nic_num .".jpg' alt='opps' class='event_social_profile'/>
+                                        ".$full_name;
+                        echo         "</a>";
                         echo    "</td>";
                         echo "</tr>";
                     
@@ -110,7 +113,9 @@ $imgs = array_filter(explode(',', $result['img']));
                         $full_name=$row_req["first_name"].' '.$row_req["last_name"];
                         echo "<tr>";
                         echo    "<td class='view_event_td'>";
-                        echo         "<a class='person_a' href='/event/volunteer.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>".$full_name."</a>";
+                        echo         "<a class='person_a' href='/event/volunteer.php?event_id=".$_GET['event_id']."&nic=".$nic_num."'>
+                                        <img src='/common/documents/Profiles/resized/" .  $nic_num .".jpg' alt='opps' class='event_social_profile'/>
+                                        ".$full_name."</a>";
                         echo    "</td>";
                         echo "</tr>";
                     
@@ -129,7 +134,10 @@ $imgs = array_filter(explode(',', $result['img']));
                 foreach($orgs as $row){
                     echo "<tr>";
                     echo    "<td class='view_event_td'>";         
-                        echo "<a class='person_a' href=''>".$row['org_name']."</a>";
+                        echo "<a class='person_a' href=''>
+                                <img src='/common/documents/Organization/Profiles/resized/" .  $row['org_id'] .".jpg' alt='opps' class='event_social_profile'/>
+                                ".$row['org_name']."
+                            </a>";
                     echo    "</td>";
                     echo "</tr>";
                 }

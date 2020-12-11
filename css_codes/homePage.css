@@ -72,6 +72,16 @@
     opacity: 1;
 }
 
+#send_message{
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    right: 10px;
+    background-color: #e4e6eb;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .title:hover #gradient_div{
    /* animation-name: move;
     animation-duration: 4s;

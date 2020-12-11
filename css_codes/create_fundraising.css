@@ -159,6 +159,7 @@ input:required.ng-touched.ng-empty {
     padding: 0px;
     color: #393939;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .create_fund_submit_btn {

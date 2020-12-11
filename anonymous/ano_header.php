@@ -109,7 +109,7 @@
                     <button class="popup_btn" type="submit">Login</button> 
                 </div> 
 
-                <div class="pop_container" style="background-color:#f1f1f1"> 
+                <div class="pop_container"> 
                     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn popup_btn">Cancel</button> 
                     <span class="psw"><a href="/anonymous/forgot_password/forgot_password.php">Forgot password?</a></span> 
                 </div> 

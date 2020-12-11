@@ -39,21 +39,29 @@
         </script>
             <div class='main_container'>
                 <div class='volunteer_head'>
-                    <b>Volunteer Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=".$volunteer_detail['NIC_num']."'>".
-                                    $name."</a>"; ?></b>
+                    <span class="requester_inner_head">Volunteer Details</span>
+                    <div class="req_requester_detail_cont">
+                        <a class='name_anchor' href='/view_profile.php?id=<?php echo $volunteer_detail['NIC_num'] ?>'>
+                            <img src="/common/documents/Profiles/resized/<?php echo $volunteer_detail['NIC_num'] ?>.jpg" alt="opps" class="requester_img"/>
+                            <?php echo $name ?>
+                        </a>
+                        <a id='send_message' href='/message/?to_person=<?php echo $requester_detail['NIC_num'] ?>'>
+                            <i class='fas fa-comments'></i> message
+                        </a>
+                    </div>
                 </div>
                 <div class='voluteer_table_div'>
                     <table class="volunteer_detail_table">
                         <tr>
-                            <td class='volun_col1'>Service districts:</td>
+                            <td class='volun_col1'>Service districts</td>
                             <td class='volun_col2'><?php echo $volunteer_detail['service_district']; ?></td>
                         </tr>
                         <tr>
-                            <td class='volun_col1'>Type:</td>
+                            <td class='volun_col1'>Type</td>
                             <td class='volun_col2'><?php echo $volunteer_detail['type']; ?></td>
                         </tr>
                         <tr>
-                            <td class='volun_col1'>Abilities:</td>
+                            <td class='volun_col1'>Abilities</td>
                             <td class='volun_col2'><?php echo $content; ?></td>
                         </tr>
                     </table>

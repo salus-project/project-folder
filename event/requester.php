@@ -53,9 +53,17 @@ $name = $civilian_detail['first_name'] . " " . $civilian_detail['last_name'];
     </script>
     <div class='main_container'>
         <div class='requester_div'>
-           <div class='requester_head'>
-                Request Details of <?php echo "<a class='name_anchor' href='/view_profile.php?id=" . $requester_detail['NIC_num'] . "'>" .
-                                                                                    $name . "</a>"; ?>
+            <div class='requester_head'>
+                <span class="requester_inner_head">Requester Details</span>
+                <div class="req_requester_detail_cont">
+                    <a class='name_anchor' href='/view_profile.php?id=<?php echo $requester_detail['NIC_num'] ?>'>
+                        <img src="/common/documents/Profiles/resized/<?php echo $requester_detail['NIC_num'] ?>.jpg" alt="opps" class="requester_img"/>
+                        <?php echo $name ?>
+                    </a>
+                    <a id='send_message' href='/message/?to_person=<?php echo $requester_detail['NIC_num'] ?>'>
+                        <i class='fas fa-comments'></i> message
+                    </a>
+                </div>
             </div>
             <table class="requester_detail_table">
                 <tr>

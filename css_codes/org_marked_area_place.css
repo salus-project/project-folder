@@ -22,6 +22,7 @@
     .our_suggest_table_cont{
       display: inline-block;
       width: 550px;
+      height:400px;
     }
     .our_suggest_map_cont{
       display: inline-block;
