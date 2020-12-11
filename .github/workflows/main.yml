@@ -13,4 +13,4 @@ jobs:
       with:
         server: files.000webhost.com
         username: d-c-a
-        password: ${{ secrets.ftp_password }}
+        password: ${{ secrets.FTP_PASSWORD }}
