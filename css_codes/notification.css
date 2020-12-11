@@ -1,13 +1,43 @@
 #notif{
-    border: 3px solid black;
-    padding: 10px;
-    margin: 5px;
-    margin-left: 300px;
-    margin-right: 300px;
-
+    z-index: 4;
+    transform: translate(-130px,0);
+    position: absolute;
 }
-#notif_box{
-    border: 2px solid black;
-    padding: 10px;
-    margin: 5px,3px;
+.notif_box{
+    /*border: 1px solid black;*/
+    text-align: center;
+    min-height: 30px;
+    width: 200px;
+    border: 0px;
+    cursor: pointer;
+    font-size: 12px;
+}
+a.notif_a:link,a.notif_a:visited,a.notif_a:link:active,a.notif_a:visited:active{
+    color: black;
+    text-decoration: none;
+}
+#notif_table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 30px;
+    border-spacing: 0;
+}
+#notif_table td{
+    border:1px solid black;
+}
+.unseen{
+    background-color: #edf2fa;
+}
+.seen{
+    background-color: white;
+}
+.content{
+    font-weight: 600;
+    text-align: left;
+    padding-left: 5px;
+}
+.datetime{
+    color: #90949c;
+    font-size: 12px;
 }

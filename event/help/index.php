@@ -4,20 +4,19 @@
     $to=$_GET['to'];
     $event_id = $_GET['event_id'];
     $by=$_GET['by'];
+    $by_person=$_SESSION['user_nic'];
+    $query = "select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."';
+    select * from event_".$event_id."_requests WHERE requester='".$to."';";
     
-    
-    $query = "select event_".$event_id."_help_requested.*, civilian_detail.first_name, civilian_detail.last_name from event_".$event_id."_help_requested inner join civilian_detail on event_".$event_id."_help_requested.NIC_num = civilian_detail.NIC_num where event_".$event_id."_help_requested.NIC_num = '".$to."'";
-    $result=$con->query($query)->fetch_assoc();
-    
-    if($result!=null){
-        $old_district = $result['district'] ?: '';
-        $old_village = $result['village'] ?: '';
-        $old_street = $result['street'] ?: '';
-        $old_requests = $result['requests'] ?: '';
+    if($by=="your_self"){
+        $query.="select id, note from event_".$event_id."_pro_don where by_person='".$by_person."' and to_person='".$to."';
+        select * from event_".$event_id."_pro_don_content where don_id=(
+            select id from event_".$event_id."_pro_don where by_person='".$by_person."' and to_person='".$to."');";
     }else{
-        $old_district=$old_street=$old_village=$old_requests='';
+        $query.="SELECT id, note from event_".$event_id."_pro_don where by_org='".$by."' and to_person='".$to."';         
+        select * from event_".$event_id."_pro_don_content where don_id=(
+            select id from event_".$event_id."_pro_don where by_org='".$by."' and to_person='".$to."')";
     }
-    $old_requests = array_filter(explode(",",$old_requests));
 ?>
 
 <!DOCTYPE html>
@@ -27,55 +26,84 @@
         <script src='/js/help_event_individual.js' type="text/javascript"></script>
     </head>
     <body>
+    <?php
+        if(mysqli_multi_query($con,$query)){
+            echo '<div  id="form_box">';
+            echo '<form method="POST" action="index_php.php">' ;
+            echo '<input type="hidden" name="event_id" value= '.$event_id.'>';
+            echo '<input type="hidden" name="to" value= '.$to.'>';
+            echo '<input type="hidden" name="by" value= '.$by.'>';
+            
+            $result = mysqli_store_result($con);
+            $old_result = mysqli_fetch_assoc($result);
+            mysqli_free_result($result);
+            if($old_result!=null){
+                $old_district = $old_result['district'] ?: '';
+                $old_village = $old_result['village'] ?: '';
+                $old_street = $old_result['street'] ?: '';
+            }else{
+                $old_district=$old_street=$old_village='';
+            }
 
-        <div  id="form_box">
-            <form method="POST" action=<?php echo "index_php.php";?>> 
-            <input type="hidden" name="event_id" value= '<?php echo $event_id;?>'>
-            <input type="hidden" name="to" value= '<?php echo $to;?>'>
-            <input type="hidden" name="by" value= '<?php echo $by;?>'>
-            <div class=dis_container>
-                <table class="table1">
-                    <tr ><td colspan="2" id="requester_detail"><b>Requester
-                                <a class='all_a' href="/view_profile.php?id=<?php echo $result['NIC_num'] ?>">
-                                    <?php echo $result['first_name']." ".$result['last_name']?>
-                                </a><b></tr></td>
-                    <tr ><td colspan="2" id="request_detail"><b>Requested details<b></tr></td>
-                    <tr>
-                        <td> District (current) :</td>
-                        <td><?php echo $old_district ?> </td>
-                    </tr>
-                    <tr>
-                        <td>Village :</td>
-                        <td><?php echo $old_village ?></td>
-                    </tr>
-                    <tr>
-                        <td>Street :</td>
-                        <td><?php echo $old_street ?><br></td>
-                    </tr>
-                    <tr id="request_tr">
-                        <td> Requests :</td>
-                        <?php
-                            $request="";
-                            foreach($old_requests as $row_req){
-                               $request.=$row_req."<br>";
+            mysqli_next_result($con);
+            $result = mysqli_store_result($con);
+            $event_requests = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            mysqli_free_result($result);
+
+            mysqli_next_result($con);
+            $old_note='';
+            $is_exist=false;
+            $result = mysqli_store_result($con);
+            if(mysqli_num_rows($result)>0){
+                $is_exist=true;
+                $old_promise = mysqli_fetch_assoc($result);
+                mysqli_free_result($result);
+                $old_note=$old_promise['note'];
+                echo "<input type='hidden' name='entry_update_id' value='{$old_promise['id']}'>";
+            }
+            else{
+                mysqli_fetch_all($result,MYSQLI_ASSOC);
+                echo "<input type='hidden' name='entry_update_id' value='0'>";
+            }
+
+            mysqli_next_result($con);
+            $result = mysqli_store_result($con);
+            $old_content = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            mysqli_free_result($result);
+        
+    
+            echo '<div class=dis_container>';
+                echo '<table class="table1">';
+                    echo '<tr ><td colspan="2" id="requester_detail"><b>Requester';
+                                echo '<a class="all_a" href="/view_profile.php?id='.$old_result["NIC_num"].'">';
+                                    echo $old_result['first_name']." ".$old_result['last_name'];
+                                echo '</a><b></tr></td>';
+                    echo '<tr ><td colspan="2" id="request_detail"><b>Requested details<b></tr></td>';
+                    echo '<tr>';
+                        echo '<td> District (current) :</td>';
+                        echo '<td>'. $old_district.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                        echo '<td>Village :</td>';
+                        echo '<td>'. $old_village .'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                        echo '<td>Street :</td>';
+                        echo '<td>'.$old_street .'<br></td>';
+                    echo '</tr>';
+                    echo '<tr id="request_tr">';
+                        echo '<td> Requests :</td>';
+                            $request='';
+                            foreach($event_requests as $row_req){
+                               $request.=$row_req['item'].":".$row_req['amount']."<br>";
                             }
-                        ?>
-                        <td><?php echo $request?></td>
-                    </tr>
+                        echo '<td>'.$request.'</td>';
+                    echo '</tr>';
                             
-                </table>
-            </div>
-            <?php
-                if($by=="your_self"){
-                    $data="SELECT * from event_".$event_id."_pro_don where by_person='{$_SESSION['user_nic']}' and to_person='".$to."'";
-                }else{
-                    $by_org=$by;
-                    $data="SELECT * from event_".$event_id."_pro_don where by_org='".$by_org."' and to_person='".$to."'";           
-                }
-                $result1=$con->query($data);
-                if($result1->num_rows>0){
-                    $result2=$result1->fetch_assoc();
-
+                echo '</table>';
+            echo '</div>';
+    
+                if($is_exist==true){
                     echo '<div id="old_promise">';
                         echo '<div class=head_label_container><label class="head_label">';
                             if($by=="your_self"){
@@ -89,40 +117,52 @@
                                 echo "Promise on behalf of ".$org_name;
                             }
                         echo '</label></div>';
-                        $old_promise = $result2['content'];
-                        $old_promises = array_filter(explode(",",$old_promise));
-                        
-                        foreach($old_promises as $row_req){
-                            echo $row_req."<br>";
-                        }
-                        echo "your note : ".($result2['note'] ?: "No notes");
+                        $your_promise='';
+                            foreach($old_content as $row_req){
+                               $your_promise.=$row_req['item'].":".$row_req['amount']."<br>";
+                            }
+                        echo "<table>";
+                        echo "<tr><td>your promises :</td> <td>".$your_promise."</td></tr>";
+                        echo "<tr><td>your note :</td><td> ".($old_note?: "No notes")."</td></tr>";
+                        echo "</table>";
                         echo '<div class="edit_button">';
-                            echo '<button type="button"  class="submit_button" onclick="edit_promise(this)" id=req_submit_btn >EDIT</button>';
+                            echo '<button type="button"  class="submit_button" onclick="edit_event_promise(this)" id=req_submit_btn >EDIT</button>';
+                            echo '<input type="submit" name="pro_cancel_button" class="cancel_button" value="CANCEL" id=cancel_btn ></input>';
                         echo '</div>';
                     echo '</div>';
 
                     echo "<div id='promise_div' class='dis_container promise_div'>";
                       echo '<div class=head_label_container id="old_donation">Edit your old promise</div>';
                         echo '<div class="input_container">';
-                            foreach($old_promises as $row_req){
-                                $arr = explode(":",$row_req);
+                            foreach($old_content as $row_req){
+                                if($row_req['pro_don']=='pending'){
+                                    $checcked = 'checked="checked"';
+                                }else{
+                                    $checcked = '';
+                                }
                                 echo "<div class='input_sub_container'>";
-                                echo    "<input type='text' class='text_input request_input' name='things[]' value='".$arr[0]."'>";
-                                echo    "<input type='text' class='text_input request_input' name='things_val[]' value='".$arr[1]."'>";
-                                echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
+                                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>";
+                                echo    "<input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                                echo    "<button type='button' onclick='remove_old(this)' class='add_rem_btn'>Remove</button>";
+                                echo    "<input type='checkbox' onchange='checkbox_val(this)' {$checcked}>";
+                                echo    "<input type='hidden' name='mark[]' value='{$row_req['pro_don']}'>";
+                                echo    "<input type='hidden' name='update_id[]' value='{$row_req['id']}'>";
                                 echo "</div>";
                             }
                     
                             echo '<div class="input_sub_container">';
-                                echo '<input type="text" name="things[]" class="text_input request_input">';
-                                echo '<input type="text" name="things_val[]" class="text_input request_input">';
-                                echo '<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>';
+                                echo '<input type="text" name="item[]" class="text_input request_input">';
+                                echo '<input type="text" name="amount[]" class="text_input request_input">';
+                                echo '<button type="button" onclick="add_new(this)" class="add_rem_btn">Add</button>';
+                                echo    "<input type='checkbox' onchange='checkbox_val(this)'>";
+                                echo    "<input type='hidden' name='mark[]' value='promise'>";
+                                echo    "<input type='hidden' name='update_id[]' value='0'>";
                             echo '</div>';
                         echo '</div>';
                         echo '<div id="promise_td">';
                             echo'<table>';
                                 echo '<tr><td><label name="note" id="note_label">Note</label></td><td><textarea col=30 rows=4 id="note" name="note">';
-                                    echo $result2['note'];
+                                    echo $old_note;
                                 echo '</textarea></td></tr>';
                             echo '</table>';
                         echo '</div>';                      
@@ -133,7 +173,7 @@
                     }
                     else{                
 
-                        echo "<div id='promise_div' class='dis_container promise_div'>";
+                        echo "<div id='promise_div' class='dis_container promise_div' style='display:block'>";
                             echo '<div class=head_label_container><label class="head_label">';
                                 if($by=="your_self"){
                                     echo "Promise on your behalf";
@@ -146,22 +186,25 @@
                                     echo "Promise on behalf of ".$org_name;
                                 }
                             echo '</label></div>';
+                            foreach($event_requests as $row_req){
+                                echo "<div class='input_sub_container'>";
+                                echo    "<input type='text' class='text_input request_input' name='item[]' value='".$row_req['item']."'>";
+                                echo    "<input type='text' class='text_input request_input' name='amount[]' value='".$row_req['amount']."'>";
+                                echo    "<button type='button' onclick='remove_old(this)' class='add_rem_btn'>Remove</button>";
+                                echo    "<input type='checkbox' onchange='checkbox_val(this)'>";
+                                echo    "<input type='hidden' name='mark[]' value='promise'>";
+                                echo    "<input type='hidden' name='update_id[]' value='0'>";
+                                echo "</div>";
+                            }
 
                             echo '<div class="input_container">';
-                            
-                                foreach($old_requests as $row_req){
-                                    $arr = explode(":",$row_req);
-                                    echo "<div class=\"input_sub_container\">";
-                                    echo    "<input type='text' class='text_input request_input' name='things[]' value='".$arr[0]."'>
-                                            <input type='text' class='text_input request_input' name='things_val[]' value='".$arr[1]."'>";
-                                    echo    "<button type='button' onclick='remove_input(this)' class='add_rem_btn'>Remove</button>";
-                                    echo "</div>";
-                                }
-                        
                                 echo '<div class="input_sub_container">';
-                                    echo '<input type="text" name="things[]" class="text_input request_input">';
-                                    echo '<input type="text" name="things_val[]" class="text_input request_input">';
-                                    echo '<button type="button" onclick="add_input(this)" class="add_rem_btn">Add</button>';
+                                    echo '<input type="text" name="item[]" class="text_input request_input">';
+                                    echo '<input type="text" name="amount[]" class="text_input request_input">';
+                                    echo '<button type="button" onclick="add_new(this)" class="add_rem_btn">Add</button>';
+                                    echo "<input type='checkbox' onchange='checkbox_val(this)'>";
+                                    echo "<input type='hidden' name='mark[]' value='promise'>";
+                                    echo "<input type='hidden' name='update_id[]' value='0'>";
                                 echo '</div>';
                             echo '</div>';
                             echo '<div id="promise_td">';
@@ -172,14 +215,18 @@
                                         echo '</tr>';
                                 echo '</table>';
 
-                            echo '</div>';                    
+                            echo '</div>';
+
                             echo '<div class="pro_button">';
                                 echo '<input name="submit_button" type="submit"  value="PROMISE"  class="submit_button" id=req_submit_btn >';
                             echo '</div>';
                         echo '</div>';
-                    }
-                ?>
-            </form>
-        </div>
+                    }                
+                echo "<input id='del_detail' type='hidden' name='del' value=''>";
+            echo '</form>';
+        echo '</div>';
+        }
+        
+    ?>
     </body>
 </html>

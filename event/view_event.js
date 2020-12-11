@@ -112,20 +112,21 @@ function update(){
 ///////////////////////////////////////////
 
 
-var help_people_html='<div id=requested_container>';
-if(volunteer_status=='applied'){
-    help_people_html +=  "<button name='help_via' value='yourselef'>Help Yourself </button></br>";
-}/*else{
-    help_people_html +=  "<button >Join as volunteer</button></br>";
-}*/
-
-for(org in organization){
-    help_people_html += "<button name='help_via' value="+ organization[org]['org_id'] +">Help with "+ organization[org]['org_name'] +"</button></br>";
-}
-help_people_html +='</div>';
 var requested = document.getElementsByClassName('requested');
-for(div in requested){
-    requested[div].innerHTML += help_people_html;
+for(div of requested){
+
+    var help_people_html ='<div id=requested_container>';
+    if(volunteer_status=='applied'){
+        help_people_html +=  "<a href='/event/help?event_id="+event_id+"&by=your_self&to="+div.previousElementSibling.value+"' ><button>Help Yourself </button></a></br>";
+    }/*else{
+    help_people_html +=  "<button >Join as volunteer</button></br>";
+    }*/
+
+    for(org of organization){
+        help_people_html += "<a href='/event/help?event_id="+event_id+"&by="+org['org_id']+"&org_name="+org['org_name']+"&event="+event_id+"&to="+div.previousElementSibling.value+"'><button>Help with "+ org['org_name'] +"</button></a></br>";
+    }
+    help_people_html +='</div>';
+    div.innerHTML += help_people_html;
 }
 function help_option(element){
     var inner = element.querySelector('#requested_container');

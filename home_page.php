@@ -16,7 +16,6 @@
         <script>
             btnPress(1);
         </script>
-
         <div class="title">
             <div id='cover'>
                 <?php
@@ -28,7 +27,7 @@
                 ?>
                 <img id="cover_photo" src="<?php echo $cover_path;?>" alt="Opps..." class="cover_pic">
                 <form method='post' action="http://eme-service.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_cover_form>
-                
+
                     <input type=file name=upload_file accept="image/jpeg" id=upload_cover_btn style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Covers/">
                     <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
@@ -46,7 +45,7 @@
                 ?>
                 <img src="<?php echo $profile_path;?>" alt="Opps..." class="profile_pic">
                 <form method='post' action="http://eme-service.000webhostapp.com/upload.php" enctype="multipart/form-data" id=upload_profile_form>
-                
+
                     <input type=file name=upload_file accept="image/jpeg" id=upload_profile_btn style="display:none" onchange="this.parentElement.submit()">
                     <input type=hidden name="directory" value="Profiles/">
                     <input type=hidden name="filename" value="<?php echo $_SESSION['user_nic']?>">
@@ -59,11 +58,11 @@
             </div>
         </div>
 
-        
+
         <div id='home_sub_body'>
             <div class="detail">
                 <div id='intro_heading'>Intro</div>
-                <div class="edit_btn">  
+                <div class="edit_btn">
                     <a href='update_cd.php'><button id='edit_info_button'>Edit info</button></a>
                 </div>
                 <table style="width:100%">
@@ -113,7 +112,6 @@
                 ?>
             </div>
         </div>
-
+            <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
     </body>
-
 </html>

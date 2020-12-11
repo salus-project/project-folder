@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>view organization</title>
-        <link rel="stylesheet" href='/organization/view_org.css'>
+        <link rel="stylesheet" href='/css_codes/view_org.css'>
         <link rel="stylesheet" href='/css_codes/publ.css'>
     </head>
     <body>
@@ -80,6 +80,7 @@
                 }
             ?>
         </div>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/includes/footer.php" ?>
         <script>
             var choose_file = document.getElementById('hidden_upload_file');
             function upload(){

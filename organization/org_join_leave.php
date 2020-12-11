@@ -12,7 +12,7 @@
     <body>
         <?php
             if($_SERVER['REQUEST_METHOD']=='GET'){
-                $org_id=$_GET['edit_detail'];
+                $org_id=$_GET['org_id'];
             }
             $nic=$_SESSION['user_nic'];    
             $value="null";

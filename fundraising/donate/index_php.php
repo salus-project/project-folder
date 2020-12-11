@@ -1,90 +1,66 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     require $_SERVER['DOCUMENT_ROOT']."/confi/verify.php";
- 
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $id=$_POST['id'];
-        $by=$_POST['by'];
-        $by_person=$_SESSION['user_nic'];
-        if(isset($_POST['pro_cancel_button'])){
-            if($by=="your_self"){
-                $query2="DELETE from fundraising_pro_don WHERE by_person='".$by_person."' and for_fund='".$id."'";
-                $query_run2=mysqli_query($con,$query2);
-            }else{
-                $by_org=$by;
-                $query2="DELETE from fundraising_pro_don WHERE by_org='".$by_org."' and for_fund='".$id."'";
-                $query_run2=mysqli_query($con,$query2);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $by_person=$_SESSION['user_nic'];
+    $for_fund=$_POST['for_fund']?:'NULL';
+
+    if(isset($_POST['pro_cancel_button'])){
+        $query="DELETE from fundraising_pro_don_content WHERE don_id=(select id from fundraising_pro_don WHERE by_person='".$by_person."' and for_fund='".$for_fund."');
+        DELETE from fundraising_pro_don WHERE by_person='".$by_person."' and for_fund='".$for_fund."';";
+    }else{
+        $item = array_filter($_POST['item']);
+        $amount = $_POST['amount'];
+        $update_id=$_POST['update_id'];
+        $mark=$_POST['mark'];
+        $note=filt_inp($_POST['note'])?:'';
+        
+        $query='';
+
+        if($_POST['entry_update_id']!=0){
+            $del_detail = array_filter(explode(',', $_POST['del']));
+
+            $query = '';
+            foreach( $del_detail as $row_del){
+                $query.= "delete from fundraising_pro_don_content where id=".$row_del.";";
+            }
+            $query.="update fundraising_pro_don set note='".$note."' where id={$_POST['entry_update_id']};";
+            for($x=0 ; $x < count($item) ; $x++){
+                if(!empty($item[$x])){
+                    $item1=filt_inp(ready_input($item[$x]));
+                    $amout1=filt_inp($amount[$x]);
+                    if(empty($amount[$x])){
+                            $amout1=0;
+                    }
+                    if($update_id[$x]=='0'){
+                        $query .= "INSERT INTO fundraising_pro_don_content (don_id, item, amount, pro_don) VALUES ({$_POST['entry_update_id']}, '".$item1."', '".$amout1."', '{$mark[$x]}');";
+                    }else{
+                        $query .= "UPDATE `fundraising_pro_don_content` SET item='".$item1."', amount = '".$amout1."', pro_don='{$mark[$x]}' where id=$update_id[$x];";
+                    }
+                }
             }
         }else{
-           
-            $donation_quan=$_POST["donation"];
-            $note1=$_POST['note'];
-            $note="";
-            if($note1==NULL){
-                $note="";
-            }else{
-                $note=$note1;
-            }
-            $by_person=$_SESSION['user_nic'];
 
-            $query="select * from fundraisings where id=".$id;
-            $result=($con->query($query))->fetch_assoc();
-
-            $content="";
-            if($result['type']=="money only"){
-                if(empty($donation_quan[0])){
-                    $donation_quan[0]=0;
+            $query = "insert into fundraising_pro_don (by_person, for_fund, note) values ($by_person,$for_fund,'".$note."');";
+            if(count($item)>0){                
+                $querry_arr = array();
+                for($x=0; $x < count($item); $x++ ){
+                    $item1=filt_inp(ready_input($item[$x]));
+                    $row_amount = filt_inp($amount[$x])?:'0';
+                    array_push($querry_arr, "(last_insert_id(),'".$item1."','$row_amount','$mark[$x]')");
                 }
-                $content.="money:".$donation_quan[0].",";
-                
-            }elseif($result['type']=="things only"){
-                $things=explode(",",$result['expecting_things']);
-                for($x=0 ; $x < count($things) ; $x++){
-                    if(empty($donation_quan[$x])){
-                        $donation_quan[$x]=0;
-                    }
-                    $content.=(explode(":",$things[$x]))[0].":".$donation_quan[$x].",";
-                }
-            }else{
-                if(empty($donation_quan[0])){
-                    $donation_quan[0]=0;
-                }
-                $content.="money:".$donation_quan[0].",";
-                $things=explode(",",$result['expecting_things']);
-                for($x=0 ; $x < count($things) ; $x++){
-                    if(empty($donation_quan[$x+1])){
-                        $donation_quan[$x+1]=0;
-                    }
-                    $content.=(explode(":",$things[$x]))[0].":".$donation_quan[$x+1].",";
-                }
-                
+                $query.= "INSERT INTO `fundraising_pro_don_content`(`don_id`, `item`, `amount`, `pro_don`) VALUES ". implode(", ", $querry_arr).";";
             }
-
-            $content1=substr($content,0,-1);
-            $query_run=$query_run1=false;
-            if($by=="your_self"){          
-                if (isset($_POST['pro_submit_button'])){
-                    $query="INSERT INTO fundraising_pro_don (pro_don, by_person, for_fund, content, note) VALUES ('promise', '$by_person', '$id', '$content1', '$note')";
-                    $query_run= mysqli_query($con,$query);
-                }elseif(isset($_POST['pro_edit_button'])){
-                    $query1="UPDATE `fundraising_pro_don` SET content='$content1',note='$note' where by_person='".$by_person."' and for_fund='".$id."'";
-                    $query_run1= mysqli_query($con,$query1);       
-                }
-            }else{
-                $by_org=$by;
-                if (isset($_POST['pro_submit_button'])){
-                    $query="INSERT INTO fundraising_pro_don (pro_don, by_org, for_fund, content, note) VALUES ('promise', '$by_org', '$id', '$content1', '$note')";
-                    $query_run= mysqli_query($con,$query);
-                }elseif(isset($_POST['pro_edit_button'])){
-                    $query1="UPDATE `fundraising_pro_don` SET content='$content1',note='$note' where by_org='".$by_org."' and for_fund='".$id."'";
-                    $query_run1= mysqli_query($con,$query1);       
-                }
-            }
+            
         }
-        if($query_run || $query_run1 || $query_run2){
-            header('location:/fundraising/index.php');
-        }else{
-            echo '<script type="text/javascript"> alert ("Not donated") </script>';
-        }
-    }	
+    }
+
+    if(mysqli_multi_query($con, $query)){
+        header('location:'.$_SERVER['HTTP_REFERER']);
+    }else{
+        //header("location:/event/help?event_id=".$event_id."&by=".$by."&to=".$to);
+        echo "<br>Not Success";
+    }
+}
 ?>
