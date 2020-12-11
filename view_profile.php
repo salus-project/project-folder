@@ -44,6 +44,12 @@ while($row=$viewer->fetch_assoc()){
                 <span id='name'><?php echo $first_name . " " . $last_name; ?></span>
             </div>
         </div>
+        <?php if($viewer_nic!=$_SESSION['user_nic']){
+            ?>
+        <a id="send_message" href="/message/?to_person=<?php echo $viewer_nic; ?>">
+            <i class="fas fa-comments"></i> message
+        </a>
+        <?php } ?>
     </div>    
 </div>
 
