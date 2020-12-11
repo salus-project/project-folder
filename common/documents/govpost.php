@@ -1,23 +1,24 @@
 <?php
     ob_start();
     session_start();
-    require 'confi.php';
-    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require 'confi.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
 
     if(isset($_POST['post'])){
 
         $target_file = "NULL";
-        $url = "";
+        $img = "";
 
         if(isset($_FILES['upload_file']) && $_FILES['upload_file']['size']>0){
-            $txt_file = "gov_posts/next_img_name.txt";
+            $txt_file = $_SERVER['DOCUMENT_ROOT'] . "/common/documents/gov_posts/next_img_name.txt";
             $img_name = file_get_contents($txt_file);
             $writeVal = (string)((int)$img_name+1);
             file_put_contents($txt_file,$writeVal);
 
-            $target_dir = "gov_posts/";
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/common/documents/gov_posts/";
             $target_file = $target_dir . $img_name . ".jpg";
+            $img = $img_name;
             echo "target file - ". $target_file . "</br>";
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -62,28 +63,28 @@
         $date = date('Y-m-d');
         $event = $_POST['event']?$_POST['event']:'NULL';
         
-        $sql = "INSERT INTO `goveposts`(`date`, `heading`, `content`, `event`, `img`) VALUES ('$date', '$heading', '$content', $event, '$target_file')";
+        $sql = "INSERT INTO `goveposts`(`date`, `heading`, `content`, `event`, `img`) VALUES ('$date', '$heading', '$content', $event, '$img')";
 
         if (!mysqli_query($con,$sql)) {
             echo "Your post is not inserted<br>";
-            echo $sql;
         } else {
             echo "<h2>Posted</h2>";
             header("location:".$_SERVER['HTTP_REFERER']);
             
         }
     }elseif(isset($_POST['update'])){
+        $post_index = $_POST['post_index'];
         $heading = htmlspecialchars(stripslashes(trim($_POST['heading'])));
         $content = htmlspecialchars(stripslashes(trim($_POST['content'])));
         $event = $_POST['event']?$_POST['event']:'NULL';
 
-        $sql = "UPDATE govposts set heading = '".$heading."', content = '".$content."', event = ".$event." where post_index = ".$post_index.";";
+        $sql = "UPDATE goveposts set heading = '".$heading."', content = '".$content."', event = ".$event." where post_index = ".$post_index.";";
         mysqli_query($con,$sql);
         header("location:".$_SERVER['HTTP_REFERER']);
     }elseif(isset($_POST['delete'])){
         $post_index = $_POST['post_index'];
 
-        $sql = "DELETE from govposts where post_index = ".$post_index.";";
+        $sql = "DELETE from goveposts where post_index = ".$post_index.";";
         mysqli_query($con,$sql);
         header("location:".$_SERVER['HTTP_REFERER']);
     }

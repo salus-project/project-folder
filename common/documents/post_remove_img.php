@@ -1,15 +1,15 @@
 <?php
     ob_start();
     session_start();
-    require 'confi.php';
-    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require 'confi.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
 
     if(isset($_POST['remove'])){
         $file = $_POST['file'];
         $post_id = $_POST['post_id'];
 
-        unlink('public_posts/'.$file);
+        unlink($_SERVER['DOCUMENT_ROOT'] . "/common/documents/public_posts/".$file);
         
         $sql = "UPDATE `public_posts` SET `img`='' where `post_index` = ".$post_id.";";
 

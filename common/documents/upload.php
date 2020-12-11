@@ -11,14 +11,21 @@
         }
 
         $target_dir = $_POST['directory'];
-        $full_file_name = $filename . "." . strtolower(pathinfo(basename($_FILES["upload_file"]["name"]),PATHINFO_EXTENSION));
+        $full_file_name = $filename . ".jpg";
         $target_file = $target_dir . $full_file_name;
         
         
         if (move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file)) {
-            echo $target_file;
+            echo "<img src='".$target_file.".jpg?n=1'>";
             if(isset($_POST['header'])){
                 $size = ob_get_length();
+                
+                // header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+                // header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                // header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                // header("Cache-Control: post-check=0, pre-check=0", false);
+                // header("Pragma: no-cache");
+
                 header("Content-Encoding: none");
                 header("Content-Length: {$size}");
                 header("location:".$_SERVER['HTTP_REFERER']);

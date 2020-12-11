@@ -1,22 +1,23 @@
 <?php
     ob_start();
     session_start();
-    require 'confi.php';
-    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require 'confi.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
 
     if(isset($_POST['submit'])){
 
         $target_file = "";
-        $url = "";
+        $img = "";
 
         if(isset($_FILES['upload_file']) && $_FILES['upload_file']['size']>0){
-            $txt_file = "public_posts/next_img_name.txt";
-            $img_name = file_get_contents("public_posts/next_img_name.txt");
+            $txt_file = $_SERVER['DOCUMENT_ROOT'] . "/common/documents/public_posts/next_img_name.txt";
+            $img_name = file_get_contents($_SERVER['DOCUMENT_ROOT']."/common/documents/public_posts/next_img_name.txt");
             $writeVal = (string)((int)$img_name+1);
-            file_put_contents("public_posts/next_img_name.txt",$writeVal);
+            file_put_contents($_SERVER['DOCUMENT_ROOT']."/common/documents/public_posts/next_img_name.txt",$writeVal);
 
             $target_dir = "public_posts/";
+            $img = $img_name;
             $target_file = $target_dir . $img_name . ".jpg";
             echo "target file - ". $target_file . "</br>";
             $uploadOk = 1;
@@ -55,7 +56,6 @@
                     echo "<h1>Sorry, there was an error uploading your file.<h1>";
                 }
             }
-            $url = 'http://d-c-a.000webhostapp.com/'. $target_file;
         }
 
         $content = htmlspecialchars(stripslashes(trim($_POST['post_text_area'])));
@@ -83,7 +83,7 @@
         $tag_link = $_POST['tag_link'];
 
         
-        $sql = "INSERT INTO public_posts (type, author, org, fund, date, content, img, tag, tag_link) VALUES ('$type', $author, $org, $fund, '$date', '$content', '$url', '$tag', '$tag_link')";
+        $sql = "INSERT INTO public_posts (type, author, org, fund, date, content, img, tag, tag_link) VALUES ('$type', $author, $org, $fund, '$date', '$content', '$img', '$tag', '$tag_link')";
 
         if (!mysqli_query($con,$sql)) {
             echo "Your post is not inserted<br>";
@@ -100,12 +100,12 @@
 
         $sql = "UPDATE public_posts set content = '".$content."', tag = '".$tag."', tag_link = '".$tag_link."' where post_index = ".$post_index.";";
         mysqli_query($con,$sql);
-        header("location:".$_SERVER['HTTP_REFERER']);
+        header("location:/publicpost/view_post.php?post_index=".$post_index);
     }elseif(isset($_POST['delete'])){
         $post_index = $_POST['post_index'];
 
         $sql = "DELETE from public_posts where post_index = ".$post_index.";";
         mysqli_query($con,$sql);
-        header("location:".$_SERVER['HTTP_REFERER']);
+        header("location:/publicpost/");
     }
 ?>
