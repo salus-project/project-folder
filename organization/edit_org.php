@@ -13,7 +13,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/edit_org_php.php';
     $phone_num=$result['phone_num'];
     $discription=$result['discription']; 
 ?>
-<title>create new organization </title>
+<title><?php echo $org_name ?> Edit detail</title>
 <link rel='stylesheet' href='/css_codes/create_org.css'>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script>

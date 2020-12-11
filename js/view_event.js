@@ -34,7 +34,7 @@ safe_btn.innerHTML = html1;
 
 switch(help_status){
     case 'not_requested':
-        var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help() disabled>Request help</button>";
+        var html2 = "<button data-button-target='help_request_popup' id='request_help' name=method value=request onclick=request_help()>Request help</button>";
         break;
 
     case 'requested':

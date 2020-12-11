@@ -139,7 +139,7 @@ class GovPost{
             if(this.readyState == 4 && this.status == 200){
                 obj.body.querySelector('#page_loader').outerHTML='';
                 if(this.responseText=='[]'){
-                    obj.body.innerHTML += "<div>End of posts</div>";
+                    obj.body.innerHTML += "<div></div>";
                     obj.first = false;
                 }else{
                     obj.ajax_response=JSON.parse(this.responseText);

@@ -154,7 +154,8 @@ class Popup_window {
         }
     }
 }
-let overlay_obj = new Overlay()
+
+let overlay_obj = new Overlay();
 var event_container_obj = new Popup_window(document.getElementById('event_container'));
 var notification_container_obj = new Popup_window(document.getElementById('notification_container'));
 var organization_container_obj = new Popup_window(document.getElementById('menubar_org_container'));

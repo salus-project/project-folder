@@ -33,7 +33,7 @@
             </div>
         </div>
             <div id="titlebar">
-                <span id="dcaname">Disaste and Crisis Assistance</span>
+                <span id="dcaname">Disaster and Crisis Assistance</span>
             </div>
 
             <div>
