@@ -210,6 +210,36 @@ class EventGeo{
             this.map.fitBounds(this.place.getBounds());
         }catch(err){} 
     }
+    create_place(arr,cent=false){
+        switch(arr['type']){
+            case 'suggested_circle':
+                this.draw_circle(arr['latitude'], arr['longitude'],arr['radius'], 'suggested', arr['detail'], cent);
+                break;
+            case 'suggested_area':
+                this.markPlace(JSON.parse(arr['geojson']), 'suggested', arr['detail'], cent);
+                break;
+            case 'relief_circle':
+                this.draw_circle(arr['latitude'], arr['longitude'],arr['radius'], 'relief', arr['detail'], cent);
+                break;
+            case 'relief_area':
+                this.markPlace(JSON.parse(arr['geojson']), 'relief', arr['detail'], cent);
+                break;
+            case 'rescue_circle':
+                this.draw_circle(arr['latitude'], arr['longitude'],arr['radius'], 'rescue', arr['detail'], cent);
+                break;
+            case 'rescue_area':
+                this.markPlace(JSON.parse(arr['geojson']), 'rescue', arr['detail'], cent);
+                break;
+            case 'medical':
+            case 'donation':
+            case 'other':
+                myGeo.addMarker(arr['latitude'], arr['longitude'], arr['type'], arr['detail'], cent);
+                break;
+            default:
+                console.log('error');
+            
+        }
+    }
 }
 
 function create_place(arr,cent=false){

@@ -70,7 +70,7 @@
                                 
                             </div>
                         </div>
-                        <div class='comment_box_container'>
+                        <div class='comment_box_container' onkeydown='{if(event.which==13||event.keyCode==13) this.getElementsByClassName(\"send_icon\")[0].click()}'>
                             <div class='comment_box'>
                                 <div class='lds-default'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                             </div>
