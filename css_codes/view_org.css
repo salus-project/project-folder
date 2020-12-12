@@ -136,7 +136,7 @@
     padding: 0px;
     font-size: 16px;
     background-color: #2980B9;
-    height: 27px;
+    height: 100%;
     width: 100%;
     font-family: "Open Sans";
     cursor: pointer;
@@ -148,6 +148,7 @@
     flex-wrap: nowrap;
     border: 1px solid #d8e0e7;
     margin-top: 5px;
+    height: 27px;
 }
 .addd_remove_main{
     width: 70%;
