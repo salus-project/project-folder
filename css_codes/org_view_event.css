@@ -22,6 +22,7 @@
     padding: 5px;
     width: 100%;
     background: transparent;
+    table-layout: fixed;
 }
 .org_event_head, .org_event_requests{
     background-color: #0c7dff47;
