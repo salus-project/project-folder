@@ -29,7 +29,7 @@
     border: 1px solid #d8e0e7;
     text-align: center;
     font-family: "Open Sans",sans-serif;
-    height: 37px;
+    min-height: 37px;
     line-height: 1.8;
     padding: 5px;
     margin: 0;
@@ -54,9 +54,11 @@ td.org_view_event_td, #column2{
 }*/ 
 
 #event_header{
-    height:150px;
-    border:1px solid black;
+    height: 150px;
+    border: 1px solid #d8e0e7;
     background-color: #2980B9;
+    width: 99.5%;
+    margin: auto;
 }
 #title_box{
     color: white;
@@ -95,7 +97,7 @@ td.org_view_event_td, #column2{
     width: 99%;
 }
 .dis_container{
-    width: 250px;
+    max-width: 400px;
     margin: auto;
     border-collapse: separate;
     position: relative;
