@@ -75,6 +75,7 @@ td.view_event_td, #column2{
     padding: 5px;
     vertical-align: middle;
     color:#6b7c93;
+    word-break: break-all;
 }
 td.view_event_td:hover{
     background: #f2f2f2;
