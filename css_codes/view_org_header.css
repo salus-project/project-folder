@@ -210,6 +210,7 @@
     text-align: center;
     height: 40px;
     cursor: pointer;
+    width: 100%;
 }
 #org_button_container{
     display: flex;
