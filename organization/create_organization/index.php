@@ -385,7 +385,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             var cont=document.getElementById('member_container');
             cont.innerHTML+='<div class="new_coleader">'+
                                 '<div class="autocomplete_img_cont">'+
-                                    '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
+                                    '<img class="autocomplete_img" src="/common/documents/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
                                 '</div>'+
                                 '<strong>'+name+'</strong>'+
                                 '<input type="hidden" name="members[]" value="'+nic+'">'+
