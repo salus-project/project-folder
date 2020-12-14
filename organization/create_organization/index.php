@@ -198,7 +198,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
         <div id="add_profile_cont">
             <div class="form_header_div">Add Profile</div>
             <div id='profile_image_container'>
-                <img id='profile_preview' src='http://d-c-a.000webhostapp.com/Organization/Profiles/default.jpg'/>
+                <img id='profile_preview' src='/common/documents/Organization/Profiles/default.jpg'/>
             </div>
             <div id='upload_profile_button' class='post_btn'>Upload photo</div>
             <form id="profile_form">
@@ -213,7 +213,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
         <div id="add_cover_cont">
             <div class="form_header_div">Add cover</div>
             <div id='cover_image_container'>
-                <img id='cover_preview' src='http://d-c-a.000webhostapp.com/Organization/Covers/default.jpg'/>
+                <img id='cover_preview' src='/common/documents/Organization/Covers/default.jpg'/>
             </div>
             <div id='upload_cover_button' class='post_btn'>Upload photo</div>
             <form id="cover_form">
@@ -237,7 +237,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
         leader_inp.value = '';
         leader_inp.setAttribute('placeholder', 'change leader');
         leader_inp.previousElementSibling.value = nic;
-        leader_inp.parentElement.previousElementSibling.innerHTML = '<div class="new_leader"><div class="autocomplete_img_cont"><img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;"></div> <strong>'+name+'</strong></div>';
+        leader_inp.parentElement.previousElementSibling.innerHTML = '<div class="new_leader"><div class="autocomplete_img_cont"><img class="autocomplete_img" src="/common/documents/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;"></div> <strong>'+name+'</strong></div>';
     }
 
     //setup before functions
@@ -323,7 +323,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             var cont=document.getElementById('coleader_container');
             cont.innerHTML+='<div class="new_coleader">'+
                                 '<div class="autocomplete_img_cont">'+
-                                    '<img class="autocomplete_img" src="http://d-c-a.000webhostapp.com/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
+                                    '<img class="autocomplete_img" src="/common/documents/Profiles/resized/'+nic+'.jpg" onload="{this.style.visibility=&quot;visible&quot;}" style="visibility: visible;">'+
                                 '</div>'+
                                 '<strong>'+name+'</strong>'+
                                 '<input type="hidden" name="coleaders[]" value="'+nic+'">'+

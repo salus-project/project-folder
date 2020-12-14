@@ -112,17 +112,21 @@
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_coleaders'])){
         $coleaders = isset($_POST['coleaders'])?$_POST['coleaders']:array();
-        $co_leader_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
-        $co_leader_subquery = [];
-        $org_id = $_POST['org_id'];
-        foreach($coleaders as $coleader){
-            array_push($co_leader_subquery, "($org_id, '$coleader', 'coleader')");
-        }
-        $co_leader_query.=(implode(', ', $co_leader_subquery));
-        if($con->query($co_leader_query)){
-            $output['status']='ok';
+        if(count($coleaders)>0){
+            $co_leader_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
+            $co_leader_subquery = [];
+            $org_id = $_POST['org_id'];
+            foreach($coleaders as $coleader){
+                array_push($co_leader_subquery, "($org_id, '$coleader', 'coleader')");
+            }
+            $co_leader_query.=(implode(', ', $co_leader_subquery));
+            if($con->query($co_leader_query)){
+                $output['status']='ok';
+            }else{
+                $output['status']='failed';
+            }
         }else{
-            $output['status']='failed';
+            $output['status']='ok';
         }
         echo json_encode($output);
 
@@ -143,17 +147,21 @@
 
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_members'])){
         $members = isset($_POST['members'])?$_POST['members']:array();
-        $member_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
-        $member_subquery = [];
-        $org_id = $_POST['org_id'];
-        foreach($members as $member){
-            array_push($member_subquery, "($org_id, '$member', 'member')");
-        }
-        $member_query.=(implode(', ', $member_subquery));
-        if($con->query($member_query)){
-            $output['status']='ok';
+        if(count($members)>0){
+            $member_query = "INSERT INTO org_members (org_id, NIC_num, role) VALUES ";
+            $member_subquery = [];
+            $org_id = $_POST['org_id'];
+            foreach($members as $member){
+                array_push($member_subquery, "($org_id, '$member', 'member')");
+            }
+            $member_query.=(implode(', ', $member_subquery));
+            if($con->query($member_query)){
+                $output['status']='ok';
+            }else{
+                $output['status']='failed';
+            }
         }else{
-            $output['status']='failed';
+            $output['status']='ok';
         }
         echo json_encode($output);
         
@@ -174,7 +182,7 @@
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_profile'])){
         if(isset($_FILES['upload_file']) && $_FILES['upload_file']['size']>0){
             $org_id=$_POST['org_id'];
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "\common\documents\Organization\Profiles\\";
+            $target_dir = "/public_html/common/documents/Organization/Profiles/";
             $target_file = $target_dir . $org_id . ".jpg";
             $full_file_name = $org_id . ".jpg";
             $uploadOk = 1;
@@ -214,11 +222,12 @@
         }else{
             $output['status']='ok';
         }
+        echo $target_file;
         echo json_encode($output);
     }else if($_SERVER['REQUEST_METHOD']=='POST' and isset($_POST['add_cover'])){
         if(isset($_FILES['upload_file']) && $_FILES['upload_file']['size']>0){
             $org_id=$_POST['org_id'];
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "\common\documents\Organization\Covers\\";
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/common/documents/Organization/Covers/";
             $target_file = $target_dir . $org_id . ".jpg";
             $full_file_name = $org_id . ".jpg";
             $uploadOk = 1;
