@@ -16,7 +16,8 @@
         
         
         if (move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file)) {
-            echo "<img src='".$target_file.".jpg?n=1'>";
+            echo "<img src='".$target_file."?n=1'>";
+            echo $target_file;
             if(isset($_POST['header'])){
                 $size = ob_get_length();
                 
@@ -32,7 +33,6 @@
                 header("Connection: close");
 
                 ob_end_flush();
-                ob_flush();
                 flush();
             }
             if(isset($_POST['resize'])&&$_POST['resize']=='true'){
