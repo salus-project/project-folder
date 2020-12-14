@@ -1,5 +1,5 @@
 <?php
-    //error_reporting(0);
+    error_reporting(1);
 
     ob_start();
     ignore_user_abort();
@@ -77,7 +77,7 @@
 
         private function __construct()
         {
-            $this->con = mysqli_connect($this->host, $this->user, $this->pass) or header('location:/confi/error.html');
+            $this->con = mysqli_connect($this->host, $this->user, $this->pass) /*or header('location:/confi/error.html')*/;
             mysqli_select_db($this->con, $this->name);
         }
 
@@ -91,7 +91,7 @@
 
         public static function close_con(){
             if (self::$instance) {
-                self::$instance->con->close();
+                //self::$instance->con->close();
             }
         }
     }
