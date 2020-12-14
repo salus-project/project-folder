@@ -5,9 +5,8 @@
     width: 300px;
     border-collapse: collapse;
 }
-view_org_table td{
-    white-space: normal;
-    word-wrap: break-word;
+.view_org_table td{
+    word-break: break-all;
 }
 .loader{
     border:2px solid rgb(202, 202, 202);
