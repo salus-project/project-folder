@@ -13,7 +13,7 @@
                 echo "<div class=view_all>EVENTS</div><button class='event_setting_btn' type=button><i class='fa fa-cog'  aria-hidden='true'></i></button>";
                 echo "<div class='hidden_event_div'><a href='/event'><button type=button class='event_name view_all_btn' name=event_id>View all</button></a></div>";
                 while($row=$result->fetch_assoc()){
-                    echo "<tr><td class=name ><button type=submit class='event_name ". $row['status'] ."_event' name=event_id value=" . $row['event_id'] . ">" . $row['name'] . "</button></td></tr>";
+                    echo "<tr><td class=name ><button type=submit class='event_name ". $row['status'] ."_event' name=event_id value=" . $row['event_id'] . "><div><img src='/common/documents/Event/resized/".$row['event_id'].".jpg'></div>" . $row['name'] . "</button></td></tr>";
                 }
             ?>
         </table>
