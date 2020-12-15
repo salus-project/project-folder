@@ -17,7 +17,7 @@
                 <?php
                     $org_detail=$con->query('select org_name,org_id from organizations');
                     while($row=$org_detail->fetch_assoc()){
-                        echo "<tr><td class='name_td'><button class='org_name' type='submit' name='selected_org' value='".$row['org_id']."'>".$row['org_name']."</button</td></tr>";
+                        echo "<tr><td class='name_td'><button class='org_name' type='submit' name='selected_org' value='".$row['org_id']."'><div><img src='/common/documents/Organization/Profiles/resized/".$row['org_id'].".jpg'></div>".$row['org_name']."</button</td></tr>";
                     }
                 ?>
             </table>
