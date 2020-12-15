@@ -42,7 +42,7 @@
                             <div class='org_main'>
                                 <div class='org_logo_container'>";
                                     $org_profile_path =" /common/documents/Organization/Profiles/" . $my_org['org_id'] . ".jpg";
-                                    echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
+                                    echo '<img src="'. $org_profile_path.'" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">
                                     <button class="org_name_btn" type="submit" name="selected_org" value="'.$my_org['org_id'].'">'.$my_org['org_name'].'<br>'.$my_org['role'].'</button>
