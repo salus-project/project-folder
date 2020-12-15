@@ -1,6 +1,6 @@
 #msg_b{
-	font-size:20px;
-	resize: horizontal;
+    resize: horizontal;
+    line-height: 20px;
 }  
 #feedback{
 	font-size:15px;
@@ -91,7 +91,9 @@
 	display: inline-block;
     line-height: 51px;
 	margin-left: 12px;
-	margin-top: 7px;
+    margin-top: 7px;
+    font-family: Segoe UI,Helvetica Neue,Helvetica,Lucida Grande,Arial,Ubuntu,Cantarell,Fira Sans,sans-serif;
+    color: #5a5a5a;
 }
 .Msg_nav_detail{
 	display: inline-block;
@@ -188,7 +190,9 @@
     font-weight: 700;
 	font-size: 17px;
 	margin-top: 8px;
-	margin-bottom: 2px;
+    margin-bottom: 2px;
+    font-family: Segoe UI,Helvetica Neue,Helvetica,Lucida Grande,Arial,Ubuntu,Cantarell,Fira Sans,sans-serif;
+    color: #5a5a5a;
 }
 .Msg_head_name_grp{
     font-size: 25px;
@@ -234,6 +238,8 @@
     font-size: 15px;
     font-weight: 400;
     border-radius: 20px !important;
+    font-family: Open Sans, sans-serif;
+    color: #4d545e;
 }
 
 .msg_post_btn{
