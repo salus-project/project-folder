@@ -14,7 +14,7 @@
     $org_id=$_GET['selected_org'];
     $query="select * from organizations where org_id=".$_GET['selected_org'].";
     select * from org_members where org_id=".$_GET['selected_org']." and NIC_num='".$_SESSION['user_nic']."';";
-
+    echo $query;
     $text_role='';
     $member_arr=$co_leader_arr=array();
     if(mysqli_multi_query($con,$query)){
