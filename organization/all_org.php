@@ -72,7 +72,7 @@
                             <div class='org_main'>
                                 <div class='org_logo_container'>";
                                     $org_profile_path =" /common/documents/Organization/Profiles/" . $org[1] . ".jpg";
-                                    echo '<img src="<?php echo $org_profile_path;?>" alt="Opps..." class="org_logo_pic">
+                                    echo '<img src="'. $org_profile_path.'" alt="Opps..." class="org_logo_pic">
                                 </div>
                                 <div class="org_name_des">
                                     <button class="org_name_btn" type="submit" name="selected_org" value="'.$org[1].'">'.ucfirst($org[0]).'<br>'.$org[2].'</button>
