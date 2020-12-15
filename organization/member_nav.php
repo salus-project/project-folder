@@ -26,8 +26,6 @@
         mysqli_free_result($result1);
     }
 ?>
-
-        <title>view organization</title>
         <link rel="stylesheet" href='/css_codes/view_org.css'>
         <link rel="stylesheet" href='/css_codes/publ.css'>
 
