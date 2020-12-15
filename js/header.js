@@ -21,9 +21,11 @@ window.addEventListener('load', function() {
         })
     }*/
     document.getElementById('wrapper_container').style.opacity='0';
-    setTimeout(function(){ document.getElementById('wrapper_container').remove() }, 500);
+    setTimeout(function(){
+        document.getElementById('wrapper_container').remove();
+    }, 500);
+    document.getElementById('main_footer').nextElementSibling.remove();
 });
-
 var btn_num;
 
 // function btnPress(btn){
