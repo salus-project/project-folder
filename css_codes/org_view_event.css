@@ -67,6 +67,7 @@ td.org_view_event_td, #column2{
 }
 #org_detail_body{
     display:flex;
+    flex-flow: wrap row;
 }
 #social_events{
     display: flex;
