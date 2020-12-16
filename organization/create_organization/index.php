@@ -27,8 +27,9 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             <div class="name_div">
                 <label class='create_org_label'>Organization name</label>
                 <div>
-                    <div ng-class="{'has-error': (createOrgForm.org_name.$invalid && createOrgForm.org_name.$touched)}">
+                    <div ng-class="{'has-error': (createOrgForm.org_name.$invalid && createOrgForm.org_name.$touched)}" class="form_input">
                         <input class="create_org_input" id='org_name_inp' type='text' name="org_name"  ng-model="orgName" required>
+                        <div></div>
                         <div></div>
                     </div>
                     <span class='error'><?php echo $nameErr ?></span>
@@ -86,11 +87,6 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 }
             </script>
 
-            <!--div class="co_leader_div">
-                <label class="create_org_label">Co-leaders</label> 
-                <div class="input_container" id='coleader_container'></div>
-            </div-->
-
             <div class="dis_div">
                 <label class="create_org_label">Service district</label>
                 <div class="custom-select" style="width:200px;">
@@ -113,8 +109,10 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             <div class="email_div">
                 <label class="create_org_label">Organization Email</label>
                 <div>
-                    <div ng-class="{'has-error': createOrgForm.email.$invalid}">
+                    <div ng-class="{'has-error': createOrgForm.email.$invalid}" class="form_input">
                         <input class="create_org_input" type='email' name="email" ng-model="orgMail">
+                        <div></div>
+                        <div></div>
                     </div>
                     <span class='error' data-ng-show="createOrgForm.email.$error.email && createOrgForm.email.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Email</span>
                 </div>
@@ -123,8 +121,10 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
             <div class="phone_div">
                 <label class="create_org_label">Phone number</label>
                 <div>
-                    <div ng-class="{'has-error': (createOrgForm.phone_num.$invalid && createOrgForm.phone_num.$touched)}">
+                    <div ng-class="{'has-error': (createOrgForm.phone_num.$invalid && createOrgForm.phone_num.$touched)}" class="form_input">
                         <input class="create_org_input" type='tel' name="phone_num" pattern="[0-9]{9}|[0-9]{10}" minlength="9" maxlength="10" ng-model="orgNum">
+                        <div></div>
+                        <div></div>
                     </div>
                     <span class='error' data-ng-show="createOrgForm.phone_num.$invalid && createOrgForm.phone_num.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Number Format</span>
                 </div>
@@ -135,15 +135,6 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
                 <textarea class="create_org_textarea" name='description'></textarea>
             </div>
 
-            <!--div class="mem_div">
-                <label class="create_org_label"> Members</label> 
-                <div class="input_container" id="member_container">
-                    <div class="input_sub_container">
-                        <input type="text" class="create_org_input" name='members[]'>
-                        <button type="button" onclick="add(this)" class="add_rem_btn">Add</button>
-                    </div>
-                </div>
-            </div-->
             </div>
             <div class="create_org_btn_container">
                 <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button type='button' name='cancel_button' class="create_org_cancel_btn submitt">Cancel</button></a>
@@ -243,13 +234,15 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
     //setup before functions
     var typingTimer;                //timer identifier
     var doneTypingInterval = 2000;  //time in ms, 5 second for example
-    var input = document.getElementById('org_name_inp');
+    var inputs = document.getElementById('form_sub_body').querySelectorAll('input[type=text], input[type=email], input[type=tel]');
 
     //on keyup, start the countdown
-    input.addEventListener('keyup', function () {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(doneTyping, doneTypingInterval);
-    });
+    for(input of inputs){
+        input.addEventListener('keyup', function (e) {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval, e);
+        });
+    }
 
     //on keydown, clear the countdown 
     input.addEventListener('keydown', function () {
@@ -257,24 +250,33 @@ require $_SERVER['DOCUMENT_ROOT'].'/organization/create_organization/create_org_
     });
 
     //user is "finished typing," do something
-    function doneTyping () {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                if(this.responseText==='1'){
-                    input.classList.add('ng-invalid');
-                    input.nextElementSibling.outerHTML='<div class="name_exist">Name already exist.</div>';
-                }else{
-                    input.classList.remove('ng-invalid');
-                    input.nextElementSibling.innerHTML='<div class="name_available">Name available.</div>';
+    function doneTyping (e) {
+        var ele = e.target;
+        if(ele.value==='' || ele.classList.contains('ng-invalid')){
+            ele.classList.remove('valid_ipput');
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    ele.nextElementSibling.innerHTML = "";
+                    data = JSON.parse(this.responseText);
+                    if(data.status===false){
+                        ele.classList.remove('valid_ipput');
+                        ele.classList.add('ng-invalid');
+                        ele.nextElementSibling.nextElementSibling.outerHTML='<div class="name_exist">'+data.error+'</div>';
+                    }else{
+                        ele.classList.remove('ng-invalid');
+                        ele.classList.add('valid_input')
+                        ele.nextElementSibling.nextElementSibling.innerHTML='<div class="name_available">'+data.result+'</div>';
+                    }
                 }
-            }
-            if(this.readyState == 1){
-                input.nextElementSibling.innerHTML = "<div class='loader'></div>";
-            }
-        };
-        xhttp.open('GET', '/organization/create_organization/validate_name_ajax.php?name='+input.value,true);
-        xhttp.send();
+                if(this.readyState == 1){
+                    ele.nextElementSibling.innerHTML = "<div class='loader'></div>";
+                }
+            };
+            xhttp.open('GET', '/organization/create_organization/ajax_validate.php?name='+ele.name+'&value='+ele.value,true);
+            xhttp.send();
+        }
     }
 
     document.getElementById('submitBtn').onclick = function(e){
