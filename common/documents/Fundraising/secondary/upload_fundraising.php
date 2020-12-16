@@ -1,7 +1,7 @@
 <?php
     ob_start();
-    require $_SERVER['DOCUMENT_ROOT'] .'/confi.php';
-    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require $_SERVER['DOCUMENT_ROOT'] .'/confi.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
 
     if(isset($_POST['upload'])){
@@ -30,10 +30,10 @@
             }
             
             // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.<br>";
-                $uploadOk = 0;
-            }
+            // if (file_exists($target_file)) {
+            //     echo "Sorry, file already exists.<br>";
+            //     $uploadOk = 0;
+            // }
             // Check file size
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
