@@ -89,7 +89,7 @@
     position: absolute;
     bottom:10px;
     left: 27px;
-    text-align: center;
+    text-align: left;
     order: -1; 
 }
 
@@ -105,7 +105,6 @@
     font-size: 30px;
     font-family: Open Sans,sans-serif;
     color: white;
-    margin-left: 10px;
     transition: color 3s;
 }
 .org_title:hover #org_name,.org_title:hover #org_detail{
