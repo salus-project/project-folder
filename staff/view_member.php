@@ -13,7 +13,6 @@
     $query="select * from civilian_detail where NIC_num ='". $_GET['nic']."'";
     $result=($con->query($query))->fetch_assoc();
     $name=$result['first_name']." ".$result['last_name'];
-    $gender=$result['gender'];
     $district=$result['district'];
     $village=$result['village'];
     $street=$result['street']; 
@@ -46,10 +45,7 @@
             <td><?php echo "Full name" ?></td>
             <td><?php echo $name; ?></td>
         </tr>
-        <tr>
-            <td><?php echo "Gender" ?></td>
-            <td><?php echo $gender; ?></td>
-        </tr>
+        
         <tr>
             <td><?php echo "District" ?></td>
             <td><?php echo $district; ?></td>
