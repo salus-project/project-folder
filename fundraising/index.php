@@ -44,8 +44,9 @@
 						</div>';
 						}					
 					echo'</div>';
-					echo "<div class='fund_detail'>";
-						echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
+                    echo "<div class='fund_detail'>";
+                        echo "<div><img src='/common/documents/Fundraising/resized/".$row['id'].".jpg'></div>";
+						echo"<h3 style='margin-left: 75px;color:white;'>".$row['name']."</h3>";
 						echo "<div>";
 							echo "<form class=view_fund action=view_fundraising.php method=get>";
 								echo "<button class='btn_img_only' class=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
@@ -87,8 +88,9 @@
 					}						
 				echo '</div>';
 			
-				echo "<div class='fund_detail'>";
-					echo"<h3 style='margin-left: 5px;color:white;'>".$row['name']."</h3>";
+                echo "<div class='fund_detail'>";
+                    echo "<div><img src='/common/documents/Fundraising/resized/".$row['id'].".jpg'></div>";
+					echo"<h3 style='margin-left: 75px;color:white;'>".$row['name']."</h3>";
 					echo "<div>";
 						echo "<form class=view_fund action=view_fundraising.php method=get>";
 							echo "<button class='btn_img_only' class=view_fun type='submit' name=view_fun value=".$row['id'].">view</button>";
