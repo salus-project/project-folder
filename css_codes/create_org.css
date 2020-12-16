@@ -88,6 +88,21 @@
     padding-left: 10px;
 }
 
+.form_input{
+    position: relative;
+}
+
+.form_input div:nth-child(2){
+    position: absolute;
+    display: inline-block;
+    right: -10px;
+    top: -5px;
+}
+
+.form_input div:nth-child(3){
+    display: block;
+}
+
 .create_org_textarea {
     font-family: "Open Sans", sans-serif;
     min-width: 300px;
@@ -387,10 +402,16 @@
 
 /*               Angular Form validation                     */
 
+input.valid_input{
+    border: 2px solid #46a246 !important;
+}
+
 input.ng-touched.ng-invalid,
-input:required.ng-touched.ng-empty {
-    border: 2px solid #b93a29;
-    background-color: #b93a294d;
+input:required.ng-touched.ng-empty,
+input.ng-touched.ng-invalid.valid_input,
+input:required.ng-touched.ng-empty.valid_input {
+    border: 2px solid #b93a29 !important;
+    background-color: #b93a294d !important;
 }
 
 /*              /angular validation                        */
