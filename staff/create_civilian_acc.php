@@ -1,8 +1,8 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT']."/staff/header.php";
 
-    $first_name = $last_name = $gender = $nic = $address = $district=$village=$street = $occupation = $phone_number = $email_address = "";
-    $first_name_err = $last_name_err = $gender_err = $nic_err = $address_err = $district_err = $village_err =$street_err= $occupation_err = $phone_number_err = $email_address_err = ""; 
+    $first_name = $last_name = $nic = $address = $district=$village=$street = $occupation = $phone_number = $email_address = "";
+    $first_name_err = $last_name_err  = $nic_err = $address_err = $district_err = $village_err =$street_err= $occupation_err = $phone_number_err = $email_address_err = ""; 
     require $_SERVER['DOCUMENT_ROOT']."/staff/create_civilian_acc_php.php";
 ?> 
 
@@ -67,17 +67,6 @@
                 </div>
             </div>
             
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label"> Gender </label>
-                <div class="custom-select" style="width:200px;">
-                    <select name="gender" class="edit_prof_select">
-                        <option value=''>select gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div> 
-            </div>
 
             <div class="create_civ_grp">
                 <label class="create_civ_form_label">Address </label>

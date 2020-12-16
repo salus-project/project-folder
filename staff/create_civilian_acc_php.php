@@ -26,8 +26,7 @@ if (isset($_POST['nic'])){
         $email_address_err = "Invalid email format";
         $isOk=0;
     }
-
-    $gender = filt_inp($_POST["gender"]); 
+ 
     $address = filt_inp($_POST["address"]);
     $district = filt_inp($_POST["district"]);
     $village = filt_inp($_POST["village"]);
@@ -65,7 +64,6 @@ if (isset($_POST['nic'])){
     }
 
     if($isOk==1){
-        $gender = ($_POST["gender"]!='')?"'".filt_inp($_POST["gender"])."'":"NULL"; 
         $address = ($_POST["address"]!='')?"'".filt_inp($_POST["address"])."'":"NULL";
         $district = ($_POST["district"]!='')?"'".filt_inp($_POST["district"])."'":"NULL";
         $village = ($_POST["village"]!='')?"'".filt_inp($_POST["village"])."'":"NULL";
@@ -75,8 +73,8 @@ if (isset($_POST['nic'])){
 
         $hash_passwd= md5($password);
         
-        $sql = "INSERT INTO civilian_detail (password, first_name, last_name, gender, NIC_num, address, district,village,street, Occupation, phone_num, email)
-        VALUES ('$hash_passwd', '$first_name', '$last_name', $gender, '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
+        $sql = "INSERT INTO civilian_detail (password, first_name, last_name, NIC_num, address, district,village,street, Occupation, phone_num, email)
+        VALUES ('$hash_passwd', '$first_name', '$last_name', '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
         $query_run= mysqli_query($con,$sql);
 
         echo $sql;
