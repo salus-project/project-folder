@@ -551,3 +551,11 @@ input:checked + .slider:before{
 .mySlides{
     height: 100%;
 }
+
+#event_header{
+    margin: 10px 10px 0 10px;
+}
+
+.event_cont{
+    padding:0 10px 10px 10px;
+}
