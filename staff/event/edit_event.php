@@ -10,6 +10,8 @@
     $start_date=$result['start_date'];    
     $detail=$result['detail'];     
     $old_district = explode(",", $result['affected_districts']);
+
+    $err=(isset($_GET['err']))?$_GET['err']:'';
 ?>   
 
 <link rel="stylesheet" href="/staff/css_codes/create_event.css">
@@ -24,7 +26,7 @@
             <div class="head_edit_prof_form_det">Edit event</div>
         </div>
         <div class="body_create_event_form">
-
+        <span class="error"> <?php echo $err;?></span>
             <div class="create_event_grp">
                 <label class="create_event_label">Name</label>
                 <input name = "name" type="text" class="create_event_input_box" value="<?php echo $name ?>" required>
@@ -74,7 +76,7 @@
 
             <div class="create_event_grp">
                 <label class="create_event_label"> Start date </label>                
-                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date ?>" /><br>
+                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date ?>" required /><br>
             </div>
 
             <div class="create_event_grp">

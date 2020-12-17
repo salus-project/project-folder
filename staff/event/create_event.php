@@ -15,7 +15,7 @@
             <div class="head_edit_prof_form_det">Create new event</div>
         </div>
         <div class="body_create_event_form">
-
+        
             <div class="create_event_grp">
                 <label class="create_event_label">Name</label>
                 <div>
@@ -58,7 +58,7 @@
 
             <div class="create_event_grp">
                 <label class="create_event_label"> Start date </label>                
-                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date;?>" /><br>
+                <input name = "start_date" type="date" class="create_event_input_box" value="<?php echo $start_date;?>" required/><br>
             </div>
             
 

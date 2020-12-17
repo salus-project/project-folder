@@ -18,7 +18,23 @@
             $nameErr="Name already exist";
             $check=false;
         }
-        
+        if(in_array(substr($name,0,1), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) ){
+            $nameErr="Name should start with a letter";
+            $check=false;
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$name)){
+            $nameErr='Only letters and white space allowed';
+            $check=false;
+        } 
+
+        if(in_array(substr($type,0,1), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) ){
+            echo '<script type="text/javascript">alert("Event type should start with a letter")</script>';
+            $check=false;
+        }elseif(!preg_match("/^[a-zA-Z0-9 ]*$/",$type)){
+            echo '<script type="text/javascript">alert("Only letters and white space allowed for Event type")</script>';
+            $check=false;
+        } 
+
         if(! empty($_POST['district'])){
             $values=array_filter($_POST['district'],"filt_inp");
             $affected_districts = implode(",", $values);
