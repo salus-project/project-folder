@@ -105,7 +105,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['org_name'];
             $this->author_link = "/organization?selected_org=".$detail_arr['org'];
-            $this->profile_url = '';
+            $this->profile_url = '/common/documents/Organization/Profiles/resized/'.$detail_arr['org'].'.jpg';
         }
     }
 
@@ -115,7 +115,7 @@
             parent::__construct($detail_arr);
             $this->author = $detail_arr['name'];
             $this->author_link = "/fundraising/view_fundraising.php?view_fun=".$detail_arr['fund'];
-            $this->profile_url = '';
+            $this->profile_url = '/common/documents/Fundraising/resized/'.$detail_arr['fund'].'.jpg';
         }
     }
 
