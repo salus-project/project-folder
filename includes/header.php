@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css_codes/header.css">
         <link rel='stylesheet' type='text/css' href='/css_codes/side_nav.css'>
         <link rel="shortcut icon" href="/common/logo.png" type="image/x-icon" /> 
