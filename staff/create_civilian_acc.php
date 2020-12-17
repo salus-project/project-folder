@@ -16,18 +16,21 @@
  
     <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' ng-app="" name="CreateCivilianAccForm" id='CreateCivilianAccForm' novalidate ng-init="Nic='<?php echo $nic?>';firstName='<?php echo $first_name?>';lastName='<?php echo $last_name?>';userPhone='<?php echo $phone_number?>';userMail='<?php echo $email_address?>';">
         <div class="create_civ_form_box">
-
             <div class="head_create_civ_form"> 
                 <div class="head_create_civ_form_det">Create new member</div>
             </div>
 
             <div class="body_create_civ_form">
-
+            <div class="intro">
+                <p>NIC number, first name last name and email added are required. Password will be sent to the email.</p>
+            </div>
             <div class="create_civ_grp">
                 <label class="create_civ_form_label">NIC number</label>
                 <div>
-                    <div ng-class="{'has-error': CreateCivilianAccForm.nic.$invalid}">
+                    <div ng-class="{'has-error': CreateCivilianAccForm.nic.$invalid}" class="form_input">
                         <input class="create_civ_input_box" type='text' name='nic' placeholder='Enter NIC number' max_length="11"  pattern="[0-9]{9}[Vv]|[0-9]{11}" ng-model="Nic" required>
+                        <div></div>
+                        <div></div>
                         <span class='error'><?php echo $nic_err ?></span>
                     </div>
                     <span class='error' data-ng-show="CreateCivilianAccForm.nic.$invalid && CreateCivilianAccForm.nic.$touched"><i class='fas fa-exclamation-circle'></i> Invalid NIC Format</span>
@@ -67,8 +70,8 @@
                 </div>
             </div>
 
-            <div>
-                
+            <div class="add_more_btn">
+                <button type="button">Add more detail</button>
             </div>
             
             <div class="additional_data">
@@ -140,7 +143,7 @@
             </div>
             </div>
             <div class="foot_create_civ_form">
-                <button id="submitBtn" class="create_civ_submit_button submitt">Submit</button>
+                <button type="button" id="submitBtn" class="create_civ_submit_button submitt">Create</button>
                 <a href="<?php echo $_SERVER['HTTP_REFERER']?>"><button name="cancel_button" type="button"  value="Cancel"  class="create_civ_submit_button">Cancel</button></a>
             </div>
             
@@ -160,6 +163,11 @@
     document.getElementById('submitBtn').onclick = function(e){
         if(($('input[name$="nic"]:first').hasClass('ng-invalid') || $('input[name$="first_name"]:first').hasClass('ng-invalid') || $('input[name$="last_name"]:first').hasClass('ng-invalid') || $('input[name$="email_address"]:first').hasClass('ng-invalid')|| $('input[name$="phone_number"]:first').hasClass('ng-invalid') )){
             alert('Please Fill the form Correctly');
+            $('input[name$="nic"]:first').focus();
+            $('input[name$="first_name"]:first').focus();
+            $('input[name$="last_name"]:first').focus();
+            $('input[name$="email_address"]:first').focus();
+            $('input[name$="nic"]:first').focus();
         }else{
             document.getElementById('CreateCivilianAccForm').submit();
         }
@@ -248,5 +256,64 @@
     // $('form').attr("ng-app","");
     // $('form').attr("name","myForm");
     // $('form input[type="email"]').attr("ng-model","text");
+
+    $('.add_more_btn button').click(function(e){
+        var ele = e.target;
+        if($('.additional_data').hasClass('show_add')){
+            $('.additional_data').removeClass('show_add');
+            $(ele).html('Add more detail');
+        }else{
+            $('.additional_data').addClass('show_add');
+            $(ele).html('Hide more detail');
+        }
+    });
+
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 2000;  //time in ms, 5 second for example
+    var inputs = document.getElementById('CreateCivilianAccForm').querySelectorAll('input[name=nic]');
+
+    //on keyup, start the countdown
+    for(input of inputs){
+        input.addEventListener('keyup', function (e) {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval, e);
+        });
+    }
+
+    //on keydown, clear the countdown 
+    input.addEventListener('keydown', function () {
+        clearTimeout(typingTimer);
+    });
+
+    //user is "finished typing," do something
+    function doneTyping (e) {
+        var ele = e.target;
+        if(ele.value==='' || ele.classList.contains('ng-invalid')){
+            ele.classList.remove('valid_ipput');
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    ele.nextElementSibling.innerHTML = "";
+                    data = JSON.parse(this.responseText);
+                    if(data.status===false){
+                        ele.classList.remove('valid_ipput');
+                        ele.classList.add('ng-invalid');
+                        ele.nextElementSibling.nextElementSibling.outerHTML='<div class="name_exist">'+data.error+'</div>';
+                    }else{
+                        ele.classList.remove('ng-invalid');
+                        ele.classList.add('valid_input')
+                        ele.nextElementSibling.nextElementSibling.innerHTML='<div class="name_available">'+data.result+'</div>';
+                    }
+                }
+                if(this.readyState == 1){
+                    ele.nextElementSibling.innerHTML = "<div class='loader'></div>";
+                }
+            };
+            xhttp.open('GET', '/staff/ajax_validate.php?name='+ele.name+'&value='+ele.value,true);
+            xhttp.send();
+        }
+    }
     
 </script>
