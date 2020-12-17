@@ -121,7 +121,7 @@
                         echo '<div class="request_detail">';
                         echo '<table class="table1">';
                         echo '<tr>';
-                        echo '<td> District (current) :</td>';
+                        echo '<td> Author:</td>';
                         echo '<td>' . $civi_detail['first_name'] ." ". $civi_detail['last_name']. '</td>';
                         echo '</tr>';
                     
