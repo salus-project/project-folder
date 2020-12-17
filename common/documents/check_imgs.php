@@ -1,5 +1,5 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
     $root=$_SERVER['DOCUMENT_ROOT'].'/common/documents/';
 
     check_dir('select NIC_num item from civilian_detail;',['Profiles/','Profiles/resized/','Covers/']);
