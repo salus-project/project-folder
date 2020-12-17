@@ -36,6 +36,7 @@
     font-weight: 600;
 }
 td.org_view_event_td, #column2{
+    word-break: break-all;
     border: 1px solid #d8e0e7;
     text-align: left;
     font-family: "Open Sans",sans-serif;
