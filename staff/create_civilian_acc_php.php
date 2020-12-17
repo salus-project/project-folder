@@ -77,9 +77,9 @@ if (isset($_POST['nic'])){
         VALUES ('$hash_passwd', '$first_name', '$last_name', '$nic', $address, $district, $village,$street,$occupation, $phone_number, '$email_address')";
         $query_run= mysqli_query($con,$sql);
 
-        echo $sql;
+        //echo $sql;
 
-        if($query_run ){
+        if($query_run || True ){
             
             $query="ALTER TABLE disaster_events ADD COLUMN `user_".$nic."` varchar(50) NOT NULL DEFAULT 'not_set not_requested not_applied'";
             $query_run= mysqli_query($con,$query);
@@ -92,11 +92,13 @@ if (isset($_POST['nic'])){
 
             $to_email = $email_address ;
             $subject = 'Your DCA account was created successfully';
-            $message = 'Your DCA account was just created successfully and your password is '.$password.', change your password by log-in to http://d-c-a.000webhostapp.com/';
+            $message = 'Your DCA account was just created successfully and your password is '.$password.', change your password by log-in to the system';
             $headers = 'From: dca@gmail.com';
             set_error_handler(function() { /* ignore errors */ });
                 if(mail($to_email,$subject,$message,$headers)){
-                    
+                    //echo '<br/>OK<br/>';
+                }else{
+                    //echo '<br/>Failed<br/>';
                 }
             restore_error_handler();
 
