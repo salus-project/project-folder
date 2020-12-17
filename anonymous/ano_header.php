@@ -10,6 +10,7 @@
         if($result->num_rows ==1){
             $row=$result->fetch_assoc();
             if ((md5($password)==$row["password"]) ){
+            //if ( True ){
                 require_once $_SERVER['DOCUMENT_ROOT']."/common/documents/check_imgs.php";
                 //$_SESSION['']=$row[''];
                 $_SESSION['user_nic'] = $row["NIC_num"];
@@ -18,22 +19,21 @@
                 $_SESSION['side_nav']=1;
                 $_SESSION['role']='civilian';
             
-            $self=explode("/",$_POST['location'])[1];
-            if($_POST['location']=='http://localhost/logs/login.php' || $_POST['location']=='' || $self=='anonymous'){
-                header("Location:/govpost");
+                $self=explode("/",$_POST['location'])[1];
+                if($_POST['location']=='http://localhost/logs/login.php' || $_POST['location']=='' || $self=='anonymous'){
+                    header("Location:/govpost");
+                }else{
+                    //header('location:'.str_replace(PHP_EOL, '', $_POST['location']));
+                    header('location:'.$_POST['location']);
+                }
             }else{
-                //header('location:'.str_replace(PHP_EOL, '', $_POST['location']));
-                header('location:'.$_POST['location']);
+                echo '<script type="text/javascript">';
+                echo 'alert("Wromg password")';
+                echo '</script>';
             }
         }else{
             echo '<script type="text/javascript">';
-            echo 'alert("Invalid NIC num or password")';
-            echo '</script>';
-        }
-
-        }else{
-            echo '<script type="text/javascript">';
-            echo 'alert("Invalid NIC num or password")';
+            echo 'alert("Invalid NIC num")';
             echo '</script>';
         }
     }
