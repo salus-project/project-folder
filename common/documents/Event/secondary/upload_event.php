@@ -1,7 +1,7 @@
 <?php
     ob_start();
-    require $_SERVER['DOCUMENT_ROOT'] .'/confi.php';
-    //require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
+    //require $_SERVER['DOCUMENT_ROOT'] .'/confi.php';
+    require_once $_SERVER['DOCUMENT_ROOT']."/confi/db_confi.php";
 
 
     if(isset($_POST['upload'])){
