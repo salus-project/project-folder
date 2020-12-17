@@ -36,6 +36,13 @@
             echo '<script type="text/javascript">alert("Fundraising name already exits...")</script>';
             $isOk=0;
         }
+
+        if(in_array(substr($fundraising_name,0,1), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) ){
+            $nameErr="Name should start with a letter";
+            echo '<script type="text/javascript">alert("Name should start with a letter")</script>';
+            $isOk=0;
+        }
+        
         if(!preg_match("/^[a-zA-Z0-9 ]*$/",$fundraising_name)){
             $nameErr='Only letters and white space allowed';
             $isOk=0;
