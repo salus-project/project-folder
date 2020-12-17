@@ -33,7 +33,7 @@
                 <div><img src="/staff/Profiles/login_img.jpg" alt="Avatar" class="avatar"></div>
                 <div  class="logout_anchor" >
                 <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
-                    <button class="logbtn" name="logout" value=1><i class="fa fa-sign-out" style="font-size:18px;color:white;" aria-hidden="true"> Log out</i></button>
+                    <button class="logbtn" name="logout" value=1>Log out</button>
                 </form>
             </div>
             </div>  

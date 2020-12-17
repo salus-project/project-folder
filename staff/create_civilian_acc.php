@@ -66,71 +66,76 @@
                     <span class='error' data-ng-show="CreateCivilianAccForm.email_address.$error.email && CreateCivilianAccForm.email_address.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Email</span>
                 </div>
             </div>
-            
 
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Address </label>
-                <textarea name = "address" type="text" class="create_civ_textarea" placeholder="Enter address" value="<?php echo $address; ?>"required/></textarea>
+            <div>
+                
             </div>
-
-
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label"> District </label>
-                <div class="custom-select" style="width:200px;">
-                    <select name="district" class="edit_prof_select">
-                        <option value=''>select district</option>
-                        <option value='Ampara'>Ampara</option>
-                        <option value='Anurashapura'>Anurashapura</option>
-                        <option value='Badulla'>Badulla</option>
-                        <option value='Batticaloa'>Batticaloa</option>
-                        <option value='Colombo'>Colombo</option>
-                        <option value='Galle'>Galle</option>
-                        <option value='Gampha'>Gampha</option>
-                        <option value='Hambatota'>Hambantota</option>
-                        <option value='Jaffna'>Jaffna</option>
-                        <option value='Kaltura'>Kaltura</option>
-                        <option value='Kandy'>Kandy</option>
-                        <option value='Kegalle'>Kegalle</option>
-                        <option value='Kilinochchi'>Kilinochchi</option>
-                        <option value='Kurunegala'>Kurunegala</option>
-                        <option value='Mannar'>Mannar</option>
-                        <option value='Matale'>Matale</option>
-                        <option value='Mathara'>Mathara</option>
-                        <option value='Moneragala'>Moneragala</option>
-                        <option value='Mullaitivu'>Mullaitivu</option>
-                        <option value='Nuwara-Eliya'>Nuwara-Eliya</option>
-                        <option value='Polonnaruwa'>Polonnaruwa</option>
-                        <option value='Puttalam'>Puttalam</option>
-                        <option value='Ratnapura'>Ratnapura</option>
-                        <option value='Tricomalee'>Tricomalee</option>
-                        <option value='Vavuniya'>Vavuniya</option>
-                    </select>
+            
+            <div class="additional_data">
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label">Address </label>
+                    <textarea name = "address" type="text" class="create_civ_textarea" placeholder="Enter address" value="<?php echo $address; ?>"required/></textarea>
                 </div>
-            </div>
-            
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Village </label>
-                <input name = "village" type="text" class="create_civ_input_box" placeholder="Enter village" value="<?php echo $village; ?>"required/>
-            </div>
 
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Street </label>
-                <input name = "street" type="text" class="create_civ_input_box" placeholder="Enter street" value="<?php echo $street; ?>"required/>
-            </div>
 
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Occupation </label>
-                <input name = "occupation" type="text" class="create_civ_input_box" placeholder="Enter occupation"  value="<?php echo $occupation; ?>"required/><br>
-            </div>
-
-            <div class="create_civ_grp">
-                <label class="create_civ_form_label">Phone Number </label>
-                <div>
-                    <div ng-class="{'has-error': (CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched)}">
-                        <input name = "phone_number" type="tel" class="create_civ_input_box" placeholder="Enter phone number" pattern="[0-9]{9}|[0-9]{10}" ng-model="userPhone"/>
-                        <span class='error'><?php echo $phone_number_err ?></span>
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label"> District </label>
+                    <div class="custom-select" style="width:200px;">
+                        <select name="district" class="edit_prof_select">
+                            <option value=''>select district</option>
+                            <option value='Ampara'>Ampara</option>
+                            <option value='Anurashapura'>Anurashapura</option>
+                            <option value='Badulla'>Badulla</option>
+                            <option value='Batticaloa'>Batticaloa</option>
+                            <option value='Colombo'>Colombo</option>
+                            <option value='Galle'>Galle</option>
+                            <option value='Gampha'>Gampha</option>
+                            <option value='Hambatota'>Hambantota</option>
+                            <option value='Jaffna'>Jaffna</option>
+                            <option value='Kaltura'>Kaltura</option>
+                            <option value='Kandy'>Kandy</option>
+                            <option value='Kegalle'>Kegalle</option>
+                            <option value='Kilinochchi'>Kilinochchi</option>
+                            <option value='Kurunegala'>Kurunegala</option>
+                            <option value='Mannar'>Mannar</option>
+                            <option value='Matale'>Matale</option>
+                            <option value='Mathara'>Mathara</option>
+                            <option value='Moneragala'>Moneragala</option>
+                            <option value='Mullaitivu'>Mullaitivu</option>
+                            <option value='Nuwara-Eliya'>Nuwara-Eliya</option>
+                            <option value='Polonnaruwa'>Polonnaruwa</option>
+                            <option value='Puttalam'>Puttalam</option>
+                            <option value='Ratnapura'>Ratnapura</option>
+                            <option value='Tricomalee'>Tricomalee</option>
+                            <option value='Vavuniya'>Vavuniya</option>
+                        </select>
                     </div>
-                    <span class='error' data-ng-show="CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Number Format</span>
+                </div>
+                
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label">Village </label>
+                    <input name = "village" type="text" class="create_civ_input_box" placeholder="Enter village" value="<?php echo $village; ?>"required/>
+                </div>
+
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label">Street </label>
+                    <input name = "street" type="text" class="create_civ_input_box" placeholder="Enter street" value="<?php echo $street; ?>"required/>
+                </div>
+
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label">Occupation </label>
+                    <input name = "occupation" type="text" class="create_civ_input_box" placeholder="Enter occupation"  value="<?php echo $occupation; ?>"required/><br>
+                </div>
+
+                <div class="create_civ_grp">
+                    <label class="create_civ_form_label">Phone Number </label>
+                    <div>
+                        <div ng-class="{'has-error': (CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched)}">
+                            <input name = "phone_number" type="tel" class="create_civ_input_box" placeholder="Enter phone number" pattern="[0-9]{9}|[0-9]{10}" ng-model="userPhone"/>
+                            <span class='error'><?php echo $phone_number_err ?></span>
+                        </div>
+                        <span class='error' data-ng-show="CreateCivilianAccForm.phone_number.$invalid && CreateCivilianAccForm.phone_number.$touched"><i class='fas fa-exclamation-circle'></i> Invalid Number Format</span>
+                    </div>
                 </div>
             </div>
             </div>

@@ -5,9 +5,13 @@ button,input,textarea{
 }
 .logbtn{
   background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: "Open Sans",sans-serif;
+    font-size: 15px;
+    color: #4c5fd7;
+    font-weight: 600;
 }
 
 img{
@@ -20,10 +24,10 @@ img{
 }
 
 .titlebar{
-    display: flex;
-    color: white;
-    overflow: hidden;
-    background-color: #3e4d52;
+  display: flex;
+  color: #4c5fd7;
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
 .coverphoto {
@@ -50,13 +54,18 @@ img.avatar {
 }
 
 .web_name{
-  margin-left: 15px;
-  position: relative;
-  line-height: 0.5;
-  font-size: 40px;
-  float: left;
-  margin-top: 20px;
-  display: block;
+  display: inline-block;
+    position: relative;
+    left: 15px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 28px;
+    top: 4px;
+    color: #000000a3;
+    -webkit-text-fill-color: #4c5fd7;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ffffff;
+    text-shadow: 2px 2px 6px #4c5fd7;
+    font-weight: 900;
 }
 
 .logout{
@@ -71,18 +80,19 @@ img.avatar {
 
 .topnav {
     overflow: hidden;
-    background-color:#2980b9;
     font-family: "Open-sans";
+    border-bottom: 1px solid #d8e0e7;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 }
   
 .topnav a {
     float: left;
-    color: #f2f2f2;
+    color: #4c5fd7;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     font-family: "Open sans",sans-serif;
   }
   
@@ -93,10 +103,10 @@ img.avatar {
   
 .logout_anchor{
     padding-top: 5px;
-    color: white;
+    color: #4c5fd7;
     text-decoration: none;
     padding-left: 15px;
-    margin-top: 7px;
+    margin-top: 4px;
 }
 
 body{
@@ -106,7 +116,8 @@ body{
   margin: 0px;
 }
 .active{
-  background-color:#3e4d52;
+    background-color: #4c5fd7;
+    color: white !important;
 }
 .main_footer{
   background: #e8e8e8;

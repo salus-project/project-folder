@@ -10,7 +10,7 @@
     position: relative;
     padding: 10px;
     font-family: "Open Sans",sans-serif;
-    text-align: center;
+    text-align: left;
     position: relative;
 }
 .event_table th{
@@ -65,3 +65,13 @@
     z-index: 1;
 
 }
+
+.event_img{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: inherit;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 10px 0 0;
+  }
